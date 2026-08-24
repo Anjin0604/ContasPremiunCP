@@ -1,841 +1,849 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>CP · Contas Premium</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-    }
-
-    body {
-      background: #f5f2f0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px 16px 40px;
-    }
-
-    .container {
-      max-width: 500px;
-      width: 100%;
-      background: #ffffff;
-      border-radius: 32px 32px 28px 28px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06), 0 8px 20px rgba(0, 0, 0, 0.03);
-      overflow: hidden;
-      padding: 20px 18px 30px;
-      transition: all 0.2s ease;
-    }
-
-    /* cabeçalho / marca */
-    .brand {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 14px;
-    }
-
-    .brand-left {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .brand-icon {
-      background: #1e1e2a;
-      color: #f5c34b;
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 20px;
-      letter-spacing: -0.5px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.04);
-    }
-
-    .brand-text {
-      font-weight: 700;
-      font-size: 22px;
-      letter-spacing: -0.3px;
-      color: #1e1e2a;
-    }
-    .brand-text span {
-      color: #b8960f;
-      font-weight: 300;
-      margin-left: 2px;
-    }
-
-    .badge-whats {
-      background: #25D366;
-      color: white;
-      padding: 6px 14px 6px 12px;
-      border-radius: 60px;
-      font-size: 13px;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      box-shadow: 0 4px 10px rgba(37, 211, 102, 0.25);
-      transition: all 0.2s ease;
-      cursor: pointer;
-      text-decoration: none;
-    }
-    .badge-whats i {
-      font-size: 14px;
-    }
-    .badge-whats:hover {
-      transform: scale(1.02);
-      box-shadow: 0 6px 14px rgba(37, 211, 102, 0.35);
-    }
-
-    /* destaque do momento */
-    .highlight-card {
-      background: linear-gradient(145deg, #1e1e2a, #2a2838);
-      border-radius: 28px;
-      padding: 18px 20px 16px;
-      margin: 6px 0 18px;
-      color: white;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      box-shadow: 0 10px 18px rgba(0, 0, 0, 0.08);
-    }
-
-    .highlight-left h4 {
-      font-size: 14px;
-      font-weight: 500;
-      letter-spacing: 0.3px;
-      color: #f5c34b;
-      margin-bottom: 2px;
-    }
-    .highlight-left h2 {
-      font-size: 24px;
-      font-weight: 700;
-      line-height: 1.1;
-      margin-bottom: 4px;
-    }
-    .highlight-left p {
-      font-size: 13px;
-      opacity: 0.7;
-      font-weight: 300;
-    }
-    .highlight-right {
-      background: rgba(255,255,255,0.06);
-      padding: 8px 14px;
-      border-radius: 40px;
-      font-size: 12px;
-      font-weight: 500;
-      border: 1px solid rgba(255,215,0,0.15);
-      color: #f5c34b;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .highlight-right i {
-      font-size: 14px;
-    }
-
-    /* entregas */
-    .delivery-stats {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: #f8f6f4;
-      padding: 10px 16px;
-      border-radius: 80px;
-      margin-bottom: 24px;
-    }
-    .delivery-stats span {
-      font-weight: 600;
-      color: #1e1e2a;
-      font-size: 15px;
-    }
-    .delivery-stats span i {
-      color: #b8960f;
-      margin-right: 6px;
-    }
-    .btn-group {
-      display: flex;
-      gap: 6px;
-    }
-    .btn-outline, .btn-whats-small {
-      padding: 6px 14px;
-      border-radius: 40px;
-      font-size: 12px;
-      font-weight: 600;
-      border: none;
-      background: white;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
-      color: #1e1e2a;
-      transition: 0.15s;
-      cursor: pointer;
-      text-decoration: none;
-      border: 1px solid #e0dbd7;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-    }
-    .btn-whats-small {
-      background: #25D366;
-      color: white;
-      border: none;
-      box-shadow: 0 4px 8px rgba(37, 211, 102, 0.2);
-    }
-    .btn-whats-small i {
-      margin-right: 4px;
-    }
-    .btn-outline:hover {
-      background: #f0edea;
-    }
-    .btn-whats-small:hover {
-      transform: scale(1.03);
-      box-shadow: 0 6px 12px rgba(37, 211, 102, 0.3);
-    }
-
-    /* seção destaques CP (cards de produtos) */
-    .section-title {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      margin: 18px 0 12px;
-    }
-    .section-title h3 {
-      font-size: 20px;
-      font-weight: 700;
-      color: #1e1e2a;
-      letter-spacing: -0.3px;
-    }
-    .section-title .tag-novo {
-      background: #f5c34b;
-      color: #1e1e2a;
-      font-size: 11px;
-      font-weight: 700;
-      padding: 4px 12px;
-      border-radius: 40px;
-    }
-
-    .product-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 8px;
-    }
-    .product-card {
-      background: #faf8f7;
-      border-radius: 20px;
-      padding: 14px 12px 12px;
-      border: 1px solid #efebe9;
-      transition: all 0.15s ease;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.01);
-      display: flex;
-      flex-direction: column;
-    }
-    .product-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.04);
-    }
-    .product-card .badge-novo {
-      background: #f5c34b;
-      color: #1e1e2a;
-      font-size: 9px;
-      font-weight: 700;
-      padding: 2px 10px;
-      border-radius: 40px;
-      display: inline-block;
-      width: fit-content;
-      margin-bottom: 6px;
-      letter-spacing: 0.3px;
-    }
-    .product-card h4 {
-      font-size: 16px;
-      font-weight: 600;
-      color: #1e1e2a;
-      line-height: 1.2;
-      margin-bottom: 4px;
-    }
-    .product-card .price {
-      font-weight: 700;
-      font-size: 18px;
-      color: #1e1e2a;
-      margin: 4px 0 8px;
-    }
-    .product-card .price small {
-      font-weight: 400;
-      font-size: 13px;
-      color: #6b6560;
-    }
-    .btn-interest {
-      background: white;
-      border: 1.5px solid #d6cfc9;
-      border-radius: 60px;
-      padding: 8px 0;
-      font-size: 13px;
-      font-weight: 600;
-      color: #1e1e2a;
-      width: 100%;
-      text-align: center;
-      transition: 0.15s;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-      background: #ffffff;
-    }
-    .btn-interest i {
-      margin-right: 6px;
-      color: #25D366;
-    }
-    .btn-interest:hover {
-      background: #f0edea;
-      border-color: #b8960f;
-    }
-
-    /* combos */
-    .combo-section {
-      margin: 24px 0 18px;
-    }
-    .combo-header {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .combo-header h3 {
-      font-size: 22px;
-      font-weight: 700;
-      color: #1e1e2a;
-    }
-    .combo-header span {
-      background: #b8960f;
-      color: white;
-      font-size: 11px;
-      font-weight: 700;
-      padding: 2px 10px;
-      border-radius: 40px;
-    }
-
-    .combo-card {
-      background: #fcf9f7;
-      border-radius: 24px;
-      padding: 18px 16px 16px;
-      margin-top: 14px;
-      border: 1px solid #ede8e4;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.02);
-      transition: 0.15s ease;
-    }
-    .combo-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.04);
-    }
-    .combo-card.popular {
-      border-left: 5px solid #f5c34b;
-      background: #fefcf9;
-    }
-    .combo-card .combo-title {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    .combo-card .combo-title h4 {
-      font-size: 18px;
-      font-weight: 700;
-      color: #1e1e2a;
-    }
-    .combo-card .combo-title .tag-popular {
-      background: #f5c34b;
-      font-size: 10px;
-      font-weight: 700;
-      padding: 4px 12px;
-      border-radius: 40px;
-      color: #1e1e2a;
-    }
-    .combo-price {
-      font-size: 26px;
-      font-weight: 700;
-      color: #1e1e2a;
-      margin: 6px 0 2px;
-    }
-    .combo-price small {
-      font-size: 15px;
-      font-weight: 400;
-      color: #6b6560;
-    }
-    .combo-desc {
-      font-size: 14px;
-      color: #2f2a26;
-      margin: 4px 0 8px;
-      font-weight: 500;
-      line-height: 1.3;
-    }
-    .combo-economy {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: #e9f3e6;
-      padding: 5px 14px 5px 12px;
-      border-radius: 60px;
-      width: fit-content;
-      font-size: 13px;
-      font-weight: 600;
-      color: #1f5a2a;
-      margin: 6px 0 10px;
-    }
-    .combo-economy i {
-      color: #2b7a3b;
-    }
-    .btn-combo {
-      background: #1e1e2a;
-      color: white;
-      border: none;
-      border-radius: 60px;
-      padding: 12px 0;
-      font-weight: 700;
-      font-size: 16px;
-      width: 100%;
-      transition: 0.15s;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-      text-align: center;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.06);
-    }
-    .btn-combo i {
-      margin-right: 6px;
-    }
-    .btn-combo:hover {
-      background: #2a2a3a;
-      transform: scale(1.01);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-    }
-
-    /* categorias */
-    .categories {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-      gap: 8px;
-      background: #f7f4f1;
-      border-radius: 40px;
-      padding: 12px 10px;
-      margin: 18px 0 12px;
-    }
-    .category-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      font-weight: 600;
-      font-size: 14px;
-      color: #1e1e2a;
-    }
-    .category-item small {
-      font-weight: 400;
-      font-size: 12px;
-      color: #6b6560;
-    }
-
-    /* estreias semana */
-    .estreia-card {
-      background: #1e1e2a;
-      border-radius: 28px;
-      padding: 18px 18px 14px;
-      color: white;
-      margin: 14px 0 18px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
-    .estreia-left h5 {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: #f5c34b;
-      font-weight: 500;
-    }
-    .estreia-left h3 {
-      font-size: 22px;
-      font-weight: 700;
-      margin: 2px 0;
-    }
-    .estreia-left p {
-      font-size: 13px;
-      opacity: 0.7;
-    }
-    .estreia-badge {
-      background: rgba(255,215,0,0.15);
-      padding: 6px 16px;
-      border-radius: 60px;
-      font-size: 12px;
-      font-weight: 600;
-      border: 1px solid rgba(255,215,0,0.2);
-      color: #f5c34b;
-    }
-
-    /* motivos */
-    .motivos {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 8px;
-      margin: 14px 0 16px;
-    }
-    .motivo-item {
-      background: #faf8f7;
-      border-radius: 20px;
-      padding: 10px 6px;
-      text-align: center;
-      border: 1px solid #ede8e4;
-    }
-    .motivo-item .num {
-      background: #1e1e2a;
-      color: #f5c34b;
-      width: 24px;
-      height: 24px;
-      border-radius: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 12px;
-      margin: 0 auto 4px;
-    }
-    .motivo-item p {
-      font-size: 11px;
-      font-weight: 500;
-      color: #1e1e2a;
-      line-height: 1.2;
-    }
-
-    /* depoimentos */
-    .depoimento {
-      background: #f7f3f0;
-      padding: 14px 16px;
-      border-radius: 24px;
-      margin: 10px 0 12px;
-      font-style: italic;
-      color: #1e1e2a;
-      border-left: 4px solid #f5c34b;
-    }
-    .depoimento p {
-      font-size: 15px;
-      font-weight: 450;
-    }
-    .depoimento .autor {
-      font-style: normal;
-      font-weight: 600;
-      margin-top: 4px;
-      font-size: 14px;
-    }
-
-    /* como funciona */
-    .steps {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      justify-content: space-between;
-      margin: 10px 0 16px;
-    }
-    .step {
-      background: #faf8f7;
-      padding: 6px 12px;
-      border-radius: 60px;
-      font-size: 13px;
-      font-weight: 500;
-      border: 1px solid #e3ddd8;
-      flex: 1 0 auto;
-      text-align: center;
-    }
-    .step i {
-      color: #b8960f;
-      margin-right: 4px;
-    }
-
-    .garantia {
-      background: #e6f0e6;
-      padding: 10px 14px;
-      border-radius: 60px;
-      text-align: center;
-      font-weight: 600;
-      font-size: 14px;
-      color: #1f4a2a;
-      margin: 10px 0 16px;
-    }
-    .garantia i {
-      margin-right: 6px;
-      color: #1f7a3b;
-    }
-
-    .faq-item {
-      background: #faf8f7;
-      padding: 12px 14px;
-      border-radius: 16px;
-      margin: 6px 0;
-      border: 1px solid #ede8e4;
-    }
-    .faq-item strong {
-      display: block;
-      font-size: 15px;
-      color: #1e1e2a;
-    }
-    .faq-item p {
-      font-size: 14px;
-      color: #3b3530;
-      margin-top: 2px;
-    }
-
-    .footer-whats {
-      margin-top: 24px;
-      background: #1e1e2a;
-      border-radius: 60px;
-      padding: 14px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      color: white;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .footer-whats span {
-      font-weight: 500;
-      font-size: 16px;
-    }
-    .footer-whats .btn-chamar {
-      background: #25D366;
-      padding: 8px 22px;
-      border-radius: 60px;
-      font-weight: 700;
-      font-size: 14px;
-      color: white;
-      box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
-      text-decoration: none;
-      transition: 0.15s;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .footer-whats .btn-chamar:hover {
-      transform: scale(1.03);
-      box-shadow: 0 6px 14px rgba(37, 211, 102, 0.4);
-    }
-    .footer-whats .btn-chamar i {
-      margin-right: 4px;
-    }
-
-    .creditos {
-      margin-top: 16px;
-      font-size: 13px;
-      color: #8a827c;
-      text-align: center;
-      line-height: 1.5;
-    }
-    .creditos i {
-      color: #b8960f;
-    }
-    .creditos a {
-      color: #1e1e2a;
-      font-weight: 600;
-      text-decoration: none;
-      border-bottom: 1px dashed #b8960f;
-    }
-    .creditos a:hover {
-      color: #b8960f;
-    }
-
-    .btn, .btn-interest, .btn-combo, .btn-outline, .btn-whats-small, .btn-chamar {
-      cursor: pointer;
-    }
-    .space {
-      margin-top: 4px;
-    }
-    .flex {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-    @media (max-width: 420px) {
-      .product-grid { gap: 8px; }
-      .product-card { padding: 12px 8px; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>CP · Contas Premium</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+        body {
+            background: #0a0a0f;
+            color: #e0d6f0;
+            display: flex;
+            justify-content: center;
+            padding: 20px 16px 40px;
+            min-height: 100vh;
+            background-image: radial-gradient(circle at 10% 20%, rgba(123, 47, 252, 0.08) 0%, transparent 50%);
+        }
+        .container {
+            max-width: 520px;
+            width: 100%;
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(4px);
+            border-radius: 36px;
+            border: 1px solid rgba(123, 47, 252, 0.25);
+            box-shadow: 0 20px 60px rgba(123, 47, 252, 0.15), 0 0 40px rgba(255, 45, 149, 0.05);
+            padding: 20px 18px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        .glow-text {
+            text-shadow: 0 0 10px rgba(123, 47, 252, 0.5), 0 0 20px rgba(255, 45, 149, 0.3);
+        }
+        .glow-border {
+            border: 1px solid rgba(123, 47, 252, 0.3);
+            box-shadow: 0 0 15px rgba(123, 47, 252, 0.1);
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 18px;
+        }
+        .brand-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .brand-icon {
+            background: linear-gradient(135deg, #7b2ffc, #ff2d95);
+            color: #fff;
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 22px;
+            box-shadow: 0 0 25px rgba(123, 47, 252, 0.4);
+        }
+        .brand-text {
+            font-weight: 700;
+            font-size: 22px;
+            letter-spacing: -0.3px;
+            color: #fff;
+        }
+        .brand-text span {
+            background: linear-gradient(90deg, #7b2ffc, #ff2d95);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .badge-whats {
+            background: #25D366;
+            color: #fff;
+            padding: 6px 14px 6px 12px;
+            border-radius: 60px;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.2);
+            transition: 0.2s;
+            cursor: pointer;
+        }
+        .badge-whats:hover { transform: scale(1.04); }
+        .tabs {
+            display: flex;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 60px;
+            padding: 4px;
+            margin: 16px 0 18px;
+            border: 1px solid rgba(123, 47, 252, 0.15);
+        }
+        .tab-btn {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: #a09bb0;
+            padding: 10px 0;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: 0.2s;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        .tab-btn i { font-size: 16px; }
+        .tab-btn.active {
+            background: linear-gradient(135deg, rgba(123, 47, 252, 0.3), rgba(255, 45, 149, 0.2));
+            color: #fff;
+            box-shadow: 0 0 20px rgba(123, 47, 252, 0.2);
+        }
+        .tab-btn:hover:not(.active) { color: #d0c8e8; }
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        .highlight-card {
+            background: linear-gradient(145deg, #13101f, #1b1628);
+            border-radius: 24px;
+            padding: 18px 20px 16px;
+            margin: 6px 0 18px;
+            border-left: 4px solid #ff2d95;
+            box-shadow: 0 0 30px rgba(255, 45, 149, 0.08);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .highlight-left h4 {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #ff2d95;
+            font-weight: 500;
+        }
+        .highlight-left h2 {
+            font-size: 22px;
+            font-weight: 700;
+            background: linear-gradient(90deg, #7b2ffc, #ff2d95);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .highlight-left p {
+            font-size: 13px;
+            opacity: 0.7;
+        }
+        .highlight-right {
+            background: rgba(123, 47, 252, 0.15);
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-size: 12px;
+            font-weight: 600;
+            border: 1px solid rgba(123, 47, 252, 0.3);
+            color: #b896ff;
+        }
+        .section-title {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            margin: 18px 0 12px;
+        }
+        .section-title h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+        }
+        .section-title .tag {
+            background: linear-gradient(90deg, #7b2ffc, #ff2d95);
+            color: #fff;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 3px 12px;
+            border-radius: 40px;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+        .product-card {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 20px;
+            padding: 14px 12px 12px;
+            border: 1px solid rgba(123, 47, 252, 0.15);
+            transition: 0.2s;
+            backdrop-filter: blur(2px);
+        }
+        .product-card:hover {
+            transform: translateY(-3px);
+            border-color: #7b2ffc;
+            box-shadow: 0 0 30px rgba(123, 47, 252, 0.1);
+        }
+        .product-card h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: #fff;
+        }
+        .product-card .price-group {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            margin: 6px 0 10px;
+        }
+        .product-card .price-group .price {
+            font-weight: 700;
+            font-size: 17px;
+            color: #b896ff;
+        }
+        .product-card .price-group .price small {
+            font-weight: 400;
+            font-size: 12px;
+            color: #8a7fa0;
+            text-decoration: line-through;
+            margin-left: 6px;
+        }
+        .product-card .price-group .price.support {
+            color: #ff2d95;
+            font-size: 15px;
+        }
+        .btn-add {
+            background: linear-gradient(135deg, #7b2ffc, #5a1fb0);
+            border: none;
+            border-radius: 60px;
+            padding: 8px 0;
+            font-size: 13px;
+            font-weight: 600;
+            color: #fff;
+            width: 100%;
+            cursor: pointer;
+            transition: 0.15s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        .btn-add:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 25px rgba(123, 47, 252, 0.3);
+        }
+        .combo-card {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 24px;
+            padding: 16px;
+            margin-top: 14px;
+            border: 1px solid rgba(123, 47, 252, 0.15);
+            transition: 0.2s;
+        }
+        .combo-card:hover {
+            border-color: #ff2d95;
+            box-shadow: 0 0 30px rgba(255, 45, 149, 0.05);
+        }
+        .combo-card .combo-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .combo-card .combo-title h4 {
+            font-size: 18px;
+            color: #fff;
+        }
+        .combo-card .combo-title .tag-pop {
+            background: #ff2d95;
+            color: #fff;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 3px 12px;
+            border-radius: 40px;
+        }
+        .combo-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: #b896ff;
+            margin: 6px 0 2px;
+        }
+        .combo-price small {
+            font-size: 14px;
+            font-weight: 400;
+            color: #8a7fa0;
+        }
+        .combo-desc {
+            font-size: 14px;
+            color: #c0b8d0;
+            margin: 4px 0 8px;
+        }
+        .combo-economy {
+            background: rgba(255, 45, 149, 0.1);
+            padding: 4px 14px;
+            border-radius: 60px;
+            display: inline-block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #ff2d95;
+            margin: 6px 0 10px;
+        }
+        .btn-combo-add {
+            background: linear-gradient(135deg, #ff2d95, #c01a6e);
+            border: none;
+            border-radius: 60px;
+            padding: 12px 0;
+            font-weight: 700;
+            font-size: 16px;
+            color: #fff;
+            width: 100%;
+            cursor: pointer;
+            transition: 0.15s;
+        }
+        .btn-combo-add:hover {
+            transform: scale(1.01);
+            box-shadow: 0 0 30px rgba(255, 45, 149, 0.3);
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255,255,255,0.03);
+            padding: 10px 14px;
+            border-radius: 16px;
+            margin: 6px 0;
+            border-left: 3px solid #7b2ffc;
+        }
+        .cart-item .item-info { flex: 1; }
+        .cart-item .item-info h5 { color: #fff; font-size: 15px; }
+        .cart-item .item-info span { font-size: 13px; color: #b896ff; }
+        .cart-item .item-price { font-weight: 700; color: #ff2d95; }
+        .cart-item .btn-remove {
+            background: none;
+            border: none;
+            color: #ff2d95;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 0 6px;
+        }
+        .cart-total {
+            text-align: right;
+            font-size: 22px;
+            font-weight: 700;
+            color: #fff;
+            margin: 12px 0 6px;
+        }
+        .cart-total span { color: #b896ff; }
+        .discount-input {
+            display: flex;
+            gap: 8px;
+            margin: 10px 0;
+        }
+        .discount-input input {
+            flex: 1;
+            padding: 10px 14px;
+            border-radius: 60px;
+            border: 1px solid rgba(123, 47, 252, 0.3);
+            background: rgba(255,255,255,0.05);
+            color: #fff;
+            outline: none;
+        }
+        .discount-input input:focus { border-color: #7b2ffc; }
+        .discount-input button {
+            background: linear-gradient(135deg, #7b2ffc, #5a1fb0);
+            border: none;
+            border-radius: 60px;
+            padding: 10px 20px;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+        }
+        .btn-checkout {
+            background: linear-gradient(135deg, #ff2d95, #c01a6e);
+            border: none;
+            border-radius: 60px;
+            padding: 14px 0;
+            font-weight: 700;
+            font-size: 18px;
+            color: #fff;
+            width: 100%;
+            cursor: pointer;
+            margin-top: 12px;
+            transition: 0.15s;
+        }
+        .btn-checkout:hover { transform: scale(1.01); box-shadow: 0 0 40px rgba(255, 45, 149, 0.2); }
+        .garantia-box {
+            background: rgba(123, 47, 252, 0.08);
+            border-radius: 20px;
+            padding: 14px 16px;
+            margin: 12px 0;
+            border: 1px dashed rgba(123, 47, 252, 0.3);
+            text-align: center;
+            color: #b896ff;
+            font-weight: 500;
+        }
+        .garantia-box i { color: #ff2d95; margin-right: 6px; }
+        .footer-whats {
+            margin-top: 24px;
+            background: rgba(255,255,255,0.04);
+            border-radius: 60px;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+            border: 1px solid rgba(123, 47, 252, 0.15);
+        }
+        .footer-whats span { font-weight: 500; color: #c0b8d0; }
+        .btn-social {
+            padding: 8px 22px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 14px;
+            color: #fff;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.15s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-social.whats { background: #25D366; }
+        .btn-social.telegram { background: #0088cc; }
+        .btn-social:hover { transform: scale(1.04); }
+        .btn-social i { font-size: 16px; }
+        .creditos {
+            margin-top: 16px;
+            font-size: 12px;
+            color: #6a5f80;
+            text-align: center;
+            line-height: 1.6;
+        }
+        .creditos a { color: #b896ff; text-decoration: none; }
+        .creditos a:hover { color: #ff2d95; }
+        .teste-gratis {
+            background: rgba(255, 45, 149, 0.08);
+            border-radius: 20px;
+            padding: 10px 14px;
+            margin: 10px 0;
+            border: 1px solid rgba(255, 45, 149, 0.2);
+            text-align: center;
+            color: #ff2d95;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .teste-gratis i { margin-right: 6px; }
+        @media (max-width: 440px) {
+            .product-grid { grid-template-columns: 1fr; }
+            .tabs .tab-btn { font-size: 12px; padding: 8px 0; }
+            .container { padding: 16px 12px; }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
 
-    <!-- Brand -->
+<div class="container" id="app">
+
+    <!-- HEADER -->
     <div class="brand">
-      <div class="brand-left">
-        <div class="brand-icon">CP</div>
-        <div class="brand-text">Contas<span>Premium</span></div>
-      </div>
-      <a href="https://wa.me/556198542343?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20serviços." class="badge-whats" target="_blank">
-        <i class="fab fa-whatsapp"></i> Fale já
-      </a>
+        <div class="brand-left">
+            <div class="brand-icon">CP</div>
+            <div class="brand-text">Contas<span>Premium</span></div>
+        </div>
+        <a href="https://wa.me/556198542343" target="_blank" class="badge-whats" id="whatsHeader">
+            <i class="fab fa-whatsapp"></i> Fale já
+        </a>
     </div>
 
-    <!-- Destaque momento -->
-    <div class="highlight-card">
-      <div class="highlight-left">
-        <h4>⭐ DESTAQUE DO MOMENTO</h4>
-        <h2>Outer Banks</h2>
-        <p>Temporada final · já disponível</p>
-      </div>
-      <div class="highlight-right"><i class="fas fa-play"></i> Netflix</div>
+    <!-- DESTAQUE DO MOMENTO (dinâmico) -->
+    <div class="highlight-card" id="destaqueCard">
+        <div class="highlight-left">
+            <h4>⭐ DESTAQUE DO MOMENTO</h4>
+            <h2 id="destaqueTitulo">Carregando...</h2>
+            <p id="destaqueDesc">Aguarde</p>
+        </div>
+        <div class="highlight-right" id="destaquePlataforma"><i class="fas fa-tv"></i> Netflix</div>
     </div>
 
-    <!-- stats -->
-    <div class="delivery-stats">
-      <span><i class="fas fa-check-circle"></i> 1.847 serviços entregues</span>
-      <div class="btn-group">
-        <a href="#" class="btn-outline"><i class="fas fa-list"></i> Ver</a>
-        <a href="https://wa.me/556198542343" target="_blank" class="btn-whats-small"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-      </div>
+    <!-- NAVEGAÇÃO POR ABAS -->
+    <div class="tabs">
+        <button class="tab-btn active" data-tab="tab1"><i class="fas fa-home"></i> Início</button>
+        <button class="tab-btn" data-tab="tab2"><i class="fas fa-box"></i> Serviços</button>
+        <button class="tab-btn" data-tab="tab3"><i class="fas fa-layer-group"></i> Combos</button>
+        <button class="tab-btn" data-tab="tab4"><i class="fas fa-shopping-cart"></i> Carrinho <span id="cartCount">0</span></button>
     </div>
 
-    <!-- Destaques CP (grid produtos) -->
-    <div class="section-title">
-      <h3>Destaques da CP</h3>
-      <span class="tag-novo">NOVO</span>
+    <!-- ===== TAB 1: INÍCIO ===== -->
+    <div class="tab-content active" id="tab1">
+        <div class="delivery-stats" style="background:rgba(255,255,255,0.04);border-radius:80px;padding:10px 16px;display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
+            <span style="color:#b896ff;"><i class="fas fa-check-circle"></i> 1.847 serviços entregues</span>
+            <div style="display:flex;gap:6px;">
+                <button class="btn-outline" style="background:transparent;border:1px solid rgba(123,47,252,0.3);border-radius:40px;padding:6px 14px;color:#b896ff;">Ver</button>
+                <a href="https://wa.me/556198542343" target="_blank" style="background:#25D366;border-radius:40px;padding:6px 14px;color:#fff;text-decoration:none;font-weight:600;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            </div>
+        </div>
+
+        <div class="garantia-box">
+            <i class="fas fa-shield-alt"></i> Garantia de 30 dias com suporte incluso
+        </div>
+
+        <div class="teste-gratis">
+            <i class="fas fa-gift"></i> Ganhe 2 dias de teste grátis em cada compra!
+        </div>
+
+        <div style="margin:18px 0 10px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+            <div style="background:rgba(255,255,255,0.03);border-radius:20px;padding:10px;text-align:center;border:1px solid rgba(123,47,252,0.1);">
+                <div style="background:#7b2ffc;width:28px;height:28px;border-radius:40px;margin:0 auto 4px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;">1</div>
+                <p style="font-size:11px;color:#c0b8d0;">Preços justos</p>
+            </div>
+            <div style="background:rgba(255,255,255,0.03);border-radius:20px;padding:10px;text-align:center;border:1px solid rgba(123,47,252,0.1);">
+                <div style="background:#7b2ffc;width:28px;height:28px;border-radius:40px;margin:0 auto 4px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;">2</div>
+                <p style="font-size:11px;color:#c0b8d0;">Suporte 24h</p>
+            </div>
+            <div style="background:rgba(255,255,255,0.03);border-radius:20px;padding:10px;text-align:center;border:1px solid rgba(123,47,252,0.1);">
+                <div style="background:#7b2ffc;width:28px;height:28px;border-radius:40px;margin:0 auto 4px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;">3</div>
+                <p style="font-size:11px;color:#c0b8d0;">Variedade</p>
+            </div>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.02);border-radius:24px;padding:14px 16px;margin:8px 0;border-left:3px solid #ff2d95;">
+            <p style="font-style:italic;color:#c0b8d0;">“Peguei o combo completo e estou economizando bastante. Recomendo!”</p>
+            <p style="font-weight:600;margin-top:4px;color:#b896ff;">— Rafael T.</p>
+        </div>
     </div>
 
-    <div class="product-grid">
-      <div class="product-card">
-        <span class="badge-novo">NOVO</span>
-        <h4>Netflix Premium</h4>
-        <div class="price">R$ 13,00</div>
-        <a href="https://wa.me/556198542343?text=Olá!%20Tenho%20interesse%20no%20Netflix%20Premium%20(R$13,00)." target="_blank" class="btn-interest"><i class="fab fa-whatsapp"></i> Tenho interesse</a>
-      </div>
-      <div class="product-card">
-        <span class="badge-novo">NOVO</span>
-        <h4>Prime Video 6m</h4>
-        <div class="price">R$ 25,00</div>
-        <a href="https://wa.me/556198542343?text=Olá!%20Tenho%20interesse%20no%20Prime%20Video%206%20meses%20(R$25,00)." target="_blank" class="btn-interest"><i class="fab fa-whatsapp"></i> Tenho interesse</a>
-      </div>
-      <div class="product-card">
-        <span class="badge-novo">NOVO</span>
-        <h4>Globoplay + Telecine</h4>
-        <div class="price">R$ 15,00</div>
-        <a href="https://wa.me/556198542343?text=Olá!%20Tenho%20interesse%20no%20Globoplay%20+%20Telecine%20(R$15,00)." target="_blank" class="btn-interest"><i class="fab fa-whatsapp"></i> Tenho interesse</a>
-      </div>
-      <div class="product-card">
-        <span class="badge-novo">NOVO</span>
-        <h4>Canva Pro Mensal</h4>
-        <div class="price">R$ 6,00</div>
-        <a href="https://wa.me/556198542343?text=Olá!%20Tenho%20interesse%20no%20Canva%20Pro%20Mensal%20(R$6,00)." target="_blank" class="btn-interest"><i class="fab fa-whatsapp"></i> Tenho interesse</a>
-      </div>
-      <div class="product-card">
-        <span class="badge-novo">NOVO</span>
-        <h4>YT Premium + Music</h4>
-        <div class="price">R$ 15,00</div>
-        <a href="https://wa.me/556198542343?text=Olá!%20Tenho%20interesse%20no%20YT%20Premium%20+%20YT%20Music%20(R$15,00)." target="_blank" class="btn-interest"><i class="fab fa-whatsapp"></i> Tenho interesse</a>
-      </div>
-      <div class="product-card">
-        <span class="badge-novo">NOVO</span>
-        <h4>SKY+ Top HD 2025</h4>
-        <div class="price">R$ 11,00</div>
-        <a href="https://wa.me/556198542343?text=Olá!%20Tenho%20interesse%20no%20SKY+%20Top%20HD%202025%20(R$11,00)." target="_blank" class="btn-interest"><i class="fab fa-whatsapp"></i> Tenho interesse</a>
-      </div>
+    <!-- ===== TAB 2: SERVIÇOS ===== -->
+    <div class="tab-content" id="tab2">
+        <div class="section-title">
+            <h3>Serviços</h3>
+            <span class="tag">NOVO</span>
+        </div>
+        <div class="product-grid" id="productGrid">
+            <!-- Injetado via JS -->
+        </div>
     </div>
 
-    <!-- Combos CP -->
-    <div class="combo-section">
-      <div class="combo-header"><h3>Combos CP</h3><span>economia</span></div>
+    <!-- ===== TAB 3: COMBOS ===== -->
+    <div class="tab-content" id="tab3">
+        <div class="section-title"><h3>Combos CP</h3><span class="tag">economia</span></div>
 
-      <!-- Combo 1 -->
-      <div class="combo-card">
-        <div class="combo-title"><h4>Combo Entretenimento</h4></div>
-        <div class="combo-price">R$ 17,00 <small>/ mês</small></div>
-        <div class="combo-desc">Netflix Premium + Prime Video + Spotify Família</div>
-        <div class="combo-economy"><i class="fas fa-tag"></i> Separados R$ 20,00 · economize R$ 3,00</div>
-        <a href="https://wa.me/556198542343?text=Olá!%20Quero%20o%20Combo%20Entretenimento%20(R$17/mês)." target="_blank" class="btn-combo"><i class="fas fa-cart-plus"></i> QUERO ESSE COMBO</a>
-      </div>
+        <div class="combo-card">
+            <div class="combo-title"><h4>Combo Entretenimento</h4></div>
+            <div class="combo-price">R$ 17,00 <small>/mês</small></div>
+            <div class="combo-desc">Netflix Premium + Prime Video + Spotify Família</div>
+            <div class="combo-economy"><i class="fas fa-tag"></i> Separado R$ 20,00 · economize R$ 3,00</div>
+            <button class="btn-combo-add" data-combo="Entretenimento" data-price="17" data-items="Netflix Premium,Prime Video,Spotify Família">Adicionar Combo</button>
+        </div>
 
-      <!-- Combo 2 popular -->
-      <div class="combo-card popular">
-        <div class="combo-title"><h4>Cinema & Séries</h4><span class="tag-popular">MAIS ESCOLHIDO</span></div>
-        <div class="combo-price">R$ 24,00 <small>/ mês</small></div>
-        <div class="combo-desc">Netflix Premium · HBO Standard · Prime Video</div>
-        <div class="combo-economy"><i class="fas fa-tag"></i> Separados R$ 27,00 · economize R$ 3,00</div>
-        <a href="https://wa.me/556198542343?text=Olá!%20Quero%20o%20Combo%20Cinema%20&%20Séries%20(R$24/mês)." target="_blank" class="btn-combo"><i class="fas fa-cart-plus"></i> QUERO ESSE COMBO</a>
-      </div>
+        <div class="combo-card" style="border-left:4px solid #ff2d95;">
+            <div class="combo-title"><h4>Cinema & Séries</h4><span class="tag-pop">MAIS ESCOLHIDO</span></div>
+            <div class="combo-price">R$ 24,00 <small>/mês</small></div>
+            <div class="combo-desc">Netflix Premium · HBO Standard · Prime Video</div>
+            <div class="combo-economy"><i class="fas fa-tag"></i> Separado R$ 27,00 · economize R$ 3,00</div>
+            <button class="btn-combo-add" data-combo="Cinema & Séries" data-price="24" data-items="Netflix Premium,HBO Standard,Prime Video">Adicionar Combo</button>
+        </div>
 
-      <!-- Combo 3 -->
-      <div class="combo-card">
-        <div class="combo-title"><h4>CP Completo</h4></div>
-        <div class="combo-price">R$ 42,00 <small>/ mês</small></div>
-        <div class="combo-desc">Netflix Premium · Disney Premium · HBO Standard · Prime Video · Spotify Família</div>
-        <div class="combo-economy"><i class="fas fa-tag"></i> Separados R$ 49,00 · economize R$ 7,00</div>
-        <a href="https://wa.me/556198542343?text=Olá!%20Quero%20o%20CP%20Completo%20(R$42/mês)." target="_blank" class="btn-combo"><i class="fas fa-cart-plus"></i> QUERO ESSE COMBO</a>
-      </div>
+        <div class="combo-card">
+            <div class="combo-title"><h4>CP Completo</h4></div>
+            <div class="combo-price">R$ 42,00 <small>/mês</small></div>
+            <div class="combo-desc">Netflix Premium · Disney Premium · HBO Standard · Prime Video · Spotify Família</div>
+            <div class="combo-economy"><i class="fas fa-tag"></i> Separado R$ 49,00 · economize R$ 7,00</div>
+            <button class="btn-combo-add" data-combo="CP Completo" data-price="42" data-items="Netflix Premium,Disney Premium,HBO Standard,Prime Video,Spotify Família">Adicionar Combo</button>
+        </div>
     </div>
 
-    <!-- categorias -->
-    <div class="categories">
-      <div class="category-item">Streaming <small>12 planos</small></div>
-      <div class="category-item">Claro TV <small>5 planos</small></div>
-      <div class="category-item">SKY+ <small>3 planos</small></div>
-      <div class="category-item">Outros <small>3 planos</small></div>
+    <!-- ===== TAB 4: CARRINHO ===== -->
+    <div class="tab-content" id="tab4">
+        <h3 style="color:#fff;margin-bottom:12px;">Seu Carrinho</h3>
+        <div id="cartItems">
+            <p style="color:#6a5f80;text-align:center;padding:20px 0;">Carrinho vazio</p>
+        </div>
+        <div class="cart-total">Total: <span id="cartTotal">R$ 0,00</span></div>
+
+        <div class="discount-input">
+            <input type="text" id="cupomInput" placeholder="Cupom (ex: CP10)" />
+            <button id="applyDiscount">Aplicar</button>
+        </div>
+        <div id="discountMsg" style="font-size:13px;color:#ff2d95;margin:4px 0 10px;"></div>
+
+        <div class="teste-gratis" style="margin:10px 0;">
+            <i class="fas fa-gift"></i> Ao finalizar, ganhe 2 dias de teste grátis!
+        </div>
+
+        <button class="btn-checkout" id="checkoutBtn"><i class="fab fa-whatsapp"></i> Finalizar Compra</button>
     </div>
 
-    <!-- estreias -->
-    <div class="estreia-card">
-      <div class="estreia-left">
-        <h5>📺 ESTREIAS DA SEMANA</h5>
-        <h3>Outer Banks</h3>
-        <p>Temporada final · todos episódios</p>
-      </div>
-      <div class="estreia-badge"><i class="fab fa-netflix"></i> Netflix</div>
-    </div>
-
-    <!-- motivos -->
-    <div class="motivos">
-      <div class="motivo-item"><div class="num">1</div><p>Preços justos</p></div>
-      <div class="motivo-item"><div class="num">2</div><p>Suporte ao cliente</p></div>
-      <div class="motivo-item"><div class="num">3</div><p>Variedade</p></div>
-      <div class="motivo-item"><div class="num">4</div><p>Transparência</p></div>
-      <div class="motivo-item"><div class="num">5</div><p>Atendimento próximo</p></div>
-    </div>
-
-    <!-- depoimentos -->
-    <div class="depoimento"><p>“Peguei o combo completo e estou economizando bastante. Recomendo demais!”</p><div class="autor">— Rafael T.</div></div>
-    <div class="depoimento"><p>“Melhor loja de contas que já encontrei. Suporte super atencioso e entrega imediata.”</p><div class="autor">— Amanda S.</div></div>
-
-    <!-- como funciona -->
-    <div style="margin: 14px 0 6px; font-weight: 700; font-size: 18px;">Como funciona?</div>
-    <div class="steps">
-      <div class="step"><i class="fas fa-1"></i> Escolha</div>
-      <div class="step"><i class="fab fa-whatsapp"></i> Fale com a CP</div>
-      <div class="step"><i class="fas fa-qrcode"></i> PIX</div>
-      <div class="step"><i class="fas fa-key"></i> Acesso</div>
-    </div>
-
-    <div class="garantia"><i class="fas fa-shield-alt"></i> Compra segura — Garantia de 30 dias</div>
-
-    <!-- FAQ -->
-    <div style="font-weight: 700; margin: 8px 0 4px;">Perguntas frequentes</div>
-    <div class="faq-item"><strong>Quais formas de pagamento?</strong><p>Atualmente PIX.</p></div>
-    <div class="faq-item"><strong>Como faço uma compra?</strong><p>Escolha o serviço e clique em “Tenho interesse”.</p></div>
-    <div class="faq-item"><strong>Quanto tempo de suporte?</strong><p>Até 30 dias.</p></div>
-    <div class="faq-item"><strong>O preço pode mudar?</strong><p>Sim, valores podem ser atualizados.</p></div>
-    <div class="faq-item"><strong>Quero um serviço que não aparece.</strong><p>Consulte pelo WhatsApp.</p></div>
-
-    <!-- footer -->
+    <!-- FOOTER -->
     <div class="footer-whats">
-      <span><i class="fas fa-headset"></i> Fale com a CP</span>
-      <a href="https://wa.me/556198542343" target="_blank" class="btn-chamar"><i class="fab fa-whatsapp"></i> CHAMAR</a>
+        <span><i class="fas fa-headset"></i> Fale conosco</span>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <a href="https://wa.me/556198542343" target="_blank" class="btn-social whats" id="whatsFooter"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            <a href="https://t.me/Carlosvl9" target="_blank" class="btn-social telegram" id="telegramFooter"><i class="fab fa-telegram-plane"></i> Telegram</a>
+        </div>
     </div>
     <div class="creditos">
-      <i class="fas fa-crown"></i> CP — Contas Premium · Entretenimento e serviços digitais <br>
-      <span style="opacity:0.6;">Teste · </span>
-      <a href="https://t.me/Carlosvl9" target="_blank">@Carlosvl9 no Telegram</a>
+        <i class="fas fa-crown"></i> CP — Contas Premium · Entretenimento digital<br>
+        <span style="opacity:0.5;">Teste · </span><a href="https://t.me/Carlosvl9" target="_blank">@Carlosvl9 no Telegram</a>
     </div>
+</div>
 
-  </div>
+<script>
+    // ============================================================
+    // 1. DADOS DOS SERVIÇOS (com e sem suporte)
+    // ============================================================
+    const produtos = [
+        { id: 'netflix', nome: 'Netflix Premium', precoSem: 11.00, precoCom: 13.00 },
+        { id: 'prime6', nome: 'Prime Video 6m', precoSem: 23.00, precoCom: 25.00 },
+        { id: 'globoplay', nome: 'Globoplay + Telecine', precoSem: 13.00, precoCom: 15.00 },
+        { id: 'canva', nome: 'Canva Pro Mensal', precoSem: 4.00, precoCom: 6.00 },
+        { id: 'yt', nome: 'YT Premium + Music', precoSem: 13.00, precoCom: 15.00 },
+        { id: 'sky', nome: 'SKY+ Top HD 2025', precoSem: 9.00, precoCom: 11.00 }
+    ];
+
+    // ============================================================
+    // 2. DESTAQUES AUTOMÁTICOS (Netflix e outros)
+    // ============================================================
+    const destaques = [
+        { titulo: 'Outer Banks', desc: 'Temporada final · já disponível', plataforma: 'Netflix', icone: 'fab fa-netflix' },
+        { titulo: 'The Last of Us', desc: 'Nova temporada · em breve', plataforma: 'HBO Max', icone: 'fas fa-tv' },
+        { titulo: 'Bridgerton', desc: 'Nova temporada · já disponível', plataforma: 'Netflix', icone: 'fab fa-netflix' },
+        { titulo: 'Senhor dos Anéis', desc: 'Anéis de Poder · nova temporada', plataforma: 'Prime Video', icone: 'fab fa-prime' },
+        { titulo: 'Stranger Things', desc: 'Última temporada em produção', plataforma: 'Netflix', icone: 'fab fa-netflix' }
+    ];
+    let destaqueIndex = 0;
+
+    function atualizarDestaque() {
+        const item = destaques[destaqueIndex % destaques.length];
+        destaqueIndex++;
+        document.getElementById('destaqueTitulo').textContent = item.titulo;
+        document.getElementById('destaqueDesc').textContent = item.desc;
+        document.getElementById('destaquePlataforma').innerHTML = `<i class="${item.icone}"></i> ${item.plataforma}`;
+    }
+    atualizarDestaque();
+    setInterval(atualizarDestaque, 12000);
+
+    // ============================================================
+    // 3. RENDERIZAR PRODUTOS
+    // ============================================================
+    const grid = document.getElementById('productGrid');
+    produtos.forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.innerHTML = `
+            <h4>${p.nome}</h4>
+            <div class="price-group">
+                <div class="price">R$ ${p.precoSem.toFixed(2)} <small>sem suporte</small></div>
+                <div class="price support">R$ ${p.precoCom.toFixed(2)} <small>com suporte 30d</small></div>
+            </div>
+            <button class="btn-add" data-id="${p.id}" data-nome="${p.nome}" data-preco-sem="${p.precoSem}" data-preco-com="${p.precoCom}">
+                <i class="fas fa-cart-plus"></i> Adicionar
+            </button>
+        `;
+        grid.appendChild(card);
+    });
+
+    // ============================================================
+    // 4. CARRINHO + SOMA + DESCONTO
+    // ============================================================
+    let cart = [];
+    let descontoAtivo = 0; // porcentagem (ex: 10)
+
+    function renderCart() {
+        const container = document.getElementById('cartItems');
+        const totalSpan = document.getElementById('cartTotal');
+        const countSpan = document.getElementById('cartCount');
+
+        if (cart.length === 0) {
+            container.innerHTML = '<p style="color:#6a5f80;text-align:center;padding:20px 0;">Carrinho vazio</p>';
+            totalSpan.textContent = 'R$ 0,00';
+            countSpan.textContent = '0';
+            return;
+        }
+
+        let html = '';
+        let total = 0;
+        cart.forEach((item, idx) => {
+            const preco = item.comSuporte ? item.precoCom : item.precoSem;
+            total += preco;
+            html += `
+                <div class="cart-item">
+                    <div class="item-info">
+                        <h5>${item.nome}</h5>
+                        <span>${item.comSuporte ? '✅ com suporte' : '⚠️ sem suporte'}</span>
+                    </div>
+                    <div class="item-price">R$ ${preco.toFixed(2)}</div>
+                    <button class="btn-remove" data-index="${idx}"><i class="fas fa-times"></i></button>
+                </div>
+            `;
+        });
+
+        // Aplicar desconto
+        let totalComDesconto = total;
+        if (descontoAtivo > 0) {
+            totalComDesconto = total * (1 - descontoAtivo / 100);
+        }
+
+        container.innerHTML = html;
+        totalSpan.textContent = `R$ ${totalComDesconto.toFixed(2)}`;
+        countSpan.textContent = cart.length;
+
+        // Eventos de remover
+        document.querySelectorAll('.btn-remove').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const idx = parseInt(this.dataset.index);
+                cart.splice(idx, 1);
+                renderCart();
+            });
+        });
+    }
+
+    // Adicionar produto
+    document.addEventListener('click', function(e) {
+        const btn = e.target.closest('.btn-add');
+        if (btn) {
+            const nome = btn.dataset.nome;
+            const precoSem = parseFloat(btn.dataset.precoSem);
+            const precoCom = parseFloat(btn.dataset.precoCom);
+            const comSuporte = confirm(`Deseja adicionar "${nome}" com suporte de 30 dias? (R$ ${precoCom.toFixed(2)})\nClique em "OK" para com suporte, "Cancelar" para sem suporte.`);
+            cart.push({
+                id: Date.now() + Math.random(),
+                nome: nome,
+                precoSem: precoSem,
+                precoCom: precoCom,
+                comSuporte: comSuporte
+            });
+            renderCart();
+            playBeep();
+        }
+
+        // Adicionar combo
+        const comboBtn = e.target.closest('.btn-combo-add');
+        if (comboBtn) {
+            const nome = comboBtn.dataset.combo;
+            const preco = parseFloat(comboBtn.dataset.price);
+            const items = comboBtn.dataset.items.split(',');
+            cart.push({
+                id: Date.now() + Math.random(),
+                nome: `[Combo] ${nome}`,
+                precoSem: preco - 2,
+                precoCom: preco,
+                comSuporte: true
+            });
+            renderCart();
+            playBeep();
+        }
+    });
+
+    // Desconto
+    document.getElementById('applyDiscount').addEventListener('click', function() {
+        const input = document.getElementById('cupomInput');
+        const code = input.value.trim().toUpperCase();
+        const msg = document.getElementById('discountMsg');
+        if (code === 'CP10') {
+            descontoAtivo = 10;
+            msg.textContent = '✅ Cupom CP10 aplicado: 10% de desconto!';
+            msg.style.color = '#b896ff';
+        } else if (code === 'CP20') {
+            descontoAtivo = 20;
+            msg.textContent = '✅ Cupom CP20 aplicado: 20% de desconto!';
+            msg.style.color = '#b896ff';
+        } else if (code === '') {
+            descontoAtivo = 0;
+            msg.textContent = 'Desconto removido.';
+            msg.style.color = '#ff2d95';
+        } else {
+            msg.textContent = '❌ Cupom inválido.';
+            msg.style.color = '#ff2d95';
+        }
+        renderCart();
+    });
+
+    // ============================================================
+    // 5. FINALIZAR COMPRA (WhatsApp com resumo)
+    // ============================================================
+    document.getElementById('checkoutBtn').addEventListener('click', function() {
+        if (cart.length === 0) {
+            alert('Carrinho vazio!');
+            return;
+        }
+        let msg = 'Olá! Gostaria de finalizar minha compra:\n\n';
+        let total = 0;
+        cart.forEach(item => {
+            const preco = item.comSuporte ? item.precoCom : item.precoSem;
+            total += preco;
+            msg += `- ${item.nome} (${item.comSuporte ? 'com suporte' : 'sem suporte'}) - R$ ${preco.toFixed(2)}\n`;
+        });
+        if (descontoAtivo > 0) {
+            const descontoValor = total * (descontoAtivo / 100);
+            msg += `\nDesconto de ${descontoAtivo}%: - R$ ${descontoValor.toFixed(2)}`;
+            total = total * (1 - descontoAtivo / 100);
+        }
+        msg += `\n\nTotal: R$ ${total.toFixed(2)}`;
+        msg += `\n\nGanho 2 dias de teste grátis!`;
+        msg += `\n\nMeu Telegram: @Carlosvl9`;
+        const url = `https://wa.me/556198542343?text=${encodeURIComponent(msg)}`;
+        window.open(url, '_blank');
+        playBeep();
+    });
+
+    // ============================================================
+    // 6. SONS E NAVEGAÇÃO
+    // ============================================================
+    function playBeep() {
+        try {
+            const ctx = new (window.AudioContext || window.webkitAudioContext)();
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.frequency.value = 800;
+            osc.type = 'sine';
+            gain.gain.value = 0.1;
+            osc.start();
+            setTimeout(() => osc.stop(), 100);
+        } catch(e) { /* fallback */ }
+    }
+
+    // Navegação por abas
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            const target = this.dataset.tab;
+            document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
+            document.getElementById(target).classList.add('active');
+            playBeep();
+        });
+    });
+
+    // Inicializar carrinho
+    renderCart();
+
+    console.log('✅ CP - Hacker Edition carregada com sucesso!');
+</script>
 </body>
 </html>
