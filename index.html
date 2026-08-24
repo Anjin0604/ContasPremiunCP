@@ -6,648 +6,107 @@
     <title>StreamUp · Contas Premium</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-        }
-        body {
-            background: #0a0a0a;
-            color: #e0e0e0;
-            display: flex;
-            justify-content: center;
-            padding: 20px 16px 40px;
-            min-height: 100vh;
-        }
-        .container {
-            max-width: 520px;
-            width: 100%;
-            background: #111;
-            border-radius: 36px;
-            border: 1px solid #2a2a2a;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
-            padding: 20px 18px 30px;
-            position: relative;
-        }
-        .gold-text { color: #d4af37; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; }
+        body { background: #0a0a0a; color: #e0e0e0; display: flex; justify-content: center; padding: 20px 16px 40px; min-height: 100vh; }
+        .container { max-width: 520px; width: 100%; background: #111; border-radius: 36px; border: 1px solid #2a2a2a; box-shadow: 0 20px 60px rgba(0,0,0,0.8); padding: 20px 18px 30px; }
+        .gold { color: #d4af37; }
         .gold-bg { background: #d4af37; color: #000; }
-        .btn-gold { background: #d4af37; color: #000; border: none; transition: 0.2s; }
-        .btn-gold:hover { background: #c5a028; transform: scale(1.02); }
-        .btn-dark { background: #222; color: #fff; border: 1px solid #444; }
-        .btn-dark:hover { background: #333; }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 10px;
-        }
-        .brand-left {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .brand-icon {
-            background: #d4af37;
-            color: #000;
-            width: 44px;
-            height: 44px;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 20px;
-        }
-        .brand-text {
-            font-weight: 700;
-            font-size: 22px;
-            letter-spacing: -0.3px;
-            color: #fff;
-        }
+        .brand { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+        .brand-left { display: flex; align-items: center; gap: 10px; }
+        .brand-icon { background: #d4af37; color: #000; width: 44px; height: 44px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 20px; }
+        .brand-text { font-weight: 700; font-size: 22px; color: #fff; }
         .brand-text span { color: #d4af37; }
-        .badge-whats {
-            background: #25D366;
-            color: #fff;
-            padding: 6px 14px 6px 12px;
-            border-radius: 60px;
-            font-size: 13px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            text-decoration: none;
-            transition: 0.2s;
-            cursor: pointer;
-        }
+        .badge-whats { background: #25D366; color: #fff; padding: 6px 14px; border-radius: 60px; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; text-decoration: none; cursor: pointer; }
         .badge-whats:hover { transform: scale(1.04); }
-
-        .atendimento {
-            background: #1a1a1a;
-            border-radius: 40px;
-            padding: 8px 16px;
-            margin: 6px 0 14px;
-            text-align: center;
-            font-size: 13px;
-            color: #aaa;
-            border: 1px solid #2a2a2a;
-        }
+        .atendimento { background: #1a1a1a; border-radius: 40px; padding: 8px 16px; margin: 6px 0 14px; text-align: center; font-size: 13px; color: #aaa; border: 1px solid #2a2a2a; }
         .atendimento i { color: #d4af37; margin-right: 6px; }
-
-        .carousel-container {
-            position: relative;
-            border-radius: 24px;
-            overflow: hidden;
-            margin: 6px 0 16px;
-            height: 180px;
-            background: #1a1a1a;
-            border: 1px solid #2a2a2a;
-        }
-        .carousel-slide {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            display: none;
-            background-size: cover;
-            background-position: center;
-            transition: opacity 0.5s;
-        }
+        .carousel-container { position: relative; border-radius: 24px; overflow: hidden; margin: 6px 0 16px; height: 180px; background: #1a1a1a; border: 1px solid #2a2a2a; }
+        .carousel-slide { width: 100%; height: 100%; position: relative; display: none; background-size: cover; background-position: center; }
         .carousel-slide.active { display: block; }
-        .carousel-slide .overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 14px 18px;
-            background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
-        }
-        .carousel-slide .overlay h2 {
-            font-size: 20px;
-            font-weight: 700;
-            color: #fff;
-        }
-        .carousel-slide .overlay p {
-            font-size: 13px;
-            color: #ccc;
-        }
-        .carousel-slide .overlay .badge {
-            display: inline-block;
-            background: rgba(212, 175, 55, 0.2);
-            padding: 2px 12px;
-            border-radius: 40px;
-            font-size: 12px;
-            font-weight: 600;
-            color: #d4af37;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            margin-top: 4px;
-        }
-        .carousel-dots {
-            position: absolute;
-            bottom: 8px;
-            right: 12px;
-            display: flex;
-            gap: 6px;
-            z-index: 5;
-        }
-        .carousel-dots span {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.3);
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .carousel-dots span.active {
-            background: #d4af37;
-            width: 20px;
-            border-radius: 10px;
-        }
-
-        .tabs {
-            display: flex;
-            gap: 6px;
-            background: #1a1a1a;
-            border-radius: 60px;
-            padding: 4px;
-            margin: 12px 0 18px;
-            border: 1px solid #2a2a2a;
-        }
-        .tab-btn {
-            flex: 1;
-            background: transparent;
-            border: none;
-            color: #888;
-            padding: 10px 0;
-            border-radius: 40px;
-            font-weight: 600;
-            font-size: 13px;
-            transition: 0.2s;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-        }
+        .carousel-slide .overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 14px 18px; background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%); }
+        .carousel-slide .overlay h2 { font-size: 20px; font-weight: 700; color: #fff; }
+        .carousel-slide .overlay p { font-size: 13px; color: #ccc; }
+        .carousel-slide .overlay .badge { display: inline-block; background: rgba(212,175,55,0.2); padding: 2px 12px; border-radius: 40px; font-size: 12px; font-weight: 600; color: #d4af37; border: 1px solid rgba(212,175,55,0.3); margin-top: 4px; }
+        .carousel-dots { position: absolute; bottom: 8px; right: 12px; display: flex; gap: 6px; z-index: 5; }
+        .carousel-dots span { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.3); cursor: pointer; transition: 0.2s; }
+        .carousel-dots span.active { background: #d4af37; width: 20px; border-radius: 10px; }
+        .tabs { display: flex; gap: 6px; background: #1a1a1a; border-radius: 60px; padding: 4px; margin: 12px 0 18px; border: 1px solid #2a2a2a; }
+        .tab-btn { flex: 1; background: transparent; border: none; color: #888; padding: 10px 0; border-radius: 40px; font-weight: 600; font-size: 13px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px; }
         .tab-btn i { font-size: 15px; }
-        .tab-btn.active {
-            background: #d4af37;
-            color: #000;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
-        }
+        .tab-btn.active { background: #d4af37; color: #000; box-shadow: 0 0 20px rgba(212,175,55,0.2); }
         .tab-btn:hover:not(.active) { color: #ccc; }
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.3s ease;
-        }
+        .tab-content { display: none; animation: fadeIn 0.3s ease; }
         .tab-content.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-
-        .section-title {
-            display: flex;
-            align-items: baseline;
-            justify-content: space-between;
-            margin: 16px 0 10px;
-        }
-        .section-title h3 {
-            font-size: 19px;
-            font-weight: 700;
-            color: #fff;
-        }
-        .section-title .tag {
-            background: #d4af37;
-            color: #000;
-            font-size: 10px;
-            font-weight: 700;
-            padding: 3px 12px;
-            border-radius: 40px;
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 8px;
-        }
-        .product-card {
-            background: #1a1a1a;
-            border-radius: 18px;
-            padding: 12px 10px 10px;
-            border: 1px solid #2a2a2a;
-            transition: 0.2s;
-        }
-        .product-card:hover {
-            border-color: #d4af37;
-            transform: translateY(-3px);
-        }
-        .product-card h4 {
-            font-size: 14px;
-            font-weight: 600;
-            color: #fff;
-        }
-        .product-card .price-group {
-            display: flex;
-            flex-direction: column;
-            gap: 1px;
-            margin: 4px 0 8px;
-        }
-        .product-card .price-group .price {
-            font-weight: 700;
-            font-size: 15px;
-            color: #d4af37;
-        }
-        .product-card .price-group .price small {
-            font-weight: 400;
-            font-size: 11px;
-            color: #777;
-        }
-        .product-card .price-group .price .promo {
-            color: #ff6b6b;
-            font-size: 12px;
-            margin-left: 4px;
-        }
-        .btn-add {
-            background: #d4af37;
-            color: #000;
-            border: none;
-            border-radius: 60px;
-            padding: 7px 0;
-            font-size: 12px;
-            font-weight: 600;
-            width: 100%;
-            cursor: pointer;
-            transition: 0.15s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-        }
-        .btn-add:hover {
-            background: #c5a028;
-            transform: scale(1.02);
-        }
-
-        .combo-card {
-            background: #1a1a1a;
-            border-radius: 22px;
-            padding: 14px;
-            margin-top: 12px;
-            border: 1px solid #2a2a2a;
-            transition: 0.2s;
-        }
-        .combo-card:hover {
-            border-color: #d4af37;
-        }
-        .combo-card .combo-title {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .combo-card .combo-title h4 {
-            font-size: 17px;
-            color: #fff;
-        }
-        .combo-card .combo-title .tag-pop {
-            background: #d4af37;
-            color: #000;
-            font-size: 10px;
-            font-weight: 700;
-            padding: 3px 12px;
-            border-radius: 40px;
-        }
-        .combo-price {
-            font-size: 22px;
-            font-weight: 700;
-            color: #d4af37;
-            margin: 4px 0 2px;
-        }
-        .combo-price small {
-            font-size: 13px;
-            font-weight: 400;
-            color: #777;
-        }
-        .combo-desc {
-            font-size: 13px;
-            color: #aaa;
-            margin: 4px 0 6px;
-        }
-        .combo-economy {
-            background: rgba(212, 175, 55, 0.1);
-            padding: 4px 12px;
-            border-radius: 60px;
-            display: inline-block;
-            font-size: 12px;
-            font-weight: 600;
-            color: #d4af37;
-            margin: 4px 0 8px;
-        }
-        .btn-combo-add {
-            background: #d4af37;
-            color: #000;
-            border: none;
-            border-radius: 60px;
-            padding: 10px 0;
-            font-weight: 700;
-            font-size: 15px;
-            width: 100%;
-            cursor: pointer;
-            transition: 0.15s;
-        }
-        .btn-combo-add:hover {
-            background: #c5a028;
-            transform: scale(1.01);
-        }
-
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #1a1a1a;
-            padding: 8px 12px;
-            border-radius: 14px;
-            margin: 4px 0;
-            border-left: 3px solid #d4af37;
-        }
+        .section-title { display: flex; align-items: baseline; justify-content: space-between; margin: 16px 0 10px; }
+        .section-title h3 { font-size: 19px; font-weight: 700; color: #fff; }
+        .section-title .tag { background: #d4af37; color: #000; font-size: 10px; font-weight: 700; padding: 3px 12px; border-radius: 40px; }
+        .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 8px; }
+        .product-card { background: #1a1a1a; border-radius: 18px; padding: 12px 10px 10px; border: 1px solid #2a2a2a; transition: 0.2s; }
+        .product-card:hover { border-color: #d4af37; transform: translateY(-3px); }
+        .product-card h4 { font-size: 14px; font-weight: 600; color: #fff; }
+        .product-card .price-group { display: flex; flex-direction: column; gap: 2px; margin: 4px 0 8px; }
+        .product-card .price-group .price { font-weight: 700; font-size: 14px; color: #d4af37; }
+        .product-card .price-group .price small { font-weight: 400; font-size: 11px; color: #777; }
+        .product-card .price-group .price .promo { color: #ff6b6b; font-size: 12px; margin-left: 4px; }
+        .btn-add { background: #d4af37; color: #000; border: none; border-radius: 60px; padding: 7px 0; font-size: 12px; font-weight: 600; width: 100%; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px; }
+        .btn-add:hover { background: #c5a028; transform: scale(1.02); }
+        .cart-item { display: flex; justify-content: space-between; align-items: center; background: #1a1a1a; padding: 8px 12px; border-radius: 14px; margin: 4px 0; border-left: 3px solid #d4af37; }
         .cart-item .item-info { flex: 1; }
         .cart-item .item-info h5 { color: #fff; font-size: 14px; }
         .cart-item .item-info span { font-size: 12px; color: #d4af37; }
         .cart-item .item-price { font-weight: 700; color: #fff; font-size: 14px; }
-        .cart-item .btn-remove {
-            background: none;
-            border: none;
-            color: #d4af37;
-            font-size: 16px;
-            cursor: pointer;
-            padding: 0 4px;
-        }
-        .cart-total {
-            text-align: right;
-            font-size: 20px;
-            font-weight: 700;
-            color: #fff;
-            margin: 10px 0 4px;
-        }
+        .cart-item .btn-remove { background: none; border: none; color: #d4af37; font-size: 16px; cursor: pointer; padding: 0 4px; }
+        .cart-total { text-align: right; font-size: 20px; font-weight: 700; color: #fff; margin: 10px 0 4px; }
         .cart-total span { color: #d4af37; }
-        .discount-input {
-            display: flex;
-            gap: 6px;
-            margin: 8px 0;
-        }
-        .discount-input input {
-            flex: 1;
-            padding: 8px 12px;
-            border-radius: 60px;
-            border: 1px solid #333;
-            background: #1a1a1a;
-            color: #fff;
-            outline: none;
-            font-size: 14px;
-        }
+        .cart-discount { text-align: right; font-size: 14px; color: #ff6b6b; margin: 2px 0; }
+        .discount-input { display: flex; gap: 6px; margin: 8px 0; }
+        .discount-input input { flex: 1; padding: 8px 12px; border-radius: 60px; border: 1px solid #333; background: #1a1a1a; color: #fff; outline: none; font-size: 14px; }
         .discount-input input:focus { border-color: #d4af37; }
-        .discount-input button {
-            background: #d4af37;
-            color: #000;
-            border: none;
-            border-radius: 60px;
-            padding: 8px 18px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-        .btn-checkout {
-            background: #d4af37;
-            color: #000;
-            border: none;
-            border-radius: 60px;
-            padding: 12px 0;
-            font-weight: 700;
-            font-size: 17px;
-            width: 100%;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: 0.15s;
-        }
-        .btn-checkout:hover {
-            background: #c5a028;
-            transform: scale(1.01);
-        }
-
-        .garantia-box {
-            background: rgba(212, 175, 55, 0.08);
-            border-radius: 18px;
-            padding: 12px 14px;
-            margin: 10px 0;
-            border: 1px dashed rgba(212, 175, 55, 0.3);
-            text-align: center;
-            color: #d4af37;
-            font-weight: 500;
-            font-size: 14px;
-        }
+        .discount-input button { background: #d4af37; color: #000; border: none; border-radius: 60px; padding: 8px 18px; font-weight: 600; cursor: pointer; }
+        .btn-checkout { background: #d4af37; color: #000; border: none; border-radius: 60px; padding: 12px 0; font-weight: 700; font-size: 17px; width: 100%; cursor: pointer; margin-top: 10px; }
+        .btn-checkout:hover { background: #c5a028; transform: scale(1.01); }
+        .btn-mp { background: #009ee3; color: #fff; border: none; border-radius: 60px; padding: 12px 0; font-weight: 700; font-size: 17px; width: 100%; cursor: pointer; margin-top: 6px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .btn-mp:hover { background: #0079b3; transform: scale(1.01); }
+        .garantia-box { background: rgba(212,175,55,0.08); border-radius: 18px; padding: 12px 14px; margin: 10px 0; border: 1px dashed rgba(212,175,55,0.3); text-align: center; color: #d4af37; font-weight: 500; font-size: 14px; }
         .garantia-box i { margin-right: 6px; }
-
-        .indication-box {
-            background: #1a1a1a;
-            border-radius: 18px;
-            padding: 14px;
-            margin: 10px 0;
-            border: 1px solid #2a2a2a;
-        }
-        .indication-box h4 {
-            color: #d4af37;
-            margin-bottom: 4px;
-            font-size: 16px;
-        }
-        .indication-box .code {
-            background: #000;
-            padding: 6px 12px;
-            border-radius: 40px;
-            font-family: monospace;
-            font-size: 16px;
-            letter-spacing: 2px;
-            color: #d4af37;
-            display: inline-block;
-            margin: 4px 0;
-            border: 1px solid #333;
-        }
-        .indication-box input {
-            width: 100%;
-            padding: 8px 12px;
-            border-radius: 60px;
-            border: 1px solid #333;
-            background: #000;
-            color: #fff;
-            margin-top: 4px;
-            outline: none;
-            font-size: 14px;
-        }
+        .indication-box { background: #1a1a1a; border-radius: 18px; padding: 14px; margin: 10px 0; border: 1px solid #2a2a2a; }
+        .indication-box h4 { color: #d4af37; margin-bottom: 4px; font-size: 16px; }
+        .indication-box .code { background: #000; padding: 6px 12px; border-radius: 40px; font-family: monospace; font-size: 16px; letter-spacing: 2px; color: #d4af37; display: inline-block; margin: 4px 0; border: 1px solid #333; }
+        .indication-box input { width: 100%; padding: 8px 12px; border-radius: 60px; border: 1px solid #333; background: #000; color: #fff; margin-top: 4px; outline: none; font-size: 14px; }
         .indication-box input:focus { border-color: #d4af37; }
-        .indication-box .btn-indicate {
-            background: #d4af37;
-            color: #000;
-            border: none;
-            border-radius: 60px;
-            padding: 6px 18px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 4px;
-            font-size: 13px;
-        }
+        .indication-box .btn-indicate { background: #d4af37; color: #000; border: none; border-radius: 60px; padding: 6px 18px; font-weight: 600; cursor: pointer; margin-top: 4px; font-size: 13px; }
         .indication-box .btn-indicate:hover { background: #c5a028; }
-        .indication-box .btn-master {
-            background: transparent;
-            border: 1px solid #d4af37;
-            color: #d4af37;
-            border-radius: 60px;
-            padding: 6px 18px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 4px;
-            font-size: 13px;
-            transition: 0.2s;
-        }
-        .indication-box .btn-master:hover {
-            background: #d4af37;
-            color: #000;
-        }
-        .indication-box .status {
-            font-size: 12px;
-            margin-top: 4px;
-        }
-
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.85);
-            backdrop-filter: blur(4px);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            padding: 20px;
-        }
+        .indication-box .btn-master { background: transparent; border: 1px solid #d4af37; color: #d4af37; border-radius: 60px; padding: 6px 18px; font-weight: 600; cursor: pointer; margin-top: 4px; font-size: 13px; }
+        .indication-box .btn-master:hover { background: #d4af37; color: #000; }
+        .donation-box { background: #1a1a1a; border-radius: 18px; padding: 16px; margin: 10px 0; border: 1px solid #2a2a2a; text-align: center; }
+        .donation-box h4 { color: #d4af37; font-size: 16px; margin-bottom: 6px; }
+        .donation-box .pix-key { background: #000; padding: 8px 12px; border-radius: 40px; font-family: monospace; font-size: 14px; color: #d4af37; border: 1px solid #333; display: inline-block; margin: 6px 0; word-break: break-all; }
+        .donation-box .btn-copy { background: #d4af37; color: #000; border: none; border-radius: 60px; padding: 6px 18px; font-weight: 600; cursor: pointer; margin: 4px 0; }
+        .donation-box .btn-copy:hover { background: #c5a028; }
+        .donation-box .qr-placeholder { background: #0a0a0a; border: 2px dashed #333; border-radius: 16px; padding: 20px; margin: 10px auto; max-width: 150px; color: #777; font-size: 12px; }
+        .donation-box .qr-placeholder i { font-size: 40px; color: #d4af37; display: block; margin-bottom: 6px; }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
         .modal-overlay.active { display: flex; }
-        .modal-box {
-            background: #111;
-            border-radius: 28px;
-            max-width: 380px;
-            width: 100%;
-            padding: 24px 20px;
-            border: 1px solid #2a2a2a;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.9);
-            animation: fadeIn 0.25s ease;
-        }
-        .modal-box h3 {
-            color: #d4af37;
-            font-size: 20px;
-            margin-bottom: 4px;
-        }
-        .modal-box p {
-            color: #aaa;
-            font-size: 14px;
-            margin-bottom: 14px;
-            line-height: 1.5;
-        }
-        .modal-options {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        .modal-options button {
-            padding: 12px;
-            border-radius: 60px;
-            font-weight: 600;
-            font-size: 15px;
-            border: 2px solid #333;
-            background: #1a1a1a;
-            color: #fff;
-            cursor: pointer;
-            transition: 0.15s;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .modal-options button:hover {
-            border-color: #d4af37;
-            background: #222;
-        }
-        .modal-options button .price-tag {
-            color: #d4af37;
-            font-weight: 700;
-        }
-        .modal-options button .badge-g {
-            background: #d4af37;
-            color: #000;
-            font-size: 11px;
-            padding: 2px 10px;
-            border-radius: 40px;
-        }
-        .modal-close {
-            margin-top: 14px;
-            background: transparent;
-            border: 1px solid #333;
-            color: #888;
-            padding: 10px;
-            border-radius: 60px;
-            width: 100%;
-            cursor: pointer;
-            font-weight: 500;
-        }
-        .modal-close:hover {
-            background: #1a1a1a;
-            color: #fff;
-        }
-        .modal-box .legal-terms {
-            background: rgba(255, 60, 60, 0.08);
-            border: 1px solid rgba(255, 60, 60, 0.2);
-            border-radius: 16px;
-            padding: 12px 14px;
-            margin: 10px 0;
-            font-size: 13px;
-            color: #ff6b6b;
-        }
+        .modal-box { background: #111; border-radius: 28px; max-width: 380px; width: 100%; padding: 24px 20px; border: 1px solid #2a2a2a; box-shadow: 0 30px 60px rgba(0,0,0,0.9); animation: fadeIn 0.25s ease; }
+        .modal-box h3 { color: #d4af37; font-size: 20px; margin-bottom: 4px; }
+        .modal-box p { color: #aaa; font-size: 14px; margin-bottom: 14px; line-height: 1.5; }
+        .modal-options { display: flex; flex-direction: column; gap: 8px; }
+        .modal-options button { padding: 12px; border-radius: 60px; font-weight: 600; font-size: 15px; border: 2px solid #333; background: #1a1a1a; color: #fff; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .modal-options button:hover { border-color: #d4af37; background: #222; }
+        .modal-options button .price-tag { color: #d4af37; font-weight: 700; }
+        .modal-close { margin-top: 14px; background: transparent; border: 1px solid #333; color: #888; padding: 10px; border-radius: 60px; width: 100%; cursor: pointer; font-weight: 500; }
+        .modal-close:hover { background: #1a1a1a; color: #fff; }
+        .modal-box .legal-terms { background: rgba(255,60,60,0.08); border: 1px solid rgba(255,60,60,0.2); border-radius: 16px; padding: 12px 14px; margin: 10px 0; font-size: 13px; color: #ff6b6b; }
         .modal-box .legal-terms i { margin-right: 6px; }
-
-        .footer-whats {
-            margin-top: 20px;
-            background: #1a1a1a;
-            border-radius: 60px;
-            padding: 12px 18px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 6px;
-            border: 1px solid #2a2a2a;
-        }
+        .footer-whats { margin-top: 20px; background: #1a1a1a; border-radius: 60px; padding: 12px 18px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px; border: 1px solid #2a2a2a; }
         .footer-whats span { font-weight: 500; color: #aaa; font-size: 14px; }
-        .btn-social {
-            padding: 6px 18px;
-            border-radius: 60px;
-            font-weight: 700;
-            font-size: 13px;
-            color: #fff;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            transition: 0.15s;
-            border: none;
-            cursor: pointer;
-        }
+        .btn-social { padding: 6px 18px; border-radius: 60px; font-weight: 700; font-size: 13px; color: #fff; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; border: none; cursor: pointer; }
         .btn-social.whats { background: #25D366; }
         .btn-social.telegram { background: #0088cc; }
         .btn-social:hover { transform: scale(1.04); }
-        .creditos {
-            margin-top: 14px;
-            font-size: 11px;
-            color: #555;
-            text-align: center;
-            line-height: 1.6;
-        }
+        .creditos { margin-top: 14px; font-size: 11px; color: #555; text-align: center; line-height: 1.6; }
         .creditos a { color: #d4af37; text-decoration: none; }
-
         @media (max-width: 440px) {
             .product-grid { grid-template-columns: 1fr; }
             .tabs .tab-btn { font-size: 11px; padding: 8px 0; }
@@ -659,59 +118,34 @@
 <body>
 
 <div class="container" id="app">
-
     <!-- HEADER -->
     <div class="brand">
         <div class="brand-left">
             <div class="brand-icon">SU</div>
             <div class="brand-text">Stream<span>Up</span></div>
         </div>
-        <a href="https://wa.me/5511914830656" target="_blank" class="badge-whats" id="whatsHeader">
-            <i class="fab fa-whatsapp"></i> Fale já
-        </a>
+        <a href="https://wa.me/5511914830656" target="_blank" class="badge-whats"><i class="fab fa-whatsapp"></i> Fale já</a>
     </div>
 
     <!-- ATENDIMENTO -->
-    <div class="atendimento">
-        <i class="fas fa-clock"></i> Atendimento: Seg–Sex 09h–16h · Sáb 12h–14h · Dom fechado
-    </div>
+    <div class="atendimento"><i class="fas fa-clock"></i> Seg–Sex 09h–16h · Sáb 12h–14h · Dom fechado</div>
 
-    <!-- CARROSSEL DE DESTAQUE -->
+    <!-- CARROSSEL -->
     <div class="carousel-container" id="carousel">
-        <div class="carousel-slide active" style="background-image: url('https://image.tmdb.org/t/p/w500/wo3l9p0S7pcvwlzl2YAy8c8Pc75.jpg');">
-            <div class="overlay">
-                <h2>Outer Banks</h2>
-                <p>Temporada final · já disponível</p>
-                <span class="badge"><i class="fab fa-netflix"></i> Netflix</span>
-            </div>
+        <div class="carousel-slide active" style="background: linear-gradient(135deg, #1a0a2e, #2d1b4e);">
+            <div class="overlay"><h2>Outer Banks</h2><p>Temporada final · já disponível</p><span class="badge"><i class="fab fa-netflix"></i> Netflix</span></div>
         </div>
-        <div class="carousel-slide" style="background-image: url('https://image.tmdb.org/t/p/w500/9cqN6QoZbQ9LBGcpi4Jyh3pq5xJ.jpg');">
-            <div class="overlay">
-                <h2>The Last of Us</h2>
-                <p>Nova temporada em breve</p>
-                <span class="badge"><i class="fas fa-tv"></i> HBO Max</span>
-            </div>
+        <div class="carousel-slide" style="background: linear-gradient(135deg, #1a2a1a, #0d3b1e);">
+            <div class="overlay"><h2>The Last of Us</h2><p>Nova temporada em breve</p><span class="badge"><i class="fas fa-tv"></i> HBO Max</span></div>
         </div>
-        <div class="carousel-slide" style="background-image: url('https://image.tmdb.org/t/p/w500/5pXjVgqP9E6qO5gq7xRq3wZlF.jpg');">
-            <div class="overlay">
-                <h2>Bridgerton</h2>
-                <p>Nova temporada disponível</p>
-                <span class="badge"><i class="fab fa-netflix"></i> Netflix</span>
-            </div>
+        <div class="carousel-slide" style="background: linear-gradient(135deg, #2a1a1a, #4e1a1a);">
+            <div class="overlay"><h2>Bridgerton</h2><p>Nova temporada disponível</p><span class="badge"><i class="fab fa-netflix"></i> Netflix</span></div>
         </div>
-        <div class="carousel-slide" style="background-image: url('https://image.tmdb.org/t/p/w500/6qYprb32jT0hHxGTkSZJw5KGvcr.jpg');">
-            <div class="overlay">
-                <h2>Senhor dos Anéis</h2>
-                <p>Anéis de Poder · nova temporada</p>
-                <span class="badge"><i class="fab fa-prime"></i> Prime Video</span>
-            </div>
+        <div class="carousel-slide" style="background: linear-gradient(135deg, #1a1a2e, #1a2a4e);">
+            <div class="overlay"><h2>Senhor dos Anéis</h2><p>Anéis de Poder · nova temporada</p><span class="badge"><i class="fab fa-prime"></i> Prime Video</span></div>
         </div>
-        <div class="carousel-slide" style="background-image: url('https://image.tmdb.org/t/p/w500/5pXjVgqP9E6qO5gq7xRq3wZlF.jpg');">
-            <div class="overlay">
-                <h2>Stranger Things</h2>
-                <p>Última temporada em produção</p>
-                <span class="badge"><i class="fab fa-netflix"></i> Netflix</span>
-            </div>
+        <div class="carousel-slide" style="background: linear-gradient(135deg, #2a1a2e, #3a1a4e);">
+            <div class="overlay"><h2>Stranger Things</h2><p>Última temporada em produção</p><span class="badge"><i class="fab fa-netflix"></i> Netflix</span></div>
         </div>
         <div class="carousel-dots" id="dots"></div>
     </div>
@@ -720,7 +154,6 @@
     <div class="tabs">
         <button class="tab-btn active" data-tab="tab1"><i class="fas fa-home"></i> Início</button>
         <button class="tab-btn" data-tab="tab2"><i class="fas fa-box"></i> Serviços</button>
-        <button class="tab-btn" data-tab="tab3"><i class="fas fa-layer-group"></i> Combos</button>
         <button class="tab-btn" data-tab="tab4"><i class="fas fa-shopping-cart"></i> Carrinho <span id="cartCount">0</span></button>
     </div>
 
@@ -734,9 +167,7 @@
             </div>
         </div>
 
-        <div class="garantia-box">
-            <i class="fas fa-shield-alt"></i> Garantia de 30 dias com suporte total · Sem reembolso
-        </div>
+        <div class="garantia-box"><i class="fas fa-shield-alt"></i> Garantia de 30 dias com suporte total · Sem reembolso</div>
 
         <!-- INDICAÇÃO -->
         <div class="indication-box">
@@ -764,6 +195,20 @@
             </div>
         </div>
 
+        <!-- DOAÇÕES -->
+        <div class="donation-box">
+            <h4><i class="fas fa-heart" style="color:#ff6b6b;"></i> Apoie o projeto</h4>
+            <p style="color:#aaa;font-size:13px;">Sua doação ajuda a manter os serviços e trazer novidades.</p>
+            <div class="pix-key" id="pixKey">streamup@doacao.com</div>
+            <button class="btn-copy" id="copyPixBtn"><i class="fas fa-copy"></i> Copiar chave PIX</button>
+            <div class="qr-placeholder">
+                <i class="fas fa-qrcode"></i>
+                <span>QR Code PIX</span>
+                <span style="display:block;font-size:10px;color:#555;">(simulado - use a chave)</span>
+            </div>
+            <p style="color:#777;font-size:12px;margin-top:4px;">Qualquer valor é bem-vindo ❤️</p>
+        </div>
+
         <div style="margin:14px 0 8px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;">
             <div style="background:#1a1a1a;border-radius:18px;padding:8px;text-align:center;border:1px solid #2a2a2a;">
                 <div style="background:#d4af37;color:#000;width:26px;height:26px;border-radius:40px;margin:0 auto 4px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;">1</div>
@@ -780,53 +225,22 @@
         </div>
 
         <div style="background:#1a1a1a;border-radius:20px;padding:12px 14px;margin:6px 0;border-left:3px solid #d4af37;">
-            <p style="font-style:italic;color:#aaa;font-size:14px;">“Peguei o combo completo e estou economizando bastante. Recomendo!”</p>
+            <p style="font-style:italic;color:#aaa;font-size:14px;">“Peguei vários serviços e ainda ganhei desconto automático. Recomendo!”</p>
             <p style="font-weight:600;margin-top:4px;color:#d4af37;font-size:13px;">— Rafael T.</p>
         </div>
     </div>
 
     <!-- TAB 2: SERVIÇOS -->
     <div class="tab-content" id="tab2">
-        <div class="section-title">
-            <h3>Serviços</h3>
-            <span class="tag">NOVO</span>
-        </div>
+        <div class="section-title"><h3>Serviços</h3><span class="tag">NOVO</span></div>
         <div class="product-grid" id="productGrid"></div>
-    </div>
-
-    <!-- TAB 3: COMBOS -->
-    <div class="tab-content" id="tab3">
-        <div class="section-title"><h3>Combos StreamUp</h3><span class="tag">economia</span></div>
-
-        <div class="combo-card">
-            <div class="combo-title"><h4>Combo Essencial</h4></div>
-            <div class="combo-price">R$ 45,00 <small>/mês</small></div>
-            <div class="combo-desc">Netflix + Prime + HBO</div>
-            <div class="combo-economy"><i class="fas fa-tag"></i> Separado R$ 48,00 · economize R$ 3,00</div>
-            <button class="btn-combo-add" data-combo="Essencial" data-price="45" data-items="Netflix,Prime,HBO">Adicionar Combo</button>
-        </div>
-
-        <div class="combo-card" style="border-left:4px solid #d4af37;">
-            <div class="combo-title"><h4>Combo Premium</h4><span class="tag-pop">MAIS ESCOLHIDO</span></div>
-            <div class="combo-price">R$ 70,00 <small>/mês</small></div>
-            <div class="combo-desc">Netflix + Disney + HBO + Prime + Paramount</div>
-            <div class="combo-economy"><i class="fas fa-tag"></i> Separado R$ 73,00 · economize R$ 3,00</div>
-            <button class="btn-combo-add" data-combo="Premium" data-price="70" data-items="Netflix,Disney,HBO,Prime,Paramount">Adicionar Combo</button>
-        </div>
-
-        <div class="combo-card">
-            <div class="combo-title"><h4>Combo Ultra</h4></div>
-            <div class="combo-price">R$ 120,00 <small>/mês</small></div>
-            <div class="combo-desc">Netflix + Disney + HBO + Prime + Paramount + Globoplay+Premiere + ClaroTV Completa + Canva Pro</div>
-            <div class="combo-economy"><i class="fas fa-tag"></i> Separado R$ 153,00 · economize R$ 33,00</div>
-            <button class="btn-combo-add" data-combo="Ultra" data-price="120" data-items="Netflix,Disney,HBO,Prime,Paramount,Globoplay+Premiere,ClaroTV Completa,Canva Pro">Adicionar Combo</button>
-        </div>
     </div>
 
     <!-- TAB 4: CARRINHO -->
     <div class="tab-content" id="tab4">
         <h3 style="color:#fff;margin-bottom:10px;">Seu Carrinho</h3>
         <div id="cartItems"><p style="color:#555;text-align:center;padding:16px 0;">Carrinho vazio</p></div>
+        <div id="cartDiscountInfo" class="cart-discount" style="display:none;"></div>
         <div class="cart-total">Total: <span id="cartTotal">R$ 0,00</span></div>
 
         <div class="discount-input">
@@ -835,15 +249,17 @@
         </div>
         <div id="discountMsg" style="font-size:12px;color:#d4af37;margin:4px 0 8px;"></div>
 
-        <button class="btn-checkout" id="checkoutBtn"><i class="fab fa-whatsapp"></i> Finalizar Compra</button>
+        <!-- Botões de pagamento -->
+        <button class="btn-checkout" id="checkoutBtn"><i class="fab fa-whatsapp"></i> Finalizar via WhatsApp</button>
+        <button class="btn-mp" id="mpCheckoutBtn"><i class="fas fa-credit-card"></i> Pagar com Mercado Pago</button>
     </div>
 
     <!-- FOOTER -->
     <div class="footer-whats">
         <span><i class="fas fa-headset"></i> Fale conosco</span>
         <div style="display:flex;gap:4px;flex-wrap:wrap;">
-            <a href="https://wa.me/5511914830656" target="_blank" class="btn-social whats" id="whatsFooter"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-            <a href="https://t.me/Xandao06" target="_blank" class="btn-social telegram" id="telegramFooter"><i class="fab fa-telegram-plane"></i> Telegram</a>
+            <a href="https://wa.me/5511914830656" target="_blank" class="btn-social whats"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            <a href="https://t.me/Xandao06" target="_blank" class="btn-social telegram"><i class="fab fa-telegram-plane"></i> Telegram</a>
         </div>
     </div>
     <div class="creditos">
@@ -852,20 +268,28 @@
     </div>
 </div>
 
-<!-- MODAL DE GARANTIA -->
+<!-- MODAIS (mesmos de antes) -->
+<div class="modal-overlay" id="periodModal">
+    <div class="modal-box">
+        <h3><i class="fas fa-calendar-alt"></i> Escolha o período</h3>
+        <p id="periodProductName">Produto</p>
+        <div class="modal-options">
+            <button id="period1m"><span>📆 1 mês</span><span class="price-tag" id="period1mPrice">R$ 0,00</span></button>
+            <button id="period3m"><span>📅 3 meses</span><span class="price-tag" id="period3mPrice">R$ 0,00</span></button>
+            <button id="period6m"><span>📅 6 meses</span><span class="price-tag" id="period6mPrice">R$ 0,00</span></button>
+            <button id="period12m"><span>📅 12 meses</span><span class="price-tag" id="period12mPrice">R$ 0,00</span></button>
+        </div>
+        <button class="modal-close" id="periodCancel">Cancelar</button>
+    </div>
+</div>
+
 <div class="modal-overlay" id="guaranteeModal">
     <div class="modal-box">
         <h3><i class="fas fa-shield-alt"></i> Escolha a garantia</h3>
         <p id="modalProductName">Produto</p>
         <div class="modal-options">
-            <button id="modalWithGuarantee">
-                <span>✅ Com garantia (suporte total)</span>
-                <span class="price-tag" id="modalPriceWith">R$ 0,00</span>
-            </button>
-            <button id="modalWithoutGuarantee">
-                <span>⚠️ Sem garantia</span>
-                <span class="price-tag" id="modalPriceWithout">R$ 0,00</span>
-            </button>
+            <button id="modalWithGuarantee"><span>✅ Com garantia (suporte total)</span><span class="price-tag" id="modalPriceWith">R$ 0,00</span></button>
+            <button id="modalWithoutGuarantee"><span>⚠️ Sem garantia</span><span class="price-tag" id="modalPriceWithout">R$ 0,00</span></button>
         </div>
         <div style="font-size:12px;color:#888;margin-top:4px;text-align:center;">
             <i class="fas fa-info-circle"></i> Com garantia: suporte total · Sem reembolso<br>
@@ -875,7 +299,6 @@
     </div>
 </div>
 
-<!-- MODAL DE CONFIRMAÇÃO SEM GARANTIA -->
 <div class="modal-overlay" id="noGuaranteeConfirmModal">
     <div class="modal-box">
         <h3><i class="fas fa-exclamation-triangle" style="color:#ff6b6b;"></i> Atenção - Sem garantia</h3>
@@ -895,82 +318,84 @@
 
 <script>
     // ============================================================
-    // 1. CARROSSEL DE DESTAQUE
+    // CARROSSEL
     // ============================================================
     const slides = document.querySelectorAll('.carousel-slide');
     const dotsContainer = document.getElementById('dots');
-    let currentSlide = 0;
-    let interval;
-
+    let currentSlide = 0, interval;
     slides.forEach((_, i) => {
         const dot = document.createElement('span');
         if (i === 0) dot.classList.add('active');
         dot.addEventListener('click', () => goToSlide(i));
         dotsContainer.appendChild(dot);
     });
-
     function goToSlide(index) {
-        slides.forEach((s, i) => {
-            s.classList.toggle('active', i === index);
-        });
-        document.querySelectorAll('#dots span').forEach((d, i) => {
-            d.classList.toggle('active', i === index);
-        });
+        slides.forEach((s, i) => { s.classList.toggle('active', i === index); });
+        document.querySelectorAll('#dots span').forEach((d, i) => { d.classList.toggle('active', i === index); });
         currentSlide = index;
     }
-
-    function nextSlide() {
-        goToSlide((currentSlide + 1) % slides.length);
-    }
-
+    function nextSlide() { goToSlide((currentSlide + 1) % slides.length); }
     interval = setInterval(nextSlide, 5000);
-    const carousel = document.getElementById('carousel');
-    carousel.addEventListener('mouseenter', () => clearInterval(interval));
-    carousel.addEventListener('mouseleave', () => {
-        interval = setInterval(nextSlide, 5000);
+    document.getElementById('carousel').addEventListener('mouseenter', () => clearInterval(interval));
+    document.getElementById('carousel').addEventListener('mouseleave', () => { interval = setInterval(nextSlide, 5000); });
+
+    // ============================================================
+    // PRODUTOS
+    // ============================================================
+    function calcPrices(baseMensal) {
+        return {
+            mensal: baseMensal,
+            trimestral: baseMensal * 2.8,
+            semestral: baseMensal * 5.0,
+            anual: baseMensal * 9.0
+        };
+    }
+    const produtosBase = [
+        { id: 'netflix', nome: 'Netflix', base: 25.00 },
+        { id: 'prime', nome: 'Prime Video', base: 8.00, obs: '🔥 6m: R$35 (promo)' },
+        { id: 'crunchyroll', nome: 'Crunchyroll', base: 10.00 },
+        { id: 'hbo', nome: 'HBO', base: 15.00 },
+        { id: 'globoplay', nome: 'Globoplay+Premiere', base: 20.00 },
+        { id: 'disney', nome: 'Disney+', base: 15.00 },
+        { id: 'paramount', nome: 'Paramount', base: 10.00, obs: '💳 Único: R$35 (promo)' },
+        { id: 'apple', nome: 'Apple TV+', base: 9.00 },
+        { id: 'playplus', nome: 'PlayPlus', base: 8.00 },
+        { id: 'universal', nome: 'Universal+', base: 8.00 },
+        { id: 'claro', nome: 'Claro TV+ Completo', base: 20.00 },
+        { id: 'sky1', nome: 'SKY Top HD IV 2022', base: 19.00 },
+        { id: 'sky2', nome: 'SKY Top HD III 2025', base: 20.00 },
+        { id: 'sky3', nome: 'SKY Mega II HD 2021', base: 25.00 },
+        { id: 'canva', nome: 'Canva Pro Anual', base: 40.00, isUnico: true },
+        { id: 'iptv_basico', nome: 'IPTV Básico', base: 15.00, isIptv: true },
+        { id: 'iptv_premium', nome: 'IPTV Premium', base: 25.00, isIptv: true },
+        { id: 'iptv_ultra', nome: 'IPTV Ultra', base: 40.00, isIptv: true }
+    ];
+    const produtos = produtosBase.map(p => {
+        if (p.isUnico) return { ...p, periodos: { unico: p.base } };
+        const precos = calcPrices(p.base);
+        return { ...p, periodos: { mensal: precos.mensal, trimestral: precos.trimestral, semestral: precos.semestral, anual: precos.anual } };
     });
 
-    // ============================================================
-    // 2. DADOS DOS SERVIÇOS
-    // ============================================================
-    const produtos = [
-        { id: 'netflix', nome: 'Netflix', precoMensal: 25.00, preco6m: 130.00, obs: '⚠️ Sobe 25/08' },
-        { id: 'prime', nome: 'Prime Video', precoMensal: 8.00, preco6m: 40.00, obs: '🔥 6m: R$35 (promo)' },
-        { id: 'crunchyroll', nome: 'Crunchyroll', precoMensal: 10.00, preco6m: 50.00 },
-        { id: 'hbo', nome: 'HBO', precoMensal: 15.00, preco6m: 75.00 },
-        { id: 'globoplay', nome: 'Globoplay+Premiere', precoMensal: 20.00, preco6m: 105.00 },
-        { id: 'disney', nome: 'Disney+', precoMensal: 15.00, preco6m: 75.00 },
-        { id: 'paramount', nome: 'Paramount', precoMensal: 10.00, preco6m: 50.00, obs: '💳 Único: R$35 (promo)' },
-        { id: 'apple', nome: 'Apple TV+', precoMensal: 9.00, preco6m: 45.00 },
-        { id: 'playplus', nome: 'PlayPlus', precoMensal: 8.00, preco6m: 40.00 },
-        { id: 'universal', nome: 'Universal+', precoMensal: 8.00, preco6m: 40.00 },
-        { id: 'claro', nome: 'Claro TV+ Completo', precoMensal: 20.00, preco6m: 105.00 },
-        { id: 'sky1', nome: 'SKY Top HD IV 2022', precoMensal: 19.00, preco6m: 95.00 },
-        { id: 'sky2', nome: 'SKY Top HD III 2025', precoMensal: 20.00, preco6m: 105.00 },
-        { id: 'sky3', nome: 'SKY Mega II HD 2021', precoMensal: 25.00, preco6m: 130.00 },
-        { id: 'canva', nome: 'Canva Pro Anual', precoMensal: 0, preco6m: 0, precoUnico: 40.00, obs: '💳 Único: R$40' }
-    ];
-
-    // ============================================================
-    // 3. RENDERIZAR PRODUTOS
-    // ============================================================
     const grid = document.getElementById('productGrid');
     produtos.forEach(p => {
         const card = document.createElement('div');
         card.className = 'product-card';
         let precoHTML = '';
-        if (p.id === 'canva') {
-            precoHTML = `<div class="price">R$ ${p.precoUnico.toFixed(2)} <small>único</small></div>`;
+        if (p.isUnico) {
+            precoHTML = `<div class="price">R$ ${p.base.toFixed(2)} <small>único</small></div>`;
         } else {
             precoHTML = `
-                <div class="price">R$ ${p.precoMensal.toFixed(2)} <small>/mês</small></div>
-                <div class="price">R$ ${p.preco6m.toFixed(2)} <small>/6m</small> ${p.obs ? `<span class="promo">${p.obs}</span>` : ''}</div>
+                <div class="price">R$ ${p.periodos.mensal.toFixed(2)} <small>/mês</small></div>
+                <div class="price">R$ ${p.periodos.trimestral.toFixed(2)} <small>/3m</small></div>
+                <div class="price">R$ ${p.periodos.semestral.toFixed(2)} <small>/6m</small></div>
+                <div class="price">R$ ${p.periodos.anual.toFixed(2)} <small>/ano</small></div>
+                ${p.obs ? `<div class="price" style="color:#ff6b6b;font-size:12px;">${p.obs}</div>` : ''}
             `;
         }
         card.innerHTML = `
             <h4>${p.nome}</h4>
             <div class="price-group">${precoHTML}</div>
-            <button class="btn-add" data-id="${p.id}" data-nome="${p.nome}" data-preco-mensal="${p.precoMensal || 0}" data-preco-6m="${p.preco6m || 0}" data-preco-unico="${p.precoUnico || 0}" data-tipo="${p.id === 'canva' ? 'unico' : 'mensal'}">
+            <button class="btn-add" data-id="${p.id}" data-nome="${p.nome}" data-isunico="${p.isUnico || false}" data-isiptv="${p.isIptv || false}" data-periodos='${JSON.stringify(p.periodos)}'>
                 <i class="fas fa-cart-plus"></i> Adicionar
             </button>
         `;
@@ -978,183 +403,276 @@
     });
 
     // ============================================================
-    // 4. MODAL DE GARANTIA
+    // MODAIS DE PERÍODO E GARANTIA
     // ============================================================
+    let pendingPeriodProduct = null;
+    const periodModal = document.getElementById('periodModal');
+    const periodProductName = document.getElementById('periodProductName');
+    const period1mPrice = document.getElementById('period1mPrice');
+    const period3mPrice = document.getElementById('period3mPrice');
+    const period6mPrice = document.getElementById('period6mPrice');
+    const period12mPrice = document.getElementById('period12mPrice');
+
+    document.addEventListener('click', function(e) {
+        const btn = e.target.closest('.btn-add');
+        if (!btn) return;
+        const nome = btn.dataset.nome;
+        const isUnico = btn.dataset.isunico === 'true';
+        const periodos = JSON.parse(btn.dataset.periodos);
+
+        if (isUnico) {
+            const preco = periodos.unico;
+            pendingProduct = { nome, precoSem: preco, precoCom: preco + 2, tipo: 'unico' };
+            document.getElementById('modalProductName').textContent = `${nome} (único)`;
+            document.getElementById('modalPriceWith').textContent = `R$ ${(preco + 2).toFixed(2)}`;
+            document.getElementById('modalPriceWithout').textContent = `R$ ${preco.toFixed(2)}`;
+            document.getElementById('guaranteeModal').classList.add('active');
+            playSound('beep');
+            return;
+        }
+
+        pendingPeriodProduct = { nome, periodos };
+        periodProductName.textContent = nome;
+        period1mPrice.textContent = `R$ ${periodos.mensal.toFixed(2)}`;
+        period3mPrice.textContent = `R$ ${periodos.trimestral.toFixed(2)}`;
+        period6mPrice.textContent = `R$ ${periodos.semestral.toFixed(2)}`;
+        period12mPrice.textContent = `R$ ${periodos.anual.toFixed(2)}`;
+        periodModal.classList.add('active');
+        playSound('beep');
+    });
+
+    function selecionarPeriodo(label, preco) {
+        if (pendingPeriodProduct) {
+            const nome = `${pendingPeriodProduct.nome} (${label})`;
+            pendingProduct = { nome, precoSem: preco, precoCom: preco + 2, tipo: 'periodo' };
+            periodModal.classList.remove('active');
+            document.getElementById('modalProductName').textContent = nome;
+            document.getElementById('modalPriceWith').textContent = `R$ ${(preco + 2).toFixed(2)}`;
+            document.getElementById('modalPriceWithout').textContent = `R$ ${preco.toFixed(2)}`;
+            document.getElementById('guaranteeModal').classList.add('active');
+            playSound('beep');
+        }
+    }
+    document.getElementById('period1m').addEventListener('click', () => selecionarPeriodo('1 mês', pendingPeriodProduct?.periodos.mensal));
+    document.getElementById('period3m').addEventListener('click', () => selecionarPeriodo('3 meses', pendingPeriodProduct?.periodos.trimestral));
+    document.getElementById('period6m').addEventListener('click', () => selecionarPeriodo('6 meses', pendingPeriodProduct?.periodos.semestral));
+    document.getElementById('period12m').addEventListener('click', () => selecionarPeriodo('12 meses', pendingPeriodProduct?.periodos.anual));
+    document.getElementById('periodCancel').addEventListener('click', () => { periodModal.classList.remove('active'); playSound('reproved'); });
+
     let pendingProduct = null;
     const modalGarantia = document.getElementById('guaranteeModal');
     const modalConfirmNoGarantia = document.getElementById('noGuaranteeConfirmModal');
 
-    document.addEventListener('click', function(e) {
-        const btn = e.target.closest('.btn-add');
-        if (btn) {
-            const nome = btn.dataset.nome;
-            const precoMensal = parseFloat(btn.dataset.precoMensal) || 0;
-            const preco6m = parseFloat(btn.dataset.preco6m) || 0;
-            const precoUnico = parseFloat(btn.dataset.precoUnico) || 0;
-            const tipo = btn.dataset.tipo;
-
-            if (tipo === 'unico') {
-                pendingProduct = { nome, precoSem: precoUnico, precoCom: precoUnico + 2, tipo: 'unico' };
-                document.getElementById('modalProductName').textContent = `${nome} (único)`;
-                document.getElementById('modalPriceWith').textContent = `R$ ${(precoUnico + 2).toFixed(2)}`;
-                document.getElementById('modalPriceWithout').textContent = `R$ ${precoUnico.toFixed(2)}`;
-            } else {
-                const periodo = confirm(`Qual período para ${nome}?\nOK = 6 meses | Cancelar = mensal`);
-                const precoBase = periodo ? preco6m : precoMensal;
-                const label = periodo ? '6 meses' : 'mês';
-                pendingProduct = { nome, precoSem: precoBase, precoCom: precoBase + 2, tipo: 'periodo', periodo, label };
-                document.getElementById('modalProductName').textContent = `${nome} (${label})`;
-                document.getElementById('modalPriceWith').textContent = `R$ ${(precoBase + 2).toFixed(2)}`;
-                document.getElementById('modalPriceWithout').textContent = `R$ ${precoBase.toFixed(2)}`;
-            }
-            modalGarantia.classList.add('active');
-            playSound('beep');
-        }
-    });
-
     document.getElementById('modalWithGuarantee').addEventListener('click', function() {
-        if (pendingProduct) {
-            const nome = pendingProduct.nome + (pendingProduct.tipo === 'periodo' ? ` (${pendingProduct.label})` : ' (único)');
-            addToCart(nome, pendingProduct.precoSem, pendingProduct.precoCom, true);
-            modalGarantia.classList.remove('active');
-            playSound('approved');
-        }
+        if (pendingProduct) { addToCart(pendingProduct.nome, pendingProduct.precoSem, pendingProduct.precoCom, true); modalGarantia.classList.remove('active'); playSound('approved'); }
     });
-
     document.getElementById('modalWithoutGuarantee').addEventListener('click', function() {
-        if (pendingProduct) {
-            modalGarantia.classList.remove('active');
-            modalConfirmNoGarantia.classList.add('active');
-            playSound('beep');
-        }
+        if (pendingProduct) { modalGarantia.classList.remove('active'); modalConfirmNoGarantia.classList.add('active'); playSound('beep'); }
     });
-
     document.getElementById('confirmNoGuarantee').addEventListener('click', function() {
-        if (pendingProduct) {
-            const nome = pendingProduct.nome + (pendingProduct.tipo === 'periodo' ? ` (${pendingProduct.label})` : ' (único)');
-            addToCart(nome, pendingProduct.precoSem, pendingProduct.precoCom, false);
-            modalConfirmNoGarantia.classList.remove('active');
-            playSound('approved');
-        }
+        if (pendingProduct) { addToCart(pendingProduct.nome, pendingProduct.precoSem, pendingProduct.precoCom, false); modalConfirmNoGarantia.classList.remove('active'); playSound('approved'); }
     });
-
-    document.getElementById('cancelNoGuarantee').addEventListener('click', function() {
-        modalConfirmNoGarantia.classList.remove('active');
-        playSound('reproved');
-    });
-
-    document.getElementById('modalCancel').addEventListener('click', function() {
-        modalGarantia.classList.remove('active');
-        playSound('reproved');
-    });
-
-    [modalGarantia, modalConfirmNoGarantia].forEach(m => {
-        m.addEventListener('click', function(e) {
-            if (e.target === this) {
-                this.classList.remove('active');
-                playSound('reproved');
-            }
-        });
+    document.getElementById('cancelNoGuarantee').addEventListener('click', function() { modalConfirmNoGarantia.classList.remove('active'); playSound('reproved'); });
+    document.getElementById('modalCancel').addEventListener('click', function() { modalGarantia.classList.remove('active'); playSound('reproved'); });
+    [periodModal, modalGarantia, modalConfirmNoGarantia].forEach(m => {
+        m.addEventListener('click', function(e) { if (e.target === this) { this.classList.remove('active'); playSound('reproved'); } });
     });
 
     // ============================================================
-    // 5. CARRINHO
+    // CARRINHO E DESCONTOS
     // ============================================================
     let cart = [];
     let descontoAtivo = 0;
 
     function addToCart(nome, precoSem, precoCom, comSuporte) {
-        cart.push({
-            id: Date.now() + Math.random(),
-            nome: nome,
-            precoSem: precoSem,
-            precoCom: precoCom,
-            comSuporte: comSuporte
-        });
+        cart.push({ id: Date.now() + Math.random(), nome, precoSem, precoCom, comSuporte });
         renderCart();
+    }
+
+    function getAutoDiscount(count) {
+        if (count >= 6) return 0.15;
+        if (count >= 5) return 0.10;
+        if (count >= 4) return 0.08;
+        if (count >= 3) return 0.05;
+        return 0;
     }
 
     function renderCart() {
         const container = document.getElementById('cartItems');
         const totalSpan = document.getElementById('cartTotal');
         const countSpan = document.getElementById('cartCount');
+        const discountInfo = document.getElementById('cartDiscountInfo');
 
         if (cart.length === 0) {
             container.innerHTML = '<p style="color:#555;text-align:center;padding:16px 0;">Carrinho vazio</p>';
             totalSpan.textContent = 'R$ 0,00';
             countSpan.textContent = '0';
+            discountInfo.style.display = 'none';
             return;
         }
 
-        let html = '';
-        let total = 0;
+        let html = '', total = 0;
         cart.forEach((item, idx) => {
             const preco = item.comSuporte ? item.precoCom : item.precoSem;
             total += preco;
             html += `
                 <div class="cart-item">
-                    <div class="item-info">
-                        <h5>${item.nome}</h5>
-                        <span>${item.comSuporte ? '✅ com garantia' : '⚠️ sem garantia'}</span>
-                    </div>
+                    <div class="item-info"><h5>${item.nome}</h5><span>${item.comSuporte ? '✅ com garantia' : '⚠️ sem garantia'}</span></div>
                     <div class="item-price">R$ ${preco.toFixed(2)}</div>
                     <button class="btn-remove" data-index="${idx}"><i class="fas fa-times"></i></button>
                 </div>
             `;
         });
 
+        const autoDisc = getAutoDiscount(cart.length);
         let totalComDesconto = total;
+        let descontoInfoText = '';
+        if (autoDisc > 0) {
+            const descontoValor = total * autoDisc;
+            totalComDesconto = total - descontoValor;
+            descontoInfoText = `🎉 Desconto automático de ${(autoDisc*100).toFixed(0)}% (${cart.length} itens): - R$ ${descontoValor.toFixed(2)}`;
+        }
         if (descontoAtivo > 0) {
-            totalComDesconto = total * (1 - descontoAtivo / 100);
+            const descontoCupom = totalComDesconto * (descontoAtivo / 100);
+            totalComDesconto = totalComDesconto - descontoCupom;
+            descontoInfoText += ` + Cupom ${descontoAtivo}%: - R$ ${descontoCupom.toFixed(2)}`;
         }
 
         container.innerHTML = html;
         totalSpan.textContent = `R$ ${totalComDesconto.toFixed(2)}`;
         countSpan.textContent = cart.length;
 
+        if (descontoInfoText) {
+            discountInfo.style.display = 'block';
+            discountInfo.textContent = descontoInfoText;
+        } else {
+            discountInfo.style.display = 'none';
+        }
+
         document.querySelectorAll('.btn-remove').forEach(btn => {
             btn.addEventListener('click', function() {
-                const idx = parseInt(this.dataset.index);
-                cart.splice(idx, 1);
+                cart.splice(parseInt(this.dataset.index), 1);
                 renderCart();
             });
         });
     }
 
-    // Combos
-    document.addEventListener('click', function(e) {
-        const btn = e.target.closest('.btn-combo-add');
-        if (btn) {
-            const nome = btn.dataset.combo;
-            const preco = parseFloat(btn.dataset.price);
-            cart.push({
-                id: Date.now() + Math.random(),
-                nome: `[Combo] ${nome}`,
-                precoSem: preco - 2,
-                precoCom: preco,
-                comSuporte: true
-            });
-            renderCart();
-            playSound('beep');
-        }
+    document.getElementById('applyDiscount').addEventListener('click', function() {
+        const input = document.getElementById('cupomInput');
+        const code = input.value.trim().toUpperCase();
+        const msg = document.getElementById('discountMsg');
+        if (code === 'STREAM10') { descontoAtivo = 10; msg.textContent = '✅ Cupom STREAM10 aplicado: 10%!'; msg.style.color = '#d4af37'; playSound('approved'); }
+        else if (code === 'STREAM20') { descontoAtivo = 20; msg.textContent = '✅ Cupom STREAM20 aplicado: 20%!'; msg.style.color = '#d4af37'; playSound('approved'); }
+        else if (code === 'UP5') { descontoAtivo = 5; msg.textContent = '✅ Cupom UP5 aplicado: 5%!'; msg.style.color = '#d4af37'; playSound('approved'); }
+        else if (code === '') { descontoAtivo = 0; msg.textContent = 'Desconto removido.'; msg.style.color = '#d4af37'; }
+        else { msg.textContent = '❌ Cupom inválido.'; msg.style.color = '#d4af37'; playSound('reproved'); }
+        renderCart();
     });
 
     // ============================================================
-    // 6. INDICAÇÃO
+    // FINALIZAR COMPRA (WhatsApp)
+    // ============================================================
+    document.getElementById('checkoutBtn').addEventListener('click', function() {
+        if (cart.length === 0) { alert('Carrinho vazio!'); playSound('reproved'); return; }
+        const hasNoGuarantee = cart.some(item => !item.comSuporte);
+        if (hasNoGuarantee && !confirm('⚠️ Você tem itens SEM garantia. Deseja continuar?')) { playSound('reproved'); return; }
+
+        let msg = '🛒 *Nova compra - StreamUp*\n\n';
+        let total = 0;
+        cart.forEach(item => {
+            const preco = item.comSuporte ? item.precoCom : item.precoSem;
+            total += preco;
+            msg += `- ${item.nome} (${item.comSuporte ? 'com garantia ✅' : 'sem garantia ⚠️'}) - R$ ${preco.toFixed(2)}\n`;
+        });
+        const autoDisc = getAutoDiscount(cart.length);
+        if (autoDisc > 0) { const dv = total * autoDisc; msg += `\n*Desconto automático (${cart.length} itens)*: - R$ ${dv.toFixed(2)}`; total -= dv; }
+        if (descontoAtivo > 0) { const dv = total * (descontoAtivo/100); msg += `\n*Cupom ${descontoAtivo}%*: - R$ ${dv.toFixed(2)}`; total -= dv; }
+        msg += `\n\n*Total: R$ ${total.toFixed(2)}*`;
+        msg += `\n\n✅ Ganhe 2 dias de teste grátis!`;
+        msg += `\n\n🔗 Telegram: @Xandao06`;
+        window.open(`https://wa.me/5511914830656?text=${encodeURIComponent(msg)}`, '_blank');
+        playSound('approved');
+    });
+
+    // ============================================================
+    // MERCADO PAGO - INTEGRAÇÃO DIRETA (front-end)
+    // ============================================================
+    document.getElementById('mpCheckoutBtn').addEventListener('click', function() {
+        if (cart.length === 0) {
+            alert('Carrinho vazio!');
+            playSound('reproved');
+            return;
+        }
+
+        // Access Token fornecido
+        const ACCESS_TOKEN = 'APP_USR-7721066143624625-081813-ca98fefaf469e01ae27592d7f7ed4159-672484268';
+
+        // Monta os itens
+        const items = cart.map(item => {
+            const preco = item.comSuporte ? item.precoCom : item.precoSem;
+            return {
+                title: item.nome,
+                quantity: 1,
+                unit_price: preco,
+                currency_id: 'BRL'
+            };
+        });
+
+        // Monta a preferência
+        const preference = {
+            items: items,
+            payer: { email: 'cliente@email.com' },
+            back_urls: {
+                success: 'https://streamup.com/sucesso',
+                failure: 'https://streamup.com/falha',
+                pending: 'https://streamup.com/pendente'
+            },
+            auto_return: 'approved',
+            statement_descriptor: 'StreamUp',
+            external_reference: 'pedido_' + Date.now()
+        };
+
+        // Faz a requisição para a API do Mercado Pago
+        fetch('https://api.mercadopago.com/checkout/preferences', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${ACCESS_TOKEN}`
+            },
+            body: JSON.stringify(preference)
+        })
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(err => { throw new Error(JSON.stringify(err)); });
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.init_point) {
+                window.open(data.init_point, '_blank');
+                playSound('approved');
+            } else {
+                alert('Erro ao criar preferência. Verifique o token e os dados.');
+                console.error(data);
+                playSound('reproved');
+            }
+        })
+        .catch(error => {
+            alert('Erro na comunicação com o Mercado Pago. Verifique o console.');
+            console.error('Erro:', error);
+            playSound('reproved');
+        });
+    });
+
+    // ============================================================
+    // INDICAÇÃO (código anterior)
     // ============================================================
     let codes = JSON.parse(localStorage.getItem('streamup_codes')) || {};
-
-    function saveCodes() {
-        localStorage.setItem('streamup_codes', JSON.stringify(codes));
-    }
-
+    function saveCodes() { localStorage.setItem('streamup_codes', JSON.stringify(codes)); }
     function renderCodes() {
         const container = document.getElementById('generatedCodes');
         const keys = Object.keys(codes);
-        if (keys.length === 0) {
-            container.innerHTML = '<p style="color:#555;font-size:12px;">Nenhum código gerado.</p>';
-            return;
-        }
+        if (keys.length === 0) { container.innerHTML = '<p style="color:#555;font-size:12px;">Nenhum código gerado.</p>'; return; }
         let html = '<div style="display:flex;flex-wrap:wrap;gap:4px;">';
         keys.forEach(key => {
             const status = codes[key] ? '✅ liberado' : '🔒 bloqueado';
@@ -1163,18 +681,11 @@
         html += '</div>';
         container.innerHTML = html;
     }
-
     document.getElementById('generateCodeBtn').addEventListener('click', function() {
         const input = document.getElementById('newFriendCode');
         const code = input.value.trim().toUpperCase();
-        if (!code || code.length < 3) {
-            alert('Digite um código com pelo menos 3 caracteres.');
-            return;
-        }
-        if (codes[code] !== undefined) {
-            alert('Este código já existe.');
-            return;
-        }
+        if (!code || code.length < 3) { alert('Digite um código com pelo menos 3 caracteres.'); return; }
+        if (codes[code] !== undefined) { alert('Este código já existe.'); return; }
         codes[code] = false;
         saveCodes();
         renderCodes();
@@ -1182,19 +693,16 @@
         playSound('beep');
         document.getElementById('masterStatus').textContent = `Código ${code} gerado (bloqueado).`;
     });
-
     document.getElementById('masterPanelToggle').addEventListener('click', function() {
         const panel = document.getElementById('masterPanel');
         panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
         playSound('beep');
     });
-
     document.getElementById('masterUnlockBtn').addEventListener('click', function() {
         const masterCode = prompt('Digite o código mestre (STREAMUP2025):');
         if (masterCode === 'STREAMUP2025') {
             Object.keys(codes).forEach(key => { codes[key] = true; });
-            saveCodes();
-            renderCodes();
+            saveCodes(); renderCodes();
             document.getElementById('masterStatus').textContent = '✅ Todos os códigos liberados!';
             playSound('approved');
         } else {
@@ -1202,13 +710,11 @@
             playSound('reproved');
         }
     });
-
     document.getElementById('masterLockBtn').addEventListener('click', function() {
         const masterCode = prompt('Digite o código mestre (STREAMUP2025):');
         if (masterCode === 'STREAMUP2025') {
             Object.keys(codes).forEach(key => { codes[key] = false; });
-            saveCodes();
-            renderCodes();
+            saveCodes(); renderCodes();
             document.getElementById('masterStatus').textContent = '🔒 Todos os códigos bloqueados.';
             playSound('beep');
         } else {
@@ -1216,7 +722,6 @@
             playSound('reproved');
         }
     });
-
     document.getElementById('applyClientCode').addEventListener('click', function() {
         const input = document.getElementById('clientCodeInput');
         const code = input.value.trim().toUpperCase();
@@ -1237,70 +742,30 @@
             playSound('reproved');
         }
     });
-
     renderCodes();
 
     // ============================================================
-    // 7. CUPONS
+    // DOAÇÃO - COPIAR CHAVE PIX
     // ============================================================
-    document.getElementById('applyDiscount').addEventListener('click', function() {
-        const input = document.getElementById('cupomInput');
-        const code = input.value.trim().toUpperCase();
-        const msg = document.getElementById('discountMsg');
-        let valid = false;
-        if (code === 'STREAM10') { descontoAtivo = 10; valid = true; }
-        else if (code === 'STREAM20') { descontoAtivo = 20; valid = true; }
-        else if (code === 'UP5') { descontoAtivo = 5; valid = true; }
-        else if (code === '') { descontoAtivo = 0; valid = true; msg.textContent = 'Desconto removido.'; msg.style.color = '#d4af37'; }
-        else { msg.textContent = '❌ Cupom inválido.'; msg.style.color = '#d4af37'; playSound('reproved'); renderCart(); return; }
-        if (valid && code !== '') {
-            msg.textContent = `✅ Cupom ${code} aplicado: ${descontoAtivo}%!`;
-            msg.style.color = '#d4af37';
+    document.getElementById('copyPixBtn').addEventListener('click', function() {
+        const key = document.getElementById('pixKey').textContent;
+        navigator.clipboard.writeText(key).then(() => {
+            alert('Chave PIX copiada: ' + key);
             playSound('approved');
-        }
-        renderCart();
-    });
-
-    // ============================================================
-    // 8. FINALIZAR COMPRA
-    // ============================================================
-    document.getElementById('checkoutBtn').addEventListener('click', function() {
-        if (cart.length === 0) {
-            alert('Carrinho vazio!');
-            playSound('reproved');
-            return;
-        }
-
-        const hasNoGuarantee = cart.some(item => !item.comSuporte);
-        if (hasNoGuarantee) {
-            if (!confirm('⚠️ Atenção: Você tem itens SEM garantia.\n\nNão nos responsabilizamos por cancelamentos e não há reembolso.\n\nDeseja continuar?')) {
-                playSound('reproved');
-                return;
-            }
-        }
-
-        let msg = '🛒 *Nova compra - StreamUp*\n\n';
-        let total = 0;
-        cart.forEach(item => {
-            const preco = item.comSuporte ? item.precoCom : item.precoSem;
-            total += preco;
-            msg += `- ${item.nome} (${item.comSuporte ? 'com garantia ✅' : 'sem garantia ⚠️'}) - R$ ${preco.toFixed(2)}\n`;
+        }).catch(() => {
+            const input = document.createElement('input');
+            input.value = key;
+            document.body.appendChild(input);
+            input.select();
+            document.execCommand('copy');
+            document.body.removeChild(input);
+            alert('Chave PIX copiada: ' + key);
+            playSound('approved');
         });
-        if (descontoAtivo > 0) {
-            const descontoValor = total * (descontoAtivo / 100);
-            msg += `\n*Desconto de ${descontoAtivo}%*: - R$ ${descontoValor.toFixed(2)}`;
-            total = total * (1 - descontoAtivo / 100);
-        }
-        msg += `\n\n*Total: R$ ${total.toFixed(2)}*`;
-        msg += `\n\n✅ Ganhe 2 dias de teste grátis!`;
-        msg += `\n\n🔗 Telegram: @Xandao06`;
-        const url = `https://wa.me/5511914830656?text=${encodeURIComponent(msg)}`;
-        window.open(url, '_blank');
-        playSound('approved');
     });
 
     // ============================================================
-    // 9. SONS
+    // SONS
     // ============================================================
     function playSound(type) {
         try {
@@ -1333,25 +798,25 @@
     }
 
     // ============================================================
-    // 10. NAVEGAÇÃO
+    // NAVEGAÇÃO
     // ============================================================
     document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             this.classList.add('active');
-            const target = this.dataset.tab;
             document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
-            document.getElementById(target).classList.add('active');
+            document.getElementById(this.dataset.tab).classList.add('active');
             playSound('beep');
         });
     });
 
     // ============================================================
-    // 11. INICIALIZAR
+    // INICIALIZAR
     // ============================================================
     renderCart();
-    console.log('✅ StreamUp carregado com sucesso!');
+    console.log('✅ StreamUp carregado!');
     console.log('🔐 Código mestre: STREAMUP2025');
+    console.log('💳 Mercado Pago integrado via front-end (use com cuidado)');
 </script>
 </body>
 </html>
