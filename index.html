@@ -33,13 +33,6 @@
             position: relative;
             overflow: hidden;
         }
-        .glow-text {
-            text-shadow: 0 0 10px rgba(123, 47, 252, 0.5), 0 0 20px rgba(255, 45, 149, 0.3);
-        }
-        .glow-border {
-            border: 1px solid rgba(123, 47, 252, 0.3);
-            box-shadow: 0 0 15px rgba(123, 47, 252, 0.1);
-        }
         .brand {
             display: flex;
             align-items: center;
@@ -330,7 +323,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(255,255,255,0.03);
+            background: rgba(255, 255, 255, 0.03);
             padding: 10px 14px;
             border-radius: 16px;
             margin: 6px 0;
@@ -366,7 +359,7 @@
             padding: 10px 14px;
             border-radius: 60px;
             border: 1px solid rgba(123, 47, 252, 0.3);
-            background: rgba(255,255,255,0.05);
+            background: rgba(255, 255, 255, 0.05);
             color: #fff;
             outline: none;
         }
@@ -393,7 +386,10 @@
             margin-top: 12px;
             transition: 0.15s;
         }
-        .btn-checkout:hover { transform: scale(1.01); box-shadow: 0 0 40px rgba(255, 45, 149, 0.2); }
+        .btn-checkout:hover {
+            transform: scale(1.01);
+            box-shadow: 0 0 40px rgba(255, 45, 149, 0.2);
+        }
         .garantia-box {
             background: rgba(123, 47, 252, 0.08);
             border-radius: 20px;
@@ -407,7 +403,7 @@
         .garantia-box i { color: #ff2d95; margin-right: 6px; }
         .footer-whats {
             margin-top: 24px;
-            background: rgba(255,255,255,0.04);
+            background: rgba(255, 255, 255, 0.04);
             border-radius: 60px;
             padding: 14px 20px;
             display: flex;
@@ -457,6 +453,133 @@
             font-size: 14px;
         }
         .teste-gratis i { margin-right: 6px; }
+
+        /* ===== MODAL ===== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(6px);
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            animation: fadeIn 0.2s ease;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-box {
+            background: #14101f;
+            border: 1px solid rgba(123, 47, 252, 0.3);
+            border-radius: 32px;
+            padding: 28px 24px 24px;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 0 60px rgba(123, 47, 252, 0.15);
+            text-align: center;
+        }
+        .modal-box h3 {
+            color: #fff;
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+        .modal-box p {
+            color: #b896ff;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .modal-box .price-option {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .modal-box .price-option button {
+            flex: 1;
+            padding: 12px 0;
+            border-radius: 60px;
+            border: 2px solid transparent;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.2s;
+            background: rgba(255, 255, 255, 0.05);
+            color: #c0b8d0;
+        }
+        .modal-box .price-option button:hover {
+            transform: scale(1.02);
+        }
+        .modal-box .price-option .btn-com {
+            border-color: #ff2d95;
+            color: #fff;
+            background: rgba(255, 45, 149, 0.1);
+        }
+        .modal-box .price-option .btn-com:hover {
+            background: rgba(255, 45, 149, 0.2);
+            box-shadow: 0 0 30px rgba(255, 45, 149, 0.15);
+        }
+        .modal-box .price-option .btn-sem {
+            border-color: #7b2ffc;
+            color: #b896ff;
+        }
+        .modal-box .price-option .btn-sem:hover {
+            background: rgba(123, 47, 252, 0.1);
+            box-shadow: 0 0 30px rgba(123, 47, 252, 0.1);
+        }
+        .modal-box .btn-cancel {
+            background: transparent;
+            border: none;
+            color: #6a5f80;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 4px;
+            padding: 8px 16px;
+        }
+        .modal-box .btn-cancel:hover { color: #b896ff; }
+
+        /* ===== MODAL RESUMO ===== */
+        .resumo-item {
+            display: flex;
+            justify-content: space-between;
+            color: #c0b8d0;
+            font-size: 14px;
+            padding: 4px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+        .resumo-item .valor { color: #ff2d95; font-weight: 600; }
+        .resumo-total {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            margin-top: 12px;
+        }
+        .resumo-total span { color: #b896ff; }
+        .btn-confirmar {
+            background: linear-gradient(135deg, #25D366, #1da85c);
+            border: none;
+            border-radius: 60px;
+            padding: 14px 0;
+            font-weight: 700;
+            font-size: 18px;
+            color: #fff;
+            width: 100%;
+            cursor: pointer;
+            margin-top: 16px;
+            transition: 0.15s;
+        }
+        .btn-confirmar:hover { transform: scale(1.01); box-shadow: 0 0 30px rgba(37, 211, 102, 0.2); }
+        .btn-fechar-resumo {
+            background: transparent;
+            border: none;
+            color: #6a5f80;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+        .btn-fechar-resumo:hover { color: #b896ff; }
+
         @media (max-width: 440px) {
             .product-grid { grid-template-columns: 1fr; }
             .tabs .tab-btn { font-size: 12px; padding: 8px 0; }
@@ -479,7 +602,7 @@
         </a>
     </div>
 
-    <!-- DESTAQUE DO MOMENTO (dinâmico) -->
+    <!-- DESTAQUE DO MOMENTO -->
     <div class="highlight-card" id="destaqueCard">
         <div class="highlight-left">
             <h4>⭐ DESTAQUE DO MOMENTO</h4>
@@ -489,7 +612,7 @@
         <div class="highlight-right" id="destaquePlataforma"><i class="fas fa-tv"></i> Netflix</div>
     </div>
 
-    <!-- NAVEGAÇÃO POR ABAS -->
+    <!-- TABS -->
     <div class="tabs">
         <button class="tab-btn active" data-tab="tab1"><i class="fas fa-home"></i> Início</button>
         <button class="tab-btn" data-tab="tab2"><i class="fas fa-box"></i> Serviços</button>
@@ -497,24 +620,17 @@
         <button class="tab-btn" data-tab="tab4"><i class="fas fa-shopping-cart"></i> Carrinho <span id="cartCount">0</span></button>
     </div>
 
-    <!-- ===== TAB 1: INÍCIO ===== -->
+    <!-- TAB 1: INÍCIO -->
     <div class="tab-content active" id="tab1">
-        <div class="delivery-stats" style="background:rgba(255,255,255,0.04);border-radius:80px;padding:10px 16px;display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
+        <div style="background:rgba(255,255,255,0.04);border-radius:80px;padding:10px 16px;display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
             <span style="color:#b896ff;"><i class="fas fa-check-circle"></i> 1.847 serviços entregues</span>
             <div style="display:flex;gap:6px;">
-                <button class="btn-outline" style="background:transparent;border:1px solid rgba(123,47,252,0.3);border-radius:40px;padding:6px 14px;color:#b896ff;">Ver</button>
+                <button style="background:transparent;border:1px solid rgba(123,47,252,0.3);border-radius:40px;padding:6px 14px;color:#b896ff;">Ver</button>
                 <a href="https://wa.me/556198542343" target="_blank" style="background:#25D366;border-radius:40px;padding:6px 14px;color:#fff;text-decoration:none;font-weight:600;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
             </div>
         </div>
-
-        <div class="garantia-box">
-            <i class="fas fa-shield-alt"></i> Garantia de 30 dias com suporte incluso
-        </div>
-
-        <div class="teste-gratis">
-            <i class="fas fa-gift"></i> Ganhe 2 dias de teste grátis em cada compra!
-        </div>
-
+        <div class="garantia-box"><i class="fas fa-shield-alt"></i> Garantia de 30 dias com suporte incluso</div>
+        <div class="teste-gratis"><i class="fas fa-gift"></i> Ganhe 2 dias de teste grátis em cada compra!</div>
         <div style="margin:18px 0 10px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
             <div style="background:rgba(255,255,255,0.03);border-radius:20px;padding:10px;text-align:center;border:1px solid rgba(123,47,252,0.1);">
                 <div style="background:#7b2ffc;width:28px;height:28px;border-radius:40px;margin:0 auto 4px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;">1</div>
@@ -529,71 +645,55 @@
                 <p style="font-size:11px;color:#c0b8d0;">Variedade</p>
             </div>
         </div>
-
         <div style="background:rgba(255,255,255,0.02);border-radius:24px;padding:14px 16px;margin:8px 0;border-left:3px solid #ff2d95;">
             <p style="font-style:italic;color:#c0b8d0;">“Peguei o combo completo e estou economizando bastante. Recomendo!”</p>
             <p style="font-weight:600;margin-top:4px;color:#b896ff;">— Rafael T.</p>
         </div>
     </div>
 
-    <!-- ===== TAB 2: SERVIÇOS ===== -->
+    <!-- TAB 2: SERVIÇOS -->
     <div class="tab-content" id="tab2">
-        <div class="section-title">
-            <h3>Serviços</h3>
-            <span class="tag">NOVO</span>
-        </div>
-        <div class="product-grid" id="productGrid">
-            <!-- Injetado via JS -->
-        </div>
+        <div class="section-title"><h3>Serviços</h3><span class="tag">NOVO</span></div>
+        <div class="product-grid" id="productGrid"></div>
     </div>
 
-    <!-- ===== TAB 3: COMBOS ===== -->
+    <!-- TAB 3: COMBOS -->
     <div class="tab-content" id="tab3">
         <div class="section-title"><h3>Combos CP</h3><span class="tag">economia</span></div>
-
         <div class="combo-card">
             <div class="combo-title"><h4>Combo Entretenimento</h4></div>
             <div class="combo-price">R$ 17,00 <small>/mês</small></div>
             <div class="combo-desc">Netflix Premium + Prime Video + Spotify Família</div>
             <div class="combo-economy"><i class="fas fa-tag"></i> Separado R$ 20,00 · economize R$ 3,00</div>
-            <button class="btn-combo-add" data-combo="Entretenimento" data-price="17" data-items="Netflix Premium,Prime Video,Spotify Família">Adicionar Combo</button>
+            <button class="btn-combo-add" data-combo="Entretenimento" data-price="17">Adicionar Combo</button>
         </div>
-
         <div class="combo-card" style="border-left:4px solid #ff2d95;">
             <div class="combo-title"><h4>Cinema & Séries</h4><span class="tag-pop">MAIS ESCOLHIDO</span></div>
             <div class="combo-price">R$ 24,00 <small>/mês</small></div>
             <div class="combo-desc">Netflix Premium · HBO Standard · Prime Video</div>
             <div class="combo-economy"><i class="fas fa-tag"></i> Separado R$ 27,00 · economize R$ 3,00</div>
-            <button class="btn-combo-add" data-combo="Cinema & Séries" data-price="24" data-items="Netflix Premium,HBO Standard,Prime Video">Adicionar Combo</button>
+            <button class="btn-combo-add" data-combo="Cinema & Séries" data-price="24">Adicionar Combo</button>
         </div>
-
         <div class="combo-card">
             <div class="combo-title"><h4>CP Completo</h4></div>
             <div class="combo-price">R$ 42,00 <small>/mês</small></div>
             <div class="combo-desc">Netflix Premium · Disney Premium · HBO Standard · Prime Video · Spotify Família</div>
             <div class="combo-economy"><i class="fas fa-tag"></i> Separado R$ 49,00 · economize R$ 7,00</div>
-            <button class="btn-combo-add" data-combo="CP Completo" data-price="42" data-items="Netflix Premium,Disney Premium,HBO Standard,Prime Video,Spotify Família">Adicionar Combo</button>
+            <button class="btn-combo-add" data-combo="CP Completo" data-price="42">Adicionar Combo</button>
         </div>
     </div>
 
-    <!-- ===== TAB 4: CARRINHO ===== -->
+    <!-- TAB 4: CARRINHO -->
     <div class="tab-content" id="tab4">
         <h3 style="color:#fff;margin-bottom:12px;">Seu Carrinho</h3>
-        <div id="cartItems">
-            <p style="color:#6a5f80;text-align:center;padding:20px 0;">Carrinho vazio</p>
-        </div>
+        <div id="cartItems"><p style="color:#6a5f80;text-align:center;padding:20px 0;">Carrinho vazio</p></div>
         <div class="cart-total">Total: <span id="cartTotal">R$ 0,00</span></div>
-
         <div class="discount-input">
             <input type="text" id="cupomInput" placeholder="Cupom (ex: CP10)" />
             <button id="applyDiscount">Aplicar</button>
         </div>
         <div id="discountMsg" style="font-size:13px;color:#ff2d95;margin:4px 0 10px;"></div>
-
-        <div class="teste-gratis" style="margin:10px 0;">
-            <i class="fas fa-gift"></i> Ao finalizar, ganhe 2 dias de teste grátis!
-        </div>
-
+        <div class="teste-gratis" style="margin:10px 0;"><i class="fas fa-gift"></i> Ao finalizar, ganhe 2 dias de teste grátis!</div>
         <button class="btn-checkout" id="checkoutBtn"><i class="fab fa-whatsapp"></i> Finalizar Compra</button>
     </div>
 
@@ -601,8 +701,8 @@
     <div class="footer-whats">
         <span><i class="fas fa-headset"></i> Fale conosco</span>
         <div style="display:flex;gap:6px;flex-wrap:wrap;">
-            <a href="https://wa.me/556198542343" target="_blank" class="btn-social whats" id="whatsFooter"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-            <a href="https://t.me/Carlosvl9" target="_blank" class="btn-social telegram" id="telegramFooter"><i class="fab fa-telegram-plane"></i> Telegram</a>
+            <a href="https://wa.me/556198542343" target="_blank" class="btn-social whats"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            <a href="https://t.me/Carlosvl9" target="_blank" class="btn-social telegram"><i class="fab fa-telegram-plane"></i> Telegram</a>
         </div>
     </div>
     <div class="creditos">
@@ -611,9 +711,37 @@
     </div>
 </div>
 
+<!-- ===== MODAL GARANTIA ===== -->
+<div class="modal-overlay" id="garantiaModal">
+    <div class="modal-box">
+        <h3 id="modalProduto">Produto</h3>
+        <p>Escolha a opção de suporte:</p>
+        <div class="price-option">
+            <button class="btn-com" id="optCom">✅ Com suporte (30d)<br><span id="modalPrecoCom">R$ 0,00</span></button>
+            <button class="btn-sem" id="optSem">⚠️ Sem suporte<br><span id="modalPrecoSem">R$ 0,00</span></button>
+        </div>
+        <button class="btn-cancel" id="modalCancel">Cancelar</button>
+    </div>
+</div>
+
+<!-- ===== MODAL RESUMO ===== -->
+<div class="modal-overlay" id="resumoModal">
+    <div class="modal-box">
+        <h3 style="color:#fff;margin-bottom:12px;">📋 Resumo da compra</h3>
+        <div id="resumoItems" style="margin-bottom:12px;"></div>
+        <div class="resumo-total">Total: <span id="resumoTotal">R$ 0,00</span></div>
+        <div id="resumoDesconto" style="color:#ff2d95;font-size:14px;margin-top:4px;"></div>
+        <div style="background:rgba(255,45,149,0.08);border-radius:16px;padding:8px;margin:12px 0;border:1px solid rgba(255,45,149,0.15);color:#ff2d95;font-weight:500;">
+            <i class="fas fa-gift"></i> Você ganhou 2 dias de teste grátis!
+        </div>
+        <button class="btn-confirmar" id="confirmarCompra"><i class="fab fa-whatsapp"></i> Enviar para WhatsApp</button>
+        <button class="btn-fechar-resumo" id="fecharResumo">Fechar</button>
+    </div>
+</div>
+
 <script>
     // ============================================================
-    // 1. DADOS DOS SERVIÇOS (com e sem suporte)
+    // 1. DADOS
     // ============================================================
     const produtos = [
         { id: 'netflix', nome: 'Netflix Premium', precoSem: 11.00, precoCom: 13.00 },
@@ -624,9 +752,6 @@
         { id: 'sky', nome: 'SKY+ Top HD 2025', precoSem: 9.00, precoCom: 11.00 }
     ];
 
-    // ============================================================
-    // 2. DESTAQUES AUTOMÁTICOS (Netflix e outros)
-    // ============================================================
     const destaques = [
         { titulo: 'Outer Banks', desc: 'Temporada final · já disponível', plataforma: 'Netflix', icone: 'fab fa-netflix' },
         { titulo: 'The Last of Us', desc: 'Nova temporada · em breve', plataforma: 'HBO Max', icone: 'fas fa-tv' },
@@ -634,8 +759,8 @@
         { titulo: 'Senhor dos Anéis', desc: 'Anéis de Poder · nova temporada', plataforma: 'Prime Video', icone: 'fab fa-prime' },
         { titulo: 'Stranger Things', desc: 'Última temporada em produção', plataforma: 'Netflix', icone: 'fab fa-netflix' }
     ];
-    let destaqueIndex = 0;
 
+    let destaqueIndex = 0;
     function atualizarDestaque() {
         const item = destaques[destaqueIndex % destaques.length];
         destaqueIndex++;
@@ -647,7 +772,7 @@
     setInterval(atualizarDestaque, 12000);
 
     // ============================================================
-    // 3. RENDERIZAR PRODUTOS
+    // 2. RENDERIZAR PRODUTOS
     // ============================================================
     const grid = document.getElementById('productGrid');
     produtos.forEach(p => {
@@ -667,10 +792,95 @@
     });
 
     // ============================================================
-    // 4. CARRINHO + SOMA + DESCONTO
+    // 3. MODAL DE GARANTIA
+    // ============================================================
+    let pendingItem = null;
+    const modalGarantia = document.getElementById('garantiaModal');
+    const modalProduto = document.getElementById('modalProduto');
+    const modalPrecoCom = document.getElementById('modalPrecoCom');
+    const modalPrecoSem = document.getElementById('modalPrecoSem');
+
+    document.addEventListener('click', function(e) {
+        const btn = e.target.closest('.btn-add');
+        if (btn) {
+            const nome = btn.dataset.nome;
+            const precoSem = parseFloat(btn.dataset.precoSem);
+            const precoCom = parseFloat(btn.dataset.precoCom);
+            pendingItem = { nome, precoSem, precoCom };
+            modalProduto.textContent = nome;
+            modalPrecoCom.textContent = `R$ ${precoCom.toFixed(2)}`;
+            modalPrecoSem.textContent = `R$ ${precoSem.toFixed(2)}`;
+            modalGarantia.classList.add('active');
+            playBeep();
+        }
+
+        // Combos
+        const comboBtn = e.target.closest('.btn-combo-add');
+        if (comboBtn) {
+            const nome = comboBtn.dataset.combo;
+            const preco = parseFloat(comboBtn.dataset.price);
+            cart.push({
+                id: Date.now() + Math.random(),
+                nome: `[Combo] ${nome}`,
+                precoSem: preco - 2,
+                precoCom: preco,
+                comSuporte: true
+            });
+            renderCart();
+            playBeep();
+        }
+    });
+
+    document.getElementById('optCom').addEventListener('click', function() {
+        if (pendingItem) {
+            cart.push({
+                id: Date.now() + Math.random(),
+                nome: pendingItem.nome,
+                precoSem: pendingItem.precoSem,
+                precoCom: pendingItem.precoCom,
+                comSuporte: true
+            });
+            modalGarantia.classList.remove('active');
+            renderCart();
+            playBeep();
+            pendingItem = null;
+        }
+    });
+
+    document.getElementById('optSem').addEventListener('click', function() {
+        if (pendingItem) {
+            cart.push({
+                id: Date.now() + Math.random(),
+                nome: pendingItem.nome,
+                precoSem: pendingItem.precoSem,
+                precoCom: pendingItem.precoCom,
+                comSuporte: false
+            });
+            modalGarantia.classList.remove('active');
+            renderCart();
+            playBeep();
+            pendingItem = null;
+        }
+    });
+
+    document.getElementById('modalCancel').addEventListener('click', function() {
+        modalGarantia.classList.remove('active');
+        pendingItem = null;
+    });
+
+    modalGarantia.addEventListener('click', function(e) {
+        if (e.target === this) {
+            modalGarantia.classList.remove('active');
+            pendingItem = null;
+        }
+    });
+
+    // ============================================================
+    // 4. CARRINHO
     // ============================================================
     let cart = [];
-    let descontoAtivo = 0; // porcentagem (ex: 10)
+    let descontoAtivo = 0;
+    let cupomAtual = '';
 
     function renderCart() {
         const container = document.getElementById('cartItems');
@@ -701,7 +911,6 @@
             `;
         });
 
-        // Aplicar desconto
         let totalComDesconto = total;
         if (descontoAtivo > 0) {
             totalComDesconto = total * (1 - descontoAtivo / 100);
@@ -711,7 +920,6 @@
         totalSpan.textContent = `R$ ${totalComDesconto.toFixed(2)}`;
         countSpan.textContent = cart.length;
 
-        // Eventos de remover
         document.querySelectorAll('.btn-remove').forEach(btn => {
             btn.addEventListener('click', function() {
                 const idx = parseInt(this.dataset.index);
@@ -721,58 +929,37 @@
         });
     }
 
-    // Adicionar produto
-    document.addEventListener('click', function(e) {
-        const btn = e.target.closest('.btn-add');
-        if (btn) {
-            const nome = btn.dataset.nome;
-            const precoSem = parseFloat(btn.dataset.precoSem);
-            const precoCom = parseFloat(btn.dataset.precoCom);
-            const comSuporte = confirm(`Deseja adicionar "${nome}" com suporte de 30 dias? (R$ ${precoCom.toFixed(2)})\nClique em "OK" para com suporte, "Cancelar" para sem suporte.`);
-            cart.push({
-                id: Date.now() + Math.random(),
-                nome: nome,
-                precoSem: precoSem,
-                precoCom: precoCom,
-                comSuporte: comSuporte
-            });
-            renderCart();
-            playBeep();
-        }
-
-        // Adicionar combo
-        const comboBtn = e.target.closest('.btn-combo-add');
-        if (comboBtn) {
-            const nome = comboBtn.dataset.combo;
-            const preco = parseFloat(comboBtn.dataset.price);
-            const items = comboBtn.dataset.items.split(',');
-            cart.push({
-                id: Date.now() + Math.random(),
-                nome: `[Combo] ${nome}`,
-                precoSem: preco - 2,
-                precoCom: preco,
-                comSuporte: true
-            });
-            renderCart();
-            playBeep();
-        }
-    });
-
-    // Desconto
+    // ============================================================
+    // 5. DESCONTO
+    // ============================================================
     document.getElementById('applyDiscount').addEventListener('click', function() {
         const input = document.getElementById('cupomInput');
         const code = input.value.trim().toUpperCase();
         const msg = document.getElementById('discountMsg');
+
         if (code === 'CP10') {
             descontoAtivo = 10;
-            msg.textContent = '✅ Cupom CP10 aplicado: 10% de desconto!';
+            cupomAtual = code;
+            msg.textContent = '✅ Cupom CP10: 10% de desconto!';
+            msg.style.color = '#b896ff';
+        } else if (code === 'CP15') {
+            descontoAtivo = 15;
+            cupomAtual = code;
+            msg.textContent = '✅ Cupom CP15: 15% de desconto!';
             msg.style.color = '#b896ff';
         } else if (code === 'CP20') {
             descontoAtivo = 20;
-            msg.textContent = '✅ Cupom CP20 aplicado: 20% de desconto!';
+            cupomAtual = code;
+            msg.textContent = '✅ Cupom CP20: 20% de desconto!';
             msg.style.color = '#b896ff';
+        } else if (code === 'CPFREE') {
+            descontoAtivo = 0;
+            cupomAtual = code;
+            msg.textContent = '🎁 Cupom CPFREE: 2 dias de teste grátis!';
+            msg.style.color = '#ff2d95';
         } else if (code === '') {
             descontoAtivo = 0;
+            cupomAtual = '';
             msg.textContent = 'Desconto removido.';
             msg.style.color = '#ff2d95';
         } else {
@@ -783,35 +970,81 @@
     });
 
     // ============================================================
-    // 5. FINALIZAR COMPRA (WhatsApp com resumo)
+    // 6. FINALIZAR COMPRA - MODAL RESUMO
     // ============================================================
+    const resumoModal = document.getElementById('resumoModal');
+    const resumoItems = document.getElementById('resumoItems');
+    const resumoTotal = document.getElementById('resumoTotal');
+    const resumoDesconto = document.getElementById('resumoDesconto');
+
     document.getElementById('checkoutBtn').addEventListener('click', function() {
         if (cart.length === 0) {
             alert('Carrinho vazio!');
             return;
         }
-        let msg = 'Olá! Gostaria de finalizar minha compra:\n\n';
+
         let total = 0;
+        let html = '';
+        cart.forEach(item => {
+            const preco = item.comSuporte ? item.precoCom : item.precoSem;
+            total += preco;
+            html += `
+                <div class="resumo-item">
+                    <span>${item.nome} ${item.comSuporte ? '✅' : '⚠️'}</span>
+                    <span class="valor">R$ ${preco.toFixed(2)}</span>
+                </div>
+            `;
+        });
+
+        let totalComDesconto = total;
+        let descontoMsg = '';
+        if (descontoAtivo > 0) {
+            totalComDesconto = total * (1 - descontoAtivo / 100);
+            descontoMsg = `Desconto de ${descontoAtivo}%: - R$ ${(total - totalComDesconto).toFixed(2)}`;
+        } else if (cupomAtual === 'CPFREE') {
+            descontoMsg = '🎁 2 dias de teste grátis (sem desconto)';
+        }
+
+        resumoItems.innerHTML = html;
+        resumoTotal.textContent = `R$ ${totalComDesconto.toFixed(2)}`;
+        resumoDesconto.textContent = descontoMsg;
+        resumoModal.classList.add('active');
+        playBeep();
+    });
+
+    document.getElementById('fecharResumo').addEventListener('click', function() {
+        resumoModal.classList.remove('active');
+    });
+
+    resumoModal.addEventListener('click', function(e) {
+        if (e.target === this) resumoModal.classList.remove('active');
+    });
+
+    document.getElementById('confirmarCompra').addEventListener('click', function() {
+        let total = 0;
+        let msg = 'Olá! Gostaria de finalizar minha compra:\n\n';
         cart.forEach(item => {
             const preco = item.comSuporte ? item.precoCom : item.precoSem;
             total += preco;
             msg += `- ${item.nome} (${item.comSuporte ? 'com suporte' : 'sem suporte'}) - R$ ${preco.toFixed(2)}\n`;
         });
+        let totalComDesconto = total;
         if (descontoAtivo > 0) {
             const descontoValor = total * (descontoAtivo / 100);
+            totalComDesconto = total - descontoValor;
             msg += `\nDesconto de ${descontoAtivo}%: - R$ ${descontoValor.toFixed(2)}`;
-            total = total * (1 - descontoAtivo / 100);
         }
-        msg += `\n\nTotal: R$ ${total.toFixed(2)}`;
-        msg += `\n\nGanho 2 dias de teste grátis!`;
+        msg += `\n\nTotal: R$ ${totalComDesconto.toFixed(2)}`;
+        msg += `\n\n🎁 Ganhei 2 dias de teste grátis!`;
         msg += `\n\nMeu Telegram: @Carlosvl9`;
         const url = `https://wa.me/556198542343?text=${encodeURIComponent(msg)}`;
         window.open(url, '_blank');
+        resumoModal.classList.remove('active');
         playBeep();
     });
 
     // ============================================================
-    // 6. SONS E NAVEGAÇÃO
+    // 7. SONS E NAVEGAÇÃO
     // ============================================================
     function playBeep() {
         try {
@@ -828,21 +1061,17 @@
         } catch(e) { /* fallback */ }
     }
 
-    // Navegação por abas
     document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             this.classList.add('active');
-            const target = this.dataset.tab;
             document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
-            document.getElementById(target).classList.add('active');
+            document.getElementById(this.dataset.tab).classList.add('active');
             playBeep();
         });
     });
 
-    // Inicializar carrinho
     renderCart();
-
     console.log('✅ CP - Hacker Edition carregada com sucesso!');
 </script>
 </body>
