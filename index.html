@@ -64,9 +64,7 @@
         .discount-input input { flex: 1; padding: 8px 12px; border-radius: 60px; border: 1px solid #333; background: #1a1a1a; color: #fff; outline: none; font-size: 14px; }
         .discount-input input:focus { border-color: #d4af37; }
         .discount-input button { background: #d4af37; color: #000; border: none; border-radius: 60px; padding: 8px 18px; font-weight: 600; cursor: pointer; }
-        .btn-checkout { background: #d4af37; color: #000; border: none; border-radius: 60px; padding: 12px 0; font-weight: 700; font-size: 17px; width: 100%; cursor: pointer; margin-top: 10px; }
-        .btn-checkout:hover { background: #c5a028; transform: scale(1.01); }
-        .btn-mp { background: #009ee3; color: #fff; border: none; border-radius: 60px; padding: 12px 0; font-weight: 700; font-size: 17px; width: 100%; cursor: pointer; margin-top: 6px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .btn-mp { background: #009ee3; color: #fff; border: none; border-radius: 60px; padding: 14px 0; font-weight: 700; font-size: 17px; width: 100%; cursor: pointer; margin-top: 6px; display: flex; align-items: center; justify-content: center; gap: 8px; }
         .btn-mp:hover { background: #0079b3; transform: scale(1.01); }
         .garantia-box { background: rgba(212,175,55,0.08); border-radius: 18px; padding: 12px 14px; margin: 10px 0; border: 1px dashed rgba(212,175,55,0.3); text-align: center; color: #d4af37; font-weight: 500; font-size: 14px; }
         .garantia-box i { margin-right: 6px; }
@@ -107,6 +105,20 @@
         .btn-social:hover { transform: scale(1.04); }
         .creditos { margin-top: 14px; font-size: 11px; color: #555; text-align: center; line-height: 1.6; }
         .creditos a { color: #d4af37; text-decoration: none; }
+
+        .payment-return { display: none; text-align: center; padding: 30px 10px; animation: fadeIn 0.8s; }
+        .payment-return.active { display: block; }
+        .payment-return .icon { font-size: 72px; margin-bottom: 16px; }
+        .payment-return h2 { font-size: 28px; color: #d4af37; margin-bottom: 8px; }
+        .payment-return p { font-size: 16px; color: #aaa; margin: 6px 0; }
+        .payment-return .countdown { font-size: 48px; font-weight: 700; color: #d4af37; margin: 12px 0; }
+        .payment-return .spinner { width: 48px; height: 48px; border: 4px solid #2a2a2a; border-top-color: #d4af37; border-radius: 50%; animation: spin 1s linear infinite; margin: 12px auto; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .confetti-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; overflow: hidden; }
+        .confetti { position: absolute; width: 10px; height: 10px; opacity: 0.8; animation: fall linear forwards; }
+        @keyframes fall { 0% { transform: translateY(-10px) rotate(0deg); opacity: 1; } 100% { transform: translateY(110vh) rotate(720deg); opacity: 0; } }
+
         @media (max-width: 440px) {
             .product-grid { grid-template-columns: 1fr; }
             .tabs .tab-btn { font-size: 11px; padding: 8px 0; }
@@ -157,105 +169,117 @@
         <button class="tab-btn" data-tab="tab4"><i class="fas fa-shopping-cart"></i> Carrinho <span id="cartCount">0</span></button>
     </div>
 
-    <!-- TAB 1: INÍCIO -->
-    <div class="tab-content active" id="tab1">
-        <div style="background:#1a1a1a;border-radius:80px;padding:8px 14px;display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
-            <span style="color:#d4af37;font-size:14px;"><i class="fas fa-check-circle"></i> 1.847 serviços entregues</span>
-            <div style="display:flex;gap:4px;">
-                <button style="background:transparent;border:1px solid #333;border-radius:40px;padding:4px 12px;color:#aaa;font-size:12px;">Ver</button>
-                <a href="https://wa.me/5511914830656" target="_blank" style="background:#25D366;border-radius:40px;padding:4px 12px;color:#fff;text-decoration:none;font-weight:600;font-size:12px;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    <!-- CONTEÚDO PRINCIPAL -->
+    <div id="mainContent">
+        <!-- TAB 1: INÍCIO -->
+        <div class="tab-content active" id="tab1">
+            <div style="background:#1a1a1a;border-radius:80px;padding:8px 14px;display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+                <span style="color:#d4af37;font-size:14px;"><i class="fas fa-check-circle"></i> 1.847 serviços entregues</span>
+                <div style="display:flex;gap:4px;">
+                    <button style="background:transparent;border:1px solid #333;border-radius:40px;padding:4px 12px;color:#aaa;font-size:12px;">Ver</button>
+                    <a href="https://wa.me/5511914830656" target="_blank" style="background:#25D366;border-radius:40px;padding:4px 12px;color:#fff;text-decoration:none;font-weight:600;font-size:12px;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                </div>
+            </div>
+
+            <div class="garantia-box"><i class="fas fa-shield-alt"></i> Garantia de 30 dias com suporte total · Sem reembolso</div>
+
+            <div class="indication-box">
+                <h4><i class="fas fa-crown"></i> Indique e ganhe</h4>
+                <p style="color:#aaa;font-size:13px;">Gere códigos para amigos e libere quando quiser.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:6px;margin:6px 0;">
+                    <input type="text" id="newFriendCode" placeholder="Código (ex: VIP10)" style="flex:1;padding:8px 12px;border-radius:60px;border:1px solid #333;background:#000;color:#fff;outline:none;font-size:13px;" />
+                    <button class="btn-indicate" id="generateCodeBtn"><i class="fas fa-plus"></i> Gerar</button>
+                </div>
+                <div id="generatedCodes" style="margin:4px 0;"></div>
+                <hr style="border-color:#2a2a2a;margin:8px 0;">
+                <p style="color:#aaa;font-size:13px;">Cliente digita o código liberado:</p>
+                <input type="text" id="clientCodeInput" placeholder="Código do amigo" />
+                <button class="btn-indicate" id="applyClientCode"><i class="fas fa-gift"></i> Aplicar desconto</button>
+                <div id="clientCodeMsg" style="color:#d4af37;font-size:12px;margin-top:4px;"></div>
+                <div style="margin-top:6px;">
+                    <span class="btn-master" id="masterPanelToggle"><i class="fas fa-lock"></i> Painel do Mestre</span>
+                </div>
+                <div id="masterPanel" style="display:none;margin-top:8px;background:#0a0a0a;border-radius:14px;padding:10px;border:1px solid #333;">
+                    <p style="color:#d4af37;font-weight:600;font-size:13px;">🔐 Código Mestre: <span style="font-family:monospace;background:#000;padding:2px 10px;border-radius:40px;">STREAMUP2025</span></p>
+                    <p style="color:#aaa;font-size:12px;">Use este código para liberar qualquer código gerado.</p>
+                    <button class="btn-indicate" id="masterUnlockBtn"><i class="fas fa-unlock"></i> Liberar todos</button>
+                    <button class="btn-indicate" id="masterLockBtn" style="background:#444;color:#fff;"><i class="fas fa-lock"></i> Bloquear todos</button>
+                    <div id="masterStatus" style="margin-top:4px;font-size:12px;color:#d4af37;"></div>
+                </div>
+            </div>
+
+            <div class="donation-box">
+                <h4><i class="fas fa-heart" style="color:#ff6b6b;"></i> Apoie o projeto</h4>
+                <p style="color:#aaa;font-size:13px;">Sua doação ajuda a manter os serviços e trazer novidades.</p>
+                <div class="pix-key" id="pixKey">bbea9b97-958a-4025-b2e9-ad2dac8a1553</div>
+                <button class="btn-copy" id="copyPixBtn"><i class="fas fa-copy"></i> Copiar chave PIX</button>
+                <div class="qr-placeholder">
+                    <i class="fas fa-qrcode"></i>
+                    <span>QR Code PIX</span>
+                    <span style="display:block;font-size:10px;color:#555;">(simulado - use a chave)</span>
+                </div>
+                <p style="color:#777;font-size:12px;margin-top:4px;">Qualquer valor é bem-vindo ❤️</p>
+            </div>
+
+            <div style="margin:14px 0 8px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;">
+                <div style="background:#1a1a1a;border-radius:18px;padding:8px;text-align:center;border:1px solid #2a2a2a;">
+                    <div style="background:#d4af37;color:#000;width:26px;height:26px;border-radius:40px;margin:0 auto 4px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;">1</div>
+                    <p style="font-size:11px;color:#aaa;">Preços justos</p>
+                </div>
+                <div style="background:#1a1a1a;border-radius:18px;padding:8px;text-align:center;border:1px solid #2a2a2a;">
+                    <div style="background:#d4af37;color:#000;width:26px;height:26px;border-radius:40px;margin:0 auto 4px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;">2</div>
+                    <p style="font-size:11px;color:#aaa;">Suporte 24h</p>
+                </div>
+                <div style="background:#1a1a1a;border-radius:18px;padding:8px;text-align:center;border:1px solid #2a2a2a;">
+                    <div style="background:#d4af37;color:#000;width:26px;height:26px;border-radius:40px;margin:0 auto 4px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;">3</div>
+                    <p style="font-size:11px;color:#aaa;">Variedade</p>
+                </div>
+            </div>
+
+            <div style="background:#1a1a1a;border-radius:20px;padding:12px 14px;margin:6px 0;border-left:3px solid #d4af37;">
+                <p style="font-style:italic;color:#aaa;font-size:14px;">“Peguei vários serviços e ainda ganhei desconto automático. Recomendo!”</p>
+                <p style="font-weight:600;margin-top:4px;color:#d4af37;font-size:13px;">— Rafael T.</p>
             </div>
         </div>
 
-        <div class="garantia-box"><i class="fas fa-shield-alt"></i> Garantia de 30 dias com suporte total · Sem reembolso</div>
-
-        <!-- INDICAÇÃO -->
-        <div class="indication-box">
-            <h4><i class="fas fa-crown"></i> Indique e ganhe</h4>
-            <p style="color:#aaa;font-size:13px;">Gere códigos para amigos e libere quando quiser.</p>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;margin:6px 0;">
-                <input type="text" id="newFriendCode" placeholder="Código (ex: VIP10)" style="flex:1;padding:8px 12px;border-radius:60px;border:1px solid #333;background:#000;color:#fff;outline:none;font-size:13px;" />
-                <button class="btn-indicate" id="generateCodeBtn"><i class="fas fa-plus"></i> Gerar</button>
-            </div>
-            <div id="generatedCodes" style="margin:4px 0;"></div>
-            <hr style="border-color:#2a2a2a;margin:8px 0;">
-            <p style="color:#aaa;font-size:13px;">Cliente digita o código liberado:</p>
-            <input type="text" id="clientCodeInput" placeholder="Código do amigo" />
-            <button class="btn-indicate" id="applyClientCode"><i class="fas fa-gift"></i> Aplicar desconto</button>
-            <div id="clientCodeMsg" style="color:#d4af37;font-size:12px;margin-top:4px;"></div>
-            <div style="margin-top:6px;">
-                <span class="btn-master" id="masterPanelToggle"><i class="fas fa-lock"></i> Painel do Mestre</span>
-            </div>
-            <div id="masterPanel" style="display:none;margin-top:8px;background:#0a0a0a;border-radius:14px;padding:10px;border:1px solid #333;">
-                <p style="color:#d4af37;font-weight:600;font-size:13px;">🔐 Código Mestre: <span style="font-family:monospace;background:#000;padding:2px 10px;border-radius:40px;">teste1</span></p>
-                <p style="color:#aaa;font-size:12px;">Use este código para liberar qualquer código gerado.</p>
-                <button class="btn-indicate" id="masterUnlockBtn"><i class="fas fa-unlock"></i> Liberar todos</button>
-                <button class="btn-indicate" id="masterLockBtn" style="background:#444;color:#fff;"><i class="fas fa-lock"></i> Bloquear todos</button>
-                <div id="masterStatus" style="margin-top:4px;font-size:12px;color:#d4af37;"></div>
-            </div>
+        <!-- TAB 2: SERVIÇOS -->
+        <div class="tab-content" id="tab2">
+            <div class="section-title"><h3>Serviços</h3><span class="tag">NOVO</span></div>
+            <div class="product-grid" id="productGrid"></div>
         </div>
 
-        <!-- DOAÇÕES -->
-        <div class="donation-box">
-            <h4><i class="fas fa-heart" style="color:#ff6b6b;"></i> Apoie o projeto</h4>
-            <p style="color:#aaa;font-size:13px;">Sua doação ajuda a manter os serviços e trazer novidades.</p>
-            <div class="pix-key" id="pixKey">bbea9b97-958a-4025-b2e9-ad2dac8a1553</div>
-            <button class="btn-copy" id="copyPixBtn"><i class="fas fa-copy"></i> Copiar chave PIX</button>
-            <div class="qr-placeholder">
-                <i class="fas fa-qrcode"></i>
-                <span>QR Code PIX</span>
-                <span style="display:block;font-size:10px;color:#555;">(bbea9b97-958a-4025-b2e9-ad2dac8a1553)</span>
-            </div>
-            <p style="color:#777;font-size:12px;margin-top:4px;">Qualquer valor é bem-vindo ❤️</p>
-        </div>
+        <!-- TAB 4: CARRINHO -->
+        <div class="tab-content" id="tab4">
+            <h3 style="color:#fff;margin-bottom:10px;">Seu Carrinho</h3>
+            <div id="cartItems"><p style="color:#555;text-align:center;padding:16px 0;">Carrinho vazio</p></div>
+            <div id="cartDiscountInfo" class="cart-discount" style="display:none;"></div>
+            <div class="cart-total">Total: <span id="cartTotal">R$ 0,00</span></div>
 
-        <div style="margin:14px 0 8px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;">
-            <div style="background:#1a1a1a;border-radius:18px;padding:8px;text-align:center;border:1px solid #2a2a2a;">
-                <div style="background:#d4af37;color:#000;width:26px;height:26px;border-radius:40px;margin:0 auto 4px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;">1</div>
-                <p style="font-size:11px;color:#aaa;">Preços justos</p>
+            <div class="discount-input">
+                <input type="text" id="cupomInput" placeholder="Cupom (ex: STREAM10)" />
+                <button id="applyDiscount">Aplicar</button>
             </div>
-            <div style="background:#1a1a1a;border-radius:18px;padding:8px;text-align:center;border:1px solid #2a2a2a;">
-                <div style="background:#d4af37;color:#000;width:26px;height:26px;border-radius:40px;margin:0 auto 4px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;">2</div>
-                <p style="font-size:11px;color:#aaa;">Suporte 24h</p>
-            </div>
-            <div style="background:#1a1a1a;border-radius:18px;padding:8px;text-align:center;border:1px solid #2a2a2a;">
-                <div style="background:#d4af37;color:#000;width:26px;height:26px;border-radius:40px;margin:0 auto 4px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;">3</div>
-                <p style="font-size:11px;color:#aaa;">Variedade</p>
-            </div>
-        </div>
+            <div id="discountMsg" style="font-size:12px;color:#d4af37;margin:4px 0 8px;"></div>
 
-        <div style="background:#1a1a1a;border-radius:20px;padding:12px 14px;margin:6px 0;border-left:3px solid #d4af37;">
-            <p style="font-style:italic;color:#aaa;font-size:14px;">“Peguei vários serviços e ainda ganhei desconto automático. Recomendo!”</p>
-            <p style="font-weight:600;margin-top:4px;color:#d4af37;font-size:13px;">— Rafael T.</p>
+            <button class="btn-mp" id="mpCheckoutBtn"><i class="fas fa-credit-card"></i> Pagar com Mercado Pago</button>
+            <p style="color:#666;font-size:11px;text-align:center;margin-top:6px;">Pague com PIX, cartão ou boleto</p>
         </div>
     </div>
 
-    <!-- TAB 2: SERVIÇOS -->
-    <div class="tab-content" id="tab2">
-        <div class="section-title"><h3>Serviços</h3><span class="tag">NOVO</span></div>
-        <div class="product-grid" id="productGrid"></div>
-    </div>
-
-    <!-- TAB 4: CARRINHO -->
-    <div class="tab-content" id="tab4">
-        <h3 style="color:#fff;margin-bottom:10px;">Seu Carrinho</h3>
-        <div id="cartItems"><p style="color:#555;text-align:center;padding:16px 0;">Carrinho vazio</p></div>
-        <div id="cartDiscountInfo" class="cart-discount" style="display:none;"></div>
-        <div class="cart-total">Total: <span id="cartTotal">R$ 0,00</span></div>
-
-        <div class="discount-input">
-            <input type="text" id="cupomInput" placeholder="Cupom (ex: STREAM10)" />
-            <button id="applyDiscount">Aplicar</button>
-        </div>
-        <div id="discountMsg" style="font-size:12px;color:#d4af37;margin:4px 0 8px;"></div>
-
-        <!-- Botões de pagamento -->
-        <button class="btn-checkout" id="checkoutBtn"><i class="fab fa-whatsapp"></i> Finalizar via WhatsApp</button>
-        <button class="btn-mp" id="mpCheckoutBtn"><i class="fas fa-credit-card"></i> Pagar com Mercado Pago</button>
+    <!-- TELA DE RETORNO DO PAGAMENTO -->
+    <div class="payment-return" id="paymentReturn">
+        <div id="paymentIcon" class="icon">✅</div>
+        <h2 id="paymentTitle">Pagamento confirmado!</h2>
+        <p id="paymentMessage">Obrigado pela sua compra. Em breve você receberá os dados de acesso.</p>
+        <div class="spinner"></div>
+        <p style="color:#aaa;font-size:14px;">Aguardando confirmação...</p>
+        <div class="countdown" id="countdownTimer">30</div>
+        <p style="color:#777;font-size:13px;">Redirecionando para o WhatsApp em <span id="countdownDisplay">30</span> segundos...</p>
+        <button id="redirectNowBtn" style="background:#d4af37;color:#000;border:none;border-radius:60px;padding:10px 24px;font-weight:600;cursor:pointer;margin-top:12px;">Ir agora</button>
     </div>
 
     <!-- FOOTER -->
-    <div class="footer-whats">
+    <div class="footer-whats" id="footerWhats">
         <span><i class="fas fa-headset"></i> Fale conosco</span>
         <div style="display:flex;gap:4px;flex-wrap:wrap;">
             <a href="https://wa.me/5511914830656" target="_blank" class="btn-social whats"><i class="fab fa-whatsapp"></i> WhatsApp</a>
@@ -268,7 +292,7 @@
     </div>
 </div>
 
-<!-- MODAIS (mesmos de antes) -->
+<!-- MODAIS -->
 <div class="modal-overlay" id="periodModal">
     <div class="modal-box">
         <h3><i class="fas fa-calendar-alt"></i> Escolha o período</h3>
@@ -317,6 +341,11 @@
 </div>
 
 <script>
+    // ============================================================
+    // CONFIGURAÇÃO - URL do seu site (para retorno do MP)
+    // ============================================================
+    const BASE_URL = 'https://anjin0604.github.io/ContasPremiunCP/';
+
     // ============================================================
     // CARROSSEL
     // ============================================================
@@ -570,32 +599,29 @@
     });
 
     // ============================================================
-    // FINALIZAR COMPRA (WhatsApp)
+    // FUNÇÃO PARA ENVIAR WHATSAPP
     // ============================================================
-    document.getElementById('checkoutBtn').addEventListener('click', function() {
-        if (cart.length === 0) { alert('Carrinho vazio!'); playSound('reproved'); return; }
-        const hasNoGuarantee = cart.some(item => !item.comSuporte);
-        if (hasNoGuarantee && !confirm('⚠️ Você tem itens SEM garantia. Deseja continuar?')) { playSound('reproved'); return; }
-
+    function enviarWhatsApp(cartItems, desconto) {
         let msg = '🛒 *Nova compra - StreamUp*\n\n';
         let total = 0;
-        cart.forEach(item => {
+        cartItems.forEach(item => {
             const preco = item.comSuporte ? item.precoCom : item.precoSem;
             total += preco;
             msg += `- ${item.nome} (${item.comSuporte ? 'com garantia ✅' : 'sem garantia ⚠️'}) - R$ ${preco.toFixed(2)}\n`;
         });
-        const autoDisc = getAutoDiscount(cart.length);
-        if (autoDisc > 0) { const dv = total * autoDisc; msg += `\n*Desconto automático (${cart.length} itens)*: - R$ ${dv.toFixed(2)}`; total -= dv; }
-        if (descontoAtivo > 0) { const dv = total * (descontoAtivo/100); msg += `\n*Cupom ${descontoAtivo}%*: - R$ ${dv.toFixed(2)}`; total -= dv; }
+        const autoDisc = getAutoDiscount(cartItems.length);
+        if (autoDisc > 0) { const dv = total * autoDisc; msg += `\n*Desconto automático (${cartItems.length} itens)*: - R$ ${dv.toFixed(2)}`; total -= dv; }
+        if (desconto > 0) { const dv = total * (desconto/100); msg += `\n*Cupom ${desconto}%*: - R$ ${dv.toFixed(2)}`; total -= dv; }
         msg += `\n\n*Total: R$ ${total.toFixed(2)}*`;
         msg += `\n\n✅ Ganhe 2 dias de teste grátis!`;
         msg += `\n\n🔗 Telegram: @Xandao06`;
-        window.open(`https://wa.me/5511914830656?text=${encodeURIComponent(msg)}`, '_blank');
+        const url = `https://wa.me/5511914830656?text=${encodeURIComponent(msg)}`;
+        window.open(url, '_blank');
         playSound('approved');
-    });
+    }
 
     // ============================================================
-    // MERCADO PAGO - INTEGRAÇÃO DIRETA (front-end)
+    // MERCADO PAGO - CHECKOUT
     // ============================================================
     document.getElementById('mpCheckoutBtn').addEventListener('click', function() {
         if (cart.length === 0) {
@@ -604,10 +630,17 @@
             return;
         }
 
-        // Access Token fornecido
+        const cartData = cart.map(item => ({
+            nome: item.nome,
+            precoSem: item.precoSem,
+            precoCom: item.precoCom,
+            comSuporte: item.comSuporte
+        }));
+        localStorage.setItem('streamup_cart', JSON.stringify(cartData));
+        localStorage.setItem('streamup_desconto', descontoAtivo);
+
         const ACCESS_TOKEN = 'APP_USR-7721066143624625-081813-ca98fefaf469e01ae27592d7f7ed4159-672484268';
 
-        // Monta os itens
         const items = cart.map(item => {
             const preco = item.comSuporte ? item.precoCom : item.precoSem;
             return {
@@ -618,21 +651,19 @@
             };
         });
 
-        // Monta a preferência
         const preference = {
             items: items,
             payer: { email: 'cliente@email.com' },
             back_urls: {
-                success: 'https://streamup.com/sucesso',
-                failure: 'https://streamup.com/falha',
-                pending: 'https://streamup.com/pendente'
+                success: BASE_URL + '?payment=success',
+                failure: BASE_URL + '?payment=failure',
+                pending: BASE_URL + '?payment=pending'
             },
             auto_return: 'approved',
             statement_descriptor: 'StreamUp',
             external_reference: 'pedido_' + Date.now()
         };
 
-        // Faz a requisição para a API do Mercado Pago
         fetch('https://api.mercadopago.com/checkout/preferences', {
             method: 'POST',
             headers: {
@@ -649,8 +680,7 @@
         })
         .then(data => {
             if (data.init_point) {
-                window.open(data.init_point, '_blank');
-                playSound('approved');
+                window.location.href = data.init_point;
             } else {
                 alert('Erro ao criar preferência. Verifique o token e os dados.');
                 console.error(data);
@@ -665,7 +695,97 @@
     });
 
     // ============================================================
-    // INDICAÇÃO (código anterior)
+    // PÁGINA DE RETORNO DO MERCADO PAGO
+    // ============================================================
+    function handlePaymentReturn() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const status = urlParams.get('payment');
+
+        if (status === 'success' || status === 'pending') {
+            document.getElementById('mainContent').style.display = 'none';
+            document.getElementById('footerWhats').style.display = 'none';
+            const returnDiv = document.getElementById('paymentReturn');
+            returnDiv.classList.add('active');
+
+            document.getElementById('paymentIcon').textContent = '✅';
+            document.getElementById('paymentTitle').textContent = 'Pagamento confirmado!';
+            document.getElementById('paymentMessage').textContent = 'Obrigado pela sua compra. Em breve você receberá os dados de acesso.';
+
+            let cartData = JSON.parse(localStorage.getItem('streamup_cart')) || [];
+            let desconto = parseInt(localStorage.getItem('streamup_desconto')) || 0;
+
+            let seconds = 30;
+            const countdownEl = document.getElementById('countdownTimer');
+            const countdownDisplay = document.getElementById('countdownDisplay');
+
+            function sendWhatsAppAfterPayment() {
+                const cartItems = cartData.map(item => ({
+                    ...item,
+                    id: Date.now() + Math.random()
+                }));
+                enviarWhatsApp(cartItems, desconto);
+                localStorage.removeItem('streamup_cart');
+                localStorage.removeItem('streamup_desconto');
+            }
+
+            const timer = setInterval(() => {
+                seconds--;
+                countdownEl.textContent = seconds;
+                countdownDisplay.textContent = seconds;
+                if (seconds <= 0) {
+                    clearInterval(timer);
+                    sendWhatsAppAfterPayment();
+                }
+            }, 1000);
+
+            document.getElementById('redirectNowBtn').addEventListener('click', function() {
+                clearInterval(timer);
+                sendWhatsAppAfterPayment();
+            });
+
+            launchConfetti();
+
+        } else if (status === 'failure') {
+            document.getElementById('mainContent').style.display = 'none';
+            document.getElementById('footerWhats').style.display = 'none';
+            const returnDiv = document.getElementById('paymentReturn');
+            returnDiv.classList.add('active');
+            document.getElementById('paymentIcon').textContent = '❌';
+            document.getElementById('paymentTitle').textContent = 'Falha no pagamento';
+            document.getElementById('paymentMessage').textContent = 'Ocorreu um erro ao processar seu pagamento. Tente novamente ou entre em contato pelo WhatsApp.';
+            document.querySelector('.spinner').style.display = 'none';
+            document.querySelector('.countdown').style.display = 'none';
+            document.querySelector('#paymentReturn p:last-of-type').style.display = 'none';
+            document.getElementById('redirectNowBtn').textContent = 'Voltar ao início';
+            document.getElementById('redirectNowBtn').addEventListener('click', function() {
+                window.location.href = BASE_URL;
+            });
+            playSound('reproved');
+        }
+    }
+
+    function launchConfetti() {
+        const container = document.createElement('div');
+        container.className = 'confetti-container';
+        document.body.appendChild(container);
+        const colors = ['#d4af37', '#ff6b6b', '#4ecdc4', '#ffd93d', '#6c5ce7', '#ff9ff3'];
+        for (let i = 0; i < 60; i++) {
+            const el = document.createElement('div');
+            el.className = 'confetti';
+            el.style.left = Math.random() * 100 + '%';
+            el.style.background = colors[Math.floor(Math.random() * colors.length)];
+            el.style.width = (Math.random() * 6 + 4) + 'px';
+            el.style.height = (Math.random() * 6 + 4) + 'px';
+            el.style.animationDuration = (Math.random() * 2 + 2) + 's';
+            el.style.animationDelay = (Math.random() * 2) + 's';
+            el.style.transform = `rotate(${Math.random() * 360}deg)`;
+            container.appendChild(el);
+        }
+        setTimeout(() => container.remove(), 5000);
+    }
+
+    // ============================================================
+    // INDICAÇÃO
     // ============================================================
     let codes = JSON.parse(localStorage.getItem('streamup_codes')) || {};
     function saveCodes() { localStorage.setItem('streamup_codes', JSON.stringify(codes)); }
@@ -816,7 +936,11 @@
     renderCart();
     console.log('✅ StreamUp carregado!');
     console.log('🔐 Código mestre: STREAMUP2025');
-    console.log('💳 Mercado Pago integrado via front-end (use com cuidado)');
+    console.log('💳 Mercado Pago integrado (PIX, cartão, boleto)');
+
+    if (window.location.search.includes('payment=')) {
+        handlePaymentReturn();
+    }
 </script>
 </body>
 </html>
