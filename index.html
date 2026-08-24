@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>CP · Contas Premium</title>
+    <title>StreamUp · Contas Premium</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -13,31 +13,35 @@
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
         body {
-            background: #0a0a0f;
-            color: #e0d6f0;
+            background: #0a0a0a;
+            color: #e0e0e0;
             display: flex;
             justify-content: center;
             padding: 20px 16px 40px;
             min-height: 100vh;
-            background-image: radial-gradient(circle at 10% 20%, rgba(123, 47, 252, 0.08) 0%, transparent 50%);
         }
         .container {
             max-width: 520px;
             width: 100%;
-            background: rgba(10, 10, 15, 0.85);
-            backdrop-filter: blur(4px);
+            background: #111;
             border-radius: 36px;
-            border: 1px solid rgba(123, 47, 252, 0.25);
-            box-shadow: 0 20px 60px rgba(123, 47, 252, 0.15), 0 0 40px rgba(255, 45, 149, 0.05);
+            border: 1px solid #2a2a2a;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
             padding: 20px 18px 30px;
             position: relative;
-            overflow: hidden;
         }
+        .gold-text { color: #d4af37; }
+        .gold-bg { background: #d4af37; color: #000; }
+        .btn-gold { background: #d4af37; color: #000; border: none; transition: 0.2s; }
+        .btn-gold:hover { background: #c5a028; transform: scale(1.02); }
+        .btn-dark { background: #222; color: #fff; border: 1px solid #444; }
+        .btn-dark:hover { background: #333; }
+
         .brand {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 18px;
+            margin-bottom: 10px;
         }
         .brand-left {
             display: flex;
@@ -45,8 +49,8 @@
             gap: 10px;
         }
         .brand-icon {
-            background: linear-gradient(135deg, #7b2ffc, #ff2d95);
-            color: #fff;
+            background: #d4af37;
+            color: #000;
             width: 44px;
             height: 44px;
             border-radius: 14px;
@@ -54,8 +58,7 @@
             align-items: center;
             justify-content: center;
             font-weight: 800;
-            font-size: 22px;
-            box-shadow: 0 0 25px rgba(123, 47, 252, 0.4);
+            font-size: 20px;
         }
         .brand-text {
             font-weight: 700;
@@ -63,12 +66,7 @@
             letter-spacing: -0.3px;
             color: #fff;
         }
-        .brand-text span {
-            background: linear-gradient(90deg, #7b2ffc, #ff2d95);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+        .brand-text span { color: #d4af37; }
         .badge-whats {
             background: #25D366;
             color: #fff;
@@ -80,185 +78,232 @@
             align-items: center;
             gap: 6px;
             text-decoration: none;
-            box-shadow: 0 0 20px rgba(37, 211, 102, 0.2);
             transition: 0.2s;
             cursor: pointer;
         }
         .badge-whats:hover { transform: scale(1.04); }
+
+        .atendimento {
+            background: #1a1a1a;
+            border-radius: 40px;
+            padding: 8px 16px;
+            margin: 6px 0 14px;
+            text-align: center;
+            font-size: 13px;
+            color: #aaa;
+            border: 1px solid #2a2a2a;
+        }
+        .atendimento i { color: #d4af37; margin-right: 6px; }
+
+        /* ===== CARROSSEL DE DESTAQUE ===== */
+        .carousel-container {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            margin: 6px 0 16px;
+            height: 180px;
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+        }
+        .carousel-slide {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            display: none;
+            background-size: cover;
+            background-position: center;
+            transition: opacity 0.5s;
+        }
+        .carousel-slide.active {
+            display: block;
+        }
+        .carousel-slide .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 14px 18px;
+            background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
+        }
+        .carousel-slide .overlay h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+        }
+        .carousel-slide .overlay p {
+            font-size: 13px;
+            color: #ccc;
+        }
+        .carousel-slide .overlay .badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.2);
+            padding: 2px 12px;
+            border-radius: 40px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #d4af37;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            margin-top: 4px;
+        }
+        .carousel-dots {
+            position: absolute;
+            bottom: 8px;
+            right: 12px;
+            display: flex;
+            gap: 6px;
+            z-index: 5;
+        }
+        .carousel-dots span {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .carousel-dots span.active {
+            background: #d4af37;
+            width: 20px;
+            border-radius: 10px;
+        }
+
         .tabs {
             display: flex;
             gap: 6px;
-            background: rgba(255, 255, 255, 0.04);
+            background: #1a1a1a;
             border-radius: 60px;
             padding: 4px;
-            margin: 16px 0 18px;
-            border: 1px solid rgba(123, 47, 252, 0.15);
+            margin: 12px 0 18px;
+            border: 1px solid #2a2a2a;
         }
         .tab-btn {
             flex: 1;
             background: transparent;
             border: none;
-            color: #a09bb0;
+            color: #888;
             padding: 10px 0;
             border-radius: 40px;
             font-weight: 600;
-            font-size: 14px;
+            font-size: 13px;
             transition: 0.2s;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
+            gap: 5px;
         }
-        .tab-btn i { font-size: 16px; }
+        .tab-btn i { font-size: 15px; }
         .tab-btn.active {
-            background: linear-gradient(135deg, rgba(123, 47, 252, 0.3), rgba(255, 45, 149, 0.2));
-            color: #fff;
-            box-shadow: 0 0 20px rgba(123, 47, 252, 0.2);
+            background: #d4af37;
+            color: #000;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
         }
-        .tab-btn:hover:not(.active) { color: #d0c8e8; }
+        .tab-btn:hover:not(.active) { color: #ccc; }
         .tab-content {
             display: none;
             animation: fadeIn 0.3s ease;
         }
         .tab-content.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-        .highlight-card {
-            background: linear-gradient(145deg, #13101f, #1b1628);
-            border-radius: 24px;
-            padding: 18px 20px 16px;
-            margin: 6px 0 18px;
-            border-left: 4px solid #ff2d95;
-            box-shadow: 0 0 30px rgba(255, 45, 149, 0.08);
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .highlight-left h4 {
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #ff2d95;
-            font-weight: 500;
-        }
-        .highlight-left h2 {
-            font-size: 22px;
-            font-weight: 700;
-            background: linear-gradient(90deg, #7b2ffc, #ff2d95);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .highlight-left p {
-            font-size: 13px;
-            opacity: 0.7;
-        }
-        .highlight-right {
-            background: rgba(123, 47, 252, 0.15);
-            padding: 6px 16px;
-            border-radius: 40px;
-            font-size: 12px;
-            font-weight: 600;
-            border: 1px solid rgba(123, 47, 252, 0.3);
-            color: #b896ff;
-        }
+
         .section-title {
             display: flex;
             align-items: baseline;
             justify-content: space-between;
-            margin: 18px 0 12px;
+            margin: 16px 0 10px;
         }
         .section-title h3 {
-            font-size: 20px;
+            font-size: 19px;
             font-weight: 700;
             color: #fff;
         }
         .section-title .tag {
-            background: linear-gradient(90deg, #7b2ffc, #ff2d95);
-            color: #fff;
+            background: #d4af37;
+            color: #000;
             font-size: 10px;
             font-weight: 700;
             padding: 3px 12px;
             border-radius: 40px;
         }
+
         .product-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
+            gap: 10px;
             margin-bottom: 8px;
         }
         .product-card {
-            background: rgba(255, 255, 255, 0.04);
-            border-radius: 20px;
-            padding: 14px 12px 12px;
-            border: 1px solid rgba(123, 47, 252, 0.15);
+            background: #1a1a1a;
+            border-radius: 18px;
+            padding: 12px 10px 10px;
+            border: 1px solid #2a2a2a;
             transition: 0.2s;
-            backdrop-filter: blur(2px);
         }
         .product-card:hover {
+            border-color: #d4af37;
             transform: translateY(-3px);
-            border-color: #7b2ffc;
-            box-shadow: 0 0 30px rgba(123, 47, 252, 0.1);
         }
         .product-card h4 {
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 600;
             color: #fff;
         }
         .product-card .price-group {
             display: flex;
             flex-direction: column;
-            gap: 2px;
-            margin: 6px 0 10px;
+            gap: 1px;
+            margin: 4px 0 8px;
         }
         .product-card .price-group .price {
             font-weight: 700;
-            font-size: 17px;
-            color: #b896ff;
+            font-size: 15px;
+            color: #d4af37;
         }
         .product-card .price-group .price small {
             font-weight: 400;
+            font-size: 11px;
+            color: #777;
+        }
+        .product-card .price-group .price .promo {
+            color: #ff6b6b;
             font-size: 12px;
-            color: #8a7fa0;
-            text-decoration: line-through;
-            margin-left: 6px;
+            margin-left: 4px;
         }
         .product-card .price-group .price.support {
-            color: #ff2d95;
-            font-size: 15px;
+            color: #fff;
+            font-size: 13px;
         }
         .btn-add {
-            background: linear-gradient(135deg, #7b2ffc, #5a1fb0);
+            background: #d4af37;
+            color: #000;
             border: none;
             border-radius: 60px;
-            padding: 8px 0;
-            font-size: 13px;
+            padding: 7px 0;
+            font-size: 12px;
             font-weight: 600;
-            color: #fff;
             width: 100%;
             cursor: pointer;
             transition: 0.15s;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
+            gap: 5px;
         }
         .btn-add:hover {
+            background: #c5a028;
             transform: scale(1.02);
-            box-shadow: 0 0 25px rgba(123, 47, 252, 0.3);
         }
+
         .combo-card {
-            background: rgba(255, 255, 255, 0.04);
-            border-radius: 24px;
-            padding: 16px;
-            margin-top: 14px;
-            border: 1px solid rgba(123, 47, 252, 0.15);
+            background: #1a1a1a;
+            border-radius: 22px;
+            padding: 14px;
+            margin-top: 12px;
+            border: 1px solid #2a2a2a;
             transition: 0.2s;
         }
         .combo-card:hover {
-            border-color: #ff2d95;
-            box-shadow: 0 0 30px rgba(255, 45, 149, 0.05);
+            border-color: #d4af37;
         }
         .combo-card .combo-title {
             display: flex;
@@ -266,164 +311,330 @@
             align-items: center;
         }
         .combo-card .combo-title h4 {
-            font-size: 18px;
+            font-size: 17px;
             color: #fff;
         }
         .combo-card .combo-title .tag-pop {
-            background: #ff2d95;
-            color: #fff;
+            background: #d4af37;
+            color: #000;
             font-size: 10px;
             font-weight: 700;
             padding: 3px 12px;
             border-radius: 40px;
         }
         .combo-price {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 700;
-            color: #b896ff;
-            margin: 6px 0 2px;
+            color: #d4af37;
+            margin: 4px 0 2px;
         }
         .combo-price small {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 400;
-            color: #8a7fa0;
+            color: #777;
         }
         .combo-desc {
-            font-size: 14px;
-            color: #c0b8d0;
-            margin: 4px 0 8px;
+            font-size: 13px;
+            color: #aaa;
+            margin: 4px 0 6px;
         }
         .combo-economy {
-            background: rgba(255, 45, 149, 0.1);
-            padding: 4px 14px;
+            background: rgba(212, 175, 55, 0.1);
+            padding: 4px 12px;
             border-radius: 60px;
             display: inline-block;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
-            color: #ff2d95;
-            margin: 6px 0 10px;
+            color: #d4af37;
+            margin: 4px 0 8px;
         }
         .btn-combo-add {
-            background: linear-gradient(135deg, #ff2d95, #c01a6e);
+            background: #d4af37;
+            color: #000;
             border: none;
             border-radius: 60px;
-            padding: 12px 0;
+            padding: 10px 0;
             font-weight: 700;
-            font-size: 16px;
-            color: #fff;
+            font-size: 15px;
             width: 100%;
             cursor: pointer;
             transition: 0.15s;
         }
         .btn-combo-add:hover {
+            background: #c5a028;
             transform: scale(1.01);
-            box-shadow: 0 0 30px rgba(255, 45, 149, 0.3);
         }
+
         .cart-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(255, 255, 255, 0.03);
-            padding: 10px 14px;
-            border-radius: 16px;
-            margin: 6px 0;
-            border-left: 3px solid #7b2ffc;
+            background: #1a1a1a;
+            padding: 8px 12px;
+            border-radius: 14px;
+            margin: 4px 0;
+            border-left: 3px solid #d4af37;
         }
         .cart-item .item-info { flex: 1; }
-        .cart-item .item-info h5 { color: #fff; font-size: 15px; }
-        .cart-item .item-info span { font-size: 13px; color: #b896ff; }
-        .cart-item .item-price { font-weight: 700; color: #ff2d95; }
+        .cart-item .item-info h5 { color: #fff; font-size: 14px; }
+        .cart-item .item-info span { font-size: 12px; color: #d4af37; }
+        .cart-item .item-price { font-weight: 700; color: #fff; font-size: 14px; }
         .cart-item .btn-remove {
             background: none;
             border: none;
-            color: #ff2d95;
-            font-size: 18px;
+            color: #d4af37;
+            font-size: 16px;
             cursor: pointer;
-            padding: 0 6px;
+            padding: 0 4px;
         }
         .cart-total {
             text-align: right;
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 700;
             color: #fff;
-            margin: 12px 0 6px;
+            margin: 10px 0 4px;
         }
-        .cart-total span { color: #b896ff; }
+        .cart-total span { color: #d4af37; }
         .discount-input {
             display: flex;
-            gap: 8px;
-            margin: 10px 0;
+            gap: 6px;
+            margin: 8px 0;
         }
         .discount-input input {
             flex: 1;
-            padding: 10px 14px;
+            padding: 8px 12px;
             border-radius: 60px;
-            border: 1px solid rgba(123, 47, 252, 0.3);
-            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #333;
+            background: #1a1a1a;
             color: #fff;
             outline: none;
+            font-size: 14px;
         }
-        .discount-input input:focus { border-color: #7b2ffc; }
+        .discount-input input:focus { border-color: #d4af37; }
         .discount-input button {
-            background: linear-gradient(135deg, #7b2ffc, #5a1fb0);
+            background: #d4af37;
+            color: #000;
             border: none;
             border-radius: 60px;
-            padding: 10px 20px;
+            padding: 8px 18px;
             font-weight: 600;
-            color: #fff;
             cursor: pointer;
         }
         .btn-checkout {
-            background: linear-gradient(135deg, #ff2d95, #c01a6e);
+            background: #d4af37;
+            color: #000;
             border: none;
             border-radius: 60px;
-            padding: 14px 0;
+            padding: 12px 0;
             font-weight: 700;
-            font-size: 18px;
-            color: #fff;
+            font-size: 17px;
             width: 100%;
             cursor: pointer;
-            margin-top: 12px;
+            margin-top: 10px;
             transition: 0.15s;
         }
         .btn-checkout:hover {
+            background: #c5a028;
             transform: scale(1.01);
-            box-shadow: 0 0 40px rgba(255, 45, 149, 0.2);
         }
+
         .garantia-box {
-            background: rgba(123, 47, 252, 0.08);
-            border-radius: 20px;
-            padding: 14px 16px;
-            margin: 12px 0;
-            border: 1px dashed rgba(123, 47, 252, 0.3);
+            background: rgba(212, 175, 55, 0.08);
+            border-radius: 18px;
+            padding: 12px 14px;
+            margin: 10px 0;
+            border: 1px dashed rgba(212, 175, 55, 0.3);
             text-align: center;
-            color: #b896ff;
+            color: #d4af37;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        .garantia-box i { margin-right: 6px; }
+
+        .indication-box {
+            background: #1a1a1a;
+            border-radius: 18px;
+            padding: 14px;
+            margin: 10px 0;
+            border: 1px solid #2a2a2a;
+        }
+        .indication-box h4 {
+            color: #d4af37;
+            margin-bottom: 4px;
+            font-size: 16px;
+        }
+        .indication-box .code {
+            background: #000;
+            padding: 6px 12px;
+            border-radius: 40px;
+            font-family: monospace;
+            font-size: 16px;
+            letter-spacing: 2px;
+            color: #d4af37;
+            display: inline-block;
+            margin: 4px 0;
+            border: 1px solid #333;
+        }
+        .indication-box input {
+            width: 100%;
+            padding: 8px 12px;
+            border-radius: 60px;
+            border: 1px solid #333;
+            background: #000;
+            color: #fff;
+            margin-top: 4px;
+            outline: none;
+            font-size: 14px;
+        }
+        .indication-box input:focus { border-color: #d4af37; }
+        .indication-box .btn-indicate {
+            background: #d4af37;
+            color: #000;
+            border: none;
+            border-radius: 60px;
+            padding: 6px 18px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 4px;
+            font-size: 13px;
+        }
+        .indication-box .btn-indicate:hover { background: #c5a028; }
+        .indication-box .btn-master {
+            background: transparent;
+            border: 1px solid #d4af37;
+            color: #d4af37;
+            border-radius: 60px;
+            padding: 6px 18px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 4px;
+            font-size: 13px;
+            transition: 0.2s;
+        }
+        .indication-box .btn-master:hover {
+            background: #d4af37;
+            color: #000;
+        }
+        .indication-box .status {
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        /* MODAIS */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(4px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-box {
+            background: #111;
+            border-radius: 28px;
+            max-width: 380px;
+            width: 100%;
+            padding: 24px 20px;
+            border: 1px solid #2a2a2a;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.9);
+            animation: fadeIn 0.25s ease;
+        }
+        .modal-box h3 {
+            color: #d4af37;
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+        .modal-box p {
+            color: #aaa;
+            font-size: 14px;
+            margin-bottom: 14px;
+            line-height: 1.5;
+        }
+        .modal-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .modal-options button {
+            padding: 12px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 15px;
+            border: 2px solid #333;
+            background: #1a1a1a;
+            color: #fff;
+            cursor: pointer;
+            transition: 0.15s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .modal-options button:hover {
+            border-color: #d4af37;
+            background: #222;
+        }
+        .modal-options button .price-tag {
+            color: #d4af37;
+            font-weight: 700;
+        }
+        .modal-close {
+            margin-top: 14px;
+            background: transparent;
+            border: 1px solid #333;
+            color: #888;
+            padding: 10px;
+            border-radius: 60px;
+            width: 100%;
+            cursor: pointer;
             font-weight: 500;
         }
-        .garantia-box i { color: #ff2d95; margin-right: 6px; }
+        .modal-close:hover {
+            background: #1a1a1a;
+            color: #fff;
+        }
+
+        /* Modal de confirmação sem garantia */
+        .modal-box .legal-terms {
+            background: rgba(255, 60, 60, 0.08);
+            border: 1px solid rgba(255, 60, 60, 0.2);
+            border-radius: 16px;
+            padding: 12px 14px;
+            margin: 10px 0;
+            font-size: 13px;
+            color: #ff6b6b;
+        }
+        .modal-box .legal-terms i { margin-right: 6px; }
+
         .footer-whats {
-            margin-top: 24px;
-            background: rgba(255, 255, 255, 0.04);
+            margin-top: 20px;
+            background: #1a1a1a;
             border-radius: 60px;
-            padding: 14px 20px;
+            padding: 12px 18px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
-            gap: 8px;
-            border: 1px solid rgba(123, 47, 252, 0.15);
+            gap: 6px;
+            border: 1px solid #2a2a2a;
         }
-        .footer-whats span { font-weight: 500; color: #c0b8d0; }
+        .footer-whats span { font-weight: 500; color: #aaa; font-size: 14px; }
         .btn-social {
-            padding: 8px 22px;
+            padding: 6px 18px;
             border-radius: 60px;
             font-weight: 700;
-            font-size: 14px;
+            font-size: 13px;
             color: #fff;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             transition: 0.15s;
             border: none;
             cursor: pointer;
@@ -431,159 +642,20 @@
         .btn-social.whats { background: #25D366; }
         .btn-social.telegram { background: #0088cc; }
         .btn-social:hover { transform: scale(1.04); }
-        .btn-social i { font-size: 16px; }
         .creditos {
-            margin-top: 16px;
-            font-size: 12px;
-            color: #6a5f80;
+            margin-top: 14px;
+            font-size: 11px;
+            color: #555;
             text-align: center;
             line-height: 1.6;
         }
-        .creditos a { color: #b896ff; text-decoration: none; }
-        .creditos a:hover { color: #ff2d95; }
-        .teste-gratis {
-            background: rgba(255, 45, 149, 0.08);
-            border-radius: 20px;
-            padding: 10px 14px;
-            margin: 10px 0;
-            border: 1px solid rgba(255, 45, 149, 0.2);
-            text-align: center;
-            color: #ff2d95;
-            font-weight: 600;
-            font-size: 14px;
-        }
-        .teste-gratis i { margin-right: 6px; }
-
-        /* ===== MODAL ===== */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(6px);
-            justify-content: center;
-            align-items: center;
-            z-index: 999;
-            animation: fadeIn 0.2s ease;
-        }
-        .modal-overlay.active { display: flex; }
-        .modal-box {
-            background: #14101f;
-            border: 1px solid rgba(123, 47, 252, 0.3);
-            border-radius: 32px;
-            padding: 28px 24px 24px;
-            max-width: 400px;
-            width: 90%;
-            box-shadow: 0 0 60px rgba(123, 47, 252, 0.15);
-            text-align: center;
-        }
-        .modal-box h3 {
-            color: #fff;
-            font-size: 22px;
-            margin-bottom: 8px;
-        }
-        .modal-box p {
-            color: #b896ff;
-            font-size: 16px;
-            margin-bottom: 20px;
-        }
-        .modal-box .price-option {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-        .modal-box .price-option button {
-            flex: 1;
-            padding: 12px 0;
-            border-radius: 60px;
-            border: 2px solid transparent;
-            font-weight: 700;
-            font-size: 15px;
-            cursor: pointer;
-            transition: 0.2s;
-            background: rgba(255, 255, 255, 0.05);
-            color: #c0b8d0;
-        }
-        .modal-box .price-option button:hover {
-            transform: scale(1.02);
-        }
-        .modal-box .price-option .btn-com {
-            border-color: #ff2d95;
-            color: #fff;
-            background: rgba(255, 45, 149, 0.1);
-        }
-        .modal-box .price-option .btn-com:hover {
-            background: rgba(255, 45, 149, 0.2);
-            box-shadow: 0 0 30px rgba(255, 45, 149, 0.15);
-        }
-        .modal-box .price-option .btn-sem {
-            border-color: #7b2ffc;
-            color: #b896ff;
-        }
-        .modal-box .price-option .btn-sem:hover {
-            background: rgba(123, 47, 252, 0.1);
-            box-shadow: 0 0 30px rgba(123, 47, 252, 0.1);
-        }
-        .modal-box .btn-cancel {
-            background: transparent;
-            border: none;
-            color: #6a5f80;
-            font-size: 14px;
-            cursor: pointer;
-            margin-top: 4px;
-            padding: 8px 16px;
-        }
-        .modal-box .btn-cancel:hover { color: #b896ff; }
-
-        /* ===== MODAL RESUMO ===== */
-        .resumo-item {
-            display: flex;
-            justify-content: space-between;
-            color: #c0b8d0;
-            font-size: 14px;
-            padding: 4px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-        }
-        .resumo-item .valor { color: #ff2d95; font-weight: 600; }
-        .resumo-total {
-            font-size: 20px;
-            font-weight: 700;
-            color: #fff;
-            margin-top: 12px;
-        }
-        .resumo-total span { color: #b896ff; }
-        .btn-confirmar {
-            background: linear-gradient(135deg, #25D366, #1da85c);
-            border: none;
-            border-radius: 60px;
-            padding: 14px 0;
-            font-weight: 700;
-            font-size: 18px;
-            color: #fff;
-            width: 100%;
-            cursor: pointer;
-            margin-top: 16px;
-            transition: 0.15s;
-        }
-        .btn-confirmar:hover { transform: scale(1.01); box-shadow: 0 0 30px rgba(37, 211, 102, 0.2); }
-        .btn-fechar-resumo {
-            background: transparent;
-            border: none;
-            color: #6a5f80;
-            font-size: 14px;
-            cursor: pointer;
-            margin-top: 8px;
-        }
-        .btn-fechar-resumo:hover { color: #b896ff; }
+        .creditos a { color: #d4af37; text-decoration: none; }
 
         @media (max-width: 440px) {
             .product-grid { grid-template-columns: 1fr; }
-            .tabs .tab-btn { font-size: 12px; padding: 8px 0; }
-            .container { padding: 16px 12px; }
+            .tabs .tab-btn { font-size: 11px; padding: 8px 0; }
+            .container { padding: 14px 10px; }
+            .carousel-container { height: 150px; }
         }
     </style>
 </head>
@@ -594,22 +666,57 @@
     <!-- HEADER -->
     <div class="brand">
         <div class="brand-left">
-            <div class="brand-icon">CP</div>
-            <div class="brand-text">Contas<span>Premium</span></div>
+            <div class="brand-icon">SU</div>
+            <div class="brand-text">Stream<span>Up</span></div>
         </div>
-        <a href="https://wa.me/556198542343" target="_blank" class="badge-whats" id="whatsHeader">
+        <a href="https://wa.me/5511914830656" target="_blank" class="badge-whats" id="whatsHeader">
             <i class="fab fa-whatsapp"></i> Fale já
         </a>
     </div>
 
-    <!-- DESTAQUE DO MOMENTO -->
-    <div class="highlight-card" id="destaqueCard">
-        <div class="highlight-left">
-            <h4>⭐ DESTAQUE DO MOMENTO</h4>
-            <h2 id="destaqueTitulo">Carregando...</h2>
-            <p id="destaqueDesc">Aguarde</p>
+    <!-- ATENDIMENTO -->
+    <div class="atendimento">
+        <i class="fas fa-clock"></i> Atendimento: Seg–Sex 09h–16h · Sáb 12h–14h · Dom fechado
+    </div>
+
+    <!-- CARROSSEL DE DESTAQUE -->
+    <div class="carousel-container" id="carousel">
+        <div class="carousel-slide active" style="background-image: url('https://image.tmdb.org/t/p/w500/wo3l9p0S7pcvwlzl2YAy8c8Pc75.jpg');">
+            <div class="overlay">
+                <h2>Outer Banks</h2>
+                <p>Temporada final · já disponível</p>
+                <span class="badge"><i class="fab fa-netflix"></i> Netflix</span>
+            </div>
         </div>
-        <div class="highlight-right" id="destaquePlataforma"><i class="fas fa-tv"></i> Netflix</div>
+        <div class="carousel-slide" style="background-image: url('https://image.tmdb.org/t/p/w500/9cqN6QoZbQ9LBGcpi4Jyh3pq5xJ.jpg');">
+            <div class="overlay">
+                <h2>The Last of Us</h2>
+                <p>Nova temporada em breve</p>
+                <span class="badge"><i class="fas fa-tv"></i> HBO Max</span>
+            </div>
+        </div>
+        <div class="carousel-slide" style="background-image: url('https://image.tmdb.org/t/p/w500/5pXjVgqP9E6qO5gq7xRq3wZlF.jpg');">
+            <div class="overlay">
+                <h2>Bridgerton</h2>
+                <p>Nova temporada disponível</p>
+                <span class="badge"><i class="fab fa-netflix"></i> Netflix</span>
+            </div>
+        </div>
+        <div class="carousel-slide" style="background-image: url('https://image.tmdb.org/t/p/w500/6qYprb32jT0hHxGTkSZJw5KGvcr.jpg');">
+            <div class="overlay">
+                <h2>Senhor dos Anéis</h2>
+                <p>Anéis de Poder · nova temporada</p>
+                <span class="badge"><i class="fab fa-prime"></i> Prime Video</span>
+            </div>
+        </div>
+        <div class="carousel-slide" style="background-image: url('https://image.tmdb.org/t/p/w500/5pXjVgqP9E6qO5gq7xRq3wZlF.jpg');">
+            <div class="overlay">
+                <h2>Stranger Things</h2>
+                <p>Última temporada em produção</p>
+                <span class="badge"><i class="fab fa-netflix"></i> Netflix</span>
+            </div>
+        </div>
+        <div class="carousel-dots" id="dots"></div>
     </div>
 
     <!-- TABS -->
@@ -622,169 +729,256 @@
 
     <!-- TAB 1: INÍCIO -->
     <div class="tab-content active" id="tab1">
-        <div style="background:rgba(255,255,255,0.04);border-radius:80px;padding:10px 16px;display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
-            <span style="color:#b896ff;"><i class="fas fa-check-circle"></i> 1.847 serviços entregues</span>
-            <div style="display:flex;gap:6px;">
-                <button style="background:transparent;border:1px solid rgba(123,47,252,0.3);border-radius:40px;padding:6px 14px;color:#b896ff;">Ver</button>
-                <a href="https://wa.me/556198542343" target="_blank" style="background:#25D366;border-radius:40px;padding:6px 14px;color:#fff;text-decoration:none;font-weight:600;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        <div style="background:#1a1a1a;border-radius:80px;padding:8px 14px;display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+            <span style="color:#d4af37;font-size:14px;"><i class="fas fa-check-circle"></i> 1.847 serviços entregues</span>
+            <div style="display:flex;gap:4px;">
+                <button style="background:transparent;border:1px solid #333;border-radius:40px;padding:4px 12px;color:#aaa;font-size:12px;">Ver</button>
+                <a href="https://wa.me/5511914830656" target="_blank" style="background:#25D366;border-radius:40px;padding:4px 12px;color:#fff;text-decoration:none;font-weight:600;font-size:12px;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
             </div>
         </div>
-        <div class="garantia-box"><i class="fas fa-shield-alt"></i> Garantia de 30 dias com suporte incluso</div>
-        <div class="teste-gratis"><i class="fas fa-gift"></i> Ganhe 2 dias de teste grátis em cada compra!</div>
-        <div style="margin:18px 0 10px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
-            <div style="background:rgba(255,255,255,0.03);border-radius:20px;padding:10px;text-align:center;border:1px solid rgba(123,47,252,0.1);">
-                <div style="background:#7b2ffc;width:28px;height:28px;border-radius:40px;margin:0 auto 4px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;">1</div>
-                <p style="font-size:11px;color:#c0b8d0;">Preços justos</p>
+
+        <div class="garantia-box">
+            <i class="fas fa-shield-alt"></i> Garantia de 30 dias com suporte total · Sem reembolso
+        </div>
+
+        <!-- INDICAÇÃO -->
+        <div class="indication-box">
+            <h4><i class="fas fa-crown"></i> Indique e ganhe</h4>
+            <p style="color:#aaa;font-size:13px;">Gere códigos para amigos e libere quando quiser.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;margin:6px 0;">
+                <input type="text" id="newFriendCode" placeholder="Código (ex: VIP10)" style="flex:1;padding:8px 12px;border-radius:60px;border:1px solid #333;background:#000;color:#fff;outline:none;font-size:13px;" />
+                <button class="btn-indicate" id="generateCodeBtn"><i class="fas fa-plus"></i> Gerar</button>
             </div>
-            <div style="background:rgba(255,255,255,0.03);border-radius:20px;padding:10px;text-align:center;border:1px solid rgba(123,47,252,0.1);">
-                <div style="background:#7b2ffc;width:28px;height:28px;border-radius:40px;margin:0 auto 4px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;">2</div>
-                <p style="font-size:11px;color:#c0b8d0;">Suporte 24h</p>
+            <div id="generatedCodes" style="margin:4px 0;"></div>
+            <hr style="border-color:#2a2a2a;margin:8px 0;">
+            <p style="color:#aaa;font-size:13px;">Cliente digita o código liberado:</p>
+            <input type="text" id="clientCodeInput" placeholder="Código do amigo" />
+            <button class="btn-indicate" id="applyClientCode"><i class="fas fa-gift"></i> Aplicar desconto</button>
+            <div id="clientCodeMsg" style="color:#d4af37;font-size:12px;margin-top:4px;"></div>
+            <div style="margin-top:6px;">
+                <span class="btn-master" id="masterPanelToggle"><i class="fas fa-lock"></i> Painel do Mestre</span>
             </div>
-            <div style="background:rgba(255,255,255,0.03);border-radius:20px;padding:10px;text-align:center;border:1px solid rgba(123,47,252,0.1);">
-                <div style="background:#7b2ffc;width:28px;height:28px;border-radius:40px;margin:0 auto 4px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;">3</div>
-                <p style="font-size:11px;color:#c0b8d0;">Variedade</p>
+            <div id="masterPanel" style="display:none;margin-top:8px;background:#0a0a0a;border-radius:14px;padding:10px;border:1px solid #333;">
+                <p style="color:#d4af37;font-weight:600;font-size:13px;">🔐 Código Mestre: <span style="font-family:monospace;background:#000;padding:2px 10px;border-radius:40px;">STREAMUP2025</span></p>
+                <p style="color:#aaa;font-size:12px;">Use este código para liberar qualquer código gerado.</p>
+                <button class="btn-indicate" id="masterUnlockBtn"><i class="fas fa-unlock"></i> Liberar todos</button>
+                <button class="btn-indicate" id="masterLockBtn" style="background:#444;color:#fff;"><i class="fas fa-lock"></i> Bloquear todos</button>
+                <div id="masterStatus" style="margin-top:4px;font-size:12px;color:#d4af37;"></div>
             </div>
         </div>
-        <div style="background:rgba(255,255,255,0.02);border-radius:24px;padding:14px 16px;margin:8px 0;border-left:3px solid #ff2d95;">
-            <p style="font-style:italic;color:#c0b8d0;">“Peguei o combo completo e estou economizando bastante. Recomendo!”</p>
-            <p style="font-weight:600;margin-top:4px;color:#b896ff;">— Rafael T.</p>
+
+        <div style="margin:14px 0 8px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;">
+            <div style="background:#1a1a1a;border-radius:18px;padding:8px;text-align:center;border:1px solid #2a2a2a;">
+                <div style="background:#d4af37;color:#000;width:26px;height:26px;border-radius:40px;margin:0 auto 4px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;">1</div>
+                <p style="font-size:11px;color:#aaa;">Preços justos</p>
+            </div>
+            <div style="background:#1a1a1a;border-radius:18px;padding:8px;text-align:center;border:1px solid #2a2a2a;">
+                <div style="background:#d4af37;color:#000;width:26px;height:26px;border-radius:40px;margin:0 auto 4px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;">2</div>
+                <p style="font-size:11px;color:#aaa;">Suporte 24h</p>
+            </div>
+            <div style="background:#1a1a1a;border-radius:18px;padding:8px;text-align:center;border:1px solid #2a2a2a;">
+                <div style="background:#d4af37;color:#000;width:26px;height:26px;border-radius:40px;margin:0 auto 4px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;">3</div>
+                <p style="font-size:11px;color:#aaa;">Variedade</p>
+            </div>
+        </div>
+
+        <div style="background:#1a1a1a;border-radius:20px;padding:12px 14px;margin:6px 0;border-left:3px solid #d4af37;">
+            <p style="font-style:italic;color:#aaa;font-size:14px;">“Peguei o combo completo e estou economizando bastante. Recomendo!”</p>
+            <p style="font-weight:600;margin-top:4px;color:#d4af37;font-size:13px;">— Rafael T.</p>
         </div>
     </div>
 
     <!-- TAB 2: SERVIÇOS -->
     <div class="tab-content" id="tab2">
-        <div class="section-title"><h3>Serviços</h3><span class="tag">NOVO</span></div>
+        <div class="section-title">
+            <h3>Serviços</h3>
+            <span class="tag">NOVO</span>
+        </div>
         <div class="product-grid" id="productGrid"></div>
     </div>
 
     <!-- TAB 3: COMBOS -->
     <div class="tab-content" id="tab3">
-        <div class="section-title"><h3>Combos CP</h3><span class="tag">economia</span></div>
+        <div class="section-title"><h3>Combos StreamUp</h3><span class="tag">economia</span></div>
+
         <div class="combo-card">
-            <div class="combo-title"><h4>Combo Entretenimento</h4></div>
-            <div class="combo-price">R$ 17,00 <small>/mês</small></div>
-            <div class="combo-desc">Netflix Premium + Prime Video + Spotify Família</div>
-            <div class="combo-economy"><i class="fas fa-tag"></i> Separado R$ 20,00 · economize R$ 3,00</div>
-            <button class="btn-combo-add" data-combo="Entretenimento" data-price="17">Adicionar Combo</button>
+            <div class="combo-title"><h4>Combo Essencial</h4></div>
+            <div class="combo-price">R$ 45,00 <small>/mês</small></div>
+            <div class="combo-desc">Netflix + Prime + HBO</div>
+            <div class="combo-economy"><i class="fas fa-tag"></i> Separado R$ 48,00 · economize R$ 3,00</div>
+            <button class="btn-combo-add" data-combo="Essencial" data-price="45" data-items="Netflix,Prime,HBO">Adicionar Combo</button>
         </div>
-        <div class="combo-card" style="border-left:4px solid #ff2d95;">
-            <div class="combo-title"><h4>Cinema & Séries</h4><span class="tag-pop">MAIS ESCOLHIDO</span></div>
-            <div class="combo-price">R$ 24,00 <small>/mês</small></div>
-            <div class="combo-desc">Netflix Premium · HBO Standard · Prime Video</div>
-            <div class="combo-economy"><i class="fas fa-tag"></i> Separado R$ 27,00 · economize R$ 3,00</div>
-            <button class="btn-combo-add" data-combo="Cinema & Séries" data-price="24">Adicionar Combo</button>
+
+        <div class="combo-card" style="border-left:4px solid #d4af37;">
+            <div class="combo-title"><h4>Combo Premium</h4><span class="tag-pop">MAIS ESCOLHIDO</span></div>
+            <div class="combo-price">R$ 70,00 <small>/mês</small></div>
+            <div class="combo-desc">Netflix + Disney + HBO + Prime + Paramount</div>
+            <div class="combo-economy"><i class="fas fa-tag"></i> Separado R$ 73,00 · economize R$ 3,00</div>
+            <button class="btn-combo-add" data-combo="Premium" data-price="70" data-items="Netflix,Disney,HBO,Prime,Paramount">Adicionar Combo</button>
         </div>
+
         <div class="combo-card">
-            <div class="combo-title"><h4>CP Completo</h4></div>
-            <div class="combo-price">R$ 42,00 <small>/mês</small></div>
-            <div class="combo-desc">Netflix Premium · Disney Premium · HBO Standard · Prime Video · Spotify Família</div>
-            <div class="combo-economy"><i class="fas fa-tag"></i> Separado R$ 49,00 · economize R$ 7,00</div>
-            <button class="btn-combo-add" data-combo="CP Completo" data-price="42">Adicionar Combo</button>
+            <div class="combo-title"><h4>Combo Ultra</h4></div>
+            <div class="combo-price">R$ 120,00 <small>/mês</small></div>
+            <div class="combo-desc">Netflix + Disney + HBO + Prime + Paramount + Globoplay+Premiere + ClaroTV Completa + Canva Pro</div>
+            <div class="combo-economy"><i class="fas fa-tag"></i> Separado R$ 153,00 · economize R$ 33,00</div>
+            <button class="btn-combo-add" data-combo="Ultra" data-price="120" data-items="Netflix,Disney,HBO,Prime,Paramount,Globoplay+Premiere,ClaroTV Completa,Canva Pro">Adicionar Combo</button>
         </div>
     </div>
 
     <!-- TAB 4: CARRINHO -->
     <div class="tab-content" id="tab4">
-        <h3 style="color:#fff;margin-bottom:12px;">Seu Carrinho</h3>
-        <div id="cartItems"><p style="color:#6a5f80;text-align:center;padding:20px 0;">Carrinho vazio</p></div>
+        <h3 style="color:#fff;margin-bottom:10px;">Seu Carrinho</h3>
+        <div id="cartItems"><p style="color:#555;text-align:center;padding:16px 0;">Carrinho vazio</p></div>
         <div class="cart-total">Total: <span id="cartTotal">R$ 0,00</span></div>
+
         <div class="discount-input">
-            <input type="text" id="cupomInput" placeholder="Cupom (ex: CP10)" />
+            <input type="text" id="cupomInput" placeholder="Cupom (ex: STREAM10)" />
             <button id="applyDiscount">Aplicar</button>
         </div>
-        <div id="discountMsg" style="font-size:13px;color:#ff2d95;margin:4px 0 10px;"></div>
-        <div class="teste-gratis" style="margin:10px 0;"><i class="fas fa-gift"></i> Ao finalizar, ganhe 2 dias de teste grátis!</div>
+        <div id="discountMsg" style="font-size:12px;color:#d4af37;margin:4px 0 8px;"></div>
+
         <button class="btn-checkout" id="checkoutBtn"><i class="fab fa-whatsapp"></i> Finalizar Compra</button>
     </div>
 
     <!-- FOOTER -->
     <div class="footer-whats">
         <span><i class="fas fa-headset"></i> Fale conosco</span>
-        <div style="display:flex;gap:6px;flex-wrap:wrap;">
-            <a href="https://wa.me/556198542343" target="_blank" class="btn-social whats"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-            <a href="https://t.me/Carlosvl9" target="_blank" class="btn-social telegram"><i class="fab fa-telegram-plane"></i> Telegram</a>
+        <div style="display:flex;gap:4px;flex-wrap:wrap;">
+            <a href="https://wa.me/5511914830656" target="_blank" class="btn-social whats" id="whatsFooter"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            <a href="https://t.me/Xandao06" target="_blank" class="btn-social telegram" id="telegramFooter"><i class="fab fa-telegram-plane"></i> Telegram</a>
         </div>
     </div>
     <div class="creditos">
-        <i class="fas fa-crown"></i> CP — Contas Premium · Entretenimento digital<br>
-        <span style="opacity:0.5;">Teste · </span><a href="https://t.me/Carlosvl9" target="_blank">@Carlosvl9 no Telegram</a>
+        <i class="fas fa-crown"></i> StreamUp — O melhor do entretenimento digital<br>
+        <span style="opacity:0.5;">Teste · </span><a href="https://t.me/Xandao06" target="_blank">@Xandao06 no Telegram</a>
     </div>
 </div>
 
-<!-- ===== MODAL GARANTIA ===== -->
-<div class="modal-overlay" id="garantiaModal">
+<!-- MODAL DE GARANTIA -->
+<div class="modal-overlay" id="guaranteeModal">
     <div class="modal-box">
-        <h3 id="modalProduto">Produto</h3>
-        <p>Escolha a opção de suporte:</p>
-        <div class="price-option">
-            <button class="btn-com" id="optCom">✅ Com suporte (30d)<br><span id="modalPrecoCom">R$ 0,00</span></button>
-            <button class="btn-sem" id="optSem">⚠️ Sem suporte<br><span id="modalPrecoSem">R$ 0,00</span></button>
+        <h3><i class="fas fa-shield-alt"></i> Escolha a garantia</h3>
+        <p id="modalProductName">Produto</p>
+        <div class="modal-options">
+            <button id="modalWithGuarantee">
+                <span>✅ Com garantia (suporte total)</span>
+                <span class="price-tag" id="modalPriceWith">R$ 0,00</span>
+            </button>
+            <button id="modalWithoutGuarantee">
+                <span>⚠️ Sem garantia (teste grátis)</span>
+                <span class="price-tag" id="modalPriceWithout">R$ 0,00</span>
+            </button>
         </div>
-        <button class="btn-cancel" id="modalCancel">Cancelar</button>
+        <div style="font-size:12px;color:#888;margin-top:4px;text-align:center;">
+            <i class="fas fa-info-circle"></i> Com garantia: suporte total · Sem reembolso<br>
+            Sem garantia: teste grátis · sem responsabilidade · sem reembolso
+        </div>
+        <button class="modal-close" id="modalCancel">Cancelar</button>
     </div>
 </div>
 
-<!-- ===== MODAL RESUMO ===== -->
-<div class="modal-overlay" id="resumoModal">
+<!-- MODAL DE CONFIRMAÇÃO SEM GARANTIA -->
+<div class="modal-overlay" id="noGuaranteeConfirmModal">
     <div class="modal-box">
-        <h3 style="color:#fff;margin-bottom:12px;">📋 Resumo da compra</h3>
-        <div id="resumoItems" style="margin-bottom:12px;"></div>
-        <div class="resumo-total">Total: <span id="resumoTotal">R$ 0,00</span></div>
-        <div id="resumoDesconto" style="color:#ff2d95;font-size:14px;margin-top:4px;"></div>
-        <div style="background:rgba(255,45,149,0.08);border-radius:16px;padding:8px;margin:12px 0;border:1px solid rgba(255,45,149,0.15);color:#ff2d95;font-weight:500;">
-            <i class="fas fa-gift"></i> Você ganhou 2 dias de teste grátis!
+        <h3><i class="fas fa-exclamation-triangle" style="color:#ff6b6b;"></i> Atenção - Sem garantia</h3>
+        <p>Você está escolhendo a opção <strong>sem garantia</strong>.</p>
+        <div class="legal-terms">
+            <i class="fas fa-gavel"></i> <strong>Termos:</strong><br>
+            • Este é um <strong>teste grátis</strong>.<br>
+            • Se o serviço for cancelado antes do previsto, <strong>não nos responsabilizamos</strong>.<br>
+            • <strong>Não haverá reembolso</strong> em nenhuma hipótese.<br>
+            • Com garantia: suporte total, mas também <strong>sem reembolso</strong>.
         </div>
-        <button class="btn-confirmar" id="confirmarCompra"><i class="fab fa-whatsapp"></i> Enviar para WhatsApp</button>
-        <button class="btn-fechar-resumo" id="fecharResumo">Fechar</button>
+        <div style="display:flex;gap:8px;margin-top:10px;">
+            <button class="modal-close" id="confirmNoGuarantee" style="background:#d4af37;color:#000;border:none;">Confirmar</button>
+            <button class="modal-close" id="cancelNoGuarantee">Cancelar</button>
+        </div>
     </div>
 </div>
 
 <script>
     // ============================================================
-    // 1. DADOS
+    // 1. CARROSSEL DE DESTAQUE
+    // ============================================================
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dotsContainer = document.getElementById('dots');
+    let currentSlide = 0;
+    let interval;
+
+    // Criar dots
+    slides.forEach((_, i) => {
+        const dot = document.createElement('span');
+        if (i === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToSlide(i));
+        dotsContainer.appendChild(dot);
+    });
+
+    function goToSlide(index) {
+        slides.forEach((s, i) => {
+            s.classList.toggle('active', i === index);
+        });
+        document.querySelectorAll('#dots span').forEach((d, i) => {
+            d.classList.toggle('active', i === index);
+        });
+        currentSlide = index;
+    }
+
+    function nextSlide() {
+        goToSlide((currentSlide + 1) % slides.length);
+    }
+
+    // Iniciar carrossel automático
+    interval = setInterval(nextSlide, 5000);
+
+    // Pausar no hover (opcional)
+    const carousel = document.getElementById('carousel');
+    carousel.addEventListener('mouseenter', () => clearInterval(interval));
+    carousel.addEventListener('mouseleave', () => {
+        interval = setInterval(nextSlide, 5000);
+    });
+
+    // ============================================================
+    // 2. DADOS DOS SERVIÇOS
     // ============================================================
     const produtos = [
-        { id: 'netflix', nome: 'Netflix Premium', precoSem: 11.00, precoCom: 13.00 },
-        { id: 'prime6', nome: 'Prime Video 6m', precoSem: 23.00, precoCom: 25.00 },
-        { id: 'globoplay', nome: 'Globoplay + Telecine', precoSem: 13.00, precoCom: 15.00 },
-        { id: 'canva', nome: 'Canva Pro Mensal', precoSem: 4.00, precoCom: 6.00 },
-        { id: 'yt', nome: 'YT Premium + Music', precoSem: 13.00, precoCom: 15.00 },
-        { id: 'sky', nome: 'SKY+ Top HD 2025', precoSem: 9.00, precoCom: 11.00 }
+        { id: 'netflix', nome: 'Netflix', precoMensal: 25.00, preco6m: 130.00, obs: '⚠️ Sobe 25/08' },
+        { id: 'prime', nome: 'Prime Video', precoMensal: 8.00, preco6m: 40.00, obs: '🔥 6m: R$35 (promo)' },
+        { id: 'crunchyroll', nome: 'Crunchyroll', precoMensal: 10.00, preco6m: 50.00 },
+        { id: 'hbo', nome: 'HBO', precoMensal: 15.00, preco6m: 75.00 },
+        { id: 'globoplay', nome: 'Globoplay+Premiere', precoMensal: 20.00, preco6m: 105.00 },
+        { id: 'disney', nome: 'Disney+', precoMensal: 15.00, preco6m: 75.00 },
+        { id: 'paramount', nome: 'Paramount', precoMensal: 10.00, preco6m: 50.00, obs: '💳 Único: R$35 (promo)' },
+        { id: 'apple', nome: 'Apple TV+', precoMensal: 9.00, preco6m: 45.00 },
+        { id: 'playplus', nome: 'PlayPlus', precoMensal: 8.00, preco6m: 40.00 },
+        { id: 'universal', nome: 'Universal+', precoMensal: 8.00, preco6m: 40.00 },
+        { id: 'claro', nome: 'Claro TV+ Completo', precoMensal: 20.00, preco6m: 105.00 },
+        { id: 'sky1', nome: 'SKY Top HD IV 2022', precoMensal: 19.00, preco6m: 95.00 },
+        { id: 'sky2', nome: 'SKY Top HD III 2025', precoMensal: 20.00, preco6m: 105.00 },
+        { id: 'sky3', nome: 'SKY Mega II HD 2021', precoMensal: 25.00, preco6m: 130.00 },
+        { id: 'canva', nome: 'Canva Pro Anual', precoMensal: 0, preco6m: 0, precoUnico: 40.00, obs: '💳 Único: R$40' }
     ];
-
-    const destaques = [
-        { titulo: 'Outer Banks', desc: 'Temporada final · já disponível', plataforma: 'Netflix', icone: 'fab fa-netflix' },
-        { titulo: 'The Last of Us', desc: 'Nova temporada · em breve', plataforma: 'HBO Max', icone: 'fas fa-tv' },
-        { titulo: 'Bridgerton', desc: 'Nova temporada · já disponível', plataforma: 'Netflix', icone: 'fab fa-netflix' },
-        { titulo: 'Senhor dos Anéis', desc: 'Anéis de Poder · nova temporada', plataforma: 'Prime Video', icone: 'fab fa-prime' },
-        { titulo: 'Stranger Things', desc: 'Última temporada em produção', plataforma: 'Netflix', icone: 'fab fa-netflix' }
-    ];
-
-    let destaqueIndex = 0;
-    function atualizarDestaque() {
-        const item = destaques[destaqueIndex % destaques.length];
-        destaqueIndex++;
-        document.getElementById('destaqueTitulo').textContent = item.titulo;
-        document.getElementById('destaqueDesc').textContent = item.desc;
-        document.getElementById('destaquePlataforma').innerHTML = `<i class="${item.icone}"></i> ${item.plataforma}`;
-    }
-    atualizarDestaque();
-    setInterval(atualizarDestaque, 12000);
 
     // ============================================================
-    // 2. RENDERIZAR PRODUTOS
+    // 3. RENDERIZAR PRODUTOS
     // ============================================================
     const grid = document.getElementById('productGrid');
     produtos.forEach(p => {
         const card = document.createElement('div');
         card.className = 'product-card';
+        let precoHTML = '';
+        if (p.id === 'canva') {
+            precoHTML = `<div class="price">R$ ${p.precoUnico.toFixed(2)} <small>único</small></div>`;
+        } else {
+            precoHTML = `
+                <div class="price">R$ ${p.precoMensal.toFixed(2)} <small>/mês</small></div>
+                <div class="price">R$ ${p.preco6m.toFixed(2)} <small>/6m</small> ${p.obs ? `<span class="promo">${p.obs}</span>` : ''}</div>
+            `;
+        }
         card.innerHTML = `
             <h4>${p.nome}</h4>
-            <div class="price-group">
-                <div class="price">R$ ${p.precoSem.toFixed(2)} <small>sem suporte</small></div>
-                <div class="price support">R$ ${p.precoCom.toFixed(2)} <small>com suporte 30d</small></div>
-            </div>
-            <button class="btn-add" data-id="${p.id}" data-nome="${p.nome}" data-preco-sem="${p.precoSem}" data-preco-com="${p.precoCom}">
+            <div class="price-group">${precoHTML}</div>
+            <button class="btn-add" data-id="${p.id}" data-nome="${p.nome}" data-preco-mensal="${p.precoMensal || 0}" data-preco-6m="${p.preco6m || 0}" data-preco-unico="${p.precoUnico || 0}" data-tipo="${p.id === 'canva' ? 'unico' : 'mensal'}">
                 <i class="fas fa-cart-plus"></i> Adicionar
             </button>
         `;
@@ -792,95 +986,107 @@
     });
 
     // ============================================================
-    // 3. MODAL DE GARANTIA
+    // 4. MODAL DE GARANTIA
     // ============================================================
-    let pendingItem = null;
-    const modalGarantia = document.getElementById('garantiaModal');
-    const modalProduto = document.getElementById('modalProduto');
-    const modalPrecoCom = document.getElementById('modalPrecoCom');
-    const modalPrecoSem = document.getElementById('modalPrecoSem');
+    let pendingProduct = null;
+    const modalGarantia = document.getElementById('guaranteeModal');
+    const modalConfirmNoGarantia = document.getElementById('noGuaranteeConfirmModal');
+    let pendingChoice = null; // 'com' ou 'sem'
 
     document.addEventListener('click', function(e) {
         const btn = e.target.closest('.btn-add');
         if (btn) {
             const nome = btn.dataset.nome;
-            const precoSem = parseFloat(btn.dataset.precoSem);
-            const precoCom = parseFloat(btn.dataset.precoCom);
-            pendingItem = { nome, precoSem, precoCom };
-            modalProduto.textContent = nome;
-            modalPrecoCom.textContent = `R$ ${precoCom.toFixed(2)}`;
-            modalPrecoSem.textContent = `R$ ${precoSem.toFixed(2)}`;
+            const precoMensal = parseFloat(btn.dataset.precoMensal) || 0;
+            const preco6m = parseFloat(btn.dataset.preco6m) || 0;
+            const precoUnico = parseFloat(btn.dataset.precoUnico) || 0;
+            const tipo = btn.dataset.tipo;
+
+            if (tipo === 'unico') {
+                pendingProduct = { nome, precoSem: precoUnico, precoCom: precoUnico + 2, tipo: 'unico' };
+                document.getElementById('modalProductName').textContent = `${nome} (único)`;
+                document.getElementById('modalPriceWith').textContent = `R$ ${(precoUnico + 2).toFixed(2)}`;
+                document.getElementById('modalPriceWithout').textContent = `R$ ${precoUnico.toFixed(2)}`;
+            } else {
+                const periodo = confirm(`Qual período para ${nome}?\nOK = 6 meses | Cancelar = mensal`);
+                const precoBase = periodo ? preco6m : precoMensal;
+                const label = periodo ? '6 meses' : 'mês';
+                pendingProduct = { nome, precoSem: precoBase, precoCom: precoBase + 2, tipo: 'periodo', periodo, label };
+                document.getElementById('modalProductName').textContent = `${nome} (${label})`;
+                document.getElementById('modalPriceWith').textContent = `R$ ${(precoBase + 2).toFixed(2)}`;
+                document.getElementById('modalPriceWithout').textContent = `R$ ${precoBase.toFixed(2)}`;
+            }
             modalGarantia.classList.add('active');
-            playBeep();
-        }
-
-        // Combos
-        const comboBtn = e.target.closest('.btn-combo-add');
-        if (comboBtn) {
-            const nome = comboBtn.dataset.combo;
-            const preco = parseFloat(comboBtn.dataset.price);
-            cart.push({
-                id: Date.now() + Math.random(),
-                nome: `[Combo] ${nome}`,
-                precoSem: preco - 2,
-                precoCom: preco,
-                comSuporte: true
-            });
-            renderCart();
-            playBeep();
+            playSound('beep');
         }
     });
 
-    document.getElementById('optCom').addEventListener('click', function() {
-        if (pendingItem) {
-            cart.push({
-                id: Date.now() + Math.random(),
-                nome: pendingItem.nome,
-                precoSem: pendingItem.precoSem,
-                precoCom: pendingItem.precoCom,
-                comSuporte: true
-            });
+    document.getElementById('modalWithGuarantee').addEventListener('click', function() {
+        if (pendingProduct) {
+            pendingChoice = 'com';
             modalGarantia.classList.remove('active');
-            renderCart();
-            playBeep();
-            pendingItem = null;
+            // Adiciona direto (com garantia)
+            const nome = pendingProduct.nome + (pendingProduct.tipo === 'periodo' ? ` (${pendingProduct.label})` : ' (único)');
+            addToCart(nome, pendingProduct.precoSem, pendingProduct.precoCom, true);
+            playSound('approved');
         }
     });
 
-    document.getElementById('optSem').addEventListener('click', function() {
-        if (pendingItem) {
-            cart.push({
-                id: Date.now() + Math.random(),
-                nome: pendingItem.nome,
-                precoSem: pendingItem.precoSem,
-                precoCom: pendingItem.precoCom,
-                comSuporte: false
-            });
+    document.getElementById('modalWithoutGuarantee').addEventListener('click', function() {
+        if (pendingProduct) {
+            pendingChoice = 'sem';
             modalGarantia.classList.remove('active');
-            renderCart();
-            playBeep();
-            pendingItem = null;
+            // Mostra modal de confirmação
+            modalConfirmNoGarantia.classList.add('active');
+            playSound('beep');
         }
+    });
+
+    document.getElementById('confirmNoGuarantee').addEventListener('click', function() {
+        if (pendingProduct) {
+            const nome = pendingProduct.nome + (pendingProduct.tipo === 'periodo' ? ` (${pendingProduct.label})` : ' (único)');
+            addToCart(nome, pendingProduct.precoSem, pendingProduct.precoCom, false);
+            modalConfirmNoGarantia.classList.remove('active');
+            playSound('approved');
+        }
+    });
+
+    document.getElementById('cancelNoGuarantee').addEventListener('click', function() {
+        modalConfirmNoGarantia.classList.remove('active');
+        playSound('reproved');
     });
 
     document.getElementById('modalCancel').addEventListener('click', function() {
         modalGarantia.classList.remove('active');
-        pendingItem = null;
+        playSound('reproved');
     });
 
-    modalGarantia.addEventListener('click', function(e) {
-        if (e.target === this) {
-            modalGarantia.classList.remove('active');
-            pendingItem = null;
-        }
+    // Fechar modais clicando fora
+    [modalGarantia, modalConfirmNoGarantia].forEach(m => {
+        m.addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('active');
+                playSound('reproved');
+            }
+        });
     });
 
     // ============================================================
-    // 4. CARRINHO
+    // 5. CARRINHO
     // ============================================================
     let cart = [];
     let descontoAtivo = 0;
-    let cupomAtual = '';
+
+    function addToCart(nome, precoSem, precoCom, comSuporte) {
+        cart.push({
+            id: Date.now() + Math.random(),
+            nome: nome,
+            precoSem: precoSem,
+            precoCom: precoCom,
+            comSuporte: comSuporte
+        });
+        renderCart();
+    }
 
     function renderCart() {
         const container = document.getElementById('cartItems');
@@ -888,7 +1094,7 @@
         const countSpan = document.getElementById('cartCount');
 
         if (cart.length === 0) {
-            container.innerHTML = '<p style="color:#6a5f80;text-align:center;padding:20px 0;">Carrinho vazio</p>';
+            container.innerHTML = '<p style="color:#555;text-align:center;padding:16px 0;">Carrinho vazio</p>';
             totalSpan.textContent = 'R$ 0,00';
             countSpan.textContent = '0';
             return;
@@ -903,7 +1109,7 @@
                 <div class="cart-item">
                     <div class="item-info">
                         <h5>${item.nome}</h5>
-                        <span>${item.comSuporte ? '✅ com suporte' : '⚠️ sem suporte'}</span>
+                        <span>${item.comSuporte ? '✅ com garantia' : '⚠️ sem garantia'}</span>
                     </div>
                     <div class="item-price">R$ ${preco.toFixed(2)}</div>
                     <button class="btn-remove" data-index="${idx}"><i class="fas fa-times"></i></button>
@@ -929,150 +1135,238 @@
         });
     }
 
+    // Combos
+    document.addEventListener('click', function(e) {
+        const btn = e.target.closest('.btn-combo-add');
+        if (btn) {
+            const nome = btn.dataset.combo;
+            const preco = parseFloat(btn.dataset.price);
+            cart.push({
+                id: Date.now() + Math.random(),
+                nome: `[Combo] ${nome}`,
+                precoSem: preco - 2,
+                precoCom: preco,
+                comSuporte: true
+            });
+            renderCart();
+            playSound('beep');
+        }
+    });
+
     // ============================================================
-    // 5. DESCONTO
+    // 6. INDICAÇÃO EXCLUSIVA
+    // ============================================================
+    let codes = JSON.parse(localStorage.getItem('streamup_codes')) || {};
+
+    function saveCodes() {
+        localStorage.setItem('streamup_codes', JSON.stringify(codes));
+    }
+
+    function renderCodes() {
+        const container = document.getElementById('generatedCodes');
+        const keys = Object.keys(codes);
+        if (keys.length === 0) {
+            container.innerHTML = '<p style="color:#555;font-size:12px;">Nenhum código gerado.</p>';
+            return;
+        }
+        let html = '<div style="display:flex;flex-wrap:wrap;gap:4px;">';
+        keys.forEach(key => {
+            const status = codes[key] ? '✅ liberado' : '🔒 bloqueado';
+            html += `<span style="background:#000;padding:3px 10px;border-radius:40px;font-size:12px;border:1px solid #333;">${key} <span style="color:${codes[key] ? '#d4af37' : '#666'};">${status}</span></span>`;
+        });
+        html += '</div>';
+        container.innerHTML = html;
+    }
+
+    document.getElementById('generateCodeBtn').addEventListener('click', function() {
+        const input = document.getElementById('newFriendCode');
+        const code = input.value.trim().toUpperCase();
+        if (!code || code.length < 3) {
+            alert('Digite um código com pelo menos 3 caracteres.');
+            return;
+        }
+        if (codes[code] !== undefined) {
+            alert('Este código já existe.');
+            return;
+        }
+        codes[code] = false;
+        saveCodes();
+        renderCodes();
+        input.value = '';
+        playSound('beep');
+        document.getElementById('masterStatus').textContent = `Código ${code} gerado (bloqueado).`;
+    });
+
+    document.getElementById('masterPanelToggle').addEventListener('click', function() {
+        const panel = document.getElementById('masterPanel');
+        panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+        playSound('beep');
+    });
+
+    document.getElementById('masterUnlockBtn').addEventListener('click', function() {
+        const masterCode = prompt('Digite o código mestre (STREAMUP2025):');
+        if (masterCode === 'STREAMUP2025') {
+            Object.keys(codes).forEach(key => { codes[key] = true; });
+            saveCodes();
+            renderCodes();
+            document.getElementById('masterStatus').textContent = '✅ Todos os códigos liberados!';
+            playSound('approved');
+        } else {
+            document.getElementById('masterStatus').textContent = '❌ Código mestre incorreto.';
+            playSound('reproved');
+        }
+    });
+
+    document.getElementById('masterLockBtn').addEventListener('click', function() {
+        const masterCode = prompt('Digite o código mestre (STREAMUP2025):');
+        if (masterCode === 'STREAMUP2025') {
+            Object.keys(codes).forEach(key => { codes[key] = false; });
+            saveCodes();
+            renderCodes();
+            document.getElementById('masterStatus').textContent = '🔒 Todos os códigos bloqueados.';
+            playSound('beep');
+        } else {
+            document.getElementById('masterStatus').textContent = '❌ Código mestre incorreto.';
+            playSound('reproved');
+        }
+    });
+
+    document.getElementById('applyClientCode').addEventListener('click', function() {
+        const input = document.getElementById('clientCodeInput');
+        const code = input.value.trim().toUpperCase();
+        const msg = document.getElementById('clientCodeMsg');
+        if (codes[code] === true) {
+            descontoAtivo = 15;
+            msg.textContent = '✅ Código liberado! 15% de desconto.';
+            msg.style.color = '#d4af37';
+            renderCart();
+            playSound('approved');
+        } else if (codes[code] === false) {
+            msg.textContent = '❌ Código não liberado pelo mestre.';
+            msg.style.color = '#d4af37';
+            playSound('reproved');
+        } else {
+            msg.textContent = '❌ Código inválido.';
+            msg.style.color = '#d4af37';
+            playSound('reproved');
+        }
+    });
+
+    renderCodes();
+
+    // ============================================================
+    // 7. CUPONS
     // ============================================================
     document.getElementById('applyDiscount').addEventListener('click', function() {
         const input = document.getElementById('cupomInput');
         const code = input.value.trim().toUpperCase();
         const msg = document.getElementById('discountMsg');
-
-        if (code === 'CP10') {
-            descontoAtivo = 10;
-            cupomAtual = code;
-            msg.textContent = '✅ Cupom CP10: 10% de desconto!';
-            msg.style.color = '#b896ff';
-        } else if (code === 'CP15') {
-            descontoAtivo = 15;
-            cupomAtual = code;
-            msg.textContent = '✅ Cupom CP15: 15% de desconto!';
-            msg.style.color = '#b896ff';
-        } else if (code === 'CP20') {
-            descontoAtivo = 20;
-            cupomAtual = code;
-            msg.textContent = '✅ Cupom CP20: 20% de desconto!';
-            msg.style.color = '#b896ff';
-        } else if (code === 'CPFREE') {
-            descontoAtivo = 0;
-            cupomAtual = code;
-            msg.textContent = '🎁 Cupom CPFREE: 2 dias de teste grátis!';
-            msg.style.color = '#ff2d95';
-        } else if (code === '') {
-            descontoAtivo = 0;
-            cupomAtual = '';
-            msg.textContent = 'Desconto removido.';
-            msg.style.color = '#ff2d95';
-        } else {
-            msg.textContent = '❌ Cupom inválido.';
-            msg.style.color = '#ff2d95';
+        let valid = false;
+        if (code === 'STREAM10') { descontoAtivo = 10; valid = true; }
+        else if (code === 'STREAM20') { descontoAtivo = 20; valid = true; }
+        else if (code === 'UP5') { descontoAtivo = 5; valid = true; }
+        else if (code === '') { descontoAtivo = 0; valid = true; msg.textContent = 'Desconto removido.'; msg.style.color = '#d4af37'; }
+        else { msg.textContent = '❌ Cupom inválido.'; msg.style.color = '#d4af37'; playSound('reproved'); renderCart(); return; }
+        if (valid && code !== '') {
+            msg.textContent = `✅ Cupom ${code} aplicado: ${descontoAtivo}%!`;
+            msg.style.color = '#d4af37';
+            playSound('approved');
         }
         renderCart();
     });
 
     // ============================================================
-    // 6. FINALIZAR COMPRA - MODAL RESUMO
+    // 8. FINALIZAR COMPRA (com aviso se houver itens sem garantia)
     // ============================================================
-    const resumoModal = document.getElementById('resumoModal');
-    const resumoItems = document.getElementById('resumoItems');
-    const resumoTotal = document.getElementById('resumoTotal');
-    const resumoDesconto = document.getElementById('resumoDesconto');
-
     document.getElementById('checkoutBtn').addEventListener('click', function() {
         if (cart.length === 0) {
             alert('Carrinho vazio!');
+            playSound('reproved');
             return;
         }
 
-        let total = 0;
-        let html = '';
-        cart.forEach(item => {
-            const preco = item.comSuporte ? item.precoCom : item.precoSem;
-            total += preco;
-            html += `
-                <div class="resumo-item">
-                    <span>${item.nome} ${item.comSuporte ? '✅' : '⚠️'}</span>
-                    <span class="valor">R$ ${preco.toFixed(2)}</span>
-                </div>
-            `;
-        });
-
-        let totalComDesconto = total;
-        let descontoMsg = '';
-        if (descontoAtivo > 0) {
-            totalComDesconto = total * (1 - descontoAtivo / 100);
-            descontoMsg = `Desconto de ${descontoAtivo}%: - R$ ${(total - totalComDesconto).toFixed(2)}`;
-        } else if (cupomAtual === 'CPFREE') {
-            descontoMsg = '🎁 2 dias de teste grátis (sem desconto)';
+        // Verifica se há itens sem garantia
+        const hasNoGuarantee = cart.some(item => !item.comSuporte);
+        if (hasNoGuarantee) {
+            if (!confirm('⚠️ Atenção: Você tem itens SEM garantia (teste grátis).\n\nNão nos responsabilizamos por cancelamentos e não há reembolso.\n\nDeseja continuar?')) {
+                playSound('reproved');
+                return;
+            }
         }
 
-        resumoItems.innerHTML = html;
-        resumoTotal.textContent = `R$ ${totalComDesconto.toFixed(2)}`;
-        resumoDesconto.textContent = descontoMsg;
-        resumoModal.classList.add('active');
-        playBeep();
-    });
-
-    document.getElementById('fecharResumo').addEventListener('click', function() {
-        resumoModal.classList.remove('active');
-    });
-
-    resumoModal.addEventListener('click', function(e) {
-        if (e.target === this) resumoModal.classList.remove('active');
-    });
-
-    document.getElementById('confirmarCompra').addEventListener('click', function() {
+        let msg = '🛒 *Nova compra - StreamUp*\n\n';
         let total = 0;
-        let msg = 'Olá! Gostaria de finalizar minha compra:\n\n';
         cart.forEach(item => {
             const preco = item.comSuporte ? item.precoCom : item.precoSem;
             total += preco;
-            msg += `- ${item.nome} (${item.comSuporte ? 'com suporte' : 'sem suporte'}) - R$ ${preco.toFixed(2)}\n`;
+            msg += `- ${item.nome} (${item.comSuporte ? 'com garantia ✅' : 'sem garantia ⚠️'}) - R$ ${preco.toFixed(2)}\n`;
         });
-        let totalComDesconto = total;
         if (descontoAtivo > 0) {
             const descontoValor = total * (descontoAtivo / 100);
-            totalComDesconto = total - descontoValor;
-            msg += `\nDesconto de ${descontoAtivo}%: - R$ ${descontoValor.toFixed(2)}`;
+            msg += `\n*Desconto de ${descontoAtivo}%*: - R$ ${descontoValor.toFixed(2)}`;
+            total = total * (1 - descontoAtivo / 100);
         }
-        msg += `\n\nTotal: R$ ${totalComDesconto.toFixed(2)}`;
-        msg += `\n\n🎁 Ganhei 2 dias de teste grátis!`;
-        msg += `\n\nMeu Telegram: @Carlosvl9`;
-        const url = `https://wa.me/556198542343?text=${encodeURIComponent(msg)}`;
+        msg += `\n\n*Total: R$ ${total.toFixed(2)}*`;
+        msg += `\n\n✅ Ganhe 2 dias de teste grátis!`;
+        msg += `\n\n🔗 Telegram: @Xandao06`;
+        const url = `https://wa.me/5511914830656?text=${encodeURIComponent(msg)}`;
         window.open(url, '_blank');
-        resumoModal.classList.remove('active');
-        playBeep();
+        playSound('approved');
     });
 
     // ============================================================
-    // 7. SONS E NAVEGAÇÃO
+    // 9. SONS
     // ============================================================
-    function playBeep() {
+    function playSound(type) {
         try {
             const ctx = new (window.AudioContext || window.webkitAudioContext)();
             const osc = ctx.createOscillator();
             const gain = ctx.createGain();
             osc.connect(gain);
             gain.connect(ctx.destination);
-            osc.frequency.value = 800;
-            osc.type = 'sine';
-            gain.gain.value = 0.1;
-            osc.start();
-            setTimeout(() => osc.stop(), 100);
+            if (type === 'beep') {
+                osc.frequency.value = 600;
+                osc.type = 'sine';
+                gain.gain.value = 0.1;
+                osc.start();
+                setTimeout(() => osc.stop(), 100);
+            } else if (type === 'approved') {
+                osc.frequency.value = 880;
+                osc.type = 'sine';
+                gain.gain.value = 0.12;
+                osc.start();
+                setTimeout(() => { osc.frequency.value = 1100; }, 100);
+                setTimeout(() => osc.stop(), 250);
+            } else if (type === 'reproved') {
+                osc.frequency.value = 300;
+                osc.type = 'sawtooth';
+                gain.gain.value = 0.08;
+                osc.start();
+                setTimeout(() => osc.stop(), 300);
+            }
         } catch(e) { /* fallback */ }
     }
 
+    // ============================================================
+    // 10. NAVEGAÇÃO
+    // ============================================================
     document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             this.classList.add('active');
+            const target = this.dataset.tab;
             document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
-            document.getElementById(this.dataset.tab).classList.add('active');
-            playBeep();
+            document.getElementById(target).classList.add('active');
+            playSound('beep');
         });
     });
 
+    // ============================================================
+    // 11. INICIALIZAR
+    // ============================================================
     renderCart();
-    console.log('✅ CP - Hacker Edition carregada com sucesso!');
+    console.log('✅ StreamUp carregado com sucesso!');
+    console.log('🔐 Código mestre: STREAMUP2025');
 </script>
 </body>
 </html>
