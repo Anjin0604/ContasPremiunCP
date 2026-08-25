@@ -6,1139 +6,2196 @@
     <title>Cozinha & Cia · Utensílios de cozinha</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', system-ui, -apple-system, sans-serif; }
-        body { background: #f8f6f4; color: #1a1a2e; display: flex; justify-content: center; padding: 16px; min-height: 100vh; transition: background 0.3s, color 0.3s; }
-        .container { max-width: 520px; width: 100%; background: #ffffff; border-radius: 32px; box-shadow: 0 8px 40px rgba(0,0,0,0.06); padding: 20px 16px 30px; position: relative; transition: background 0.3s; }
-        body.dark { background: #0a0a0f; color: #e0d6f0; }
-        body.dark .container { background: #12121a; }
-        body.dark .hero { background: #1a1a24; border-color: #2a2a3a; }
-        body.dark .hero h1 { color: #fff; }
-        body.dark .hero p { color: #b0b0c0; }
-        body.dark .btn-secondary { border-color: #3a3a4a; color: #e0d6f0; }
-        body.dark .btn-secondary:hover { border-color: #c9a03a; background: #1a1a24; }
-        body.dark .product-card { background: #1a1a24; border-color: #2a2a3a; }
-        body.dark .product-card h4 { color: #fff; }
-        body.dark .product-card .price { color: #f5c34b; }
-        body.dark .tabs { background: #1a1a24; border-color: #2a2a3a; }
-        body.dark .tab-btn { color: #8a7fa0; }
-        body.dark .tab-btn.active { background: #c9a03a; color: #fff; }
-        body.dark .search-box { background: #1a1a24; border-color: #2a2a3a; color: #fff; }
-        body.dark .cart-item { background: #1a1a24; border-left-color: #c9a03a; }
-        body.dark .cart-item .item-info h5 { color: #fff; }
-        body.dark .cart-item .item-price { color: #fff; }
-        body.dark .cart-total { color: #fff; }
-        body.dark .faq-item { background: #1a1a24; border-color: #2a2a3a; }
-        body.dark .faq-item .question { color: #fff; }
-        body.dark .faq-item .answer { color: #b0b0c0; }
-        body.dark .footer-whats { background: #1a1a24; border-color: #2a2a3a; }
-        body.dark .footer-whats span { color: #b0b0c0; }
-        body.dark .creditos { color: #6a5f80; }
-        body.dark .creditos a { color: #f5c34b; }
-        body.dark .discount-input input { background: #1a1a24; border-color: #2a2a3a; color: #fff; }
-        body.dark .modal-box { background: #12121a; border-color: #2a2a3a; }
-        body.dark .modal-box h3 { color: #f5c34b; }
-        body.dark .modal-options button { background: #1a1a24; border-color: #2a2a3a; color: #e0d6f0; }
-        body.dark .modal-options button:hover { border-color: #c9a03a; background: #222a3a; }
-        body.dark .cart-float { background: #1a1a24; border-color: #c9a03a; }
-        body.dark .cart-float .total { color: #fff; }
-        body.dark .back-top { background: #1a1a24; border-color: #c9a03a; color: #c9a03a; }
-        body.dark .back-top:hover { background: #c9a03a; color: #fff; }
-        body.dark .categoria-card { background: #1a1a24; border-color: #2a2a3a; }
-        body.dark .categoria-card span { color: #e0d6f0; }
-        body.dark .frete-box { background: #1a1a24; border-color: #2a2a3a; }
-        body.dark .frete-box input { background: #1a1a24; border-color: #2a2a3a; color: #fff; }
+        /* ===== RESET E BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+        body {
+            background: #f5f3f0;
+            color: #1a1a2e;
+            display: flex;
+            justify-content: center;
+            padding: 16px;
+            min-height: 100vh;
+            transition: background 0.3s, color 0.3s;
+        }
+        .container {
+            max-width: 520px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 32px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.06);
+            padding: 20px 16px 30px;
+            position: relative;
+            transition: background 0.3s;
+        }
 
-        .gold { color: #c9a03a; }
-        .gold-bg { background: #c9a03a; color: #fff; }
-        .btn-primary { background: #c9a03a; color: #fff; border: none; padding: 12px 24px; border-radius: 60px; font-weight: 700; font-size: 15px; cursor: pointer; transition: 0.2s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
-        .btn-primary:hover { background: #b08a2e; transform: scale(1.02); }
-        .btn-secondary { background: transparent; color: #1a1a2e; border: 2px solid #dcd7d2; padding: 12px 24px; border-radius: 60px; font-weight: 600; font-size: 15px; cursor: pointer; transition: 0.2s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
-        .btn-secondary:hover { border-color: #c9a03a; background: #faf8f6; }
+        /* ===== TEMA ESCURO ===== */
+        body.dark {
+            background: #0a0a0f;
+            color: #e0d6f0;
+        }
+        body.dark .container {
+            background: #12121a;
+        }
+        body.dark .hero {
+            background: #1a1a24;
+            border-color: #2a2a3a;
+        }
+        body.dark .hero h1 {
+            color: #fff;
+        }
+        body.dark .hero p {
+            color: #b0b0c0;
+        }
+        body.dark .btn-secondary {
+            border-color: #3a3a4a;
+            color: #e0d6f0;
+        }
+        body.dark .btn-secondary:hover {
+            border-color: #c9a03a;
+            background: #1a1a24;
+        }
+        body.dark .product-card {
+            background: #1a1a24;
+            border-color: #2a2a3a;
+        }
+        body.dark .product-card h4 {
+            color: #fff;
+        }
+        body.dark .product-card .price {
+            color: #f5c34b;
+        }
+        body.dark .tabs {
+            background: #1a1a24;
+            border-color: #2a2a3a;
+        }
+        body.dark .tab-btn {
+            color: #8a7fa0;
+        }
+        body.dark .tab-btn.active {
+            background: #c9a03a;
+            color: #fff;
+        }
+        body.dark .search-box {
+            background: #1a1a24;
+            border-color: #2a2a3a;
+            color: #fff;
+        }
+        body.dark .cart-item {
+            background: #1a1a24;
+            border-left-color: #c9a03a;
+        }
+        body.dark .cart-item .item-info h5 {
+            color: #fff;
+        }
+        body.dark .cart-item .item-price {
+            color: #fff;
+        }
+        body.dark .cart-total {
+            color: #fff;
+        }
+        body.dark .faq-item {
+            background: #1a1a24;
+            border-color: #2a2a3a;
+        }
+        body.dark .faq-item .question {
+            color: #fff;
+        }
+        body.dark .faq-item .answer {
+            color: #b0b0c0;
+        }
+        body.dark .footer-whats {
+            background: #1a1a24;
+            border-color: #2a2a3a;
+        }
+        body.dark .footer-whats span {
+            color: #b0b0c0;
+        }
+        body.dark .creditos {
+            color: #6a5f80;
+        }
+        body.dark .creditos a {
+            color: #f5c34b;
+        }
+        body.dark .discount-input input {
+            background: #1a1a24;
+            border-color: #2a2a3a;
+            color: #fff;
+        }
+        body.dark .modal-box {
+            background: #12121a;
+            border-color: #2a2a3a;
+        }
+        body.dark .modal-box h3 {
+            color: #f5c34b;
+        }
+        body.dark .modal-options button {
+            background: #1a1a24;
+            border-color: #2a2a3a;
+            color: #e0d6f0;
+        }
+        body.dark .modal-options button:hover {
+            border-color: #c9a03a;
+            background: #222a3a;
+        }
+        body.dark .cart-float {
+            background: #1a1a24;
+            border-color: #c9a03a;
+        }
+        body.dark .cart-float .total {
+            color: #fff;
+        }
+        body.dark .back-top {
+            background: #1a1a24;
+            border-color: #c9a03a;
+            color: #c9a03a;
+        }
+        body.dark .back-top:hover {
+            background: #c9a03a;
+            color: #fff;
+        }
+        body.dark .categoria-card {
+            background: #1a1a24;
+            border-color: #2a2a3a;
+        }
+        body.dark .categoria-card span {
+            color: #e0d6f0;
+        }
+        body.dark .frete-box {
+            background: #1a1a24;
+            border-color: #2a2a3a;
+        }
+        body.dark .frete-box input {
+            background: #1a1a24;
+            border-color: #2a2a3a;
+            color: #fff;
+        }
 
-        .theme-toggle { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #6b6560; cursor: pointer; }
-        .theme-toggle .switch { width: 44px; height: 24px; background: #dcd7d2; border-radius: 60px; position: relative; transition: 0.3s; display: inline-block; }
-        .theme-toggle .switch::after { content: ''; width: 18px; height: 18px; background: #fff; border-radius: 50%; position: absolute; top: 3px; left: 3px; transition: 0.3s; }
-        body.dark .theme-toggle .switch { background: #3a3a4a; }
-        body.dark .theme-toggle .switch::after { left: 23px; background: #c9a03a; }
-        .theme-toggle i { font-size: 16px; }
+        /* ===== CORES ===== */
+        .gold {
+            color: #c9a03a;
+        }
+        .gold-bg {
+            background: #c9a03a;
+            color: #fff;
+        }
+        .btn-primary {
+            background: #c9a03a;
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-primary:hover {
+            background: #b08a2e;
+            transform: scale(1.02);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: #1a1a2e;
+            border: 2px solid #dcd7d2;
+            padding: 12px 24px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-secondary:hover {
+            border-color: #c9a03a;
+            background: #faf8f6;
+        }
 
-        .brand { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; flex-wrap: wrap; gap: 8px; }
-        .brand-left { display: flex; align-items: center; gap: 10px; }
-        .brand-icon { background: #c9a03a; color: #fff; width: 44px; height: 44px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 20px; }
-        .brand-text { font-weight: 700; font-size: 22px; color: #1a1a2e; }
-        .brand-text span { color: #c9a03a; }
-        body.dark .brand-text { color: #fff; }
-        .badge-whats { background: #25D366; color: #fff; padding: 6px 14px; border-radius: 60px; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; text-decoration: none; transition: 0.2s; }
-        .badge-whats:hover { transform: scale(1.04); }
+        /* ===== TOGGLE TEMA ===== */
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #6b6560;
+            cursor: pointer;
+        }
+        .theme-toggle .switch {
+            width: 44px;
+            height: 24px;
+            background: #dcd7d2;
+            border-radius: 60px;
+            position: relative;
+            transition: 0.3s;
+            display: inline-block;
+        }
+        .theme-toggle .switch::after {
+            content: '';
+            width: 18px;
+            height: 18px;
+            background: #fff;
+            border-radius: 50%;
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            transition: 0.3s;
+        }
+        body.dark .theme-toggle .switch {
+            background: #3a3a4a;
+        }
+        body.dark .theme-toggle .switch::after {
+            left: 23px;
+            background: #c9a03a;
+        }
+        .theme-toggle i {
+            font-size: 16px;
+        }
 
-        .datetime { text-align: center; font-size: 14px; color: #6b6560; padding: 4px 0; margin-bottom: 6px; border-bottom: 1px solid #e8e4e0; }
-        body.dark .datetime { border-color: #2a2a3a; color: #8a7fa0; }
+        /* ===== HEADER ===== */
+        .brand {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 6px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .brand-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .brand-icon {
+            background: #c9a03a;
+            color: #fff;
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 20px;
+        }
+        .brand-text {
+            font-weight: 700;
+            font-size: 22px;
+            color: #1a1a2e;
+        }
+        .brand-text span {
+            color: #c9a03a;
+        }
+        body.dark .brand-text {
+            color: #fff;
+        }
+        .badge-whats {
+            background: #25D366;
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 60px;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .badge-whats:hover {
+            transform: scale(1.04);
+        }
 
-        .daily-top { background: #faf8f7; border-radius: 16px; padding: 10px 14px; margin: 6px 0 12px; border: 1px solid #e8e4e0; text-align: center; display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; }
-        .daily-top i { color: #d9534f; font-size: 18px; }
-        .daily-top .offer-text { font-weight: 600; color: #1a1a2e; }
-        .daily-top .offer-text .destaque { color: #c9a03a; }
-        .daily-top .offer-text .desconto { color: #d9534f; font-weight: 700; }
-        body.dark .daily-top { background: #1a1a24; border-color: #2a2a3a; }
-        body.dark .daily-top .offer-text { color: #fff; }
+        /* ===== DATA E HORA ===== */
+        .datetime {
+            text-align: center;
+            font-size: 14px;
+            color: #6b6560;
+            padding: 4px 0;
+            margin-bottom: 6px;
+            border-bottom: 1px solid #e8e4e0;
+        }
+        body.dark .datetime {
+            border-color: #2a2a3a;
+            color: #8a7fa0;
+        }
 
-        .hero { background: #faf8f6; border-radius: 24px; padding: 20px 18px; margin: 4px 0 12px; border: 1px solid #e8e4e0; text-align: center; }
-        .hero h1 { font-size: 24px; font-weight: 800; color: #1a1a2e; line-height: 1.2; }
-        .hero h1 span { color: #c9a03a; }
-        .hero p { font-size: 15px; color: #4a4540; margin: 6px 0 14px; line-height: 1.5; }
-        .hero .btn-group { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+        /* ===== OFERTA DIÁRIA ===== */
+        .daily-top {
+            background: #faf8f7;
+            border-radius: 16px;
+            padding: 10px 14px;
+            margin: 6px 0 12px;
+            border: 1px solid #e8e4e0;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .daily-top i {
+            color: #d9534f;
+            font-size: 18px;
+        }
+        .daily-top .offer-text {
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+        .daily-top .offer-text .destaque {
+            color: #c9a03a;
+        }
+        .daily-top .offer-text .desconto {
+            color: #d9534f;
+            font-weight: 700;
+        }
+        body.dark .daily-top {
+            background: #1a1a24;
+            border-color: #2a2a3a;
+        }
+        body.dark .daily-top .offer-text {
+            color: #fff;
+        }
 
-        .atendimento-box { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; font-size: 13px; color: #4a4540; margin: 4px 0 10px; }
-        .atendimento-box span { background: #faf8f7; padding: 4px 12px; border-radius: 40px; border: 1px solid #e8e4e0; }
-        body.dark .atendimento-box span { background: #1a1a24; border-color: #2a2a3a; color: #b0b0c0; }
+        /* ===== HERO ===== */
+        .hero {
+            background: #faf8f6;
+            border-radius: 24px;
+            padding: 20px 18px;
+            margin: 4px 0 12px;
+            border: 1px solid #e8e4e0;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 24px;
+            font-weight: 800;
+            color: #1a1a2e;
+            line-height: 1.2;
+        }
+        .hero h1 span {
+            color: #c9a03a;
+        }
+        .hero p {
+            font-size: 15px;
+            color: #4a4540;
+            margin: 6px 0 14px;
+            line-height: 1.5;
+        }
+        .hero .btn-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
 
-        .categorias { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 6px; margin: 10px 0; }
-        .categoria-card { background: #faf8f7; border-radius: 14px; padding: 8px 4px; text-align: center; border: 1px solid #e8e4e0; cursor: pointer; transition: 0.2s; }
-        .categoria-card:hover { border-color: #c9a03a; transform: translateY(-2px); }
-        .categoria-card i { font-size: 22px; color: #c9a03a; display: block; margin-bottom: 2px; }
-        .categoria-card span { font-size: 11px; font-weight: 500; color: #1a1a2e; }
+        /* ===== ATENDIMENTO ===== */
+        .atendimento-box {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            font-size: 13px;
+            color: #4a4540;
+            margin: 4px 0 10px;
+        }
+        .atendimento-box span {
+            background: #faf8f7;
+            padding: 4px 12px;
+            border-radius: 40px;
+            border: 1px solid #e8e4e0;
+        }
+        body.dark .atendimento-box span {
+            background: #1a1a24;
+            border-color: #2a2a3a;
+            color: #b0b0c0;
+        }
 
-        .tabs { display: flex; gap: 6px; background: #f0edea; border-radius: 60px; padding: 4px; margin: 12px 0 18px; border: 1px solid #e0dbd7; }
-        .tab-btn { flex: 1; background: transparent; border: none; color: #6b6560; padding: 10px 0; border-radius: 40px; font-weight: 600; font-size: 13px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px; transition: 0.2s; }
-        .tab-btn i { font-size: 14px; }
-        .tab-btn.active { background: #c9a03a; color: #fff; box-shadow: 0 4px 12px rgba(201,160,58,0.25); }
-        .tab-btn:hover:not(.active) { color: #1a1a2e; }
-        .tab-content { display: none; animation: fadeIn 0.3s ease; }
-        .tab-content.active { display: block; }
-        @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+        /* ===== CATEGORIAS ===== */
+        .categorias {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 6px;
+            margin: 10px 0;
+        }
+        .categoria-card {
+            background: #faf8f7;
+            border-radius: 14px;
+            padding: 8px 4px;
+            text-align: center;
+            border: 1px solid #e8e4e0;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .categoria-card:hover {
+            border-color: #c9a03a;
+            transform: translateY(-2px);
+        }
+        .categoria-card i {
+            font-size: 22px;
+            color: #c9a03a;
+            display: block;
+            margin-bottom: 2px;
+        }
+        .categoria-card span {
+            font-size: 11px;
+            font-weight: 500;
+            color: #1a1a2e;
+        }
 
-        .section-title { display: flex; align-items: baseline; justify-content: space-between; margin: 12px 0 8px; }
-        .section-title h3 { font-size: 18px; font-weight: 700; color: #1a1a2e; }
-        .section-title .tag { background: #c9a03a; color: #fff; font-size: 10px; font-weight: 700; padding: 3px 12px; border-radius: 40px; }
+        /* ===== TABS ===== */
+        .tabs {
+            display: flex;
+            gap: 6px;
+            background: #f0edea;
+            border-radius: 60px;
+            padding: 4px;
+            margin: 12px 0 18px;
+            border: 1px solid #e0dbd7;
+        }
+        .tab-btn {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: #6b6560;
+            padding: 10px 0;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            transition: 0.2s;
+        }
+        .tab-btn i {
+            font-size: 14px;
+        }
+        .tab-btn.active {
+            background: #c9a03a;
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(201, 160, 58, 0.25);
+        }
+        .tab-btn:hover:not(.active) {
+            color: #1a1a2e;
+        }
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-        .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .product-card { background: #faf8f7; border-radius: 18px; padding: 12px 10px 10px; border: 1px solid #e8e4e0; transition: 0.3s ease; position: relative; }
-        .product-card:hover { border-color: #c9a03a; transform: translateY(-4px); box-shadow: 0 8px 24px rgba(201,160,58,0.08); }
-        .product-card .etiqueta { position: absolute; top: -6px; right: -6px; background: #d9534f; color: #fff; font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 40px; text-transform: uppercase; }
-        .product-card .etiqueta.oferta { background: #ff6b35; }
-        .product-card .etiqueta.novo { background: #4caf50; }
-        .product-card .etiqueta.mais-vendido { background: #c9a03a; }
-        .product-card h4 { font-size: 14px; font-weight: 600; color: #1a1a2e; }
-        .product-card .price-group { margin: 4px 0 6px; }
-        .product-card .price-group .price { font-weight: 700; font-size: 15px; color: #c9a03a; }
-        .product-card .price-group .price small { font-weight: 400; font-size: 11px; color: #6b6560; }
-        .product-card .desc { font-size: 12px; color: #6b6560; margin: 2px 0 6px; }
-        .btn-add { background: #c9a03a; color: #fff; border: none; border-radius: 60px; padding: 6px 0; font-size: 12px; font-weight: 600; width: 100%; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px; transition: 0.2s; }
-        .btn-add:hover { background: #b08a2e; transform: scale(1.02); }
-        .btn-ver-mais { background: transparent; border: 1px solid #dcd7d2; border-radius: 60px; padding: 4px 0; font-size: 11px; font-weight: 500; width: 100%; cursor: pointer; transition: 0.2s; margin-top: 4px; color: #1a1a2e; }
-        .btn-ver-mais:hover { border-color: #c9a03a; background: #faf8f7; }
+        /* ===== PRODUTOS ===== */
+        .section-title {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            margin: 12px 0 8px;
+        }
+        .section-title h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a1a2e;
+        }
+        .section-title .tag {
+            background: #c9a03a;
+            color: #fff;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 3px 12px;
+            border-radius: 40px;
+        }
 
-        .search-box { width: 100%; padding: 10px 14px; border-radius: 60px; border: 1px solid #dcd7d2; background: #fff; color: #1a1a2e; outline: none; font-size: 14px; margin-bottom: 10px; }
-        .search-box:focus { border-color: #c9a03a; }
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .product-card {
+            background: #faf8f7;
+            border-radius: 18px;
+            padding: 12px 10px 10px;
+            border: 1px solid #e8e4e0;
+            transition: 0.3s ease;
+            position: relative;
+        }
+        .product-card:hover {
+            border-color: #c9a03a;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(201, 160, 58, 0.08);
+        }
+        .product-card .etiqueta {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            background: #d9534f;
+            color: #fff;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 40px;
+            text-transform: uppercase;
+        }
+        .product-card .etiqueta.oferta {
+            background: #ff6b35;
+        }
+        .product-card .etiqueta.novo {
+            background: #4caf50;
+        }
+        .product-card .etiqueta.mais-vendido {
+            background: #c9a03a;
+        }
+        .product-card h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+        .product-card .price-group {
+            margin: 4px 0 6px;
+        }
+        .product-card .price-group .price {
+            font-weight: 700;
+            font-size: 15px;
+            color: #c9a03a;
+        }
+        .product-card .price-group .price small {
+            font-weight: 400;
+            font-size: 11px;
+            color: #6b6560;
+        }
+        .product-card .desc {
+            font-size: 12px;
+            color: #6b6560;
+            margin: 2px 0 6px;
+        }
+        .btn-add {
+            background: #c9a03a;
+            color: #fff;
+            border: none;
+            border-radius: 60px;
+            padding: 6px 0;
+            font-size: 12px;
+            font-weight: 600;
+            width: 100%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            transition: 0.2s;
+        }
+        .btn-add:hover {
+            background: #b08a2e;
+            transform: scale(1.02);
+        }
+        .btn-ver-mais {
+            background: transparent;
+            border: 1px solid #dcd7d2;
+            border-radius: 60px;
+            padding: 4px 0;
+            font-size: 11px;
+            font-weight: 500;
+            width: 100%;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 4px;
+            color: #1a1a2e;
+        }
+        .btn-ver-mais:hover {
+            border-color: #c9a03a;
+            background: #faf8f7;
+        }
 
-        .detalhe-produto { background: #faf8f7; border-radius: 24px; padding: 20px 16px; border: 1px solid #e8e4e0; }
-        .detalhe-produto .voltar { color: #c9a03a; cursor: pointer; font-weight: 600; margin-bottom: 12px; display: inline-block; }
-        .detalhe-produto .voltar:hover { text-decoration: underline; }
-        .detalhe-produto h2 { font-size: 22px; color: #1a1a2e; margin-bottom: 4px; }
-        .detalhe-produto .preco-grande { font-size: 28px; font-weight: 700; color: #c9a03a; margin: 6px 0; }
-        .detalhe-produto .descricao { color: #4a4540; margin: 8px 0; }
-        .detalhe-produto .espec { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
-        .detalhe-produto .espec span { background: #fff; padding: 4px 12px; border-radius: 40px; border: 1px solid #e8e4e0; font-size: 12px; }
-        body.dark .detalhe-produto .espec span { background: #1a1a24; border-color: #2a2a3a; color: #e0d6f0; }
-        .detalhe-produto .btn-add-grande { background: #c9a03a; color: #fff; border: none; border-radius: 60px; padding: 14px; font-weight: 700; font-size: 18px; width: 100%; cursor: pointer; transition: 0.2s; margin-top: 10px; }
-        .detalhe-produto .btn-add-grande:hover { background: #b08a2e; }
+        .search-box {
+            width: 100%;
+            padding: 10px 14px;
+            border-radius: 60px;
+            border: 1px solid #dcd7d2;
+            background: #fff;
+            color: #1a1a2e;
+            outline: none;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .search-box:focus {
+            border-color: #c9a03a;
+        }
 
-        .cart-item { display: flex; justify-content: space-between; align-items: center; background: #faf8f7; padding: 8px 12px; border-radius: 14px; margin: 4px 0; border-left: 3px solid #c9a03a; }
-        .cart-item .item-info { flex: 1; }
-        .cart-item .item-info h5 { color: #1a1a2e; font-size: 14px; }
-        .cart-item .item-info span { font-size: 12px; color: #6b6560; }
-        .cart-item .item-price { font-weight: 700; color: #1a1a2e; font-size: 14px; }
-        .cart-item .btn-remove { background: none; border: none; color: #c9a03a; font-size: 16px; cursor: pointer; padding: 0 4px; }
+        /* ===== DETALHE DO PRODUTO ===== */
+        .detalhe-produto {
+            background: #faf8f7;
+            border-radius: 24px;
+            padding: 20px 16px;
+            border: 1px solid #e8e4e0;
+        }
+        .detalhe-produto .voltar {
+            color: #c9a03a;
+            cursor: pointer;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: inline-block;
+        }
+        .detalhe-produto .voltar:hover {
+            text-decoration: underline;
+        }
+        .detalhe-produto h2 {
+            font-size: 22px;
+            color: #1a1a2e;
+            margin-bottom: 4px;
+        }
+        .detalhe-produto .preco-grande {
+            font-size: 28px;
+            font-weight: 700;
+            color: #c9a03a;
+            margin: 6px 0;
+        }
+        .detalhe-produto .descricao {
+            color: #4a4540;
+            margin: 8px 0;
+        }
+        .detalhe-produto .espec {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 10px 0;
+        }
+        .detalhe-produto .espec span {
+            background: #fff;
+            padding: 4px 12px;
+            border-radius: 40px;
+            border: 1px solid #e8e4e0;
+            font-size: 12px;
+        }
+        body.dark .detalhe-produto .espec span {
+            background: #1a1a24;
+            border-color: #2a2a3a;
+            color: #e0d6f0;
+        }
+        .detalhe-produto .btn-add-grande {
+            background: #c9a03a;
+            color: #fff;
+            border: none;
+            border-radius: 60px;
+            padding: 14px;
+            font-weight: 700;
+            font-size: 18px;
+            width: 100%;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 10px;
+        }
+        .detalhe-produto .btn-add-grande:hover {
+            background: #b08a2e;
+        }
 
-        .cart-total { text-align: right; font-size: 20px; font-weight: 700; color: #1a1a2e; margin: 10px 0 4px; }
-        .cart-total span { color: #c9a03a; }
+        /* ===== CARRINHO ===== */
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #faf8f7;
+            padding: 8px 12px;
+            border-radius: 14px;
+            margin: 4px 0;
+            border-left: 3px solid #c9a03a;
+        }
+        .cart-item .item-info {
+            flex: 1;
+        }
+        .cart-item .item-info h5 {
+            color: #1a1a2e;
+            font-size: 14px;
+        }
+        .cart-item .item-info span {
+            font-size: 12px;
+            color: #6b6560;
+        }
+        .cart-item .item-price {
+            font-weight: 700;
+            color: #1a1a2e;
+            font-size: 14px;
+        }
+        .cart-item .btn-remove {
+            background: none;
+            border: none;
+            color: #c9a03a;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 0 4px;
+        }
 
-        .frete-box { background: #faf8f7; border-radius: 16px; padding: 12px; margin: 8px 0; border: 1px solid #e8e4e0; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-        .frete-box input { flex: 2; padding: 8px 12px; border-radius: 60px; border: 1px solid #dcd7d2; background: #fff; color: #1a1a2e; outline: none; font-size: 14px; min-width: 100px; }
-        .frete-box input:focus { border-color: #c9a03a; }
-        .frete-box button { background: #c9a03a; color: #fff; border: none; border-radius: 60px; padding: 8px 16px; font-weight: 600; cursor: pointer; flex: 0 0 auto; }
-        .frete-box .resultado { font-size: 14px; color: #1a1a2e; width: 100%; margin-top: 4px; }
-        .frete-box .resultado .valor { font-weight: 700; color: #c9a03a; }
-        .frete-box .resultado .prazo { color: #6b6560; }
+        .cart-total {
+            text-align: right;
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin: 10px 0 4px;
+        }
+        .cart-total span {
+            color: #c9a03a;
+        }
 
-        .discount-input { display: flex; gap: 6px; margin: 8px 0; }
-        .discount-input input { flex: 1; padding: 8px 12px; border-radius: 60px; border: 1px solid #dcd7d2; background: #fff; color: #1a1a2e; outline: none; font-size: 14px; }
-        .discount-input input:focus { border-color: #c9a03a; }
-        .discount-input button { background: #c9a03a; color: #fff; border: none; border-radius: 60px; padding: 8px 18px; font-weight: 600; cursor: pointer; }
+        /* ===== FRETE ===== */
+        .frete-box {
+            background: #faf8f7;
+            border-radius: 16px;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #e8e4e0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+        }
+        .frete-box input {
+            flex: 2;
+            padding: 8px 12px;
+            border-radius: 60px;
+            border: 1px solid #dcd7d2;
+            background: #fff;
+            color: #1a1a2e;
+            outline: none;
+            font-size: 14px;
+            min-width: 100px;
+        }
+        .frete-box input:focus {
+            border-color: #c9a03a;
+        }
+        .frete-box button {
+            background: #c9a03a;
+            color: #fff;
+            border: none;
+            border-radius: 60px;
+            padding: 8px 16px;
+            font-weight: 600;
+            cursor: pointer;
+            flex: 0 0 auto;
+        }
+        .frete-box .resultado {
+            font-size: 14px;
+            color: #1a1a2e;
+            width: 100%;
+            margin-top: 4px;
+        }
+        .frete-box .resultado .valor {
+            font-weight: 700;
+            color: #c9a03a;
+        }
+        .frete-box .resultado .prazo {
+            color: #6b6560;
+        }
 
-        .btn-mp { background: #009ee3; color: #fff; border: none; border-radius: 60px; padding: 14px 0; font-weight: 700; font-size: 17px; width: 100%; cursor: pointer; margin-top: 6px; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.2s; }
-        .btn-mp:hover { background: #0079b3; transform: scale(1.01); }
-        .mp-label { text-align: center; color: #6b6560; font-size: 13px; margin-top: 2px; font-weight: 500; }
+        /* ===== CUPOM ===== */
+        .discount-input {
+            display: flex;
+            gap: 6px;
+            margin: 8px 0;
+        }
+        .discount-input input {
+            flex: 1;
+            padding: 8px 12px;
+            border-radius: 60px;
+            border: 1px solid #dcd7d2;
+            background: #fff;
+            color: #1a1a2e;
+            outline: none;
+            font-size: 14px;
+        }
+        .discount-input input:focus {
+            border-color: #c9a03a;
+        }
+        .discount-input button {
+            background: #c9a03a;
+            color: #fff;
+            border: none;
+            border-radius: 60px;
+            padding: 8px 18px;
+            font-weight: 600;
+            cursor: pointer;
+        }
 
-        .faq-item { background: #faf8f7; border-radius: 16px; padding: 12px 14px; margin: 6px 0; border: 1px solid #e8e4e0; }
-        .faq-item .question { font-weight: 600; color: #1a1a2e; cursor: pointer; display: flex; justify-content: space-between; }
-        .faq-item .answer { display: none; margin-top: 6px; color: #4a4540; font-size: 14px; }
-        .faq-item .answer.show { display: block; }
+        /* ===== BOTÃO MERCADO PAGO ===== */
+        .btn-mp {
+            background: #009ee3;
+            color: #fff;
+            border: none;
+            border-radius: 60px;
+            padding: 14px 0;
+            font-weight: 700;
+            font-size: 17px;
+            width: 100%;
+            cursor: pointer;
+            margin-top: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: 0.2s;
+        }
+        .btn-mp:hover {
+            background: #0079b3;
+            transform: scale(1.01);
+        }
+        .mp-label {
+            text-align: center;
+            color: #6b6560;
+            font-size: 13px;
+            margin-top: 2px;
+            font-weight: 500;
+        }
 
-        .cart-float { position: fixed; bottom: 20px; right: 20px; background: #ffffff; border: 2px solid #c9a03a; border-radius: 60px; padding: 12px 18px; display: flex; align-items: center; gap: 10px; cursor: pointer; z-index: 999; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: 0.3s; }
-        .cart-float:hover { transform: scale(1.05); }
-        .cart-float .icon { font-size: 22px; color: #c9a03a; }
-        .cart-float .count { background: #c9a03a; color: #fff; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; }
-        .cart-float .total { font-weight: 700; color: #1a1a2e; font-size: 15px; }
+        /* ===== FAQ ===== */
+        .faq-item {
+            background: #faf8f7;
+            border-radius: 16px;
+            padding: 12px 14px;
+            margin: 6px 0;
+            border: 1px solid #e8e4e0;
+        }
+        .faq-item .question {
+            font-weight: 600;
+            color: #1a1a2e;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+        }
+        .faq-item .answer {
+            display: none;
+            margin-top: 6px;
+            color: #4a4540;
+            font-size: 14px;
+        }
+        .faq-item .answer.show {
+            display: block;
+        }
 
-        .whatsapp-float { position: fixed; bottom: 90px; right: 20px; background: #25D366; color: #fff; width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; box-shadow: 0 6px 20px rgba(37,211,102,0.3); z-index: 998; cursor: pointer; transition: 0.3s; text-decoration: none; }
-        .whatsapp-float:hover { transform: scale(1.1); }
-        .back-top { position: fixed; bottom: 160px; right: 20px; background: #fff; border: 1px solid #c9a03a; color: #c9a03a; width: 44px; height: 44px; border-radius: 50%; display: none; align-items: center; justify-content: center; font-size: 20px; cursor: pointer; z-index: 997; transition: 0.3s; }
-        .back-top:hover { background: #c9a03a; color: #fff; }
+        /* ===== CARRINHO FLUTUANTE ===== */
+        .cart-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #ffffff;
+            border: 2px solid #c9a03a;
+            border-radius: 60px;
+            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: 0.3s;
+        }
+        .cart-float:hover {
+            transform: scale(1.05);
+        }
+        .cart-float .icon {
+            font-size: 22px;
+            color: #c9a03a;
+        }
+        .cart-float .count {
+            background: #c9a03a;
+            color: #fff;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 13px;
+        }
+        .cart-float .total {
+            font-weight: 700;
+            color: #1a1a2e;
+            font-size: 15px;
+        }
 
-        .footer-whats { margin-top: 20px; background: #faf8f7; border-radius: 60px; padding: 12px 18px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px; border: 1px solid #e8e4e0; }
-        .footer-whats span { font-weight: 500; color: #4a4540; font-size: 14px; }
-        .btn-social { padding: 6px 18px; border-radius: 60px; font-weight: 700; font-size: 13px; color: #fff; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; border: none; cursor: pointer; transition: 0.2s; }
-        .btn-social.whats { background: #25D366; }
-        .btn-social.telegram { background: #0088cc; }
-        .btn-social:hover { transform: scale(1.04); }
-        .creditos { margin-top: 14px; font-size: 11px; color: #6b6560; text-align: center; line-height: 1.6; }
-        .creditos a { color: #c9a03a; text-decoration: none; }
+        /* ===== WHATSAPP E BACK TO TOP ===== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            background: #25D366;
+            color: #fff;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
+            z-index: 998;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+        .back-top {
+            position: fixed;
+            bottom: 160px;
+            right: 20px;
+            background: #fff;
+            border: 1px solid #c9a03a;
+            color: #c9a03a;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 997;
+            transition: 0.3s;
+        }
+        .back-top:hover {
+            background: #c9a03a;
+            color: #fff;
+        }
 
-        .toast { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #fff; border: 1px solid #c9a03a; color: #1a1a2e; padding: 12px 24px; border-radius: 60px; z-index: 9999; box-shadow: 0 10px 30px rgba(0,0,0,0.08); font-weight: 500; display: none; }
-        .toast.show { display: block; animation: fadeIn 0.5s; }
+        /* ===== FOOTER ===== */
+        .footer-whats {
+            margin-top: 20px;
+            background: #faf8f7;
+            border-radius: 60px;
+            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 6px;
+            border: 1px solid #e8e4e0;
+        }
+        .footer-whats span {
+            font-weight: 500;
+            color: #4a4540;
+            font-size: 14px;
+        }
+        .btn-social {
+            padding: 6px 18px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 13px;
+            color: #fff;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-social.whats {
+            background: #25D366;
+        }
+        .btn-social.telegram {
+            background: #0088cc;
+        }
+        .btn-social:hover {
+            transform: scale(1.04);
+        }
+        .creditos {
+            margin-top: 14px;
+            font-size: 11px;
+            color: #6b6560;
+            text-align: center;
+            line-height: 1.6;
+        }
+        .creditos a {
+            color: #c9a03a;
+            text-decoration: none;
+        }
 
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.2); backdrop-filter: blur(2px); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
-        .modal-overlay.active { display: flex; }
-        .modal-box { background: #fff; border-radius: 28px; max-width: 380px; width: 100%; padding: 24px 20px; border: 1px solid #e8e4e0; box-shadow: 0 20px 60px rgba(0,0,0,0.06); animation: fadeIn 0.25s ease; }
-        .modal-box h3 { color: #c9a03a; font-size: 20px; margin-bottom: 4px; }
-        .modal-box p { color: #4a4540; font-size: 14px; margin-bottom: 14px; }
-        .modal-options { display: flex; flex-direction: column; gap: 8px; }
-        .modal-options button { padding: 12px; border-radius: 60px; font-weight: 600; font-size: 15px; border: 2px solid #e8e4e0; background: #fff; color: #1a1a2e; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: 0.2s; }
-        .modal-options button:hover { border-color: #c9a03a; background: #faf8f7; }
-        .modal-options button .price-tag { color: #c9a03a; font-weight: 700; }
-        .modal-close { margin-top: 14px; background: transparent; border: 1px solid #dcd7d2; color: #6b6560; padding: 10px; border-radius: 60px; width: 100%; cursor: pointer; font-weight: 500; }
-        .modal-close:hover { background: #f0edea; }
+        /* ===== TOAST ===== */
+        .toast {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #fff;
+            border: 1px solid #c9a03a;
+            color: #1a1a2e;
+            padding: 12px 24px;
+            border-radius: 60px;
+            z-index: 9999;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            font-weight: 500;
+            display: none;
+        }
+        .toast.show {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
 
-        .payment-return { display: none; text-align: center; padding: 30px 10px; animation: fadeIn 0.8s; }
-        .payment-return.active { display: block; }
-        .payment-return .icon { font-size: 72px; margin-bottom: 16px; }
-        .payment-return h2 { font-size: 28px; color: #c9a03a; margin-bottom: 8px; }
-        .payment-return p { font-size: 16px; color: #4a4540; margin: 6px 0; }
-        .payment-return .countdown { font-size: 48px; font-weight: 700; color: #c9a03a; margin: 12px 0; }
-        .payment-return .spinner { width: 48px; height: 48px; border: 4px solid #e8e4e0; border-top-color: #c9a03a; border-radius: 50%; animation: spin 1s linear infinite; margin: 12px auto; }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        .confetti-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; overflow: hidden; }
-        .confetti { position: absolute; width: 10px; height: 10px; opacity: 0.8; animation: fall linear forwards; }
-        @keyframes fall { 0% { transform: translateY(-10px) rotate(0deg); opacity: 1; } 100% { transform: translateY(110vh) rotate(720deg); opacity: 0; } }
+        /* ===== MODAL ===== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(2px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        .modal-box {
+            background: #fff;
+            border-radius: 28px;
+            max-width: 380px;
+            width: 100%;
+            padding: 24px 20px;
+            border: 1px solid #e8e4e0;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.06);
+            animation: fadeIn 0.25s ease;
+        }
+        .modal-box h3 {
+            color: #c9a03a;
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+        .modal-box p {
+            color: #4a4540;
+            font-size: 14px;
+            margin-bottom: 14px;
+        }
+        .modal-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .modal-options button {
+            padding: 12px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 15px;
+            border: 2px solid #e8e4e0;
+            background: #fff;
+            color: #1a1a2e;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: 0.2s;
+        }
+        .modal-options button:hover {
+            border-color: #c9a03a;
+            background: #faf8f7;
+        }
+        .modal-options button .price-tag {
+            color: #c9a03a;
+            font-weight: 700;
+        }
+        .modal-close {
+            margin-top: 14px;
+            background: transparent;
+            border: 1px solid #dcd7d2;
+            color: #6b6560;
+            padding: 10px;
+            border-radius: 60px;
+            width: 100%;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        .modal-close:hover {
+            background: #f0edea;
+        }
 
+        /* ===== PÁGINA DE RETORNO ===== */
+        .payment-return {
+            display: none;
+            text-align: center;
+            padding: 30px 10px;
+            animation: fadeIn 0.8s;
+        }
+        .payment-return.active {
+            display: block;
+        }
+        .payment-return .icon {
+            font-size: 72px;
+            margin-bottom: 16px;
+        }
+        .payment-return h2 {
+            font-size: 28px;
+            color: #c9a03a;
+            margin-bottom: 8px;
+        }
+        .payment-return p {
+            font-size: 16px;
+            color: #4a4540;
+            margin: 6px 0;
+        }
+        .payment-return .countdown {
+            font-size: 48px;
+            font-weight: 700;
+            color: #c9a03a;
+            margin: 12px 0;
+        }
+        .payment-return .spinner {
+            width: 48px;
+            height: 48px;
+            border: 4px solid #e8e4e0;
+            border-top-color: #c9a03a;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 12px auto;
+        }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            overflow: hidden;
+        }
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            opacity: 0.8;
+            animation: fall linear forwards;
+        }
+        @keyframes fall {
+            0% {
+                transform: translateY(-10px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* ===== RESPONSIVIDADE ===== */
         @media (max-width: 440px) {
-            .product-grid { grid-template-columns: 1fr; }
-            .tabs .tab-btn { font-size: 11px; padding: 8px 0; }
-            .container { padding: 14px 10px; }
-            .hero h1 { font-size: 22px; }
-            .hero .btn-group { flex-direction: column; }
-            .hero .btn-primary, .hero .btn-secondary { width: 100%; justify-content: center; }
-            .cart-float { padding: 10px 14px; font-size: 13px; }
-            .whatsapp-float { width: 48px; height: 48px; font-size: 24px; bottom: 80px; }
-            .back-top { bottom: 140px; width: 38px; height: 38px; font-size: 16px; }
-            .brand { flex-direction: column; align-items: stretch; gap: 8px; }
-            .badge-whats { justify-content: center; }
-            .categorias { grid-template-columns: 1fr 1fr 1fr; }
-            .atendimento-box { font-size: 12px; }
-            .frete-box { flex-direction: column; align-items: stretch; }
-            .frete-box input { width: 100%; }
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            .tabs .tab-btn {
+                font-size: 11px;
+                padding: 8px 0;
+            }
+            .container {
+                padding: 14px 10px;
+            }
+            .hero h1 {
+                font-size: 22px;
+            }
+            .hero .btn-group {
+                flex-direction: column;
+            }
+            .hero .btn-primary,
+            .hero .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+            .cart-float {
+                padding: 10px 14px;
+                font-size: 13px;
+            }
+            .whatsapp-float {
+                width: 48px;
+                height: 48px;
+                font-size: 24px;
+                bottom: 80px;
+            }
+            .back-top {
+                bottom: 140px;
+                width: 38px;
+                height: 38px;
+                font-size: 16px;
+            }
+            .brand {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 8px;
+            }
+            .badge-whats {
+                justify-content: center;
+            }
+            .categorias {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+            .atendimento-box {
+                font-size: 12px;
+            }
+            .frete-box {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .frete-box input {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
 
-<div class="toast" id="toast"></div>
+    <div class="toast" id="toast"></div>
 
-<div class="container" id="app">
+    <div class="container" id="app">
 
-    <!-- HEADER -->
-    <div class="brand">
-        <div class="brand-left">
-            <div class="brand-icon">CC</div>
-            <div class="brand-text">Cozinha <span>& Cia</span></div>
-        </div>
-        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-            <div class="theme-toggle" onclick="toggleTheme()">
-                <i class="fas fa-sun" id="themeIcon"></i>
-                <span class="switch" id="themeSwitch"></span>
-                <i class="fas fa-moon" id="themeIconDark"></i>
+        <!-- HEADER -->
+        <div class="brand">
+            <div class="brand-left">
+                <div class="brand-icon">CC</div>
+                <div class="brand-text">Cozinha <span>& Cia</span></div>
             </div>
-            <a href="https://wa.me/5511914830656" target="_blank" class="badge-whats"><i class="fab fa-whatsapp"></i> Fale já</a>
-        </div>
-    </div>
-
-    <!-- DATA E HORA -->
-    <div class="datetime" id="datetimeDisplay">Carregando data...</div>
-
-    <!-- DESCONTO DIÁRIO -->
-    <div class="daily-top" id="dailyTop">
-        <i class="fas fa-tag"></i>
-        <span class="offer-text" id="dailyOfferText">Carregando oferta...</span>
-    </div>
-
-    <!-- ATENDIMENTO -->
-    <div class="atendimento-box">
-        <span><i class="fas fa-clock"></i> Seg–Sex 9h–16h</span>
-        <span><i class="fas fa-clock"></i> Sáb 12h–14h</span>
-        <span><i class="fas fa-clock"></i> Dom fechado</span>
-    </div>
-
-    <!-- HERO -->
-    <div class="hero">
-        <h1>Utensílios de cozinha <span>com qualidade</span></h1>
-        <p>Panelas, talheres, potes e muito mais. Escolha o que precisa e receba em casa.</p>
-        <div class="btn-group">
-            <a href="#" class="btn-primary" id="heroProdutos"><i class="fas fa-utensils"></i> Ver produtos</a>
-            <a href="https://wa.me/5511914830656" target="_blank" class="btn-secondary"><i class="fab fa-whatsapp"></i> Dúvidas?</a>
-        </div>
-    </div>
-
-    <!-- CATEGORIAS -->
-    <div class="categorias">
-        <div class="categoria-card" onclick="filtrarCategoria('panelas')"><i class="fas fa-pot"></i><span>Panelas</span></div>
-        <div class="categoria-card" onclick="filtrarCategoria('talheres')"><i class="fas fa-utensils"></i><span>Talheres</span></div>
-        <div class="categoria-card" onclick="filtrarCategoria('potes')"><i class="fas fa-jar"></i><span>Potes</span></div>
-        <div class="categoria-card" onclick="filtrarCategoria('pratos')"><i class="fas fa-plate"></i><span>Pratos</span></div>
-        <div class="categoria-card" onclick="filtrarCategoria('frigideira')"><i class="fas fa-frying-pan"></i><span>Frigideiras</span></div>
-        <div class="categoria-card" onclick="filtrarCategoria('kits')"><i class="fas fa-box"></i><span>Kits</span></div>
-    </div>
-
-    <!-- TABS -->
-    <div class="tabs">
-        <button class="tab-btn active" data-tab="tab1"><i class="fas fa-home"></i> Início</button>
-        <button class="tab-btn" data-tab="tab2"><i class="fas fa-box"></i> Produtos</button>
-        <button class="tab-btn" data-tab="tab4"><i class="fas fa-shopping-cart"></i> Carrinho <span id="cartCount">0</span></button>
-    </div>
-
-    <!-- CONTEÚDO -->
-    <div id="mainContent">
-        <!-- PÁGINA INÍCIO -->
-        <div class="tab-content active" id="tab1">
-            <div style="margin: 0 0 10px;">
-                <h4 style="color:#1a1a2e;font-size:15px;margin-bottom:6px;"><i class="fas fa-question-circle"></i> Dúvidas principais</h4>
-                <div class="faq-item">
-                    <div class="question" onclick="toggleFaq(0)"><span>Como faço um pedido?</span><span>▼</span></div>
-                    <div class="answer" id="faq-0">Escolha os produtos, adicione ao carrinho, informe seu CEP para calcular o frete, pague via Mercado Pago e receba em casa.</div>
+            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+                <div class="theme-toggle" onclick="toggleTheme()">
+                    <i class="fas fa-sun" id="themeIcon"></i>
+                    <span class="switch" id="themeSwitch"></span>
+                    <i class="fas fa-moon" id="themeIconDark"></i>
                 </div>
-                <div class="faq-item">
-                    <div class="question" onclick="toggleFaq(1)"><span>Qual a garantia?</span><span>▼</span></div>
-                    <div class="answer" id="faq-1">Todos os produtos têm garantia de 30 dias contra defeitos. Se tiver problema, fale conosco que trocamos.</div>
+                <a href="https://wa.me/5511914830656" target="_blank" class="badge-whats"><i class="fab fa-whatsapp"></i> Fale já</a>
+            </div>
+        </div>
+
+        <!-- DATA E HORA -->
+        <div class="datetime" id="datetimeDisplay">Carregando data...</div>
+
+        <!-- DESCONTO DIÁRIO -->
+        <div class="daily-top" id="dailyTop">
+            <i class="fas fa-tag"></i>
+            <span class="offer-text" id="dailyOfferText">Carregando oferta...</span>
+        </div>
+
+        <!-- ATENDIMENTO -->
+        <div class="atendimento-box">
+            <span><i class="fas fa-clock"></i> Seg–Sex 9h–16h</span>
+            <span><i class="fas fa-clock"></i> Sáb 12h–14h</span>
+            <span><i class="fas fa-clock"></i> Dom fechado</span>
+        </div>
+
+        <!-- HERO -->
+        <div class="hero">
+            <h1>Utensílios de cozinha <span>com qualidade</span></h1>
+            <p>Panelas, talheres, potes e muito mais. Escolha o que precisa e receba em casa.</p>
+            <div class="btn-group">
+                <a href="#" class="btn-primary" id="heroProdutos"><i class="fas fa-utensils"></i> Ver produtos</a>
+                <a href="https://wa.me/5511914830656" target="_blank" class="btn-secondary"><i class="fab fa-whatsapp"></i> Dúvidas?</a>
+            </div>
+        </div>
+
+        <!-- CATEGORIAS -->
+        <div class="categorias">
+            <div class="categoria-card" onclick="filtrarCategoria('panelas')"><i class="fas fa-pot"></i><span>Panelas</span></div>
+            <div class="categoria-card" onclick="filtrarCategoria('talheres')"><i class="fas fa-utensils"></i><span>Talheres</span></div>
+            <div class="categoria-card" onclick="filtrarCategoria('potes')"><i class="fas fa-jar"></i><span>Potes</span></div>
+            <div class="categoria-card" onclick="filtrarCategoria('pratos')"><i class="fas fa-plate"></i><span>Pratos</span></div>
+            <div class="categoria-card" onclick="filtrarCategoria('frigideira')"><i class="fas fa-frying-pan"></i><span>Frigideiras</span></div>
+            <div class="categoria-card" onclick="filtrarCategoria('kits')"><i class="fas fa-box"></i><span>Kits</span></div>
+        </div>
+
+        <!-- TABS -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="tab1"><i class="fas fa-home"></i> Início</button>
+            <button class="tab-btn" data-tab="tab2"><i class="fas fa-box"></i> Produtos</button>
+            <button class="tab-btn" data-tab="tab4"><i class="fas fa-shopping-cart"></i> Carrinho <span id="cartCount">0</span></button>
+        </div>
+
+        <!-- CONTEÚDO -->
+        <div id="mainContent">
+            <!-- PÁGINA INÍCIO -->
+            <div class="tab-content active" id="tab1">
+                <div style="margin: 0 0 10px;">
+                    <h4 style="color:#1a1a2e;font-size:15px;margin-bottom:6px;"><i class="fas fa-question-circle"></i> Dúvidas principais</h4>
+                    <div class="faq-item">
+                        <div class="question" onclick="toggleFaq(0)"><span>Como faço um pedido?</span><span>▼</span></div>
+                        <div class="answer" id="faq-0">Escolha os produtos, adicione ao carrinho, informe seu CEP para calcular o frete, pague via Mercado Pago e receba em casa.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="question" onclick="toggleFaq(1)"><span>Qual a garantia?</span><span>▼</span></div>
+                        <div class="answer" id="faq-1">Todos os produtos têm garantia de 30 dias contra defeitos. Se tiver problema, fale conosco que trocamos.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="question" onclick="toggleFaq(2)"><span>Como é o frete?</span><span>▼</span></div>
+                        <div class="answer" id="faq-2">O frete é calculado com base no seu CEP. Para pedidos acima de R$250, você ganha desconto no frete. Acima de R$300, frete grátis!</div>
+                    </div>
                 </div>
-                <div class="faq-item">
-                    <div class="question" onclick="toggleFaq(2)"><span>Como é o frete?</span><span>▼</span></div>
-                    <div class="answer" id="faq-2">O frete é calculado com base no seu CEP. Para pedidos acima de R$250, você ganha desconto no frete. Acima de R$300, frete grátis!</div>
+                <a href="https://wa.me/5511914830656?text=Olá!%20Gostaria%20de%20ser%20um%20revendedor." target="_blank" style="display:block;background:#faf8f7;border:1px solid #c9a03a;border-radius:60px;padding:10px;text-align:center;color:#c9a03a;font-weight:600;text-decoration:none;margin:10px 0;transition:0.2s;">
+                    <i class="fas fa-handshake"></i> Quero ser revendedor
+                </a>
+            </div>
+
+            <!-- PÁGINA PRODUTOS -->
+            <div class="tab-content" id="tab2">
+                <div id="productList">
+                    <div class="section-title">
+                        <h3>Produtos</h3>
+                        <span class="tag">NOVO</span>
+                    </div>
+                    <input type="text" class="search-box" id="searchBox" placeholder="🔍 Buscar produto..." />
+                    <div class="product-grid" id="productGrid"></div>
                 </div>
+                <div id="productDetail" style="display:none;"></div>
             </div>
-            <a href="https://wa.me/5511914830656?text=Olá!%20Gostaria%20de%20ser%20um%20revendedor." target="_blank" style="display:block;background:#faf8f7;border:1px solid #c9a03a;border-radius:60px;padding:10px;text-align:center;color:#c9a03a;font-weight:600;text-decoration:none;margin:10px 0;transition:0.2s;">
-                <i class="fas fa-handshake"></i> Quero ser revendedor
-            </a>
-        </div>
 
-        <!-- PÁGINA PRODUTOS -->
-        <div class="tab-content" id="tab2">
-            <div id="productList">
-                <div class="section-title"><h3>Produtos</h3><span class="tag">NOVO</span></div>
-                <input type="text" class="search-box" id="searchBox" placeholder="🔍 Buscar produto..." />
-                <div class="product-grid" id="productGrid"></div>
-            </div>
-            <div id="productDetail" style="display:none;"></div>
-        </div>
+            <!-- PÁGINA CARRINHO -->
+            <div class="tab-content" id="tab4">
+                <h3 style="color:#1a1a2e;margin-bottom:10px;">Seu Carrinho</h3>
 
-        <!-- PÁGINA CARRINHO -->
-        <div class="tab-content" id="tab4">
-            <h3 style="color:#1a1a2e;margin-bottom:10px;">Seu Carrinho</h3>
-
-            <!-- FRETE COM CEP (Apenas no checkout) -->
-            <div class="frete-box">
-                <input type="text" id="cepInput" placeholder="Digite seu CEP (ex: 20040-020)" maxlength="9" />
-                <button id="calcularFreteBtn">Calcular frete</button>
-                <div class="resultado" id="freteResultado">
-                    <span class="valor" id="freteValor">--</span>
-                    <span class="prazo" id="fretePrazo">--</span>
+                <!-- FRETE COM CEP -->
+                <div class="frete-box">
+                    <input type="text" id="cepInput" placeholder="Digite seu CEP (ex: 20040-020)" maxlength="9" />
+                    <button id="calcularFreteBtn">Calcular frete</button>
+                    <div class="resultado" id="freteResultado">
+                        <span class="valor" id="freteValor">--</span>
+                        <span class="prazo" id="fretePrazo">--</span>
+                    </div>
                 </div>
+
+                <div id="cartItems">
+                    <p style="color:#6b6560;text-align:center;padding:16px 0;">Carrinho vazio</p>
+                </div>
+                <div id="cartDiscountInfo" class="cart-discount" style="display:none;"></div>
+                <div class="cart-total">Total: <span id="cartTotal">R$ 0,00</span></div>
+
+                <!-- Cross-sell -->
+                <div id="crossSell" style="background:#faf8f7;border-radius:16px;padding:12px;margin:6px 0;border:1px solid #e8e4e0;display:none;">
+                    <p style="font-weight:600;color:#1a1a2e;">💡 Complete seu pedido</p>
+                    <div id="crossSellItems" style="display:flex;flex-direction:column;gap:6px;margin-top:6px;"></div>
+                </div>
+
+                <div class="discount-input">
+                    <input type="text" id="cupomInput" placeholder="Cupom" />
+                    <button id="applyDiscount">Aplicar</button>
+                </div>
+                <div id="discountMsg" style="font-size:12px;color:#c9a03a;margin:4px 0 8px;"></div>
+
+                <button class="btn-mp" id="mpCheckoutBtn"><i class="fas fa-credit-card"></i> Pagar com Mercado Pago</button>
+                <div class="mp-label">Pague com PIX, cartão ou boleto</div>
             </div>
+        </div>
 
-            <div id="cartItems"><p style="color:#6b6560;text-align:center;padding:16px 0;">Carrinho vazio</p></div>
-            <div id="cartDiscountInfo" class="cart-discount" style="display:none;"></div>
-            <div class="cart-total">Total: <span id="cartTotal">R$ 0,00</span></div>
+        <!-- TELA DE RETORNO -->
+        <div class="payment-return" id="paymentReturn">
+            <div id="paymentIcon" class="icon">✅</div>
+            <h2 id="paymentTitle">Pagamento confirmado!</h2>
+            <p id="paymentMessage">Obrigado pela sua compra. Em breve você receberá o código de rastreio.</p>
+            <div class="spinner"></div>
+            <p style="color:#4a4540;font-size:14px;">Aguardando confirmação...</p>
+            <div class="countdown" id="countdownTimer">30</div>
+            <p style="color:#6b6560;font-size:13px;">Redirecionando para o WhatsApp em <span id="countdownDisplay">30</span> segundos...</p>
+            <button id="redirectNowBtn" style="background:#c9a03a;color:#fff;border:none;border-radius:60px;padding:10px 24px;font-weight:600;cursor:pointer;margin-top:12px;">Ir agora</button>
+        </div>
 
-            <!-- Cross-sell -->
-            <div id="crossSell" style="background:#faf8f7;border-radius:16px;padding:12px;margin:6px 0;border:1px solid #e8e4e0;display:none;">
-                <p style="font-weight:600;color:#1a1a2e;">💡 Complete seu pedido</p>
-                <div id="crossSellItems" style="display:flex;flex-direction:column;gap:6px;margin-top:6px;"></div>
+        <div class="footer-whats" id="footerWhats">
+            <span><i class="fas fa-headset"></i> Fale conosco</span>
+            <div style="display:flex;gap:4px;flex-wrap:wrap;">
+                <a href="https://wa.me/5511914830656" target="_blank" class="btn-social whats"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                <a href="https://t.me/Xandao06" target="_blank" class="btn-social telegram"><i class="fab fa-telegram-plane"></i> Telegram</a>
             </div>
-
-            <div class="discount-input">
-                <input type="text" id="cupomInput" placeholder="Cupom" />
-                <button id="applyDiscount">Aplicar</button>
-            </div>
-            <div id="discountMsg" style="font-size:12px;color:#c9a03a;margin:4px 0 8px;"></div>
-
-            <button class="btn-mp" id="mpCheckoutBtn"><i class="fas fa-credit-card"></i> Pagar com Mercado Pago</button>
-            <div class="mp-label">Pague com PIX, cartão ou boleto</div>
+        </div>
+        <div class="creditos">
+            <i class="fas fa-crown"></i> Cozinha & Cia — Utensílios de cozinha com qualidade<br>
+            <span style="opacity:0.6;">@Xandao06 no Telegram</span>
         </div>
     </div>
 
-    <!-- TELA DE RETORNO -->
-    <div class="payment-return" id="paymentReturn">
-        <div id="paymentIcon" class="icon">✅</div>
-        <h2 id="paymentTitle">Pagamento confirmado!</h2>
-        <p id="paymentMessage">Obrigado pela sua compra. Em breve você receberá o código de rastreio.</p>
-        <div class="spinner"></div>
-        <p style="color:#4a4540;font-size:14px;">Aguardando confirmação...</p>
-        <div class="countdown" id="countdownTimer">30</div>
-        <p style="color:#6b6560;font-size:13px;">Redirecionando para o WhatsApp em <span id="countdownDisplay">30</span> segundos...</p>
-        <button id="redirectNowBtn" style="background:#c9a03a;color:#fff;border:none;border-radius:60px;padding:10px 24px;font-weight:600;cursor:pointer;margin-top:12px;">Ir agora</button>
+    <!-- CARRINHO FLUTUANTE -->
+    <div class="cart-float" id="cartFloat">
+        <span class="icon"><i class="fas fa-shopping-cart"></i></span>
+        <span class="count" id="floatCount">0</span>
+        <span class="total" id="floatTotal">R$ 0,00</span>
     </div>
 
-    <div class="footer-whats" id="footerWhats">
-        <span><i class="fas fa-headset"></i> Fale conosco</span>
-        <div style="display:flex;gap:4px;flex-wrap:wrap;">
-            <a href="https://wa.me/5511914830656" target="_blank" class="btn-social whats"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-            <a href="https://t.me/Xandao06" target="_blank" class="btn-social telegram"><i class="fab fa-telegram-plane"></i> Telegram</a>
+    <!-- WHATSAPP FLUTUANTE -->
+    <a href="https://wa.me/5511914830656" target="_blank" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
+
+    <!-- BOTÃO VOLTAR AO TOPO -->
+    <div class="back-top" id="backTop"><i class="fas fa-arrow-up"></i></div>
+
+    <!-- MODAL DE QUANTIDADE -->
+    <div class="modal-overlay" id="periodModal">
+        <div class="modal-box">
+            <h3><i class="fas fa-box"></i> Escolha a quantidade</h3>
+            <p id="periodProductName">Produto</p>
+            <div class="modal-options">
+                <button id="period1"><span>1 unidade</span><span class="price-tag" id="period1Price">R$ 0,00</span></button>
+                <button id="period3"><span>3 unidades</span><span class="price-tag" id="period3Price">R$ 0,00</span></button>
+                <button id="period6"><span>6 unidades</span><span class="price-tag" id="period6Price">R$ 0,00</span></button>
+                <button id="period12"><span>12 unidades</span><span class="price-tag" id="period12Price">R$ 0,00</span></button>
+            </div>
+            <button class="modal-close" id="periodCancel">Cancelar</button>
         </div>
     </div>
-    <div class="creditos">
-        <i class="fas fa-crown"></i> Cozinha & Cia — Utensílios de cozinha com qualidade<br>
-        <span style="opacity:0.6;">@Xandao06 no Telegram</span>
-    </div>
-</div>
 
-<!-- CARRINHO FLUTUANTE -->
-<div class="cart-float" id="cartFloat">
-    <span class="icon"><i class="fas fa-shopping-cart"></i></span>
-    <span class="count" id="floatCount">0</span>
-    <span class="total" id="floatTotal">R$ 0,00</span>
-</div>
+    <script>
+        // ============================================================
+        // CONFIGURAÇÃO
+        // ============================================================
+        const BASE_URL = 'https://anjin0604.github.io/ContasPremiunCP/';
+        const ACCESS_TOKEN = 'APP_USR-7721066143624625-081813-ca98fefaf469e01ae27592d7f7ed4159-672484268';
 
-<!-- WHATSAPP FLUTUANTE -->
-<a href="https://wa.me/5511914830656" target="_blank" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
-
-<!-- BOTÃO VOLTAR AO TOPO -->
-<div class="back-top" id="backTop"><i class="fas fa-arrow-up"></i></div>
-
-<!-- MODAL DE QUANTIDADE -->
-<div class="modal-overlay" id="periodModal">
-    <div class="modal-box">
-        <h3><i class="fas fa-box"></i> Escolha a quantidade</h3>
-        <p id="periodProductName">Produto</p>
-        <div class="modal-options">
-            <button id="period1"><span>1 unidade</span><span class="price-tag" id="period1Price">R$ 0,00</span></button>
-            <button id="period3"><span>3 unidades</span><span class="price-tag" id="period3Price">R$ 0,00</span></button>
-            <button id="period6"><span>6 unidades</span><span class="price-tag" id="period6Price">R$ 0,00</span></button>
-            <button id="period12"><span>12 unidades</span><span class="price-tag" id="period12Price">R$ 0,00</span></button>
-        </div>
-        <button class="modal-close" id="periodCancel">Cancelar</button>
-    </div>
-</div>
-
-<script>
-    // ============================================================
-    // CONFIGURAÇÃO
-    // ============================================================
-    const BASE_URL = 'https://anjin0604.github.io/ContasPremiunCP/';
-    const ACCESS_TOKEN = 'APP_USR-7721066143624625-081813-ca98fefaf469e01ae27592d7f7ed4159-672484268';
-
-    // ============================================================
-    // DATA E HORA
-    // ============================================================
-    function atualizarDataHora() {
-        const now = new Date();
-        const dias = ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'];
-        const diaSemana = dias[now.getDay()];
-        const dia = String(now.getDate()).padStart(2, '0');
-        const mes = String(now.getMonth() + 1).padStart(2, '0');
-        const ano = now.getFullYear();
-        const horas = String(now.getHours()).padStart(2, '0');
-        const minutos = String(now.getMinutes()).padStart(2, '0');
-        const segundos = String(now.getSeconds()).padStart(2, '0');
-        document.getElementById('datetimeDisplay').textContent = 
-            `${diaSemana}, ${dia}/${mes}/${ano} · ${horas}:${minutos}:${segundos}`;
-    }
-    atualizarDataHora();
-    setInterval(atualizarDataHora, 1000);
-
-    // ============================================================
-    // TEMA
-    // ============================================================
-    function toggleTheme() {
-        document.body.classList.toggle('dark');
-        const icon = document.getElementById('themeIcon');
-        const iconDark = document.getElementById('themeIconDark');
-        if (document.body.classList.contains('dark')) {
-            icon.style.display = 'none';
-            iconDark.style.display = 'inline';
-        } else {
-            icon.style.display = 'inline';
-            iconDark.style.display = 'none';
+        // ============================================================
+        // DATA E HORA
+        // ============================================================
+        function atualizarDataHora() {
+            const now = new Date();
+            const dias = ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'];
+            const diaSemana = dias[now.getDay()];
+            const dia = String(now.getDate()).padStart(2, '0');
+            const mes = String(now.getMonth() + 1).padStart(2, '0');
+            const ano = now.getFullYear();
+            const horas = String(now.getHours()).padStart(2, '0');
+            const minutos = String(now.getMinutes()).padStart(2, '0');
+            const segundos = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('datetimeDisplay').textContent =
+                `${diaSemana}, ${dia}/${mes}/${ano} · ${horas}:${minutos}:${segundos}`;
         }
-        localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
-    }
-    if (localStorage.getItem('theme') === 'dark') {
-        document.body.classList.add('dark');
-        document.getElementById('themeIcon').style.display = 'none';
-        document.getElementById('themeIconDark').style.display = 'inline';
-    } else {
-        document.getElementById('themeIcon').style.display = 'inline';
-        document.getElementById('themeIconDark').style.display = 'none';
-    }
+        atualizarDataHora();
+        setInterval(atualizarDataHora, 1000);
 
-    // ============================================================
-    // TOAST
-    // ============================================================
-    function showToast(msg) {
-        const el = document.getElementById('toast');
-        el.textContent = msg;
-        el.classList.add('show');
-        setTimeout(() => el.classList.remove('show'), 4000);
-    }
-
-    // ============================================================
-    // FAQ
-    // ============================================================
-    window.toggleFaq = function(index) {
-        document.getElementById(`faq-${index}`).classList.toggle('show');
-    };
-
-    // ============================================================
-    // HERÓI -> PRODUTOS
-    // ============================================================
-    document.getElementById('heroProdutos').addEventListener('click', function(e) {
-        e.preventDefault();
-        mudarAba('tab2');
-    });
-
-    function mudarAba(tabId) {
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
-        document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
-        document.getElementById(tabId).classList.add('active');
-        if (tabId === 'tab4') {
-            document.getElementById('cartFloat').style.display = 'none';
-        } else {
-            document.getElementById('cartFloat').style.display = 'flex';
-        }
-        playSound('beep');
-    }
-
-    // ============================================================
-    // PRODUTOS
-    // ============================================================
-    const produtosBase = [
-        { id: 'panela', nome: 'Panela Antiaderente', base: 89.90, desc: 'Alumínio, 24cm', categoria: 'panelas', etiqueta: 'mais-vendido' },
-        { id: 'talheres', nome: 'Jogo de Talheres', base: 49.90, desc: 'Aço Inox, 12 peças', categoria: 'talheres', etiqueta: 'oferta' },
-        { id: 'potes', nome: 'Potes Herméticos', base: 69.90, desc: 'Vidro, 5 unidades', categoria: 'potes', etiqueta: 'novo' },
-        { id: 'pratos', nome: 'Prato de Porcelana', base: 39.90, desc: 'Porcelana, 30cm', categoria: 'pratos', etiqueta: '' },
-        { id: 'frigideira', nome: 'Frigideira Antiaderente', base: 59.90, desc: '28cm, reforçada', categoria: 'frigideira', etiqueta: 'mais-vendido' },
-        { id: 'conjunto', nome: 'Conjunto de Panelas', base: 199.90, desc: '3 peças, alumínio', categoria: 'kits', etiqueta: 'oferta' },
-        { id: 'espátula', nome: 'Espátula de Silicone', base: 29.90, desc: 'Não risca panelas', categoria: 'utensilios', etiqueta: '' },
-        { id: 'kit_basico', nome: 'Kit Cozinha Básica', base: 149.90, desc: '5 itens essenciais', categoria: 'kits', etiqueta: 'novo' },
-    ];
-
-    const produtos = produtosBase.map(p => {
-        return {
-            ...p,
-            precos: {
-                '1': p.base,
-                '3': p.base * 2.7,
-                '6': p.base * 5.0,
-                '12': p.base * 9.0
+        // ============================================================
+        // TEMA
+        // ============================================================
+        function toggleTheme() {
+            document.body.classList.toggle('dark');
+            const icon = document.getElementById('themeIcon');
+            const iconDark = document.getElementById('themeIconDark');
+            if (document.body.classList.contains('dark')) {
+                icon.style.display = 'none';
+                iconDark.style.display = 'inline';
+            } else {
+                icon.style.display = 'inline';
+                iconDark.style.display = 'none';
             }
+            localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+        }
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark');
+            document.getElementById('themeIcon').style.display = 'none';
+            document.getElementById('themeIconDark').style.display = 'inline';
+        } else {
+            document.getElementById('themeIcon').style.display = 'inline';
+            document.getElementById('themeIconDark').style.display = 'none';
+        }
+
+        // ============================================================
+        // TOAST
+        // ============================================================
+        function showToast(msg) {
+            const el = document.getElementById('toast');
+            el.textContent = msg;
+            el.classList.add('show');
+            setTimeout(() => el.classList.remove('show'), 4000);
+        }
+
+        // ============================================================
+        // FAQ
+        // ============================================================
+        window.toggleFaq = function(index) {
+            document.getElementById(`faq-${index}`).classList.toggle('show');
         };
-    });
 
-    let currentFilter = '';
-    let currentSearch = '';
-
-    function renderProducts(filter = '', categoria = '') {
-        const grid = document.getElementById('productGrid');
-        grid.innerHTML = '';
-        const filtered = produtos.filter(p => {
-            const matchNome = p.nome.toLowerCase().includes(filter.toLowerCase());
-            const matchCat = categoria === '' || p.categoria === categoria;
-            return matchNome && matchCat;
+        // ============================================================
+        // HERÓI -> PRODUTOS
+        // ============================================================
+        document.getElementById('heroProdutos').addEventListener('click', function(e) {
+            e.preventDefault();
+            mudarAba('tab2');
         });
-        if (filtered.length === 0) {
-            grid.innerHTML = '<p style="color:#6b6560;text-align:center;padding:16px 0;">Nenhum produto encontrado.</p>';
-            return;
-        }
-        filtered.forEach(p => {
-            const card = document.createElement('div');
-            card.className = 'product-card fade-in';
-            let etiquetaHTML = '';
-            if (p.etiqueta) {
-                const cls = p.etiqueta === 'oferta' ? 'oferta' : p.etiqueta === 'novo' ? 'novo' : 'mais-vendido';
-                etiquetaHTML = `<span class="etiqueta ${cls}">${p.etiqueta.replace('-',' ').toUpperCase()}</span>`;
+
+        function mudarAba(tabId) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
+            document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            if (tabId === 'tab4') {
+                document.getElementById('cartFloat').style.display = 'none';
+            } else {
+                document.getElementById('cartFloat').style.display = 'flex';
             }
-            card.innerHTML = `
-                ${etiquetaHTML}
-                <h4>${p.nome}</h4>
-                <div class="price-group">
-                    <div class="price">R$ ${p.base.toFixed(2)}</div>
-                    <div class="desc">${p.desc}</div>
-                </div>
-                <button class="btn-add" data-id="${p.id}" data-nome="${p.nome}" data-precos='${JSON.stringify(p.precos)}'>
-                    <i class="fas fa-cart-plus"></i> Adicionar
-                </button>
-                <button class="btn-ver-mais" data-id="${p.id}">Ver mais</button>
-            `;
-            grid.appendChild(card);
-        });
-    }
-
-    function filtrarCategoria(cat) {
-        currentFilter = cat;
-        currentSearch = '';
-        document.getElementById('searchBox').value = '';
-        document.getElementById('productList').style.display = 'block';
-        document.getElementById('productDetail').style.display = 'none';
-        mudarAba('tab2');
-        renderProducts('', cat);
-        playSound('beep');
-    }
-
-    document.getElementById('searchBox').addEventListener('input', function() {
-        currentSearch = this.value;
-        currentFilter = '';
-        document.getElementById('productList').style.display = 'block';
-        document.getElementById('productDetail').style.display = 'none';
-        renderProducts(this.value, '');
-    });
-
-    // Detalhe do produto
-    document.addEventListener('click', function(e) {
-        const btn = e.target.closest('.btn-ver-mais');
-        if (btn) {
-            const id = btn.dataset.id;
-            const produto = produtos.find(p => p.id === id);
-            if (produto) {
-                mostrarDetalhe(produto);
-                playSound('beep');
-            }
-        }
-    });
-
-    function mostrarDetalhe(produto) {
-        const list = document.getElementById('productList');
-        const detail = document.getElementById('productDetail');
-        list.style.display = 'none';
-        detail.style.display = 'block';
-        detail.innerHTML = `
-            <div class="detalhe-produto">
-                <span class="voltar" onclick="fecharDetalhe()"><i class="fas fa-arrow-left"></i> Voltar</span>
-                <h2>${produto.nome}</h2>
-                <div class="preco-grande">R$ ${produto.base.toFixed(2)}</div>
-                <div class="descricao">${produto.desc}</div>
-                <div class="espec">
-                    <span>📦 Material: ${produto.categoria === 'panelas' ? 'Alumínio' : 'Aço Inox'}</span>
-                    <span>🔧 Garantia: 30 dias</span>
-                    <span>🧼 Lavável</span>
-                </div>
-                <button class="btn-add-grande" onclick="adicionarAoCarrinho('${produto.nome}', ${produto.base}, 1)">Adicionar ao carrinho</button>
-            </div>
-        `;
-        detail.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-
-    function fecharDetalhe() {
-        document.getElementById('productList').style.display = 'block';
-        document.getElementById('productDetail').style.display = 'none';
-        renderProducts(currentSearch, currentFilter);
-    }
-
-    // ============================================================
-    // CARRINHO
-    // ============================================================
-    let cart = JSON.parse(localStorage.getItem('streamup_cart')) || [];
-    let descontoAtivo = 0;
-    let freteCalculado = 0;
-    let fretePrazo = '';
-
-    function saveCart() {
-        localStorage.setItem('streamup_cart', JSON.stringify(cart));
-    }
-
-    function adicionarAoCarrinho(nome, preco, qtd = 1) {
-        cart.push({ id: Date.now() + Math.random(), nome, preco, qtd });
-        saveCart();
-        renderCart();
-        showToast(`✅ ${nome} adicionado ao carrinho!`);
-        playSound('approved');
-    }
-
-    document.addEventListener('click', function(e) {
-        const btn = e.target.closest('.btn-add');
-        if (btn) {
-            const nome = btn.dataset.nome;
-            const precos = JSON.parse(btn.dataset.precos);
-            pendingProduct = { nome, precos };
-            document.getElementById('periodProductName').textContent = nome;
-            document.getElementById('period1Price').textContent = `R$ ${precos['1'].toFixed(2)}`;
-            document.getElementById('period3Price').textContent = `R$ ${precos['3'].toFixed(2)}`;
-            document.getElementById('period6Price').textContent = `R$ ${precos['6'].toFixed(2)}`;
-            document.getElementById('period12Price').textContent = `R$ ${precos['12'].toFixed(2)}`;
-            document.getElementById('periodModal').classList.add('active');
             playSound('beep');
         }
-    });
 
-    let pendingProduct = null;
-    const periodModal = document.getElementById('periodModal');
+        // ============================================================
+        // PRODUTOS
+        // ============================================================
+        const produtosBase = [
+            { id: 'panela', nome: 'Panela Antiaderente', base: 89.90, desc: 'Alumínio, 24cm', categoria: 'panelas',
+                etiqueta: 'mais-vendido' },
+            { id: 'talheres', nome: 'Jogo de Talheres', base: 49.90, desc: 'Aço Inox, 12 peças', categoria: 'talheres',
+                etiqueta: 'oferta' },
+            { id: 'potes', nome: 'Potes Herméticos', base: 69.90, desc: 'Vidro, 5 unidades', categoria: 'potes',
+                etiqueta: 'novo' },
+            { id: 'pratos', nome: 'Prato de Porcelana', base: 39.90, desc: 'Porcelana, 30cm', categoria: 'pratos',
+                etiqueta: '' },
+            { id: 'frigideira', nome: 'Frigideira Antiaderente', base: 59.90, desc: '28cm, reforçada', categoria: 'frigideira',
+                etiqueta: 'mais-vendido' },
+            { id: 'conjunto', nome: 'Conjunto de Panelas', base: 199.90, desc: '3 peças, alumínio', categoria: 'kits',
+                etiqueta: 'oferta' },
+            { id: 'espátula', nome: 'Espátula de Silicone', base: 29.90, desc: 'Não risca panelas', categoria: 'utensilios',
+                etiqueta: '' },
+            { id: 'kit_basico', nome: 'Kit Cozinha Básica', base: 149.90, desc: '5 itens essenciais', categoria: 'kits',
+                etiqueta: 'novo' },
+        ];
 
-    function selecionarQtd(label, qtd, preco) {
-        if (pendingProduct) {
-            const nome = `${pendingProduct.nome} (${label})`;
-            adicionarAoCarrinho(nome, preco, qtd);
-            periodModal.classList.remove('active');
-        }
-    }
-
-    document.getElementById('period1').addEventListener('click', () => selecionarQtd('1 un', 1, pendingProduct?.precos['1']));
-    document.getElementById('period3').addEventListener('click', () => selecionarQtd('3 un', 3, pendingProduct?.precos['3']));
-    document.getElementById('period6').addEventListener('click', () => selecionarQtd('6 un', 6, pendingProduct?.precos['6']));
-    document.getElementById('period12').addEventListener('click', () => selecionarQtd('12 un', 12, pendingProduct?.precos['12']));
-    document.getElementById('periodCancel').addEventListener('click', () => { periodModal.classList.remove('active'); playSound('reproved'); });
-    periodModal.addEventListener('click', function(e) { if (e.target === this) { this.classList.remove('active'); playSound('reproved'); } });
-
-    // ============================================================
-    // CÁLCULO DE FRETE (simulação baseada no estado)
-    // ============================================================
-    async function calcularFrete(cep) {
-        const limpo = cep.replace(/\D/g, '');
-        if (limpo.length !== 8) {
-            showToast('CEP inválido. Digite 8 dígitos.');
-            return;
-        }
-        try {
-            const resp = await fetch(`https://viacep.com.br/ws/${limpo}/json/`);
-            const dados = await resp.json();
-            if (dados.erro) {
-                showToast('CEP não encontrado.');
-                return;
-            }
-            const uf = dados.uf;
-            // Simulação de valores dos Correios (baseado em estado)
-            let valor = 0, prazo = '';
-            if (uf === 'RJ') {
-                valor = 15.00;
-                prazo = '2 a 3 dias úteis';
-            } else if (uf === 'SP' || uf === 'MG' || uf === 'ES') {
-                valor = 20.00;
-                prazo = '3 a 5 dias úteis';
-            } else {
-                valor = 30.00;
-                prazo = '5 a 7 dias úteis';
-            }
-            // Descontos progressivos (total produtos)
-            const totalProdutos = cart.reduce((s, item) => s + item.preco, 0);
-            let valorFinal = valor;
-            let descontoFrete = 0;
-            if (totalProdutos > 300) {
-                valorFinal = 0;
-                descontoFrete = valor;
-                showToast('🎉 Frete grátis!');
-            } else if (totalProdutos > 250) {
-                valorFinal = valor * 0.5;
-                descontoFrete = valor * 0.5;
-                showToast('✅ Desconto de 50% no frete!');
-            }
-            freteCalculado = valorFinal;
-            fretePrazo = prazo;
-            document.getElementById('freteValor').textContent = `R$ ${valorFinal.toFixed(2)}`;
-            document.getElementById('fretePrazo').textContent = ` (${prazo})`;
-            // Atualiza o total do carrinho com frete
-            renderCart();
-        } catch (e) {
-            showToast('Erro ao buscar CEP. Tente novamente.');
-            console.error(e);
-        }
-    }
-
-    document.getElementById('calcularFreteBtn').addEventListener('click', function() {
-        const cep = document.getElementById('cepInput').value;
-        calcularFrete(cep);
-    });
-    // Cálculo automático ao digitar CEP completo
-    let timeoutCep;
-    document.getElementById('cepInput').addEventListener('input', function() {
-        clearTimeout(timeoutCep);
-        const val = this.value.replace(/\D/g, '');
-        if (val.length === 8) {
-            timeoutCep = setTimeout(() => calcularFrete(val), 800);
-        }
-    });
-
-    // ============================================================
-    // RENDER CARRINHO (com frete)
-    // ============================================================
-    function renderCart() {
-        const container = document.getElementById('cartItems');
-        const totalSpan = document.getElementById('cartTotal');
-        const countSpan = document.getElementById('cartCount');
-        const floatCount = document.getElementById('floatCount');
-        const floatTotal = document.getElementById('floatTotal');
-
-        if (cart.length === 0) {
-            container.innerHTML = '<p style="color:#6b6560;text-align:center;padding:16px 0;">Carrinho vazio</p>';
-            totalSpan.textContent = 'R$ 0,00';
-            countSpan.textContent = '0';
-            floatCount.textContent = '0';
-            floatTotal.textContent = 'R$ 0,00';
-            document.getElementById('crossSell').style.display = 'none';
-            return;
-        }
-
-        let html = '', total = 0;
-        cart.forEach((item, idx) => {
-            const preco = item.preco;
-            total += preco;
-            html += `
-                <div class="cart-item">
-                    <div class="item-info"><h5>${item.nome}</h5><span>${item.qtd || 1} un</span></div>
-                    <div class="item-price">R$ ${preco.toFixed(2)}</div>
-                    <button class="btn-remove" data-index="${idx}"><i class="fas fa-times"></i></button>
-                </div>
-            `;
+        const produtos = produtosBase.map(p => {
+            return {
+                ...p,
+                precos: {
+                    '1': p.base,
+                    '3': p.base * 2.7,
+                    '6': p.base * 5.0,
+                    '12': p.base * 9.0
+                }
+            };
         });
 
-        // Aplica desconto de cupom
-        let totalComDesconto = total;
-        if (descontoAtivo > 0) {
-            const descontoCupom = total * (descontoAtivo / 100);
-            totalComDesconto = total - descontoCupom;
+        let currentFilter = '';
+        let currentSearch = '';
+
+        function renderProducts(filter = '', categoria = '') {
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = '';
+            const filtered = produtos.filter(p => {
+                const matchNome = p.nome.toLowerCase().includes(filter.toLowerCase());
+                const matchCat = categoria === '' || p.categoria === categoria;
+                return matchNome && matchCat;
+            });
+            if (filtered.length === 0) {
+                grid.innerHTML = '<p style="color:#6b6560;text-align:center;padding:16px 0;">Nenhum produto encontrado.</p>';
+                return;
+            }
+            filtered.forEach(p => {
+                const card = document.createElement('div');
+                card.className = 'product-card fade-in';
+                let etiquetaHTML = '';
+                if (p.etiqueta) {
+                    const cls = p.etiqueta === 'oferta' ? 'oferta' : p.etiqueta === 'novo' ? 'novo' : 'mais-vendido';
+                    etiquetaHTML = `<span class="etiqueta ${cls}">${p.etiqueta.replace('-', ' ').toUpperCase()}</span>`;
+                }
+                card.innerHTML = `
+                        ${etiquetaHTML}
+                        <h4>${p.nome}</h4>
+                        <div class="price-group">
+                            <div class="price">R$ ${p.base.toFixed(2)}</div>
+                            <div class="desc">${p.desc}</div>
+                        </div>
+                        <button class="btn-add" data-id="${p.id}" data-nome="${p.nome}" data-precos='${JSON.stringify(p.precos)}'>
+                            <i class="fas fa-cart-plus"></i> Adicionar
+                        </button>
+                        <button class="btn-ver-mais" data-id="${p.id}">Ver mais</button>
+                    `;
+                grid.appendChild(card);
+            });
         }
 
-        // Soma o frete
-        const totalComFrete = totalComDesconto + freteCalculado;
+        function filtrarCategoria(cat) {
+            currentFilter = cat;
+            currentSearch = '';
+            document.getElementById('searchBox').value = '';
+            document.getElementById('productList').style.display = 'block';
+            document.getElementById('productDetail').style.display = 'none';
+            mudarAba('tab2');
+            renderProducts('', cat);
+            playSound('beep');
+        }
 
-        container.innerHTML = html;
-        totalSpan.textContent = `R$ ${totalComFrete.toFixed(2)}`;
-        countSpan.textContent = cart.length;
-        floatCount.textContent = cart.length;
-        floatTotal.textContent = `R$ ${totalComFrete.toFixed(2)}`;
+        document.getElementById('searchBox').addEventListener('input', function() {
+            currentSearch = this.value;
+            currentFilter = '';
+            document.getElementById('productList').style.display = 'block';
+            document.getElementById('productDetail').style.display = 'none';
+            renderProducts(this.value, '');
+        });
 
-        // Cross-sell (para completar frete)
-        const freteMeta = 250;
-        const freteAtual = totalComDesconto;
-        const freteRestante = freteMeta - freteAtual;
-        if (freteRestante > 0 && freteRestante < 50) {
-            const sugestoes = produtos.filter(p => p.base <= freteRestante + 10 && p.base > 5);
-            if (sugestoes.length > 0) {
-                document.getElementById('crossSell').style.display = 'block';
-                const containerCross = document.getElementById('crossSellItems');
-                containerCross.innerHTML = sugestoes.slice(0, 3).map(p => `
-                    <div style="display:flex;justify-content:space-between;align-items:center;background:#fff;padding:6px 10px;border-radius:10px;border:1px solid #e8e4e0;">
-                        <span style="font-size:13px;">${p.nome} <span style="color:#c9a03a;">R$ ${p.base.toFixed(2)}</span></span>
-                        <button class="btn-add" style="width:auto;padding:4px 12px;font-size:11px;" onclick="adicionarAoCarrinho('${p.nome}', ${p.base}, 1);">+</button>
+        // Detalhe do produto
+        document.addEventListener('click', function(e) {
+            const btn = e.target.closest('.btn-ver-mais');
+            if (btn) {
+                const id = btn.dataset.id;
+                const produto = produtos.find(p => p.id === id);
+                if (produto) {
+                    mostrarDetalhe(produto);
+                    playSound('beep');
+                }
+            }
+        });
+
+        function mostrarDetalhe(produto) {
+            const list = document.getElementById('productList');
+            const detail = document.getElementById('productDetail');
+            list.style.display = 'none';
+            detail.style.display = 'block';
+            detail.innerHTML = `
+                    <div class="detalhe-produto">
+                        <span class="voltar" onclick="fecharDetalhe()"><i class="fas fa-arrow-left"></i> Voltar</span>
+                        <h2>${produto.nome}</h2>
+                        <div class="preco-grande">R$ ${produto.base.toFixed(2)}</div>
+                        <div class="descricao">${produto.desc}</div>
+                        <div class="espec">
+                            <span>📦 Material: ${produto.categoria === 'panelas' ? 'Alumínio' : 'Aço Inox'}</span>
+                            <span>🔧 Garantia: 30 dias</span>
+                            <span>🧼 Lavável</span>
+                        </div>
+                        <button class="btn-add-grande" onclick="adicionarAoCarrinho('${produto.nome}', ${produto.base}, 1)">Adicionar ao carrinho</button>
                     </div>
-                `).join('');
+                `;
+            detail.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function fecharDetalhe() {
+            document.getElementById('productList').style.display = 'block';
+            document.getElementById('productDetail').style.display = 'none';
+            renderProducts(currentSearch, currentFilter);
+        }
+
+        // ============================================================
+        // CARRINHO
+        // ============================================================
+        let cart = JSON.parse(localStorage.getItem('streamup_cart')) || [];
+        let descontoAtivo = 0;
+        let freteCalculado = 0;
+        let fretePrazo = '';
+
+        function saveCart() {
+            localStorage.setItem('streamup_cart', JSON.stringify(cart));
+        }
+
+        function adicionarAoCarrinho(nome, preco, qtd = 1) {
+            cart.push({ id: Date.now() + Math.random(), nome, preco, qtd });
+            saveCart();
+            renderCart();
+            showToast(`✅ ${nome} adicionado ao carrinho!`);
+            playSound('approved');
+        }
+
+        document.addEventListener('click', function(e) {
+            const btn = e.target.closest('.btn-add');
+            if (btn) {
+                const nome = btn.dataset.nome;
+                const precos = JSON.parse(btn.dataset.precos);
+                pendingProduct = { nome, precos };
+                document.getElementById('periodProductName').textContent = nome;
+                document.getElementById('period1Price').textContent = `R$ ${precos['1'].toFixed(2)}`;
+                document.getElementById('period3Price').textContent = `R$ ${precos['3'].toFixed(2)}`;
+                document.getElementById('period6Price').textContent = `R$ ${precos['6'].toFixed(2)}`;
+                document.getElementById('period12Price').textContent = `R$ ${precos['12'].toFixed(2)}`;
+                document.getElementById('periodModal').classList.add('active');
+                playSound('beep');
+            }
+        });
+
+        let pendingProduct = null;
+        const periodModal = document.getElementById('periodModal');
+
+        function selecionarQtd(label, qtd, preco) {
+            if (pendingProduct) {
+                const nome = `${pendingProduct.nome} (${label})`;
+                adicionarAoCarrinho(nome, preco, qtd);
+                periodModal.classList.remove('active');
+            }
+        }
+
+        document.getElementById('period1').addEventListener('click', () => selecionarQtd('1 un', 1, pendingProduct?.precos[
+            '1']));
+        document.getElementById('period3').addEventListener('click', () => selecionarQtd('3 un', 3, pendingProduct?.precos[
+            '3']));
+        document.getElementById('period6').addEventListener('click', () => selecionarQtd('6 un', 6, pendingProduct?.precos[
+            '6']));
+        document.getElementById('period12').addEventListener('click', () => selecionarQtd('12 un', 12, pendingProduct?.precos[
+            '12']));
+        document.getElementById('periodCancel').addEventListener('click', () => {
+            periodModal.classList.remove('active');
+            playSound('reproved');
+        });
+        periodModal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('active');
+                playSound('reproved');
+            }
+        });
+
+        // ============================================================
+        // CÁLCULO DE FRETE (simulação baseada no estado)
+        // ============================================================
+        async function calcularFrete(cep) {
+            const limpo = cep.replace(/\D/g, '');
+            if (limpo.length !== 8) {
+                showToast('CEP inválido. Digite 8 dígitos.');
+                return;
+            }
+            try {
+                const resp = await fetch(`https://viacep.com.br/ws/${limpo}/json/`);
+                const dados = await resp.json();
+                if (dados.erro) {
+                    showToast('CEP não encontrado.');
+                    return;
+                }
+                const uf = dados.uf;
+                let valor = 0,
+                    prazo = '';
+                if (uf === 'RJ') {
+                    valor = 15.00;
+                    prazo = '2 a 3 dias úteis';
+                } else if (uf === 'SP' || uf === 'MG' || uf === 'ES') {
+                    valor = 20.00;
+                    prazo = '3 a 5 dias úteis';
+                } else {
+                    valor = 30.00;
+                    prazo = '5 a 7 dias úteis';
+                }
+                const totalProdutos = cart.reduce((s, item) => s + item.preco, 0);
+                let valorFinal = valor;
+                if (totalProdutos > 300) {
+                    valorFinal = 0;
+                    showToast('🎉 Frete grátis!');
+                } else if (totalProdutos > 250) {
+                    valorFinal = valor * 0.5;
+                    showToast('✅ Desconto de 50% no frete!');
+                }
+                freteCalculado = valorFinal;
+                fretePrazo = prazo;
+                document.getElementById('freteValor').textContent = `R$ ${valorFinal.toFixed(2)}`;
+                document.getElementById('fretePrazo').textContent = ` (${prazo})`;
+                renderCart();
+            } catch (e) {
+                showToast('Erro ao buscar CEP. Tente novamente.');
+                console.error(e);
+            }
+        }
+
+        document.getElementById('calcularFreteBtn').addEventListener('click', function() {
+            const cep = document.getElementById('cepInput').value;
+            calcularFrete(cep);
+        });
+        let timeoutCep;
+        document.getElementById('cepInput').addEventListener('input', function() {
+            clearTimeout(timeoutCep);
+            const val = this.value.replace(/\D/g, '');
+            if (val.length === 8) {
+                timeoutCep = setTimeout(() => calcularFrete(val), 800);
+            }
+        });
+
+        // ============================================================
+        // RENDER CARRINHO
+        // ============================================================
+        function renderCart() {
+            const container = document.getElementById('cartItems');
+            const totalSpan = document.getElementById('cartTotal');
+            const countSpan = document.getElementById('cartCount');
+            const floatCount = document.getElementById('floatCount');
+            const floatTotal = document.getElementById('floatTotal');
+
+            if (cart.length === 0) {
+                container.innerHTML = '<p style="color:#6b6560;text-align:center;padding:16px 0;">Carrinho vazio</p>';
+                totalSpan.textContent = 'R$ 0,00';
+                countSpan.textContent = '0';
+                floatCount.textContent = '0';
+                floatTotal.textContent = 'R$ 0,00';
+                document.getElementById('crossSell').style.display = 'none';
+                return;
+            }
+
+            let html = '',
+                total = 0;
+            cart.forEach((item, idx) => {
+                const preco = item.preco;
+                total += preco;
+                html += `
+                        <div class="cart-item">
+                            <div class="item-info"><h5>${item.nome}</h5><span>${item.qtd || 1} un</span></div>
+                            <div class="item-price">R$ ${preco.toFixed(2)}</div>
+                            <button class="btn-remove" data-index="${idx}"><i class="fas fa-times"></i></button>
+                        </div>
+                    `;
+            });
+
+            let totalComDesconto = total;
+            if (descontoAtivo > 0) {
+                const descontoCupom = total * (descontoAtivo / 100);
+                totalComDesconto = total - descontoCupom;
+            }
+
+            const totalComFrete = totalComDesconto + freteCalculado;
+
+            container.innerHTML = html;
+            totalSpan.textContent = `R$ ${totalComFrete.toFixed(2)}`;
+            countSpan.textContent = cart.length;
+            floatCount.textContent = cart.length;
+            floatTotal.textContent = `R$ ${totalComFrete.toFixed(2)}`;
+
+            const freteMeta = 250;
+            const freteAtual = totalComDesconto;
+            const freteRestante = freteMeta - freteAtual;
+            if (freteRestante > 0 && freteRestante < 50) {
+                const sugestoes = produtos.filter(p => p.base <= freteRestante + 10 && p.base > 5);
+                if (sugestoes.length > 0) {
+                    document.getElementById('crossSell').style.display = 'block';
+                    const containerCross = document.getElementById('crossSellItems');
+                    containerCross.innerHTML = sugestoes.slice(0, 3).map(p => `
+                            <div style="display:flex;justify-content:space-between;align-items:center;background:#fff;padding:6px 10px;border-radius:10px;border:1px solid #e8e4e0;">
+                                <span style="font-size:13px;">${p.nome} <span style="color:#c9a03a;">R$ ${p.base.toFixed(2)}</span></span>
+                                <button class="btn-add" style="width:auto;padding:4px 12px;font-size:11px;" onclick="adicionarAoCarrinho('${p.nome}', ${p.base}, 1);">+</button>
+                            </div>
+                        `).join('');
+                } else {
+                    document.getElementById('crossSell').style.display = 'none';
+                }
             } else {
                 document.getElementById('crossSell').style.display = 'none';
             }
-        } else {
-            document.getElementById('crossSell').style.display = 'none';
-        }
 
-        document.querySelectorAll('.btn-remove').forEach(btn => {
-            btn.addEventListener('click', function() {
-                cart.splice(parseInt(this.dataset.index), 1);
-                saveCart();
-                renderCart();
-                playSound('beep');
+            document.querySelectorAll('.btn-remove').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    cart.splice(parseInt(this.dataset.index), 1);
+                    saveCart();
+                    renderCart();
+                    playSound('beep');
+                });
             });
-        });
-    }
-
-    // ============================================================
-    // CUPONS
-    // ============================================================
-    document.getElementById('applyDiscount').addEventListener('click', function() {
-        const code = document.getElementById('cupomInput').value.trim().toUpperCase();
-        const msg = document.getElementById('discountMsg');
-        if (code === 'COZINHA10') { descontoAtivo = 10; msg.textContent = '✅ Cupom COZINHA10 aplicado: 10%!'; msg.style.color = '#c9a03a'; playSound('approved'); }
-        else if (code === 'COZINHA20') { descontoAtivo = 20; msg.textContent = '✅ Cupom COZINHA20 aplicado: 20%!'; msg.style.color = '#c9a03a'; playSound('approved'); }
-        else if (code === 'CC5') { descontoAtivo = 5; msg.textContent = '✅ Cupom CC5 aplicado: 5%!'; msg.style.color = '#c9a03a'; playSound('approved'); }
-        else if (code === '') { descontoAtivo = 0; msg.textContent = 'Desconto removido.'; msg.style.color = '#c9a03a'; }
-        else { msg.textContent = '❌ Cupom inválido.'; msg.style.color = '#d9534f'; playSound('reproved'); }
-        renderCart();
-    });
-
-    // ============================================================
-    // MERCADO PAGO
-    // ============================================================
-    document.getElementById('mpCheckoutBtn').addEventListener('click', function() {
-        if (cart.length === 0) {
-            alert('Carrinho vazio!');
-            playSound('reproved');
-            return;
         }
-        if (freteCalculado === 0 && cart.length > 0) {
-            if (!confirm('Você ainda não calculou o frete. Deseja continuar sem o valor do frete?')) {
+
+        // ============================================================
+        // CUPONS
+        // ============================================================
+        document.getElementById('applyDiscount').addEventListener('click', function() {
+            const code = document.getElementById('cupomInput').value.trim().toUpperCase();
+            const msg = document.getElementById('discountMsg');
+            if (code === 'COZINHA10') { descontoAtivo = 10;
+                msg.textContent = '✅ Cupom COZINHA10 aplicado: 10%!';
+                msg.style.color = '#c9a03a';
+                playSound('approved'); } else if (code === 'COZINHA20') { descontoAtivo = 20;
+                msg.textContent = '✅ Cupom COZINHA20 aplicado: 20%!';
+                msg.style.color = '#c9a03a';
+                playSound('approved'); } else if (code === 'CC5') { descontoAtivo = 5;
+                msg.textContent = '✅ Cupom CC5 aplicado: 5%!';
+                msg.style.color = '#c9a03a';
+                playSound('approved'); } else if (code === '') { descontoAtivo = 0;
+                msg.textContent = 'Desconto removido.';
+                msg.style.color = '#c9a03a'; } else { msg.textContent = '❌ Cupom inválido.';
+                msg.style.color = '#d9534f';
+                playSound('reproved'); }
+            renderCart();
+        });
+
+        // ============================================================
+        // MERCADO PAGO
+        // ============================================================
+        document.getElementById('mpCheckoutBtn').addEventListener('click', function() {
+            if (cart.length === 0) {
+                alert('Carrinho vazio!');
+                playSound('reproved');
                 return;
             }
-        }
-        const cartData = cart.map(item => ({ nome: item.nome, preco: item.preco, qtd: item.qtd }));
-        localStorage.setItem('streamup_cart', JSON.stringify(cartData));
-        localStorage.setItem('streamup_desconto', descontoAtivo);
-        localStorage.setItem('streamup_frete', freteCalculado);
-
-        const items = cart.map(item => ({ title: item.nome, quantity: item.qtd || 1, unit_price: item.preco / (item.qtd || 1), currency_id: 'BRL' }));
-
-        const preference = {
-            items,
-            payer: { email: 'cliente@email.com' },
-            back_urls: {
-                success: BASE_URL + '?payment=success',
-                failure: BASE_URL + '?payment=failure',
-                pending: BASE_URL + '?payment=pending'
-            },
-            auto_return: 'approved',
-            statement_descriptor: 'Cozinha & Cia',
-            external_reference: 'pedido_' + Date.now()
-        };
-
-        fetch('https://api.mercadopago.com/checkout/preferences', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${ACCESS_TOKEN}` },
-            body: JSON.stringify(preference)
-        })
-        .then(response => {
-            if (!response.ok) return response.json().then(err => { throw new Error(JSON.stringify(err)); });
-            return response.json();
-        })
-        .then(data => {
-            if (data.init_point) {
-                window.location.href = data.init_point;
-            } else {
-                alert('Erro ao criar preferência.');
-                console.error(data);
-                playSound('reproved');
+            if (freteCalculado === 0 && cart.length > 0) {
+                if (!confirm('Você ainda não calculou o frete. Deseja continuar sem o valor do frete?')) {
+                    return;
+                }
             }
-        })
-        .catch(error => {
-            alert('Erro na comunicação com o Mercado Pago.');
-            console.error(error);
-            playSound('reproved');
+            const cartData = cart.map(item => ({ nome: item.nome, preco: item.preco, qtd: item.qtd }));
+            localStorage.setItem('streamup_cart', JSON.stringify(cartData));
+            localStorage.setItem('streamup_desconto', descontoAtivo);
+            localStorage.setItem('streamup_frete', freteCalculado);
+
+            const items = cart.map(item => ({
+                title: item.nome,
+                quantity: item.qtd || 1,
+                unit_price: item.preco / (item.qtd || 1),
+                currency_id: 'BRL'
+            }));
+
+            const preference = {
+                items,
+                payer: { email: 'cliente@email.com' },
+                back_urls: {
+                    success: BASE_URL + '?payment=success',
+                    failure: BASE_URL + '?payment=failure',
+                    pending: BASE_URL + '?payment=pending'
+                },
+                auto_return: 'approved',
+                statement_descriptor: 'Cozinha & Cia',
+                external_reference: 'pedido_' + Date.now()
+            };
+
+            fetch('https://api.mercadopago.com/checkout/preferences', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${ACCESS_TOKEN}`
+                    },
+                    body: JSON.stringify(preference)
+                })
+                .then(response => {
+                    if (!response.ok) return response.json().then(err => { throw new Error(JSON.stringify(err)); });
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.init_point) {
+                        window.location.href = data.init_point;
+                    } else {
+                        alert('Erro ao criar preferência.');
+                        console.error(data);
+                        playSound('reproved');
+                    }
+                })
+                .catch(error => {
+                    alert('Erro na comunicação com o Mercado Pago.');
+                    console.error(error);
+                    playSound('reproved');
+                });
         });
-    });
 
-    // ============================================================
-    // PÁGINA DE RETORNO
-    // ============================================================
-    function handlePaymentReturn() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const status = urlParams.get('payment');
+        // ============================================================
+        // PÁGINA DE RETORNO
+        // ============================================================
+        function handlePaymentReturn() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const status = urlParams.get('payment');
 
-        if (status === 'success' || status === 'pending') {
-            document.getElementById('mainContent').style.display = 'none';
-            document.getElementById('footerWhats').style.display = 'none';
-            document.getElementById('paymentReturn').classList.add('active');
-            document.getElementById('paymentIcon').textContent = '✅';
-            document.getElementById('paymentTitle').textContent = 'Pagamento confirmado!';
-            document.getElementById('paymentMessage').textContent = 'Obrigado pela sua compra. Em breve você receberá o código de rastreio.';
+            if (status === 'success' || status === 'pending') {
+                document.getElementById('mainContent').style.display = 'none';
+                document.getElementById('footerWhats').style.display = 'none';
+                document.getElementById('paymentReturn').classList.add('active');
+                document.getElementById('paymentIcon').textContent = '✅';
+                document.getElementById('paymentTitle').textContent = 'Pagamento confirmado!';
+                document.getElementById('paymentMessage').textContent = 'Obrigado pela sua compra. Em breve você receberá o código de rastreio.';
 
-            let cartData = JSON.parse(localStorage.getItem('streamup_cart')) || [];
-            let desconto = parseInt(localStorage.getItem('streamup_desconto')) || 0;
-            let frete = parseFloat(localStorage.getItem('streamup_frete')) || 0;
-            showToast('🎉 Obrigado por comprar! Aguarde o código de rastreio.');
+                let cartData = JSON.parse(localStorage.getItem('streamup_cart')) || [];
+                let desconto = parseInt(localStorage.getItem('streamup_desconto')) || 0;
+                let frete = parseFloat(localStorage.getItem('streamup_frete')) || 0;
+                showToast('🎉 Obrigado por comprar! Aguarde o código de rastreio.');
 
-            let seconds = 30;
-            const countdownEl = document.getElementById('countdownTimer');
-            const countdownDisplay = document.getElementById('countdownDisplay');
+                let seconds = 30;
+                const countdownEl = document.getElementById('countdownTimer');
+                const countdownDisplay = document.getElementById('countdownDisplay');
 
-            function sendWhatsAppAfterPayment() {
-                enviarWhatsApp(cartData, desconto, frete);
-                localStorage.removeItem('streamup_cart');
-                localStorage.removeItem('streamup_desconto');
-                localStorage.removeItem('streamup_frete');
-            }
+                function sendWhatsAppAfterPayment() {
+                    enviarWhatsApp(cartData, desconto, frete);
+                    localStorage.removeItem('streamup_cart');
+                    localStorage.removeItem('streamup_desconto');
+                    localStorage.removeItem('streamup_frete');
+                }
 
-            const timer = setInterval(() => {
-                seconds--;
-                countdownEl.textContent = seconds;
-                countdownDisplay.textContent = seconds;
-                if (seconds <= 0) {
+                const timer = setInterval(() => {
+                    seconds--;
+                    countdownEl.textContent = seconds;
+                    countdownDisplay.textContent = seconds;
+                    if (seconds <= 0) {
+                        clearInterval(timer);
+                        sendWhatsAppAfterPayment();
+                    }
+                }, 1000);
+
+                document.getElementById('redirectNowBtn').addEventListener('click', function() {
                     clearInterval(timer);
                     sendWhatsAppAfterPayment();
+                });
+
+                launchConfetti();
+
+            } else if (status === 'failure') {
+                document.getElementById('mainContent').style.display = 'none';
+                document.getElementById('footerWhats').style.display = 'none';
+                document.getElementById('paymentReturn').classList.add('active');
+                document.getElementById('paymentIcon').textContent = '❌';
+                document.getElementById('paymentTitle').textContent = 'Falha no pagamento';
+                document.getElementById('paymentMessage').textContent = 'Ocorreu um erro. Tente novamente ou fale conosco.';
+                document.querySelector('.spinner').style.display = 'none';
+                document.querySelector('.countdown').style.display = 'none';
+                document.querySelector('#paymentReturn p:last-of-type').style.display = 'none';
+                document.getElementById('redirectNowBtn').textContent = 'Voltar ao início';
+                document.getElementById('redirectNowBtn').addEventListener('click', function() {
+                    window.location.href = BASE_URL;
+                });
+                playSound('reproved');
+            }
+        }
+
+        function enviarWhatsApp(cartItems, desconto, frete) {
+            let msg = '🛒 *Nova compra - Cozinha & Cia*\n\n';
+            let total = 0;
+            cartItems.forEach(item => {
+                total += item.preco;
+                msg += `- ${item.nome} (${item.qtd || 1} un) - R$ ${item.preco.toFixed(2)}\n`;
+            });
+            if (desconto > 0) { const dv = total * (desconto / 100);
+                msg += `\n*Cupom ${desconto}%*: - R$ ${dv.toFixed(2)}`;
+                total -= dv; }
+            msg += `\n*Frete*: R$ ${frete.toFixed(2)}`;
+            total += frete;
+            msg += `\n\n*Total com frete: R$ ${total.toFixed(2)}*`;
+            msg += `\n\n✅ Produto enviado em até 24h.`;
+            msg += `\n\n🔗 Telegram: @Xandao06`;
+            const url = `https://wa.me/5511914830656?text=${encodeURIComponent(msg)}`;
+            window.open(url, '_blank');
+            playSound('approved');
+        }
+
+        function launchConfetti() {
+            const container = document.createElement('div');
+            container.className = 'confetti-container';
+            document.body.appendChild(container);
+            const colors = ['#c9a03a', '#d9534f', '#4caf50', '#ffc107', '#6c5ce7', '#ff6b6b'];
+            for (let i = 0; i < 60; i++) {
+                const el = document.createElement('div');
+                el.className = 'confetti';
+                el.style.left = Math.random() * 100 + '%';
+                el.style.background = colors[Math.floor(Math.random() * colors.length)];
+                el.style.width = (Math.random() * 6 + 4) + 'px';
+                el.style.height = (Math.random() * 6 + 4) + 'px';
+                el.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                el.style.animationDelay = (Math.random() * 2) + 's';
+                el.style.transform = `rotate(${Math.random() * 360}deg)`;
+                container.appendChild(el);
+            }
+            setTimeout(() => container.remove(), 5000);
+        }
+
+        // ============================================================
+        // DESCONTO DIÁRIO (30 dias)
+        // ============================================================
+        function gerarOfertaDiaria() {
+            const hoje = new Date();
+            const dia = hoje.getDate();
+            const ultimoDia = new Date(hoje.getFullYear(), hoje.getMonth() + 1, 0).getDate();
+            const diaEfetivo = (dia === 31) ? 30 : dia;
+            const ofertas = [
+                { produto: 'Panela Antiaderente', desconto: 15 },
+                { produto: 'Jogo de Talheres', desconto: 20 },
+                { produto: 'Potes Herméticos', desconto: 12 },
+                { produto: 'Prato de Porcelana', desconto: 10 },
+                { produto: 'Frigideira Antiaderente', desconto: 18 },
+                { produto: 'Conjunto de Panelas', desconto: 25 },
+                { produto: 'Espátula de Silicone', desconto: 8 },
+                { produto: 'Kit Cozinha Básica', desconto: 22 },
+            ];
+            while (ofertas.length < 30) {
+                ofertas.push(ofertas[ofertas.length % 8]);
+            }
+            const idx = (diaEfetivo - 1) % ofertas.length;
+            const oferta = ofertas[idx];
+            const emoji = ['🍳', '🍴', '🥫', '🍽️', '🍳', '🍲', '🥄', '📦'][idx % 8];
+            document.getElementById('dailyOfferText').innerHTML = `
+                    ${emoji} <span class="destaque">${oferta.produto}</span> com <span class="desconto">${oferta.desconto}% OFF</span> hoje!
+                    <small style="color:#6b6560;font-weight:400;">(cupom: DIA${String(diaEfetivo).padStart(2,'0')})</small>
+                `;
+        }
+        gerarOfertaDiaria();
+
+        // ============================================================
+        // SONS
+        // ============================================================
+        function playSound(type) {
+            try {
+                const ctx = new(window.AudioContext || window.webkitAudioContext)();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                if (type === 'beep') {
+                    osc.frequency.value = 600;
+                    osc.type = 'sine';
+                    gain.gain.value = 0.1;
+                    osc.start();
+                    setTimeout(() => osc.stop(), 100);
+                } else if (type === 'approved') {
+                    osc.frequency.value = 880;
+                    osc.type = 'sine';
+                    gain.gain.value = 0.12;
+                    osc.start();
+                    setTimeout(() => { osc.frequency.value = 1100; }, 100);
+                    setTimeout(() => osc.stop(), 250);
+                } else if (type === 'reproved') {
+                    osc.frequency.value = 300;
+                    osc.type = 'sawtooth';
+                    gain.gain.value = 0.08;
+                    osc.start();
+                    setTimeout(() => osc.stop(), 300);
                 }
-            }, 1000);
-
-            document.getElementById('redirectNowBtn').addEventListener('click', function() {
-                clearInterval(timer);
-                sendWhatsAppAfterPayment();
-            });
-
-            launchConfetti();
-
-        } else if (status === 'failure') {
-            document.getElementById('mainContent').style.display = 'none';
-            document.getElementById('footerWhats').style.display = 'none';
-            document.getElementById('paymentReturn').classList.add('active');
-            document.getElementById('paymentIcon').textContent = '❌';
-            document.getElementById('paymentTitle').textContent = 'Falha no pagamento';
-            document.getElementById('paymentMessage').textContent = 'Ocorreu um erro. Tente novamente ou fale conosco.';
-            document.querySelector('.spinner').style.display = 'none';
-            document.querySelector('.countdown').style.display = 'none';
-            document.querySelector('#paymentReturn p:last-of-type').style.display = 'none';
-            document.getElementById('redirectNowBtn').textContent = 'Voltar ao início';
-            document.getElementById('redirectNowBtn').addEventListener('click', function() {
-                window.location.href = BASE_URL;
-            });
-            playSound('reproved');
+            } catch (e) { /* fallback */ }
         }
-    }
 
-    function enviarWhatsApp(cartItems, desconto, frete) {
-        let msg = '🛒 *Nova compra - Cozinha & Cia*\n\n';
-        let total = 0;
-        cartItems.forEach(item => {
-            total += item.preco;
-            msg += `- ${item.nome} (${item.qtd || 1} un) - R$ ${item.preco.toFixed(2)}\n`;
+        // ============================================================
+        // NAVEGAÇÃO POR ABAS
+        // ============================================================
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const tabId = this.dataset.tab;
+                mudarAba(tabId);
+                if (tabId === 'tab2') {
+                    document.getElementById('productList').style.display = 'block';
+                    document.getElementById('productDetail').style.display = 'none';
+                    renderProducts(currentSearch, currentFilter);
+                }
+            });
         });
-        if (desconto > 0) { const dv = total * (desconto/100); msg += `\n*Cupom ${desconto}%*: - R$ ${dv.toFixed(2)}`; total -= dv; }
-        msg += `\n*Frete*: R$ ${frete.toFixed(2)}`;
-        total += frete;
-        msg += `\n\n*Total com frete: R$ ${total.toFixed(2)}*`;
-        msg += `\n\n✅ Produto enviado em até 24h.`;
-        msg += `\n\n🔗 Telegram: @Xandao06`;
-        const url = `https://wa.me/5511914830656?text=${encodeURIComponent(msg)}`;
-        window.open(url, '_blank');
-        playSound('approved');
-    }
 
-    function launchConfetti() {
-        const container = document.createElement('div');
-        container.className = 'confetti-container';
-        document.body.appendChild(container);
-        const colors = ['#c9a03a', '#d9534f', '#4caf50', '#ffc107', '#6c5ce7', '#ff6b6b'];
-        for (let i = 0; i < 60; i++) {
-            const el = document.createElement('div');
-            el.className = 'confetti';
-            el.style.left = Math.random() * 100 + '%';
-            el.style.background = colors[Math.floor(Math.random() * colors.length)];
-            el.style.width = (Math.random() * 6 + 4) + 'px';
-            el.style.height = (Math.random() * 6 + 4) + 'px';
-            el.style.animationDuration = (Math.random() * 2 + 2) + 's';
-            el.style.animationDelay = (Math.random() * 2) + 's';
-            el.style.transform = `rotate(${Math.random() * 360}deg)`;
-            container.appendChild(el);
-        }
-        setTimeout(() => container.remove(), 5000);
-    }
+        // ============================================================
+        // CARRINHO FLUTUANTE
+        // ============================================================
+        document.getElementById('cartFloat').addEventListener('click', function() {
+            mudarAba('tab4');
+        });
 
-    // ============================================================
-    // DESCONTO DIÁRIO (30 dias)
-    // ============================================================
-    function gerarOfertaDiaria() {
-        const hoje = new Date();
-        const dia = hoje.getDate();
-        const ultimoDia = new Date(hoje.getFullYear(), hoje.getMonth() + 1, 0).getDate();
-        const diaEfetivo = (dia === 31) ? 30 : dia;
-        const ofertas = [
-            { produto: 'Panela Antiaderente', desconto: 15 },
-            { produto: 'Jogo de Talheres', desconto: 20 },
-            { produto: 'Potes Herméticos', desconto: 12 },
-            { produto: 'Prato de Porcelana', desconto: 10 },
-            { produto: 'Frigideira Antiaderente', desconto: 18 },
-            { produto: 'Conjunto de Panelas', desconto: 25 },
-            { produto: 'Espátula de Silicone', desconto: 8 },
-            { produto: 'Kit Cozinha Básica', desconto: 22 },
-            // ... (30 dias)
-        ];
-        // Preencher até 30 (repetir os primeiros)
-        while (ofertas.length < 30) {
-            ofertas.push(ofertas[ofertas.length % 8]);
-        }
-        const idx = (diaEfetivo - 1) % ofertas.length;
-        const oferta = ofertas[idx];
-        const emoji = ['🍳', '🍴', '🥫', '🍽️', '🍳', '🍲', '🥄', '📦'][idx % 8];
-        document.getElementById('dailyOfferText').innerHTML = `
-            ${emoji} <span class="destaque">${oferta.produto}</span> com <span class="desconto">${oferta.desconto}% OFF</span> hoje!
-            <small style="color:#6b6560;font-weight:400;">(cupom: DIA${String(diaEfetivo).padStart(2,'0')})</small>
-        `;
-    }
-    gerarOfertaDiaria();
-
-    // ============================================================
-    // SONS
-    // ============================================================
-    function playSound(type) {
-        try {
-            const ctx = new (window.AudioContext || window.webkitAudioContext)();
-            const osc = ctx.createOscillator();
-            const gain = ctx.createGain();
-            osc.connect(gain);
-            gain.connect(ctx.destination);
-            if (type === 'beep') {
-                osc.frequency.value = 600;
-                osc.type = 'sine';
-                gain.gain.value = 0.1;
-                osc.start();
-                setTimeout(() => osc.stop(), 100);
-            } else if (type === 'approved') {
-                osc.frequency.value = 880;
-                osc.type = 'sine';
-                gain.gain.value = 0.12;
-                osc.start();
-                setTimeout(() => { osc.frequency.value = 1100; }, 100);
-                setTimeout(() => osc.stop(), 250);
-            } else if (type === 'reproved') {
-                osc.frequency.value = 300;
-                osc.type = 'sawtooth';
-                gain.gain.value = 0.08;
-                osc.start();
-                setTimeout(() => osc.stop(), 300);
-            }
-        } catch(e) { /* fallback */ }
-    }
-
-    // ============================================================
-    // NAVEGAÇÃO POR ABAS
-    // ============================================================
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const tabId = this.dataset.tab;
-            mudarAba(tabId);
-            if (tabId === 'tab2') {
-                document.getElementById('productList').style.display = 'block';
-                document.getElementById('productDetail').style.display = 'none';
-                renderProducts(currentSearch, currentFilter);
+        // ============================================================
+        // VOLTAR AO TOPO
+        // ============================================================
+        window.addEventListener('scroll', function() {
+            const btn = document.getElementById('backTop');
+            if (window.scrollY > 200) {
+                btn.style.display = 'flex';
+            } else {
+                btn.style.display = 'none';
             }
         });
-    });
+        document.getElementById('backTop').addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            playSound('beep');
+        });
 
-    // ============================================================
-    // CARRINHO FLUTUANTE
-    // ============================================================
-    document.getElementById('cartFloat').addEventListener('click', function() {
-        mudarAba('tab4');
-    });
-
-    // ============================================================
-    // VOLTAR AO TOPO
-    // ============================================================
-    window.addEventListener('scroll', function() {
-        const btn = document.getElementById('backTop');
-        if (window.scrollY > 200) {
-            btn.style.display = 'flex';
-        } else {
-            btn.style.display = 'none';
+        // ============================================================
+        // INICIALIZAR
+        // ============================================================
+        renderProducts();
+        renderCart();
+        if (document.querySelector('.tab-btn.active')?.dataset.tab === 'tab4') {
+            document.getElementById('cartFloat').style.display = 'none';
         }
-    });
-    document.getElementById('backTop').addEventListener('click', function() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        playSound('beep');
-    });
+        console.log('✅ Cozinha & Cia carregada com visual Tok&Stok!');
 
-    // ============================================================
-    // INICIALIZAR
-    // ============================================================
-    renderProducts();
-    renderCart();
-    if (document.querySelector('.tab-btn.active')?.dataset.tab === 'tab4') {
-        document.getElementById('cartFloat').style.display = 'none';
-    }
-    console.log('✅ Cozinha & Cia carregada com frete simulado e data/hora!');
-
-    if (window.location.search.includes('payment=')) {
-        handlePaymentReturn();
-    }
-</script>
+        if (window.location.search.includes('payment=')) {
+            handlePaymentReturn();
+        }
+    </script>
 </body>
 </html>
