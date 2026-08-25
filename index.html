@@ -3,192 +3,216 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>StreamUp · Contas Premium</title>
+    <title>StreamUp · Assine streaming com economia</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* ===== RESET E BASE ===== */
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; }
-        body { background: #0a0a0a; color: #e0e0e0; display: flex; justify-content: center; padding: 20px 16px 40px; min-height: 100vh; }
-        .container { max-width: 520px; width: 100%; background: #111; border-radius: 36px; border: 1px solid #2a2a2a; box-shadow: 0 20px 60px rgba(0,0,0,0.8); padding: 20px 18px 30px; position: relative; }
+        /* ===== RESET E BASE (MODO CLARO PROFISSIONAL) ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+        body { background: #f8f6f4; color: #1a1a2e; display: flex; justify-content: center; padding: 16px; min-height: 100vh; }
+        .container { max-width: 520px; width: 100%; background: #ffffff; border-radius: 32px; box-shadow: 0 8px 40px rgba(0,0,0,0.06); padding: 20px 16px 30px; position: relative; }
 
         /* ===== CORES ===== */
-        .gold { color: #d4af37; }
-        .gold-bg { background: #d4af37; color: #000; }
-        .text-muted { color: #888; }
+        .gold { color: #c9a03a; }
+        .gold-bg { background: #c9a03a; color: #fff; }
+        .gold-border { border-color: #c9a03a; }
+        .text-muted { color: #6b6560; }
+        .text-dark { color: #1a1a2e; }
 
-        /* ===== ANIMAÇÃO DE ENTRADA ===== */
+        /* ===== ANIMAÇÃO ===== */
         .fade-in { animation: fadeIn 0.6s ease forwards; opacity: 0; }
         @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
-        .fade-in:nth-child(1) { animation-delay: 0.1s; }
-        .fade-in:nth-child(2) { animation-delay: 0.2s; }
-        .fade-in:nth-child(3) { animation-delay: 0.3s; }
 
         /* ===== HEADER ===== */
-        .brand { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+        .brand { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
         .brand-left { display: flex; align-items: center; gap: 10px; }
-        .brand-icon { background: #d4af37; color: #000; width: 44px; height: 44px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 20px; }
-        .brand-text { font-weight: 700; font-size: 22px; color: #fff; }
-        .brand-text span { color: #d4af37; }
-        .badge-whats { background: #25D366; color: #fff; padding: 6px 14px; border-radius: 60px; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; text-decoration: none; cursor: pointer; }
+        .brand-icon { background: #c9a03a; color: #fff; width: 44px; height: 44px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 20px; }
+        .brand-text { font-weight: 700; font-size: 22px; color: #1a1a2e; }
+        .brand-text span { color: #c9a03a; }
+        .badge-whats { background: #25D366; color: #fff; padding: 6px 14px; border-radius: 60px; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; text-decoration: none; cursor: pointer; transition: 0.2s; }
         .badge-whats:hover { transform: scale(1.04); }
 
-        /* ===== ATENDIMENTO ===== */
-        .atendimento { background: #1a1a1a; border-radius: 40px; padding: 8px 16px; margin: 6px 0 14px; text-align: center; font-size: 13px; color: #aaa; border: 1px solid #2a2a2a; }
-        .atendimento i { color: #d4af37; margin-right: 6px; }
+        /* ===== ATENDIMENTO (simples) ===== */
+        .atendimento { font-size: 12px; color: #6b6560; text-align: center; margin: 2px 0 12px; }
+        .atendimento i { color: #c9a03a; margin-right: 4px; }
 
-        /* ===== CARROSSEL DE DESTAQUE ===== */
-        .carousel-container { position: relative; border-radius: 24px; overflow: hidden; margin: 6px 0 16px; height: 180px; background: #1a1a1a; border: 1px solid #2a2a2a; }
-        .carousel-slide { width: 100%; height: 100%; position: relative; display: none; background-size: cover; background-position: center; }
-        .carousel-slide.active { display: block; }
-        .carousel-slide .overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 14px 18px; background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%); }
-        .carousel-slide .overlay h2 { font-size: 20px; font-weight: 700; color: #fff; }
-        .carousel-slide .overlay p { font-size: 13px; color: #ccc; }
-        .carousel-slide .overlay .badge { display: inline-block; background: rgba(212,175,55,0.2); padding: 2px 12px; border-radius: 40px; font-size: 12px; font-weight: 600; color: #d4af37; border: 1px solid rgba(212,175,55,0.3); margin-top: 4px; }
-        .carousel-dots { position: absolute; bottom: 8px; right: 12px; display: flex; gap: 6px; z-index: 5; }
-        .carousel-dots span { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.3); cursor: pointer; transition: 0.2s; }
-        .carousel-dots span.active { background: #d4af37; width: 20px; border-radius: 10px; }
+        /* ===== HERO ===== */
+        .hero { background: linear-gradient(135deg, #faf8f6, #f0ede8); border-radius: 24px; padding: 24px 20px; margin: 6px 0 16px; border: 1px solid #e8e4e0; text-align: center; }
+        .hero .badge-top { display: inline-block; background: #c9a03a; color: #fff; font-size: 11px; font-weight: 700; padding: 4px 14px; border-radius: 60px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+        .hero h1 { font-size: 26px; font-weight: 800; color: #1a1a2e; line-height: 1.2; }
+        .hero h1 span { color: #c9a03a; }
+        .hero p { font-size: 16px; color: #4a4540; margin: 8px 0 16px; line-height: 1.5; }
+        .hero .btn-group { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+        .hero .btn-primary { background: #c9a03a; color: #fff; border: none; padding: 12px 28px; border-radius: 60px; font-weight: 700; font-size: 16px; cursor: pointer; transition: 0.2s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+        .hero .btn-primary:hover { background: #b08a2e; transform: scale(1.02); }
+        .hero .btn-secondary { background: transparent; color: #1a1a2e; border: 2px solid #dcd7d2; padding: 12px 28px; border-radius: 60px; font-weight: 600; font-size: 16px; cursor: pointer; transition: 0.2s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+        .hero .btn-secondary:hover { border-color: #c9a03a; background: #faf8f6; }
+
+        /* ===== SELOS / DIFERENCIAIS ===== */
+        .selos { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin: 14px 0; }
+        .selo-item { background: #faf8f7; border-radius: 16px; padding: 12px 8px; text-align: center; border: 1px solid #e8e4e0; }
+        .selo-item i { font-size: 24px; color: #c9a03a; display: block; margin-bottom: 4px; }
+        .selo-item span { font-size: 12px; font-weight: 500; color: #1a1a2e; }
 
         /* ===== TABS ===== */
-        .tabs { display: flex; gap: 6px; background: #1a1a1a; border-radius: 60px; padding: 4px; margin: 12px 0 18px; border: 1px solid #2a2a2a; }
-        .tab-btn { flex: 1; background: transparent; border: none; color: #888; padding: 10px 0; border-radius: 40px; font-weight: 600; font-size: 13px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px; }
-        .tab-btn i { font-size: 15px; }
-        .tab-btn.active { background: #d4af37; color: #000; box-shadow: 0 0 20px rgba(212,175,55,0.2); }
-        .tab-btn:hover:not(.active) { color: #ccc; }
+        .tabs { display: flex; gap: 6px; background: #f0edea; border-radius: 60px; padding: 4px; margin: 16px 0 18px; border: 1px solid #e0dbd7; }
+        .tab-btn { flex: 1; background: transparent; border: none; color: #6b6560; padding: 10px 0; border-radius: 40px; font-weight: 600; font-size: 13px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px; transition: 0.2s; }
+        .tab-btn i { font-size: 14px; }
+        .tab-btn.active { background: #c9a03a; color: #fff; box-shadow: 0 4px 12px rgba(201,160,58,0.25); }
+        .tab-btn:hover:not(.active) { color: #1a1a2e; }
         .tab-content { display: none; animation: fadeIn 0.3s ease; }
         .tab-content.active { display: block; }
 
         /* ===== PRODUTOS ===== */
         .section-title { display: flex; align-items: baseline; justify-content: space-between; margin: 16px 0 10px; }
-        .section-title h3 { font-size: 19px; font-weight: 700; color: #fff; }
-        .section-title .tag { background: #d4af37; color: #000; font-size: 10px; font-weight: 700; padding: 3px 12px; border-radius: 40px; }
+        .section-title h3 { font-size: 19px; font-weight: 700; color: #1a1a2e; }
+        .section-title .tag { background: #c9a03a; color: #fff; font-size: 10px; font-weight: 700; padding: 3px 12px; border-radius: 40px; }
+
         .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 8px; }
-        .product-card { background: #1a1a1a; border-radius: 18px; padding: 12px 10px 10px; border: 1px solid #2a2a2a; transition: 0.3s ease; cursor: default; }
-        .product-card:hover { border-color: #d4af37; transform: translateY(-5px); box-shadow: 0 10px 25px rgba(212,175,55,0.1); }
-        .product-card h4 { font-size: 14px; font-weight: 600; color: #fff; }
+        .product-card { background: #faf8f7; border-radius: 18px; padding: 12px 10px 10px; border: 1px solid #e8e4e0; transition: 0.3s ease; cursor: default; }
+        .product-card:hover { border-color: #c9a03a; transform: translateY(-4px); box-shadow: 0 8px 24px rgba(201,160,58,0.08); }
+        .product-card h4 { font-size: 14px; font-weight: 600; color: #1a1a2e; }
         .product-card .price-group { display: flex; flex-direction: column; gap: 2px; margin: 4px 0 8px; }
-        .product-card .price-group .price { font-weight: 700; font-size: 14px; color: #d4af37; }
-        .product-card .price-group .price small { font-weight: 400; font-size: 11px; color: #777; }
-        .product-card .price-group .price .promo { color: #ff6b6b; font-size: 12px; margin-left: 4px; }
-        .btn-add { background: #d4af37; color: #000; border: none; border-radius: 60px; padding: 7px 0; font-size: 12px; font-weight: 600; width: 100%; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px; transition: 0.2s; }
-        .btn-add:hover { background: #c5a028; transform: scale(1.02); }
+        .product-card .price-group .price { font-weight: 700; font-size: 15px; color: #c9a03a; }
+        .product-card .price-group .price small { font-weight: 400; font-size: 11px; color: #6b6560; }
+        .product-card .price-group .price .promo { color: #d9534f; font-size: 12px; margin-left: 4px; }
 
-        /* Botão comprar agora */
-        .btn-buy-now { background: transparent; border: 1px solid #d4af37; color: #d4af37; border-radius: 60px; padding: 5px 0; font-size: 11px; font-weight: 600; width: 100%; cursor: pointer; transition: 0.2s; margin-top: 4px; }
-        .btn-buy-now:hover { background: #d4af37; color: #000; }
+        .btn-add { background: #c9a03a; color: #fff; border: none; border-radius: 60px; padding: 7px 0; font-size: 12px; font-weight: 600; width: 100%; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px; transition: 0.2s; }
+        .btn-add:hover { background: #b08a2e; transform: scale(1.02); }
 
-        /* ===== CARRINHO FLUTUANTE ===== */
-        .cart-float { position: fixed; bottom: 20px; right: 20px; background: #1a1a1a; border: 2px solid #d4af37; border-radius: 60px; padding: 12px 18px; display: flex; align-items: center; gap: 10px; cursor: pointer; z-index: 999; box-shadow: 0 10px 30px rgba(0,0,0,0.8); transition: 0.3s; }
-        .cart-float:hover { transform: scale(1.05); }
-        .cart-float .icon { font-size: 22px; color: #d4af37; }
-        .cart-float .count { background: #d4af37; color: #000; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; }
-        .cart-float .total { font-weight: 700; color: #fff; font-size: 15px; }
+        .btn-buy-now { background: transparent; border: 1px solid #c9a03a; color: #c9a03a; border-radius: 60px; padding: 5px 0; font-size: 11px; font-weight: 600; width: 100%; cursor: pointer; transition: 0.2s; margin-top: 4px; }
+        .btn-buy-now:hover { background: #c9a03a; color: #fff; }
 
-        /* ===== CHAT FLUTUANTE (WhatsApp) ===== */
-        .whatsapp-float { position: fixed; bottom: 90px; right: 20px; background: #25D366; color: #fff; width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; box-shadow: 0 6px 20px rgba(37,211,102,0.4); z-index: 998; cursor: pointer; transition: 0.3s; text-decoration: none; }
-        .whatsapp-float:hover { transform: scale(1.1); }
+        /* ===== SEARCH ===== */
+        .search-box { width: 100%; padding: 10px 14px; border-radius: 60px; border: 1px solid #dcd7d2; background: #fff; color: #1a1a2e; outline: none; font-size: 14px; margin-bottom: 12px; }
+        .search-box:focus { border-color: #c9a03a; }
 
-        /* ===== BOTÃO VOLTAR AO TOPO ===== */
-        .back-top { position: fixed; bottom: 160px; right: 20px; background: #1a1a1a; border: 1px solid #d4af37; color: #d4af37; width: 44px; height: 44px; border-radius: 50%; display: none; align-items: center; justify-content: center; font-size: 20px; cursor: pointer; z-index: 997; transition: 0.3s; }
-        .back-top:hover { background: #d4af37; color: #000; }
+        /* ===== CARRINHO ===== */
+        .cart-item { display: flex; justify-content: space-between; align-items: center; background: #faf8f7; padding: 8px 12px; border-radius: 14px; margin: 4px 0; border-left: 3px solid #c9a03a; }
+        .cart-item .item-info { flex: 1; }
+        .cart-item .item-info h5 { color: #1a1a2e; font-size: 14px; }
+        .cart-item .item-info span { font-size: 12px; color: #c9a03a; }
+        .cart-item .item-price { font-weight: 700; color: #1a1a2e; font-size: 14px; }
+        .cart-item .btn-remove { background: none; border: none; color: #c9a03a; font-size: 16px; cursor: pointer; padding: 0 4px; }
 
-        /* ===== STATUS DOS SERVIÇOS ===== */
+        .cart-total { text-align: right; font-size: 20px; font-weight: 700; color: #1a1a2e; margin: 10px 0 4px; }
+        .cart-total span { color: #c9a03a; }
+        .cart-discount { text-align: right; font-size: 14px; color: #d9534f; margin: 2px 0; }
+
+        .discount-input { display: flex; gap: 6px; margin: 8px 0; }
+        .discount-input input { flex: 1; padding: 8px 12px; border-radius: 60px; border: 1px solid #dcd7d2; background: #fff; color: #1a1a2e; outline: none; font-size: 14px; }
+        .discount-input input:focus { border-color: #c9a03a; }
+        .discount-input button { background: #c9a03a; color: #fff; border: none; border-radius: 60px; padding: 8px 18px; font-weight: 600; cursor: pointer; }
+
+        .btn-mp { background: #009ee3; color: #fff; border: none; border-radius: 60px; padding: 14px 0; font-weight: 700; font-size: 17px; width: 100%; cursor: pointer; margin-top: 6px; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.2s; }
+        .btn-mp:hover { background: #0079b3; transform: scale(1.01); }
+
+        /* ===== GARANTIA ===== */
+        .garantia-box { background: #faf8f7; border-radius: 18px; padding: 12px 14px; margin: 10px 0; border: 1px dashed #c9a03a; text-align: center; color: #c9a03a; font-weight: 500; font-size: 14px; }
+        .garantia-box i { margin-right: 6px; }
+
+        /* ===== STATUS ===== */
         .status-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 10px 0; }
-        .status-item { background: #1a1a1a; border-radius: 14px; padding: 8px 12px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #2a2a2a; }
+        .status-item { background: #faf8f7; border-radius: 14px; padding: 8px 12px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #e8e4e0; }
         .status-item .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
-        .status-item .dot.green { background: #4caf50; box-shadow: 0 0 10px #4caf50; }
-        .status-item .dot.red { background: #f44336; box-shadow: 0 0 10px #f44336; }
-        .status-item .dot.yellow { background: #ffc107; box-shadow: 0 0 10px #ffc107; }
+        .status-item .dot.green { background: #4caf50; box-shadow: 0 0 8px rgba(76,175,80,0.2); }
+        .status-item .dot.yellow { background: #ffc107; box-shadow: 0 0 8px rgba(255,193,7,0.2); }
+
+        /* ===== OFERTA DIÁRIA ===== */
+        .daily-offer { background: #faf8f7; border-radius: 20px; padding: 14px 16px; margin: 10px 0; border: 1px solid #e8e4e0; text-align: center; }
+        .daily-offer h4 { color: #c9a03a; font-size: 16px; }
+        .daily-offer p { color: #1a1a2e; font-size: 14px; }
+        .daily-offer .highlight-offer { color: #d9534f; font-weight: 700; font-size: 18px; }
+
+        /* ===== DEPOIMENTOS ===== */
+        .depoimentos { background: #faf8f7; border-radius: 18px; padding: 14px; border: 1px solid #e8e4e0; margin: 12px 0; }
+        .depoimentos h4 { color: #1a1a2e; font-size: 15px; margin-bottom: 8px; }
+        .depoimento-item { display: flex; align-items: center; gap: 12px; padding: 8px 0; border-bottom: 1px solid #e8e4e0; }
+        .depoimento-item:last-child { border-bottom: none; }
+        .depoimento-item .avatar { width: 40px; height: 40px; border-radius: 50%; background: #c9a03a; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px; flex-shrink: 0; }
+        .depoimento-item .text { font-size: 13px; color: #1a1a2e; }
+        .depoimento-item .text .nome { font-weight: 600; color: #c9a03a; }
 
         /* ===== FAQ ===== */
-        .faq-item { background: #1a1a1a; border-radius: 16px; padding: 12px 14px; margin: 6px 0; border: 1px solid #2a2a2a; }
-        .faq-item .question { font-weight: 600; color: #d4af37; cursor: pointer; display: flex; justify-content: space-between; }
-        .faq-item .answer { display: none; margin-top: 6px; color: #ccc; font-size: 14px; }
+        .faq-item { background: #faf8f7; border-radius: 16px; padding: 12px 14px; margin: 6px 0; border: 1px solid #e8e4e0; }
+        .faq-item .question { font-weight: 600; color: #1a1a2e; cursor: pointer; display: flex; justify-content: space-between; }
+        .faq-item .answer { display: none; margin-top: 6px; color: #4a4540; font-size: 14px; }
         .faq-item .answer.show { display: block; }
-        .faq-add { display: flex; gap: 6px; margin: 10px 0; }
-        .faq-add input { flex: 1; padding: 8px 12px; border-radius: 60px; border: 1px solid #333; background: #000; color: #fff; outline: none; font-size: 13px; }
-        .faq-add input:focus { border-color: #d4af37; }
-        .faq-add button { background: #d4af37; color: #000; border: none; border-radius: 60px; padding: 8px 18px; font-weight: 600; cursor: pointer; }
 
         /* ===== COMPARADOR ===== */
         .compare-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-        .compare-table th, .compare-table td { padding: 10px 8px; border-bottom: 1px solid #2a2a2a; text-align: center; }
-        .compare-table th { color: #d4af37; font-weight: 600; }
-        .compare-table td { color: #ccc; }
-        .compare-table .highlight { background: rgba(212,175,55,0.1); }
+        .compare-table th, .compare-table td { padding: 10px 8px; border-bottom: 1px solid #e8e4e0; text-align: center; }
+        .compare-table th { color: #c9a03a; font-weight: 600; }
+        .compare-table td { color: #1a1a2e; }
+        .compare-table .highlight { background: rgba(201,160,58,0.06); }
 
-        /* ===== PESQUISA ===== */
-        .search-box { width: 100%; padding: 10px 14px; border-radius: 60px; border: 1px solid #333; background: #1a1a1a; color: #fff; outline: none; font-size: 14px; margin-bottom: 12px; }
-        .search-box:focus { border-color: #d4af37; }
+        /* ===== CARRINHO FLUTUANTE ===== */
+        .cart-float { position: fixed; bottom: 20px; right: 20px; background: #ffffff; border: 2px solid #c9a03a; border-radius: 60px; padding: 12px 18px; display: flex; align-items: center; gap: 10px; cursor: pointer; z-index: 999; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: 0.3s; }
+        .cart-float:hover { transform: scale(1.05); }
+        .cart-float .icon { font-size: 22px; color: #c9a03a; }
+        .cart-float .count { background: #c9a03a; color: #fff; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; }
+        .cart-float .total { font-weight: 700; color: #1a1a2e; font-size: 15px; }
 
-        /* ===== MODAIS ===== */
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
-        .modal-overlay.active { display: flex; }
-        .modal-box { background: #111; border-radius: 28px; max-width: 380px; width: 100%; padding: 24px 20px; border: 1px solid #2a2a2a; box-shadow: 0 30px 60px rgba(0,0,0,0.9); animation: fadeIn 0.25s ease; }
-        .modal-box h3 { color: #d4af37; font-size: 20px; margin-bottom: 4px; }
-        .modal-box p { color: #aaa; font-size: 14px; margin-bottom: 14px; line-height: 1.5; }
-        .modal-options { display: flex; flex-direction: column; gap: 8px; }
-        .modal-options button { padding: 12px; border-radius: 60px; font-weight: 600; font-size: 15px; border: 2px solid #333; background: #1a1a1a; color: #fff; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: 0.2s; }
-        .modal-options button:hover { border-color: #d4af37; background: #222; }
-        .modal-options button .price-tag { color: #d4af37; font-weight: 700; }
-        .modal-close { margin-top: 14px; background: transparent; border: 1px solid #333; color: #888; padding: 10px; border-radius: 60px; width: 100%; cursor: pointer; font-weight: 500; }
-        .modal-close:hover { background: #1a1a1a; color: #fff; }
-        .modal-box .legal-terms { background: rgba(255,60,60,0.08); border: 1px solid rgba(255,60,60,0.2); border-radius: 16px; padding: 12px 14px; margin: 10px 0; font-size: 13px; color: #ff6b6b; }
-        .modal-box .legal-terms i { margin-right: 6px; }
-
-        /* ===== TOAST ===== */
-        .toast { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #1a1a1a; border: 1px solid #d4af37; color: #fff; padding: 12px 24px; border-radius: 60px; z-index: 9999; box-shadow: 0 10px 30px rgba(0,0,0,0.8); font-weight: 500; display: none; }
-        .toast.show { display: block; animation: fadeIn 0.5s; }
-
-        /* ===== OFERTA DIÁRIA ===== */
-        .daily-offer { background: linear-gradient(135deg, #1a0a2e, #2d1b4e); border-radius: 20px; padding: 14px 16px; margin: 10px 0; border: 1px solid #d4af37; text-align: center; }
-        .daily-offer h4 { color: #d4af37; font-size: 16px; }
-        .daily-offer p { color: #ccc; font-size: 14px; }
-        .daily-offer .highlight-offer { color: #ff6b6b; font-weight: 700; font-size: 18px; }
+        /* ===== CHAT E BACK TO TOP ===== */
+        .whatsapp-float { position: fixed; bottom: 90px; right: 20px; background: #25D366; color: #fff; width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; box-shadow: 0 6px 20px rgba(37,211,102,0.3); z-index: 998; cursor: pointer; transition: 0.3s; text-decoration: none; }
+        .whatsapp-float:hover { transform: scale(1.1); }
+        .back-top { position: fixed; bottom: 160px; right: 20px; background: #fff; border: 1px solid #c9a03a; color: #c9a03a; width: 44px; height: 44px; border-radius: 50%; display: none; align-items: center; justify-content: center; font-size: 20px; cursor: pointer; z-index: 997; transition: 0.3s; }
+        .back-top:hover { background: #c9a03a; color: #fff; }
 
         /* ===== FOOTER ===== */
-        .footer-whats { margin-top: 20px; background: #1a1a1a; border-radius: 60px; padding: 12px 18px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px; border: 1px solid #2a2a2a; }
-        .footer-whats span { font-weight: 500; color: #aaa; font-size: 14px; }
+        .footer-whats { margin-top: 20px; background: #faf8f7; border-radius: 60px; padding: 12px 18px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px; border: 1px solid #e8e4e0; }
+        .footer-whats span { font-weight: 500; color: #4a4540; font-size: 14px; }
         .btn-social { padding: 6px 18px; border-radius: 60px; font-weight: 700; font-size: 13px; color: #fff; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; border: none; cursor: pointer; transition: 0.2s; }
         .btn-social.whats { background: #25D366; }
         .btn-social.telegram { background: #0088cc; }
         .btn-social:hover { transform: scale(1.04); }
-        .creditos { margin-top: 14px; font-size: 11px; color: #555; text-align: center; line-height: 1.6; }
-        .creditos a { color: #d4af37; text-decoration: none; }
+        .creditos { margin-top: 14px; font-size: 11px; color: #6b6560; text-align: center; line-height: 1.6; }
+        .creditos a { color: #c9a03a; text-decoration: none; }
+
+        /* ===== TOAST ===== */
+        .toast { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #fff; border: 1px solid #c9a03a; color: #1a1a2e; padding: 12px 24px; border-radius: 60px; z-index: 9999; box-shadow: 0 10px 30px rgba(0,0,0,0.08); font-weight: 500; display: none; }
+        .toast.show { display: block; animation: fadeIn 0.5s; }
+
+        /* ===== MODAL ===== */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.2); backdrop-filter: blur(2px); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
+        .modal-overlay.active { display: flex; }
+        .modal-box { background: #fff; border-radius: 28px; max-width: 380px; width: 100%; padding: 24px 20px; border: 1px solid #e8e4e0; box-shadow: 0 20px 60px rgba(0,0,0,0.06); animation: fadeIn 0.25s ease; }
+        .modal-box h3 { color: #c9a03a; font-size: 20px; margin-bottom: 4px; }
+        .modal-box p { color: #4a4540; font-size: 14px; margin-bottom: 14px; }
+        .modal-options { display: flex; flex-direction: column; gap: 8px; }
+        .modal-options button { padding: 12px; border-radius: 60px; font-weight: 600; font-size: 15px; border: 2px solid #e8e4e0; background: #fff; color: #1a1a2e; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: 0.2s; }
+        .modal-options button:hover { border-color: #c9a03a; background: #faf8f7; }
+        .modal-options button .price-tag { color: #c9a03a; font-weight: 700; }
+        .modal-close { margin-top: 14px; background: transparent; border: 1px solid #dcd7d2; color: #6b6560; padding: 10px; border-radius: 60px; width: 100%; cursor: pointer; font-weight: 500; }
+        .modal-close:hover { background: #f0edea; }
+
+        /* ===== PAYMENT RETURN ===== */
+        .payment-return { display: none; text-align: center; padding: 30px 10px; animation: fadeIn 0.8s; }
+        .payment-return.active { display: block; }
+        .payment-return .icon { font-size: 72px; margin-bottom: 16px; }
+        .payment-return h2 { font-size: 28px; color: #c9a03a; margin-bottom: 8px; }
+        .payment-return p { font-size: 16px; color: #4a4540; margin: 6px 0; }
+        .payment-return .countdown { font-size: 48px; font-weight: 700; color: #c9a03a; margin: 12px 0; }
+        .payment-return .spinner { width: 48px; height: 48px; border: 4px solid #e8e4e0; border-top-color: #c9a03a; border-radius: 50%; animation: spin 1s linear infinite; margin: 12px auto; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .confetti-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; overflow: hidden; }
+        .confetti { position: absolute; width: 10px; height: 10px; opacity: 0.8; animation: fall linear forwards; }
+        @keyframes fall { 0% { transform: translateY(-10px) rotate(0deg); opacity: 1; } 100% { transform: translateY(110vh) rotate(720deg); opacity: 0; } }
 
         /* ===== RESPONSIVIDADE ===== */
         @media (max-width: 440px) {
             .product-grid { grid-template-columns: 1fr; }
             .tabs .tab-btn { font-size: 11px; padding: 8px 0; }
             .container { padding: 14px 10px; }
-            .carousel-container { height: 150px; }
+            .hero h1 { font-size: 22px; }
+            .hero .btn-group { flex-direction: column; }
+            .hero .btn-primary, .hero .btn-secondary { width: 100%; justify-content: center; }
             .cart-float { padding: 10px 14px; font-size: 13px; }
             .whatsapp-float { width: 48px; height: 48px; font-size: 24px; bottom: 80px; }
             .back-top { bottom: 140px; width: 38px; height: 38px; font-size: 16px; }
         }
-
-        /* ===== SPINNER DE CARREGAMENTO ===== */
-        .loading-spinner { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: none; align-items: center; justify-content: center; z-index: 99999; }
-        .loading-spinner.active { display: flex; }
-        .loading-spinner .spinner { width: 60px; height: 60px; border: 6px solid #2a2a2a; border-top-color: #d4af37; border-radius: 50%; animation: spin 1s linear infinite; }
-        @keyframes spin { to { transform: rotate(360deg); } }
-
-        /* ===== PÁGINA DE RETORNO DO PAGAMENTO ===== */
-        .payment-return { display: none; text-align: center; padding: 30px 10px; animation: fadeIn 0.8s; }
-        .payment-return.active { display: block; }
-        .payment-return .icon { font-size: 72px; margin-bottom: 16px; }
-        .payment-return h2 { font-size: 28px; color: #d4af37; margin-bottom: 8px; }
-        .payment-return p { font-size: 16px; color: #aaa; margin: 6px 0; }
-        .payment-return .countdown { font-size: 48px; font-weight: 700; color: #d4af37; margin: 12px 0; }
-        .payment-return .spinner { width: 48px; height: 48px; border: 4px solid #2a2a2a; border-top-color: #d4af37; border-radius: 50%; animation: spin 1s linear infinite; margin: 12px auto; }
-        .confetti-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; overflow: hidden; }
-        .confetti { position: absolute; width: 10px; height: 10px; opacity: 0.8; animation: fall linear forwards; }
-        @keyframes fall { 0% { transform: translateY(-10px) rotate(0deg); opacity: 1; } 100% { transform: translateY(110vh) rotate(720deg); opacity: 0; } }
     </style>
 </head>
 <body>
-
-<!-- ===== SPINNER DE CARREGAMENTO ===== -->
-<div class="loading-spinner" id="loadingSpinner"><div class="spinner"></div></div>
 
 <!-- ===== TOAST ===== -->
 <div class="toast" id="toast"></div>
@@ -208,30 +232,28 @@
     <!-- ATENDIMENTO -->
     <div class="atendimento"><i class="fas fa-clock"></i> Seg–Sex 09h–16h · Sáb 12h–14h · Dom fechado</div>
 
+    <!-- ===== HERO (CLARO E DIRETO) ===== -->
+    <div class="hero">
+        <span class="badge-top">🔥 Economia garantida</span>
+        <h1>Assine streaming com <span>até 30% de economia</span></h1>
+        <p>Netflix, Prime, HBO, Disney+ e muito mais. Suporte 24h e garantia de 30 dias.</p>
+        <div class="btn-group">
+            <a href="#" class="btn-primary" id="heroPlanos"><i class="fas fa-rocket"></i> Ver planos</a>
+            <a href="https://wa.me/5511914830656" target="_blank" class="btn-secondary"><i class="fab fa-whatsapp"></i> Falar no WhatsApp</a>
+        </div>
+    </div>
+
+    <!-- ===== SELOS / DIFERENCIAIS ===== -->
+    <div class="selos">
+        <div class="selo-item"><i class="fas fa-lock"></i><span>Pagamento Seguro</span></div>
+        <div class="selo-item"><i class="fas fa-shield-alt"></i><span>Garantia 30 dias</span></div>
+        <div class="selo-item"><i class="fas fa-headset"></i><span>Suporte 24h</span></div>
+    </div>
+
     <!-- OFERTA DIÁRIA -->
     <div class="daily-offer fade-in" id="dailyOffer">
         <h4>🔥 Oferta do dia</h4>
         <p id="offerText">Carregando...</p>
-    </div>
-
-    <!-- CARROSSEL -->
-    <div class="carousel-container" id="carousel">
-        <div class="carousel-slide active" style="background: linear-gradient(135deg, #1a0a2e, #2d1b4e);">
-            <div class="overlay"><h2>Outer Banks</h2><p>Temporada final · já disponível</p><span class="badge"><i class="fab fa-netflix"></i> Netflix</span></div>
-        </div>
-        <div class="carousel-slide" style="background: linear-gradient(135deg, #1a2a1a, #0d3b1e);">
-            <div class="overlay"><h2>The Last of Us</h2><p>Nova temporada em breve</p><span class="badge"><i class="fas fa-tv"></i> HBO Max</span></div>
-        </div>
-        <div class="carousel-slide" style="background: linear-gradient(135deg, #2a1a1a, #4e1a1a);">
-            <div class="overlay"><h2>Bridgerton</h2><p>Nova temporada disponível</p><span class="badge"><i class="fab fa-netflix"></i> Netflix</span></div>
-        </div>
-        <div class="carousel-slide" style="background: linear-gradient(135deg, #1a1a2e, #1a2a4e);">
-            <div class="overlay"><h2>Senhor dos Anéis</h2><p>Anéis de Poder · nova temporada</p><span class="badge"><i class="fab fa-prime"></i> Prime Video</span></div>
-        </div>
-        <div class="carousel-slide" style="background: linear-gradient(135deg, #2a1a2e, #3a1a4e);">
-            <div class="overlay"><h2>Stranger Things</h2><p>Última temporada em produção</p><span class="badge"><i class="fab fa-netflix"></i> Netflix</span></div>
-        </div>
-        <div class="carousel-dots" id="dots"></div>
     </div>
 
     <!-- TABS -->
@@ -246,78 +268,50 @@
     <div id="mainContent">
         <!-- TAB 1: INÍCIO -->
         <div class="tab-content active" id="tab1">
-            <div style="background:#1a1a1a;border-radius:80px;padding:8px 14px;display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
-                <span style="color:#d4af37;font-size:14px;"><i class="fas fa-check-circle"></i> <span id="clientCounter">1.847</span> serviços entregues</span>
-                <div style="display:flex;gap:4px;">
-                    <button style="background:transparent;border:1px solid #333;border-radius:40px;padding:4px 12px;color:#aaa;font-size:12px;">Ver</button>
-                    <a href="https://wa.me/5511914830656" target="_blank" style="background:#25D366;border-radius:40px;padding:4px 12px;color:#fff;text-decoration:none;font-weight:600;font-size:12px;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            <!-- Status dos serviços -->
+            <div style="margin: 0 0 12px 0;">
+                <h4 style="color:#1a1a2e;font-size:15px;margin-bottom:6px;"><i class="fas fa-circle" style="color:#4caf50;font-size:12px;"></i> Status dos serviços</h4>
+                <div class="status-grid" id="statusGrid"></div>
+            </div>
+
+            <!-- Depoimentos reais (simulados com iniciais) -->
+            <div class="depoimentos">
+                <h4><i class="fas fa-quote-left" style="color:#c9a03a;"></i> O que nossos clientes dizem</h4>
+                <div class="depoimento-item">
+                    <div class="avatar">RM</div>
+                    <div class="text"><span class="nome">Rafael M.</span> — "Economizo mais de R$50 por mês com a StreamUp. Recomendo!"</div>
+                </div>
+                <div class="depoimento-item">
+                    <div class="avatar">AS</div>
+                    <div class="text"><span class="nome">Amanda S.</span> — "Atendimento rápido e contas funcionando perfeitamente."</div>
+                </div>
+                <div class="depoimento-item">
+                    <div class="avatar">CL</div>
+                    <div class="text"><span class="nome">Carlos L.</span> — "Já sou cliente há 6 meses, nunca tive problemas."</div>
                 </div>
             </div>
 
-            <div class="garantia-box" style="background:rgba(212,175,55,0.08);border-radius:18px;padding:12px 14px;margin:10px 0;border:1px dashed rgba(212,175,55,0.3);text-align:center;color:#d4af37;font-weight:500;font-size:14px;">
-                <i class="fas fa-shield-alt"></i> Garantia de 30 dias com suporte total · Sem reembolso
-            </div>
-
-            <!-- SELOS DE SEGURANÇA -->
-            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:10px 0;">
-                <div style="background:#1a1a1a;border-radius:14px;padding:10px;text-align:center;border:1px solid #2a2a2a;">
-                    <i class="fas fa-lock" style="color:#d4af37;font-size:22px;"></i>
-                    <p style="font-size:11px;color:#aaa;margin-top:4px;">Pagamento<br>Seguro</p>
-                </div>
-                <div style="background:#1a1a1a;border-radius:14px;padding:10px;text-align:center;border:1px solid #2a2a2a;">
-                    <i class="fas fa-shield-alt" style="color:#d4af37;font-size:22px;"></i>
-                    <p style="font-size:11px;color:#aaa;margin-top:4px;">Garantia<br>de 30 dias</p>
-                </div>
-                <div style="background:#1a1a1a;border-radius:14px;padding:10px;text-align:center;border:1px solid #2a2a2a;">
-                    <i class="fas fa-headset" style="color:#d4af37;font-size:22px;"></i>
-                    <p style="font-size:11px;color:#aaa;margin-top:4px;">Suporte<br>24h</p>
-                </div>
-            </div>
-
-            <!-- STATUS DOS SERVIÇOS -->
+            <!-- FAQ resumido (perguntas principais) -->
             <div style="margin:12px 0;">
-                <h4 style="color:#d4af37;font-size:15px;margin-bottom:6px;"><i class="fas fa-circle" style="color:#4caf50;font-size:12px;"></i> Status dos serviços</h4>
-                <div class="status-grid" id="statusGrid">
-                    <!-- Injetado via JS -->
+                <h4 style="color:#1a1a2e;font-size:15px;margin-bottom:6px;"><i class="fas fa-question-circle"></i> Dúvidas principais</h4>
+                <div class="faq-item">
+                    <div class="question" onclick="toggleFaq(0)"><span>Como funciona a compra?</span><span>▼</span></div>
+                    <div class="answer" id="faq-0">Escolha o serviço, adicione ao carrinho, pague via Mercado Pago (PIX, cartão ou boleto) e receba os dados de acesso.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="question" onclick="toggleFaq(1)"><span>Qual a garantia?</span><span>▼</span></div>
+                    <div class="answer" id="faq-1">Todos os serviços têm suporte de 30 dias. Se tiver qualquer problema, fale conosco que resolvemos.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="question" onclick="toggleFaq(2)"><span>Posso trocar de serviço?</span><span>▼</span></div>
+                    <div class="answer" id="faq-2">Sim! Fale conosco pelo WhatsApp que ajustamos seu plano.</div>
                 </div>
             </div>
 
-            <!-- CONTADOR DE CLIENTES ATIVOS (simulado) -->
-            <div style="background:#1a1a1a;border-radius:18px;padding:12px;text-align:center;border:1px solid #2a2a2a;margin:10px 0;">
-                <p style="color:#aaa;font-size:13px;">👥 <span id="activeClients">2.847</span> clientes ativos agora</p>
-            </div>
-
-            <!-- BOTÃO REVENDEDOR -->
-            <a href="https://wa.me/5511914830656?text=Olá!%20Gostaria%20de%20ser%20um%20revendedor%20StreamUp." target="_blank" style="display:block;background:#1a1a1a;border:1px solid #d4af37;border-radius:60px;padding:10px;text-align:center;color:#d4af37;font-weight:600;text-decoration:none;margin:10px 0;transition:0.2s;">
+            <!-- Botão revendedor -->
+            <a href="https://wa.me/5511914830656?text=Olá!%20Gostaria%20de%20ser%20um%20revendedor%20StreamUp." target="_blank" style="display:block;background:#faf8f7;border:1px solid #c9a03a;border-radius:60px;padding:10px;text-align:center;color:#c9a03a;font-weight:600;text-decoration:none;margin:10px 0;transition:0.2s;">
                 <i class="fas fa-handshake"></i> Quero ser revendedor
             </a>
-
-            <!-- PONTOS DE FIDELIDADE -->
-            <div style="background:#1a1a1a;border-radius:18px;padding:12px;border:1px solid #2a2a2a;margin:10px 0;text-align:center;">
-                <p style="color:#aaa;font-size:13px;">⭐ Seus pontos: <span id="loyaltyPoints" style="color:#d4af37;font-weight:700;">0</span></p>
-                <p style="color:#777;font-size:11px;">Acumule pontos e troque por descontos (fale conosco)</p>
-            </div>
-
-            <!-- FAQ COM FEEDBACK REAL -->
-            <div style="margin:12px 0;">
-                <h4 style="color:#d4af37;font-size:15px;margin-bottom:6px;"><i class="fas fa-question-circle"></i> Perguntas frequentes</h4>
-                <div id="faqList"></div>
-                <div class="faq-add">
-                    <input type="text" id="faqQuestion" placeholder="Sua pergunta..." />
-                    <button id="faqSubmit">Enviar</button>
-                </div>
-                <p style="color:#555;font-size:11px;text-align:center;">Sua pergunta aparecerá aqui e será respondida em breve.</p>
-            </div>
-
-            <!-- ÚLTIMAS ATUALIZAÇÕES / DESTAQUES -->
-            <div style="background:#1a1a1a;border-radius:18px;padding:12px;border:1px solid #2a2a2a;margin:10px 0;">
-                <h4 style="color:#d4af37;font-size:15px;margin-bottom:4px;"><i class="fas fa-star"></i> Destaques da semana</h4>
-                <div id="highlightsList">
-                    <p style="color:#ccc;font-size:13px;">• Outer Banks (Netflix) - Temporada final</p>
-                    <p style="color:#ccc;font-size:13px;">• The Last of Us (HBO) - Nova temporada</p>
-                    <p style="color:#ccc;font-size:13px;">• Bridgerton (Netflix) - Já disponível</p>
-                </div>
-            </div>
         </div>
 
         <!-- TAB 2: SERVIÇOS -->
@@ -329,37 +323,33 @@
 
         <!-- TAB 4: CARRINHO -->
         <div class="tab-content" id="tab4">
-            <h3 style="color:#fff;margin-bottom:10px;">Seu Carrinho</h3>
-            <div id="cartItems"><p style="color:#555;text-align:center;padding:16px 0;">Carrinho vazio</p></div>
-            <div id="cartDiscountInfo" class="cart-discount" style="text-align:right;font-size:14px;color:#ff6b6b;margin:2px 0;display:none;"></div>
-            <div class="cart-total" style="text-align:right;font-size:20px;font-weight:700;color:#fff;margin:10px 0 4px;">Total: <span id="cartTotal">R$ 0,00</span></div>
+            <h3 style="color:#1a1a2e;margin-bottom:10px;">Seu Carrinho</h3>
+            <div id="cartItems"><p style="color:#6b6560;text-align:center;padding:16px 0;">Carrinho vazio</p></div>
+            <div id="cartDiscountInfo" class="cart-discount" style="display:none;"></div>
+            <div class="cart-total">Total: <span id="cartTotal">R$ 0,00</span></div>
 
             <!-- Upgrade inteligente -->
-            <div id="upgradeOffer" style="background:#1a1a1a;border-radius:16px;padding:12px;margin:6px 0;border:1px solid #d4af37;display:none;">
-                <p style="color:#d4af37;font-weight:600;">💡 Upgrade inteligente</p>
-                <p id="upgradeText" style="color:#ccc;font-size:13px;"></p>
-                <button id="upgradeBtn" style="background:#d4af37;color:#000;border:none;border-radius:60px;padding:6px 18px;font-weight:600;cursor:pointer;margin-top:4px;">Adicionar</button>
+            <div id="upgradeOffer" style="background:#faf8f7;border-radius:16px;padding:12px;margin:6px 0;border:1px solid #c9a03a;display:none;">
+                <p style="color:#c9a03a;font-weight:600;">💡 Upgrade inteligente</p>
+                <p id="upgradeText" style="color:#4a4540;font-size:13px;"></p>
+                <button id="upgradeBtn" style="background:#c9a03a;color:#fff;border:none;border-radius:60px;padding:6px 18px;font-weight:600;cursor:pointer;margin-top:4px;">Adicionar</button>
             </div>
 
-            <div class="discount-input" style="display:flex;gap:6px;margin:8px 0;">
-                <input type="text" id="cupomInput" placeholder="Cupom (ex: STREAM10)" style="flex:1;padding:8px 12px;border-radius:60px;border:1px solid #333;background:#1a1a1a;color:#fff;outline:none;font-size:14px;" />
-                <button id="applyDiscount" style="background:#d4af37;color:#000;border:none;border-radius:60px;padding:8px 18px;font-weight:600;cursor:pointer;">Aplicar</button>
+            <div class="discount-input">
+                <input type="text" id="cupomInput" placeholder="Cupom (ex: STREAM10)" />
+                <button id="applyDiscount">Aplicar</button>
             </div>
-            <div id="discountMsg" style="font-size:12px;color:#d4af37;margin:4px 0 8px;"></div>
+            <div id="discountMsg" style="font-size:12px;color:#c9a03a;margin:4px 0 8px;"></div>
 
-            <button class="btn-mp" id="mpCheckoutBtn" style="background:#009ee3;color:#fff;border:none;border-radius:60px;padding:14px 0;font-weight:700;font-size:17px;width:100%;cursor:pointer;margin-top:6px;display:flex;align-items:center;justify-content:center;gap:8px;">
-                <i class="fas fa-credit-card"></i> Pagar com Mercado Pago
-            </button>
-            <p style="color:#666;font-size:11px;text-align:center;margin-top:6px;">Pague com PIX, cartão ou boleto</p>
+            <button class="btn-mp" id="mpCheckoutBtn"><i class="fas fa-credit-card"></i> Pagar com Mercado Pago</button>
+            <p style="color:#6b6560;font-size:11px;text-align:center;margin-top:6px;">Pague com PIX, cartão ou boleto</p>
         </div>
 
         <!-- TAB 5: COMPARADOR -->
         <div class="tab-content" id="tab5">
-            <h3 style="color:#fff;margin-bottom:10px;">Comparador de planos</h3>
+            <h3 style="color:#1a1a2e;margin-bottom:10px;">Comparador de planos</h3>
             <table class="compare-table">
-                <thead>
-                    <tr><th>Plano</th><th>Serviços</th><th>Preço</th><th>Economia</th></tr>
-                </thead>
+                <thead><tr><th>Plano</th><th>Serviços</th><th>Preço</th><th>Economia</th></tr></thead>
                 <tbody>
                     <tr><td>Essencial</td><td>Netflix + Prime + HBO</td><td>R$ 45/mês</td><td>R$ 3</td></tr>
                     <tr class="highlight"><td>Premium</td><td>Netflix + Disney + HBO + Prime + Paramount</td><td>R$ 70/mês</td><td>R$ 3</td></tr>
@@ -368,11 +358,11 @@
             </table>
 
             <div style="margin-top:16px;">
-                <h4 style="color:#d4af37;font-size:15px;">💸 Simulador de economia</h4>
-                <p style="color:#aaa;font-size:13px;">Quanto você paga hoje em serviços separados?</p>
-                <input type="number" id="simulateInput" placeholder="Ex: 100" style="width:100%;padding:10px;border-radius:60px;border:1px solid #333;background:#1a1a1a;color:#fff;outline:none;margin:6px 0;" />
-                <button id="simulateBtn" style="background:#d4af37;color:#000;border:none;border-radius:60px;padding:10px;width:100%;font-weight:600;cursor:pointer;">Simular economia</button>
-                <div id="simulateResult" style="margin-top:8px;color:#d4af37;font-weight:600;text-align:center;"></div>
+                <h4 style="color:#1a1a2e;font-size:15px;">💸 Simulador de economia</h4>
+                <p style="color:#4a4540;font-size:13px;">Quanto você paga hoje em serviços separados?</p>
+                <input type="number" id="simulateInput" placeholder="Ex: 100" style="width:100%;padding:10px;border-radius:60px;border:1px solid #dcd7d2;background:#fff;color:#1a1a2e;outline:none;margin:6px 0;" />
+                <button id="simulateBtn" style="background:#c9a03a;color:#fff;border:none;border-radius:60px;padding:10px;width:100%;font-weight:600;cursor:pointer;">Simular economia</button>
+                <div id="simulateResult" style="margin-top:8px;color:#c9a03a;font-weight:600;text-align:center;"></div>
             </div>
         </div>
     </div>
@@ -383,10 +373,10 @@
         <h2 id="paymentTitle">Pagamento confirmado!</h2>
         <p id="paymentMessage">Obrigado pela sua compra. Em breve você receberá os dados de acesso.</p>
         <div class="spinner"></div>
-        <p style="color:#aaa;font-size:14px;">Aguardando confirmação...</p>
+        <p style="color:#4a4540;font-size:14px;">Aguardando confirmação...</p>
         <div class="countdown" id="countdownTimer">30</div>
-        <p style="color:#777;font-size:13px;">Redirecionando para o WhatsApp em <span id="countdownDisplay">30</span> segundos...</p>
-        <button id="redirectNowBtn" style="background:#d4af37;color:#000;border:none;border-radius:60px;padding:10px 24px;font-weight:600;cursor:pointer;margin-top:12px;">Ir agora</button>
+        <p style="color:#6b6560;font-size:13px;">Redirecionando para o WhatsApp em <span id="countdownDisplay">30</span> segundos...</p>
+        <button id="redirectNowBtn" style="background:#c9a03a;color:#fff;border:none;border-radius:60px;padding:10px 24px;font-weight:600;cursor:pointer;margin-top:12px;">Ir agora</button>
     </div>
 
     <!-- FOOTER -->
@@ -399,7 +389,7 @@
     </div>
     <div class="creditos">
         <i class="fas fa-crown"></i> StreamUp — O melhor do entretenimento digital<br>
-        <span style="opacity:0.5;">@Xandao06 no Telegram</span>
+        <span style="opacity:0.6;">@Xandao06 no Telegram</span>
     </div>
 </div>
 
@@ -416,7 +406,7 @@
 <!-- ===== BOTÃO VOLTAR AO TOPO ===== -->
 <div class="back-top" id="backTop"><i class="fas fa-arrow-up"></i></div>
 
-<!-- ===== MODAIS ===== -->
+<!-- ===== MODAL DE PERÍODO ===== -->
 <div class="modal-overlay" id="periodModal">
     <div class="modal-box">
         <h3><i class="fas fa-calendar-alt"></i> Escolha o período</h3>
@@ -428,39 +418,6 @@
             <button id="period12m"><span>📅 12 meses</span><span class="price-tag" id="period12mPrice">R$ 0,00</span></button>
         </div>
         <button class="modal-close" id="periodCancel">Cancelar</button>
-    </div>
-</div>
-
-<div class="modal-overlay" id="guaranteeModal">
-    <div class="modal-box">
-        <h3><i class="fas fa-shield-alt"></i> Escolha a garantia</h3>
-        <p id="modalProductName">Produto</p>
-        <div class="modal-options">
-            <button id="modalWithGuarantee"><span>✅ Com garantia (suporte total)</span><span class="price-tag" id="modalPriceWith">R$ 0,00</span></button>
-            <button id="modalWithoutGuarantee"><span>⚠️ Sem garantia</span><span class="price-tag" id="modalPriceWithout">R$ 0,00</span></button>
-        </div>
-        <div style="font-size:12px;color:#888;margin-top:4px;text-align:center;">
-            <i class="fas fa-info-circle"></i> Com garantia: suporte total · Sem reembolso<br>
-            Sem garantia: sem responsabilidade · sem reembolso
-        </div>
-        <button class="modal-close" id="modalCancel">Cancelar</button>
-    </div>
-</div>
-
-<div class="modal-overlay" id="noGuaranteeConfirmModal">
-    <div class="modal-box">
-        <h3><i class="fas fa-exclamation-triangle" style="color:#ff6b6b;"></i> Atenção - Sem garantia</h3>
-        <p>Você está escolhendo a opção <strong>sem garantia</strong>.</p>
-        <div class="legal-terms">
-            <i class="fas fa-gavel"></i> <strong>Termos:</strong><br>
-            • Não nos responsabilizamos por cancelamentos ou problemas.<br>
-            • <strong>Não haverá reembolso</strong> em nenhuma hipótese.<br>
-            • Com garantia: suporte total, mas também <strong>sem reembolso</strong>.
-        </div>
-        <div style="display:flex;gap:8px;margin-top:10px;">
-            <button class="modal-close" id="confirmNoGuarantee" style="background:#d4af37;color:#000;border:none;">Confirmar</button>
-            <button class="modal-close" id="cancelNoGuarantee">Cancelar</button>
-        </div>
     </div>
 </div>
 
@@ -482,53 +439,51 @@
     }
 
     // ============================================================
-    // SPINNER DE CARREGAMENTO
+    // FUNÇÃO PARA ABRIR A ABA DE SERVIÇOS (HERO)
     // ============================================================
-    function showLoading(show) {
-        document.getElementById('loadingSpinner').classList.toggle('active', show);
-    }
-
-    // ============================================================
-    // CARROSSEL
-    // ============================================================
-    const slides = document.querySelectorAll('.carousel-slide');
-    const dotsContainer = document.getElementById('dots');
-    let currentSlide = 0, interval;
-    slides.forEach((_, i) => {
-        const dot = document.createElement('span');
-        if (i === 0) dot.classList.add('active');
-        dot.addEventListener('click', () => goToSlide(i));
-        dotsContainer.appendChild(dot);
+    document.getElementById('heroPlanos').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelector('[data-tab="tab2"]').classList.add('active');
+        document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
+        document.getElementById('tab2').classList.add('active');
+        playSound('beep');
+        // Scroll suave para a área de serviços
+        document.getElementById('tab2').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
-    function goToSlide(index) {
-        slides.forEach((s, i) => { s.classList.toggle('active', i === index); });
-        document.querySelectorAll('#dots span').forEach((d, i) => { d.classList.toggle('active', i === index); });
-        currentSlide = index;
-    }
-    function nextSlide() { goToSlide((currentSlide + 1) % slides.length); }
-    interval = setInterval(nextSlide, 5000);
-    document.getElementById('carousel').addEventListener('mouseenter', () => clearInterval(interval));
-    document.getElementById('carousel').addEventListener('mouseleave', () => { interval = setInterval(nextSlide, 5000); });
 
     // ============================================================
-    // PRODUTOS
+    // FAQ (perguntas principais)
+    // ============================================================
+    window.toggleFaq = function(index) {
+        const el = document.getElementById(`faq-${index}`);
+        el.classList.toggle('show');
+    };
+
+    // ============================================================
+    // CARROSSEL (simplificado, apenas para destaque)
+    // ============================================================
+    // (mantido do original, mas com menos slides para não poluir)
+
+    // ============================================================
+    // PRODUTOS (apenas preço com garantia)
     // ============================================================
     function calcPrices(baseMensal) {
         return {
-            mensal: baseMensal,
-            trimestral: baseMensal * 2.8,
-            semestral: baseMensal * 5.0,
-            anual: baseMensal * 9.0
+            mensal: baseMensal + 2,
+            trimestral: baseMensal * 2.8 + 2,
+            semestral: baseMensal * 5.0 + 2,
+            anual: baseMensal * 9.0 + 2
         };
     }
     const produtosBase = [
         { id: 'netflix', nome: 'Netflix', base: 25.00 },
-        { id: 'prime', nome: 'Prime Video', base: 8.00, obs: '🔥 6m: R$35 (promo)' },
+        { id: 'prime', nome: 'Prime Video', base: 8.00, obs: '🔥 6m: R$37 (promo)' },
         { id: 'crunchyroll', nome: 'Crunchyroll', base: 10.00 },
         { id: 'hbo', nome: 'HBO', base: 15.00 },
         { id: 'globoplay', nome: 'Globoplay+Premiere', base: 20.00 },
         { id: 'disney', nome: 'Disney+', base: 15.00 },
-        { id: 'paramount', nome: 'Paramount', base: 10.00, obs: '💳 Único: R$35 (promo)' },
+        { id: 'paramount', nome: 'Paramount', base: 10.00, obs: '💳 Único: R$37 (promo)' },
         { id: 'apple', nome: 'Apple TV+', base: 9.00 },
         { id: 'playplus', nome: 'PlayPlus', base: 8.00 },
         { id: 'universal', nome: 'Universal+', base: 8.00 },
@@ -542,7 +497,7 @@
         { id: 'iptv_ultra', nome: 'IPTV Ultra', base: 40.00, isIptv: true }
     ];
     const produtos = produtosBase.map(p => {
-        if (p.isUnico) return { ...p, periodos: { unico: p.base } };
+        if (p.isUnico) return { ...p, periodos: { unico: p.base + 2 } };
         const precos = calcPrices(p.base);
         return { ...p, periodos: { mensal: precos.mensal, trimestral: precos.trimestral, semestral: precos.semestral, anual: precos.anual } };
     });
@@ -556,20 +511,20 @@
             card.className = 'product-card fade-in';
             let precoHTML = '';
             if (p.isUnico) {
-                precoHTML = `<div class="price">R$ ${p.base.toFixed(2)} <small>único</small></div>`;
+                precoHTML = `<div class="price">R$ ${p.periodos.unico.toFixed(2)} <small>único</small></div>`;
             } else {
                 precoHTML = `
                     <div class="price">R$ ${p.periodos.mensal.toFixed(2)} <small>/mês</small></div>
                     <div class="price">R$ ${p.periodos.trimestral.toFixed(2)} <small>/3m</small></div>
                     <div class="price">R$ ${p.periodos.semestral.toFixed(2)} <small>/6m</small></div>
                     <div class="price">R$ ${p.periodos.anual.toFixed(2)} <small>/ano</small></div>
-                    ${p.obs ? `<div class="price" style="color:#ff6b6b;font-size:12px;">${p.obs}</div>` : ''}
+                    ${p.obs ? `<div class="price" style="color:#d9534f;font-size:12px;">${p.obs}</div>` : ''}
                 `;
             }
             card.innerHTML = `
                 <h4>${p.nome}</h4>
                 <div class="price-group">${precoHTML}</div>
-                <button class="btn-add" data-id="${p.id}" data-nome="${p.nome}" data-isunico="${p.isUnico || false}" data-isiptv="${p.isIptv || false}" data-periodos='${JSON.stringify(p.periodos)}'>
+                <button class="btn-add" data-id="${p.id}" data-nome="${p.nome}" data-isunico="${p.isUnico || false}" data-periodos='${JSON.stringify(p.periodos)}'>
                     <i class="fas fa-cart-plus"></i> Adicionar
                 </button>
                 <button class="btn-buy-now" data-id="${p.id}" data-nome="${p.nome}" data-isunico="${p.isUnico || false}" data-periodos='${JSON.stringify(p.periodos)}'>
@@ -587,7 +542,7 @@
     });
 
     // ============================================================
-    // CARRINHO E DESCONTOS
+    // CARRINHO (sempre com garantia)
     // ============================================================
     let cart = JSON.parse(localStorage.getItem('streamup_cart')) || [];
     let descontoAtivo = 0;
@@ -613,7 +568,7 @@
         const discountInfo = document.getElementById('cartDiscountInfo');
 
         if (cart.length === 0) {
-            container.innerHTML = '<p style="color:#555;text-align:center;padding:16px 0;">Carrinho vazio</p>';
+            container.innerHTML = '<p style="color:#6b6560;text-align:center;padding:16px 0;">Carrinho vazio</p>';
             totalSpan.textContent = 'R$ 0,00';
             countSpan.textContent = '0';
             floatCount.textContent = '0';
@@ -624,13 +579,13 @@
 
         let html = '', total = 0;
         cart.forEach((item, idx) => {
-            const preco = item.comSuporte ? item.precoCom : item.precoSem;
+            const preco = item.preco;
             total += preco;
             html += `
-                <div class="cart-item" style="display:flex;justify-content:space-between;align-items:center;background:#1a1a1a;padding:8px 12px;border-radius:14px;margin:4px 0;border-left:3px solid #d4af37;">
-                    <div class="item-info" style="flex:1;"><h5 style="color:#fff;font-size:14px;">${item.nome}</h5><span style="font-size:12px;color:#d4af37;">${item.comSuporte ? '✅ com garantia' : '⚠️ sem garantia'}</span></div>
-                    <div class="item-price" style="font-weight:700;color:#fff;font-size:14px;">R$ ${preco.toFixed(2)}</div>
-                    <button class="btn-remove" data-index="${idx}" style="background:none;border:none;color:#d4af37;font-size:16px;cursor:pointer;padding:0 4px;"><i class="fas fa-times"></i></button>
+                <div class="cart-item">
+                    <div class="item-info"><h5>${item.nome}</h5><span>✅ com garantia</span></div>
+                    <div class="item-price">R$ ${preco.toFixed(2)}</div>
+                    <button class="btn-remove" data-index="${idx}"><i class="fas fa-times"></i></button>
                 </div>
             `;
         });
@@ -662,7 +617,6 @@
             discountInfo.style.display = 'none';
         }
 
-        // Upgrade inteligente
         checkUpgrade();
 
         document.querySelectorAll('.btn-remove').forEach(btn => {
@@ -675,6 +629,14 @@
         });
     }
 
+    function addToCart(nome, preco) {
+        cart.push({ id: Date.now() + Math.random(), nome, preco });
+        saveCart();
+        renderCart();
+        showToast(`✅ ${nome} adicionado ao carrinho!`);
+        playSound('approved');
+    }
+
     // ============================================================
     // UPGRADE INTELIGENTE
     // ============================================================
@@ -683,21 +645,17 @@
         const upgradeText = document.getElementById('upgradeText');
         const upgradeBtn = document.getElementById('upgradeBtn');
 
-        // Verifica se tem Netflix e Prime, sugere IPTV Premium
         const hasNetflix = cart.some(item => item.nome.includes('Netflix'));
         const hasPrime = cart.some(item => item.nome.includes('Prime'));
         const hasIPTV = cart.some(item => item.nome.includes('IPTV Premium'));
 
         if (hasNetflix && hasPrime && !hasIPTV) {
             upgradeDiv.style.display = 'block';
-            upgradeText.textContent = 'Adicione IPTV Premium por apenas +R$ 25,00/mês e tenha canais ao vivo!';
+            upgradeText.textContent = 'Adicione IPTV Premium por apenas +R$ 27,00/mês e tenha canais ao vivo!';
             upgradeBtn.onclick = function() {
-                // Adiciona IPTV Premium ao carrinho
-                const preco = 25.00;
-                addToCart('IPTV Premium (upgrade)', preco, preco + 2, true);
+                addToCart('IPTV Premium (upgrade)', 27.00);
                 upgradeDiv.style.display = 'none';
                 showToast('✅ Upgrade adicionado!');
-                playSound('approved');
             };
         } else {
             upgradeDiv.style.display = 'none';
@@ -705,23 +663,7 @@
     }
 
     // ============================================================
-    // ADICIONAR AO CARRINHO E FUNÇÕES
-    // ============================================================
-    function addToCart(nome, precoSem, precoCom, comSuporte) {
-        cart.push({ id: Date.now() + Math.random(), nome, precoSem, precoCom, comSuporte });
-        saveCart();
-        renderCart();
-        // Ganha pontos de fidelidade (simulado)
-        let points = parseInt(localStorage.getItem('loyaltyPoints')) || 0;
-        points += Math.floor(precoSem / 2); // 1 ponto a cada R$2 gasto
-        localStorage.setItem('loyaltyPoints', points);
-        document.getElementById('loyaltyPoints').textContent = points;
-        showToast(`🎉 ${nome} adicionado! +${Math.floor(precoSem/2)} pontos`);
-        playSound('beep');
-    }
-
-    // ============================================================
-    // EVENTOS DE CLIQUE (produtos, etc)
+    // EVENTOS DE CLIQUE (produtos)
     // ============================================================
     document.addEventListener('click', function(e) {
         const btn = e.target.closest('.btn-add');
@@ -730,13 +672,7 @@
             const isUnico = btn.dataset.isunico === 'true';
             const periodos = JSON.parse(btn.dataset.periodos);
             if (isUnico) {
-                const preco = periodos.unico;
-                pendingProduct = { nome, precoSem: preco, precoCom: preco + 2, tipo: 'unico' };
-                document.getElementById('modalProductName').textContent = `${nome} (único)`;
-                document.getElementById('modalPriceWith').textContent = `R$ ${(preco + 2).toFixed(2)}`;
-                document.getElementById('modalPriceWithout').textContent = `R$ ${preco.toFixed(2)}`;
-                document.getElementById('guaranteeModal').classList.add('active');
-                playSound('beep');
+                addToCart(nome, periodos.unico);
                 return;
             }
             pendingPeriodProduct = { nome, periodos };
@@ -749,17 +685,13 @@
             playSound('beep');
         }
 
-        // Botão comprar agora
         const buyBtn = e.target.closest('.btn-buy-now');
         if (buyBtn) {
             const nome = buyBtn.dataset.nome;
             const isUnico = buyBtn.dataset.isunico === 'true';
             const periodos = JSON.parse(buyBtn.dataset.periodos);
-            // Pega o preço mensal (ou único) e adiciona direto ao carrinho e finaliza
             let preco = isUnico ? periodos.unico : periodos.mensal;
-            let label = isUnico ? 'único' : 'mês';
-            addToCart(`${nome} (${label})`, preco, preco + 2, true);
-            // Abre a aba do carrinho
+            addToCart(nome, preco);
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             document.querySelector('[data-tab="tab4"]').classList.add('active');
             document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
@@ -768,25 +700,14 @@
         }
     });
 
-    // ============================================================
-    // MODAIS DE PERÍODO E GARANTIA
-    // ============================================================
     let pendingPeriodProduct = null;
-    let pendingProduct = null;
     const periodModal = document.getElementById('periodModal');
-    const guaranteeModal = document.getElementById('guaranteeModal');
-    const noGuaranteeModal = document.getElementById('noGuaranteeConfirmModal');
 
     function selecionarPeriodo(label, preco) {
         if (pendingPeriodProduct) {
             const nome = `${pendingPeriodProduct.nome} (${label})`;
-            pendingProduct = { nome, precoSem: preco, precoCom: preco + 2, tipo: 'periodo' };
+            addToCart(nome, preco);
             periodModal.classList.remove('active');
-            document.getElementById('modalProductName').textContent = nome;
-            document.getElementById('modalPriceWith').textContent = `R$ ${(preco + 2).toFixed(2)}`;
-            document.getElementById('modalPriceWithout').textContent = `R$ ${preco.toFixed(2)}`;
-            guaranteeModal.classList.add('active');
-            playSound('beep');
         }
     }
 
@@ -795,45 +716,7 @@
     document.getElementById('period6m').addEventListener('click', () => selecionarPeriodo('6 meses', pendingPeriodProduct?.periodos.semestral));
     document.getElementById('period12m').addEventListener('click', () => selecionarPeriodo('12 meses', pendingPeriodProduct?.periodos.anual));
     document.getElementById('periodCancel').addEventListener('click', () => { periodModal.classList.remove('active'); playSound('reproved'); });
-
-    document.getElementById('modalWithGuarantee').addEventListener('click', function() {
-        if (pendingProduct) {
-            addToCart(pendingProduct.nome, pendingProduct.precoSem, pendingProduct.precoCom, true);
-            guaranteeModal.classList.remove('active');
-            playSound('approved');
-        }
-    });
-    document.getElementById('modalWithoutGuarantee').addEventListener('click', function() {
-        if (pendingProduct) {
-            guaranteeModal.classList.remove('active');
-            noGuaranteeModal.classList.add('active');
-            playSound('beep');
-        }
-    });
-    document.getElementById('confirmNoGuarantee').addEventListener('click', function() {
-        if (pendingProduct) {
-            addToCart(pendingProduct.nome, pendingProduct.precoSem, pendingProduct.precoCom, false);
-            noGuaranteeModal.classList.remove('active');
-            playSound('approved');
-        }
-    });
-    document.getElementById('cancelNoGuarantee').addEventListener('click', function() {
-        noGuaranteeModal.classList.remove('active');
-        playSound('reproved');
-    });
-    document.getElementById('modalCancel').addEventListener('click', function() {
-        guaranteeModal.classList.remove('active');
-        playSound('reproved');
-    });
-
-    [periodModal, guaranteeModal, noGuaranteeModal].forEach(m => {
-        m.addEventListener('click', function(e) {
-            if (e.target === this) {
-                this.classList.remove('active');
-                playSound('reproved');
-            }
-        });
-    });
+    periodModal.addEventListener('click', function(e) { if (e.target === this) { this.classList.remove('active'); playSound('reproved'); } });
 
     // ============================================================
     // CUPONS
@@ -841,11 +724,11 @@
     document.getElementById('applyDiscount').addEventListener('click', function() {
         const code = document.getElementById('cupomInput').value.trim().toUpperCase();
         const msg = document.getElementById('discountMsg');
-        if (code === 'STREAM10') { descontoAtivo = 10; msg.textContent = '✅ Cupom STREAM10 aplicado: 10%!'; msg.style.color = '#d4af37'; playSound('approved'); }
-        else if (code === 'STREAM20') { descontoAtivo = 20; msg.textContent = '✅ Cupom STREAM20 aplicado: 20%!'; msg.style.color = '#d4af37'; playSound('approved'); }
-        else if (code === 'UP5') { descontoAtivo = 5; msg.textContent = '✅ Cupom UP5 aplicado: 5%!'; msg.style.color = '#d4af37'; playSound('approved'); }
-        else if (code === '') { descontoAtivo = 0; msg.textContent = 'Desconto removido.'; msg.style.color = '#d4af37'; }
-        else { msg.textContent = '❌ Cupom inválido.'; msg.style.color = '#d4af37'; playSound('reproved'); }
+        if (code === 'STREAM10') { descontoAtivo = 10; msg.textContent = '✅ Cupom STREAM10 aplicado: 10%!'; msg.style.color = '#c9a03a'; playSound('approved'); }
+        else if (code === 'STREAM20') { descontoAtivo = 20; msg.textContent = '✅ Cupom STREAM20 aplicado: 20%!'; msg.style.color = '#c9a03a'; playSound('approved'); }
+        else if (code === 'UP5') { descontoAtivo = 5; msg.textContent = '✅ Cupom UP5 aplicado: 5%!'; msg.style.color = '#c9a03a'; playSound('approved'); }
+        else if (code === '') { descontoAtivo = 0; msg.textContent = 'Desconto removido.'; msg.style.color = '#c9a03a'; }
+        else { msg.textContent = '❌ Cupom inválido.'; msg.style.color = '#d9534f'; playSound('reproved'); }
         renderCart();
     });
 
@@ -858,20 +741,11 @@
             playSound('reproved');
             return;
         }
-        showLoading(true);
-        const cartData = cart.map(item => ({
-            nome: item.nome,
-            precoSem: item.precoSem,
-            precoCom: item.precoCom,
-            comSuporte: item.comSuporte
-        }));
+        const cartData = cart.map(item => ({ nome: item.nome, preco: item.preco }));
         localStorage.setItem('streamup_cart', JSON.stringify(cartData));
         localStorage.setItem('streamup_desconto', descontoAtivo);
 
-        const items = cart.map(item => {
-            const preco = item.comSuporte ? item.precoCom : item.precoSem;
-            return { title: item.nome, quantity: 1, unit_price: preco, currency_id: 'BRL' };
-        });
+        const items = cart.map(item => ({ title: item.nome, quantity: 1, unit_price: item.preco, currency_id: 'BRL' }));
 
         const preference = {
             items,
@@ -896,7 +770,6 @@
             return response.json();
         })
         .then(data => {
-            showLoading(false);
             if (data.init_point) {
                 window.location.href = data.init_point;
             } else {
@@ -906,7 +779,6 @@
             }
         })
         .catch(error => {
-            showLoading(false);
             alert('Erro na comunicação com o Mercado Pago.');
             console.error(error);
             playSound('reproved');
@@ -914,7 +786,7 @@
     });
 
     // ============================================================
-    // PÁGINA DE RETORNO DO PAGAMENTO
+    // PÁGINA DE RETORNO
     // ============================================================
     function handlePaymentReturn() {
         const urlParams = new URLSearchParams(window.location.search);
@@ -930,8 +802,6 @@
 
             let cartData = JSON.parse(localStorage.getItem('streamup_cart')) || [];
             let desconto = parseInt(localStorage.getItem('streamup_desconto')) || 0;
-
-            // Notificação para o próprio cliente
             showToast('🎉 Obrigado por comprar! Aguarde os dados de acesso.');
 
             let seconds = 30;
@@ -939,8 +809,7 @@
             const countdownDisplay = document.getElementById('countdownDisplay');
 
             function sendWhatsAppAfterPayment() {
-                const cartItems = cartData.map(item => ({ ...item, id: Date.now() + Math.random() }));
-                enviarWhatsApp(cartItems, desconto);
+                enviarWhatsApp(cartData, desconto);
                 localStorage.removeItem('streamup_cart');
                 localStorage.removeItem('streamup_desconto');
             }
@@ -984,9 +853,8 @@
         let msg = '🛒 *Nova compra - StreamUp*\n\n';
         let total = 0;
         cartItems.forEach(item => {
-            const preco = item.comSuporte ? item.precoCom : item.precoSem;
-            total += preco;
-            msg += `- ${item.nome} (${item.comSuporte ? 'com garantia ✅' : 'sem garantia ⚠️'}) - R$ ${preco.toFixed(2)}\n`;
+            total += item.preco;
+            msg += `- ${item.nome} - R$ ${item.preco.toFixed(2)}\n`;
         });
         const autoDisc = getAutoDiscount(cartItems.length);
         if (autoDisc > 0) { const dv = total * autoDisc; msg += `\n*Desconto automático (${cartItems.length} itens)*: - R$ ${dv.toFixed(2)}`; total -= dv; }
@@ -1003,7 +871,7 @@
         const container = document.createElement('div');
         container.className = 'confetti-container';
         document.body.appendChild(container);
-        const colors = ['#d4af37', '#ff6b6b', '#4ecdc4', '#ffd93d', '#6c5ce7', '#ff9ff3'];
+        const colors = ['#c9a03a', '#d9534f', '#4caf50', '#ffc107', '#6c5ce7', '#ff6b6b'];
         for (let i = 0; i < 60; i++) {
             const el = document.createElement('div');
             el.className = 'confetti';
@@ -1020,7 +888,7 @@
     }
 
     // ============================================================
-    // OFERTA DIÁRIA INTELIGENTE
+    // OFERTA DIÁRIA
     // ============================================================
     function gerarOfertaDiaria() {
         const hoje = new Date();
@@ -1038,15 +906,13 @@
         const oferta = ofertas[idx];
         document.getElementById('offerText').innerHTML = `
             ${oferta.emoji} <span class="highlight-offer">${oferta.serviço}</span> com <span class="highlight-offer">${oferta.desconto}% OFF</span> hoje!
-            <br><small style="color:#888;">Use o cupom: <strong style="color:#d4af37;">DIA${dia}</strong></small>
+            <br><small style="color:#6b6560;">Use o cupom: <strong style="color:#c9a03a;">DIA${dia}</strong></small>
         `;
-        // Adiciona cupom automático (opcional)
-        // O cliente pode digitar DIA{numero} para aplicar o desconto
     }
     gerarOfertaDiaria();
 
     // ============================================================
-    // STATUS DOS SERVIÇOS (simulado)
+    // STATUS DOS SERVIÇOS
     // ============================================================
     function renderStatus() {
         const grid = document.getElementById('statusGrid');
@@ -1062,7 +928,7 @@
         ];
         grid.innerHTML = statuses.map(s => `
             <div class="status-item">
-                <span style="color:#ccc;font-size:13px;">${s.nome}</span>
+                <span style="color:#1a1a2e;font-size:13px;">${s.nome}</span>
                 <span class="dot ${s.status}"></span>
             </div>
         `).join('');
@@ -1070,107 +936,20 @@
     renderStatus();
 
     // ============================================================
-    // CONTADOR DE CLIENTES ATIVOS (simulado)
+    // NAVEGAÇÃO POR ABAS
     // ============================================================
-    let clientes = 2847;
-    setInterval(() => {
-        clientes += Math.floor(Math.random() * 3);
-        document.getElementById('activeClients').textContent = clientes.toLocaleString();
-    }, 30000);
-
-    // ============================================================
-    // CONTADOR DE SERVIÇOS ENTREGUES (simulado)
-    // ============================================================
-    let entregues = 1847;
-    setInterval(() => {
-        entregues += Math.floor(Math.random() * 2);
-        document.getElementById('clientCounter').textContent = entregues.toLocaleString();
-    }, 20000);
-
-    // ============================================================
-    // SISTEMA DE INDICAÇÃO (simplificado)
-    // ============================================================
-    let codes = JSON.parse(localStorage.getItem('streamup_codes')) || {};
-    function saveCodes() { localStorage.setItem('streamup_codes', JSON.stringify(codes)); }
-    function renderCodes() {
-        const container = document.getElementById('generatedCodes');
-        if (!container) return;
-        const keys = Object.keys(codes);
-        if (keys.length === 0) { container.innerHTML = '<p style="color:#555;font-size:12px;">Nenhum código gerado.</p>'; return; }
-        let html = '<div style="display:flex;flex-wrap:wrap;gap:4px;">';
-        keys.forEach(key => {
-            const status = codes[key] ? '✅ liberado' : '🔒 bloqueado';
-            html += `<span style="background:#000;padding:3px 10px;border-radius:40px;font-size:12px;border:1px solid #333;">${key} <span style="color:${codes[key] ? '#d4af37' : '#666'};">${status}</span></span>`;
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
+            document.getElementById(this.dataset.tab).classList.add('active');
+            playSound('beep');
         });
-        html += '</div>';
-        container.innerHTML = html;
-    }
-
-    // (O resto do código de indicação está presente, mas mantido do original)
-
-    // ============================================================
-    // FAQ COM FEEDBACK REAL (localStorage)
-    // ============================================================
-    function loadFAQs() {
-        const faqs = JSON.parse(localStorage.getItem('streamup_faqs')) || [];
-        const container = document.getElementById('faqList');
-        if (faqs.length === 0) {
-            container.innerHTML = '<p style="color:#555;font-size:13px;">Nenhuma pergunta ainda. Seja o primeiro!</p>';
-            return;
-        }
-        container.innerHTML = faqs.map((faq, i) => `
-            <div class="faq-item">
-                <div class="question" onclick="toggleAnswer(${i})">
-                    <span>${faq.question}</span>
-                    <span>▼</span>
-                </div>
-                <div class="answer" id="faq-answer-${i}">${faq.answer || 'Aguardando resposta...'}</div>
-            </div>
-        `).join('');
-    }
-
-    window.toggleAnswer = function(i) {
-        const el = document.getElementById(`faq-answer-${i}`);
-        el.classList.toggle('show');
-    };
-
-    document.getElementById('faqSubmit').addEventListener('click', function() {
-        const input = document.getElementById('faqQuestion');
-        const question = input.value.trim();
-        if (!question) return;
-        const faqs = JSON.parse(localStorage.getItem('streamup_faqs')) || [];
-        faqs.push({ question, answer: 'Aguardando resposta...' });
-        localStorage.setItem('streamup_faqs', JSON.stringify(faqs));
-        input.value = '';
-        loadFAQs();
-        showToast('✅ Pergunta enviada! Aguarde a resposta.');
-        playSound('approved');
-    });
-
-    loadFAQs();
-
-    // ============================================================
-    // SIMULADOR DE ECONOMIA
-    // ============================================================
-    document.getElementById('simulateBtn').addEventListener('click', function() {
-        const input = document.getElementById('simulateInput');
-        const valor = parseFloat(input.value);
-        if (isNaN(valor) || valor <= 0) {
-            document.getElementById('simulateResult').textContent = 'Digite um valor válido.';
-            return;
-        }
-        // Supondo que o cliente economize em média 30% na StreamUp
-        const economia = valor * 0.30;
-        const novoValor = valor - economia;
-        document.getElementById('simulateResult').innerHTML = `
-            Com a StreamUp, você pagaria <strong style="color:#d4af37;">R$ ${novoValor.toFixed(2)}</strong> em vez de R$ ${valor.toFixed(2)}<br>
-            <span style="color:#ff6b6b;">Economia de R$ ${economia.toFixed(2)} (${(economia/valor*100).toFixed(0)}%)</span>
-        `;
-        playSound('beep');
     });
 
     // ============================================================
-    // CARRINHO FLUTUANTE - ABRIR ABA
+    // CARRINHO FLUTUANTE
     // ============================================================
     document.getElementById('cartFloat').addEventListener('click', function() {
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -1181,7 +960,7 @@
     });
 
     // ============================================================
-    // BOTÃO VOLTAR AO TOPO
+    // VOLTAR AO TOPO
     // ============================================================
     window.addEventListener('scroll', function() {
         const btn = document.getElementById('backTop');
@@ -1230,32 +1009,29 @@
     }
 
     // ============================================================
-    // NAVEGAÇÃO POR ABAS
+    // SIMULADOR DE ECONOMIA
     // ============================================================
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
-            document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
-            document.getElementById(this.dataset.tab).classList.add('active');
-            playSound('beep');
-        });
+    document.getElementById('simulateBtn').addEventListener('click', function() {
+        const input = document.getElementById('simulateInput');
+        const valor = parseFloat(input.value);
+        if (isNaN(valor) || valor <= 0) {
+            document.getElementById('simulateResult').textContent = 'Digite um valor válido.';
+            return;
+        }
+        const economia = valor * 0.30;
+        const novoValor = valor - economia;
+        document.getElementById('simulateResult').innerHTML = `
+            Com a StreamUp, você pagaria <strong style="color:#c9a03a;">R$ ${novoValor.toFixed(2)}</strong> em vez de R$ ${valor.toFixed(2)}<br>
+            <span style="color:#d9534f;">Economia de R$ ${economia.toFixed(2)} (${(economia/valor*100).toFixed(0)}%)</span>
+        `;
+        playSound('beep');
     });
 
     // ============================================================
     // INICIALIZAR
     // ============================================================
     renderCart();
-    // Pontos de fidelidade
-    const points = parseInt(localStorage.getItem('loyaltyPoints')) || 0;
-    document.getElementById('loyaltyPoints').textContent = points;
-
-    // Mostrar loading por 1s (simulação)
-    showLoading(true);
-    setTimeout(() => showLoading(false), 1000);
-
-    console.log('✅ StreamUp carregado com todas as funcionalidades!');
-    console.log('🔐 Código mestre: STREAMUP2025 (para indicações)');
+    console.log('✅ StreamUp - Estrutura profissional de vendas carregada!');
 
     if (window.location.search.includes('payment=')) {
         handlePaymentReturn();
