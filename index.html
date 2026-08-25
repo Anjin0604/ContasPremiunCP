@@ -6,13 +6,16 @@
     <title>Cozinha & Cia · Utensílios de cozinha</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* ===== RESET E BASE ===== */
+        /* ============================================================
+                   RESET E BASE
+                ============================================================ */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
         }
+
         body {
             background: #f5f3f0;
             color: #1a1a2e;
@@ -22,18 +25,21 @@
             min-height: 100vh;
             transition: background 0.3s, color 0.3s;
         }
+
         .container {
-            max-width: 520px;
+            max-width: 1200px;
             width: 100%;
             background: #ffffff;
             border-radius: 32px;
-            box-shadow: 0 8px 40px rgba(0,0,0,0.06);
-            padding: 20px 16px 30px;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.06);
+            padding: 20px 24px 30px;
             position: relative;
             transition: background 0.3s;
         }
 
-        /* ===== TEMA ESCURO ===== */
+        /* ============================================================
+                   TEMA ESCURO
+                ============================================================ */
         body.dark {
             background: #0a0a0f;
             color: #e0d6f0;
@@ -175,7 +181,9 @@
             color: #fff;
         }
 
-        /* ===== CORES ===== */
+        /* ============================================================
+                   CORES E UTILITÁRIOS
+                ============================================================ */
         .gold {
             color: #c9a03a;
         }
@@ -183,11 +191,12 @@
             background: #c9a03a;
             color: #fff;
         }
+
         .btn-primary {
             background: #c9a03a;
             color: #fff;
             border: none;
-            padding: 12px 24px;
+            padding: 12px 28px;
             border-radius: 60px;
             font-weight: 700;
             font-size: 15px;
@@ -202,11 +211,12 @@
             background: #b08a2e;
             transform: scale(1.02);
         }
+
         .btn-secondary {
             background: transparent;
             color: #1a1a2e;
             border: 2px solid #dcd7d2;
-            padding: 12px 24px;
+            padding: 12px 28px;
             border-radius: 60px;
             font-weight: 600;
             font-size: 15px;
@@ -222,7 +232,9 @@
             background: #faf8f6;
         }
 
-        /* ===== TOGGLE TEMA ===== */
+        /* ============================================================
+                   TOGGLE TEMA
+                ============================================================ */
         .theme-toggle {
             display: flex;
             align-items: center;
@@ -230,6 +242,7 @@
             font-size: 13px;
             color: #6b6560;
             cursor: pointer;
+            user-select: none;
         }
         .theme-toggle .switch {
             width: 44px;
@@ -262,7 +275,9 @@
             font-size: 16px;
         }
 
-        /* ===== HEADER ===== */
+        /* ============================================================
+                   HEADER
+                ============================================================ */
         .brand {
             display: flex;
             align-items: center;
@@ -316,7 +331,9 @@
             transform: scale(1.04);
         }
 
-        /* ===== DATA E HORA ===== */
+        /* ============================================================
+                   DATA E HORA
+                ============================================================ */
         .datetime {
             text-align: center;
             font-size: 14px;
@@ -330,7 +347,9 @@
             color: #8a7fa0;
         }
 
-        /* ===== OFERTA DIÁRIA ===== */
+        /* ============================================================
+                   OFERTA DIÁRIA
+                ============================================================ */
         .daily-top {
             background: #faf8f7;
             border-radius: 16px;
@@ -367,17 +386,19 @@
             color: #fff;
         }
 
-        /* ===== HERO ===== */
+        /* ============================================================
+                   HERO
+                ============================================================ */
         .hero {
             background: #faf8f6;
             border-radius: 24px;
-            padding: 20px 18px;
-            margin: 4px 0 12px;
+            padding: 32px 24px;
+            margin: 4px 0 16px;
             border: 1px solid #e8e4e0;
             text-align: center;
         }
         .hero h1 {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 800;
             color: #1a1a2e;
             line-height: 1.2;
@@ -386,19 +407,24 @@
             color: #c9a03a;
         }
         .hero p {
-            font-size: 15px;
+            font-size: 16px;
             color: #4a4540;
-            margin: 6px 0 14px;
-            line-height: 1.5;
+            margin: 8px 0 18px;
+            line-height: 1.6;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
         }
         .hero .btn-group {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             justify-content: center;
             flex-wrap: wrap;
         }
 
-        /* ===== ATENDIMENTO ===== */
+        /* ============================================================
+                   ATENDIMENTO
+                ============================================================ */
         .atendimento-box {
             display: flex;
             flex-wrap: wrap;
@@ -420,17 +446,19 @@
             color: #b0b0c0;
         }
 
-        /* ===== CATEGORIAS ===== */
+        /* ============================================================
+                   CATEGORIAS
+                ============================================================ */
         .categorias {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-            gap: 6px;
-            margin: 10px 0;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 8px;
+            margin: 12px 0 16px;
         }
         .categoria-card {
             background: #faf8f7;
             border-radius: 14px;
-            padding: 8px 4px;
+            padding: 10px 4px;
             text-align: center;
             border: 1px solid #e8e4e0;
             cursor: pointer;
@@ -439,20 +467,23 @@
         .categoria-card:hover {
             border-color: #c9a03a;
             transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(201, 160, 58, 0.08);
         }
         .categoria-card i {
-            font-size: 22px;
+            font-size: 24px;
             color: #c9a03a;
             display: block;
             margin-bottom: 2px;
         }
         .categoria-card span {
-            font-size: 11px;
+            font-size: 12px;
             font-weight: 500;
             color: #1a1a2e;
         }
 
-        /* ===== TABS ===== */
+        /* ============================================================
+                   TABS (NAVEGAÇÃO SPA)
+                ============================================================ */
         .tabs {
             display: flex;
             gap: 6px;
@@ -470,16 +501,16 @@
             padding: 10px 0;
             border-radius: 40px;
             font-weight: 600;
-            font-size: 13px;
+            font-size: 14px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 5px;
+            gap: 6px;
             transition: 0.2s;
         }
         .tab-btn i {
-            font-size: 14px;
+            font-size: 15px;
         }
         .tab-btn.active {
             background: #c9a03a;
@@ -503,7 +534,9 @@
             }
         }
 
-        /* ===== PRODUTOS ===== */
+        /* ============================================================
+                   PRODUTOS
+                ============================================================ */
         .section-title {
             display: flex;
             align-items: baseline;
@@ -511,7 +544,7 @@
             margin: 12px 0 8px;
         }
         .section-title h3 {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 700;
             color: #1a1a2e;
         }
@@ -526,16 +559,19 @@
 
         .product-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 16px;
         }
+
         .product-card {
             background: #faf8f7;
             border-radius: 18px;
-            padding: 12px 10px 10px;
+            padding: 14px 12px 12px;
             border: 1px solid #e8e4e0;
             transition: 0.3s ease;
             position: relative;
+            display: flex;
+            flex-direction: column;
         }
         .product-card:hover {
             border-color: #c9a03a;
@@ -567,13 +603,14 @@
             font-size: 14px;
             font-weight: 600;
             color: #1a1a2e;
+            margin-bottom: 4px;
         }
         .product-card .price-group {
             margin: 4px 0 6px;
         }
         .product-card .price-group .price {
             font-weight: 700;
-            font-size: 15px;
+            font-size: 16px;
             color: #c9a03a;
         }
         .product-card .price-group .price small {
@@ -584,7 +621,8 @@
         .product-card .desc {
             font-size: 12px;
             color: #6b6560;
-            margin: 2px 0 6px;
+            margin: 2px 0 8px;
+            flex: 1;
         }
         .btn-add {
             background: #c9a03a;
@@ -626,63 +664,71 @@
 
         .search-box {
             width: 100%;
-            padding: 10px 14px;
+            padding: 10px 16px;
             border-radius: 60px;
             border: 1px solid #dcd7d2;
             background: #fff;
             color: #1a1a2e;
             outline: none;
             font-size: 14px;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            transition: 0.2s;
         }
         .search-box:focus {
             border-color: #c9a03a;
+            box-shadow: 0 0 0 3px rgba(201, 160, 58, 0.1);
         }
 
-        /* ===== DETALHE DO PRODUTO ===== */
+        /* ============================================================
+                   DETALHE DO PRODUTO (SPA - substitui a lista)
+                ============================================================ */
         .detalhe-produto {
             background: #faf8f7;
             border-radius: 24px;
-            padding: 20px 16px;
+            padding: 24px 20px;
             border: 1px solid #e8e4e0;
+            max-width: 600px;
+            margin: 0 auto;
         }
         .detalhe-produto .voltar {
             color: #c9a03a;
             cursor: pointer;
             font-weight: 600;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
             display: inline-block;
         }
         .detalhe-produto .voltar:hover {
             text-decoration: underline;
         }
         .detalhe-produto h2 {
-            font-size: 22px;
+            font-size: 24px;
             color: #1a1a2e;
             margin-bottom: 4px;
         }
         .detalhe-produto .preco-grande {
-            font-size: 28px;
+            font-size: 30px;
             font-weight: 700;
             color: #c9a03a;
-            margin: 6px 0;
+            margin: 8px 0;
         }
         .detalhe-produto .descricao {
             color: #4a4540;
             margin: 8px 0;
+            font-size: 15px;
+            line-height: 1.6;
         }
         .detalhe-produto .espec {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            margin: 10px 0;
+            margin: 12px 0;
         }
         .detalhe-produto .espec span {
             background: #fff;
-            padding: 4px 12px;
+            padding: 4px 14px;
             border-radius: 40px;
             border: 1px solid #e8e4e0;
-            font-size: 12px;
+            font-size: 13px;
         }
         body.dark .detalhe-produto .espec span {
             background: #1a1a24;
@@ -700,21 +746,23 @@
             width: 100%;
             cursor: pointer;
             transition: 0.2s;
-            margin-top: 10px;
+            margin-top: 12px;
         }
         .detalhe-produto .btn-add-grande:hover {
             background: #b08a2e;
         }
 
-        /* ===== CARRINHO ===== */
+        /* ============================================================
+                   CARRINHO
+                ============================================================ */
         .cart-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
             background: #faf8f7;
-            padding: 8px 12px;
+            padding: 10px 14px;
             border-radius: 14px;
-            margin: 4px 0;
+            margin: 6px 0;
             border-left: 3px solid #c9a03a;
         }
         .cart-item .item-info {
@@ -740,54 +788,66 @@
             font-size: 16px;
             cursor: pointer;
             padding: 0 4px;
+            transition: 0.2s;
+        }
+        .cart-item .btn-remove:hover {
+            color: #d9534f;
         }
 
         .cart-total {
             text-align: right;
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 700;
             color: #1a1a2e;
-            margin: 10px 0 4px;
+            margin: 12px 0 4px;
         }
         .cart-total span {
             color: #c9a03a;
         }
 
-        /* ===== FRETE ===== */
+        /* ============================================================
+                   FRETE
+                ============================================================ */
         .frete-box {
             background: #faf8f7;
             border-radius: 16px;
-            padding: 12px;
+            padding: 14px;
             margin: 8px 0;
             border: 1px solid #e8e4e0;
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 10px;
             align-items: center;
         }
         .frete-box input {
             flex: 2;
-            padding: 8px 12px;
+            padding: 8px 14px;
             border-radius: 60px;
             border: 1px solid #dcd7d2;
             background: #fff;
             color: #1a1a2e;
             outline: none;
             font-size: 14px;
-            min-width: 100px;
+            min-width: 120px;
+            transition: 0.2s;
         }
         .frete-box input:focus {
             border-color: #c9a03a;
+            box-shadow: 0 0 0 3px rgba(201, 160, 58, 0.1);
         }
         .frete-box button {
             background: #c9a03a;
             color: #fff;
             border: none;
             border-radius: 60px;
-            padding: 8px 16px;
+            padding: 8px 20px;
             font-weight: 600;
             cursor: pointer;
             flex: 0 0 auto;
+            transition: 0.2s;
+        }
+        .frete-box button:hover {
+            background: #b08a2e;
         }
         .frete-box .resultado {
             font-size: 14px;
@@ -803,36 +863,46 @@
             color: #6b6560;
         }
 
-        /* ===== CUPOM ===== */
+        /* ============================================================
+                   CUPOM
+                ============================================================ */
         .discount-input {
             display: flex;
-            gap: 6px;
+            gap: 8px;
             margin: 8px 0;
         }
         .discount-input input {
             flex: 1;
-            padding: 8px 12px;
+            padding: 8px 14px;
             border-radius: 60px;
             border: 1px solid #dcd7d2;
             background: #fff;
             color: #1a1a2e;
             outline: none;
             font-size: 14px;
+            transition: 0.2s;
         }
         .discount-input input:focus {
             border-color: #c9a03a;
+            box-shadow: 0 0 0 3px rgba(201, 160, 58, 0.1);
         }
         .discount-input button {
             background: #c9a03a;
             color: #fff;
             border: none;
             border-radius: 60px;
-            padding: 8px 18px;
+            padding: 8px 20px;
             font-weight: 600;
             cursor: pointer;
+            transition: 0.2s;
+        }
+        .discount-input button:hover {
+            background: #b08a2e;
         }
 
-        /* ===== BOTÃO MERCADO PAGO ===== */
+        /* ============================================================
+                   MERCADO PAGO
+                ============================================================ */
         .btn-mp {
             background: #009ee3;
             color: #fff;
@@ -843,7 +913,7 @@
             font-size: 17px;
             width: 100%;
             cursor: pointer;
-            margin-top: 6px;
+            margin-top: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -858,15 +928,17 @@
             text-align: center;
             color: #6b6560;
             font-size: 13px;
-            margin-top: 2px;
+            margin-top: 4px;
             font-weight: 500;
         }
 
-        /* ===== FAQ ===== */
+        /* ============================================================
+                   FAQ
+                ============================================================ */
         .faq-item {
             background: #faf8f7;
             border-radius: 16px;
-            padding: 12px 14px;
+            padding: 12px 16px;
             margin: 6px 0;
             border: 1px solid #e8e4e0;
         }
@@ -876,18 +948,26 @@
             cursor: pointer;
             display: flex;
             justify-content: space-between;
+            align-items: center;
+            font-size: 15px;
+        }
+        .faq-item .question:hover {
+            color: #c9a03a;
         }
         .faq-item .answer {
             display: none;
             margin-top: 6px;
             color: #4a4540;
             font-size: 14px;
+            line-height: 1.5;
         }
         .faq-item .answer.show {
             display: block;
         }
 
-        /* ===== CARRINHO FLUTUANTE ===== */
+        /* ============================================================
+                   CARRINHO FLUTUANTE
+                ============================================================ */
         .cart-float {
             position: fixed;
             bottom: 20px;
@@ -929,7 +1009,9 @@
             font-size: 15px;
         }
 
-        /* ===== WHATSAPP E BACK TO TOP ===== */
+        /* ============================================================
+                   WHATSAPP E BACK TO TOP
+                ============================================================ */
         .whatsapp-float {
             position: fixed;
             bottom: 90px;
@@ -975,17 +1057,19 @@
             color: #fff;
         }
 
-        /* ===== FOOTER ===== */
+        /* ============================================================
+                   FOOTER
+                ============================================================ */
         .footer-whats {
-            margin-top: 20px;
+            margin-top: 24px;
             background: #faf8f7;
             border-radius: 60px;
-            padding: 12px 18px;
+            padding: 12px 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
-            gap: 6px;
+            gap: 8px;
             border: 1px solid #e8e4e0;
         }
         .footer-whats span {
@@ -994,7 +1078,7 @@
             font-size: 14px;
         }
         .btn-social {
-            padding: 6px 18px;
+            padding: 6px 20px;
             border-radius: 60px;
             font-weight: 700;
             font-size: 13px;
@@ -1017,8 +1101,8 @@
             transform: scale(1.04);
         }
         .creditos {
-            margin-top: 14px;
-            font-size: 11px;
+            margin-top: 16px;
+            font-size: 12px;
             color: #6b6560;
             text-align: center;
             line-height: 1.6;
@@ -1027,8 +1111,13 @@
             color: #c9a03a;
             text-decoration: none;
         }
+        .creditos a:hover {
+            text-decoration: underline;
+        }
 
-        /* ===== TOAST ===== */
+        /* ============================================================
+                   TOAST
+                ============================================================ */
         .toast {
             position: fixed;
             top: 20px;
@@ -1043,21 +1132,24 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             font-weight: 500;
             display: none;
+            max-width: 90%;
         }
         .toast.show {
             display: block;
             animation: fadeIn 0.5s;
         }
 
-        /* ===== MODAL ===== */
+        /* ============================================================
+                   MODAL
+                ============================================================ */
         .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(2px);
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(4px);
             display: none;
             align-items: center;
             justify-content: center;
@@ -1070,9 +1162,9 @@
         .modal-box {
             background: #fff;
             border-radius: 28px;
-            max-width: 380px;
+            max-width: 400px;
             width: 100%;
-            padding: 24px 20px;
+            padding: 28px 24px;
             border: 1px solid #e8e4e0;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.06);
             animation: fadeIn 0.25s ease;
@@ -1124,16 +1216,19 @@
             width: 100%;
             cursor: pointer;
             font-weight: 500;
+            transition: 0.2s;
         }
         .modal-close:hover {
             background: #f0edea;
         }
 
-        /* ===== PÁGINA DE RETORNO ===== */
+        /* ============================================================
+                   PÁGINA DE RETORNO DO PAGAMENTO
+                ============================================================ */
         .payment-return {
             display: none;
             text-align: center;
-            padding: 30px 10px;
+            padding: 40px 20px;
             animation: fadeIn 0.8s;
         }
         .payment-return.active {
@@ -1173,6 +1268,7 @@
                 transform: rotate(360deg);
             }
         }
+
         .confetti-container {
             position: fixed;
             top: 0;
@@ -1201,28 +1297,103 @@
             }
         }
 
-        /* ===== RESPONSIVIDADE ===== */
-        @media (max-width: 440px) {
-            .product-grid {
-                grid-template-columns: 1fr;
-            }
-            .tabs .tab-btn {
-                font-size: 11px;
-                padding: 8px 0;
-            }
+        /* ============================================================
+                   DICAS - SEÇÃO DE DICAS (no rodapé da página Início)
+                ============================================================ */
+        .dicas-section {
+            background: #faf8f7;
+            border-radius: 20px;
+            padding: 18px 16px;
+            margin: 12px 0;
+            border: 1px solid #e8e4e0;
+        }
+        .dicas-section h4 {
+            color: #1a1a2e;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        .dicas-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        .dicas-section ul li {
+            padding: 6px 0;
+            color: #4a4540;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .dicas-section ul li i {
+            color: #c9a03a;
+            font-size: 16px;
+            width: 20px;
+            text-align: center;
+        }
+        body.dark .dicas-section {
+            background: #1a1a24;
+            border-color: #2a2a3a;
+        }
+        body.dark .dicas-section h4 {
+            color: #fff;
+        }
+        body.dark .dicas-section ul li {
+            color: #b0b0c0;
+        }
+
+        /* ============================================================
+                   RESPONSIVIDADE (Desktop, Tablet, Mobile)
+                ============================================================ */
+        @media (max-width: 1024px) {
             .container {
-                padding: 14px 10px;
+                padding: 20px 18px 30px;
             }
             .hero h1 {
-                font-size: 22px;
+                font-size: 26px;
             }
-            .hero .btn-group {
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 16px 14px 24px;
+                border-radius: 24px;
+            }
+            .hero {
+                padding: 24px 16px;
+            }
+            .hero h1 {
+                font-size: 24px;
+            }
+            .hero p {
+                font-size: 15px;
+            }
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 12px;
+            }
+            .tabs .tab-btn {
+                font-size: 12px;
+                padding: 8px 0;
+            }
+            .brand-text {
+                font-size: 20px;
+            }
+            .categorias {
+                grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+                gap: 6px;
+            }
+            .categoria-card i {
+                font-size: 20px;
+            }
+            .categoria-card span {
+                font-size: 11px;
+            }
+            .frete-box {
                 flex-direction: column;
+                align-items: stretch;
             }
-            .hero .btn-primary,
-            .hero .btn-secondary {
+            .frete-box input {
                 width: 100%;
-                justify-content: center;
             }
             .cart-float {
                 padding: 10px 14px;
@@ -1248,29 +1419,86 @@
             .badge-whats {
                 justify-content: center;
             }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 14px 10px 20px;
+                border-radius: 20px;
+            }
+            .hero h1 {
+                font-size: 20px;
+            }
+            .hero p {
+                font-size: 14px;
+            }
+            .hero .btn-group {
+                flex-direction: column;
+            }
+            .hero .btn-primary,
+            .hero .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+            .product-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            .tabs .tab-btn {
+                font-size: 11px;
+                padding: 6px 0;
+            }
+            .tabs .tab-btn i {
+                font-size: 13px;
+            }
             .categorias {
                 grid-template-columns: 1fr 1fr 1fr;
+                gap: 6px;
             }
-            .atendimento-box {
-                font-size: 12px;
+            .categoria-card {
+                padding: 6px 2px;
             }
-            .frete-box {
+            .categoria-card i {
+                font-size: 18px;
+            }
+            .categoria-card span {
+                font-size: 10px;
+            }
+            .footer-whats {
                 flex-direction: column;
                 align-items: stretch;
+                text-align: center;
             }
-            .frete-box input {
-                width: 100%;
+            .footer-whats .btn-social {
+                justify-content: center;
+            }
+            .detalhe-produto {
+                padding: 16px 12px;
+            }
+            .detalhe-produto h2 {
+                font-size: 20px;
+            }
+            .detalhe-produto .preco-grande {
+                font-size: 24px;
             }
         }
     </style>
 </head>
 <body>
 
+    <!-- ============================================================
+    TOAST
+    ============================================================ -->
     <div class="toast" id="toast"></div>
 
+    <!-- ============================================================
+    CONTAINER PRINCIPAL
+    ============================================================ -->
     <div class="container" id="app">
 
-        <!-- HEADER -->
+        <!-- ============================================================
+        HEADER
+        ============================================================ -->
         <div class="brand">
             <div class="brand-left">
                 <div class="brand-icon">CC</div>
@@ -1286,55 +1514,74 @@
             </div>
         </div>
 
-        <!-- DATA E HORA -->
+        <!-- ============================================================
+        DATA E HORA
+        ============================================================ -->
         <div class="datetime" id="datetimeDisplay">Carregando data...</div>
 
-        <!-- DESCONTO DIÁRIO -->
+        <!-- ============================================================
+        OFERTA DIÁRIA
+        ============================================================ -->
         <div class="daily-top" id="dailyTop">
             <i class="fas fa-tag"></i>
             <span class="offer-text" id="dailyOfferText">Carregando oferta...</span>
         </div>
 
-        <!-- ATENDIMENTO -->
+        <!-- ============================================================
+        ATENDIMENTO
+        ============================================================ -->
         <div class="atendimento-box">
             <span><i class="fas fa-clock"></i> Seg–Sex 9h–16h</span>
             <span><i class="fas fa-clock"></i> Sáb 12h–14h</span>
             <span><i class="fas fa-clock"></i> Dom fechado</span>
         </div>
 
-        <!-- HERO -->
+        <!-- ============================================================
+        HERO
+        ============================================================ -->
         <div class="hero">
             <h1>Utensílios de cozinha <span>com qualidade</span></h1>
             <p>Panelas, talheres, potes e muito mais. Escolha o que precisa e receba em casa.</p>
             <div class="btn-group">
-                <a href="#" class="btn-primary" id="heroProdutos"><i class="fas fa-utensils"></i> Ver produtos</a>
+                <button class="btn-primary" id="heroProdutos"><i class="fas fa-utensils"></i> Ver produtos</button>
                 <a href="https://wa.me/5511914830656" target="_blank" class="btn-secondary"><i class="fab fa-whatsapp"></i> Dúvidas?</a>
             </div>
         </div>
 
-        <!-- CATEGORIAS -->
+        <!-- ============================================================
+        CATEGORIAS
+        ============================================================ -->
         <div class="categorias">
-            <div class="categoria-card" onclick="filtrarCategoria('panelas')"><i class="fas fa-pot"></i><span>Panelas</span></div>
-            <div class="categoria-card" onclick="filtrarCategoria('talheres')"><i class="fas fa-utensils"></i><span>Talheres</span></div>
-            <div class="categoria-card" onclick="filtrarCategoria('potes')"><i class="fas fa-jar"></i><span>Potes</span></div>
-            <div class="categoria-card" onclick="filtrarCategoria('pratos')"><i class="fas fa-plate"></i><span>Pratos</span></div>
-            <div class="categoria-card" onclick="filtrarCategoria('frigideira')"><i class="fas fa-frying-pan"></i><span>Frigideiras</span></div>
-            <div class="categoria-card" onclick="filtrarCategoria('kits')"><i class="fas fa-box"></i><span>Kits</span></div>
+            <div class="categoria-card" data-categoria="panelas"><i class="fas fa-pot"></i><span>Panelas</span></div>
+            <div class="categoria-card" data-categoria="talheres"><i class="fas fa-utensils"></i><span>Talheres</span></div>
+            <div class="categoria-card" data-categoria="potes"><i class="fas fa-jar"></i><span>Potes</span></div>
+            <div class="categoria-card" data-categoria="pratos"><i class="fas fa-plate"></i><span>Pratos</span></div>
+            <div class="categoria-card" data-categoria="frigideira"><i class="fas fa-frying-pan"></i><span>Frigideiras</span></div>
+            <div class="categoria-card" data-categoria="kits"><i class="fas fa-box"></i><span>Kits</span></div>
         </div>
 
-        <!-- TABS -->
+        <!-- ============================================================
+        TABS (NAVEGAÇÃO SPA)
+        ============================================================ -->
         <div class="tabs">
             <button class="tab-btn active" data-tab="tab1"><i class="fas fa-home"></i> Início</button>
             <button class="tab-btn" data-tab="tab2"><i class="fas fa-box"></i> Produtos</button>
             <button class="tab-btn" data-tab="tab4"><i class="fas fa-shopping-cart"></i> Carrinho <span id="cartCount">0</span></button>
         </div>
 
-        <!-- CONTEÚDO -->
+        <!-- ============================================================
+        CONTEÚDO (PÁGINAS SPA)
+        ============================================================ -->
         <div id="mainContent">
-            <!-- PÁGINA INÍCIO -->
+
+            <!-- ============================================================
+            PÁGINA INÍCIO
+            ============================================================ -->
             <div class="tab-content active" id="tab1">
+
+                <!-- FAQ -->
                 <div style="margin: 0 0 10px;">
-                    <h4 style="color:#1a1a2e;font-size:15px;margin-bottom:6px;"><i class="fas fa-question-circle"></i> Dúvidas principais</h4>
+                    <h4 style="color:#1a1a2e;font-size:16px;margin-bottom:8px;"><i class="fas fa-question-circle"></i> Dúvidas principais</h4>
                     <div class="faq-item">
                         <div class="question" onclick="toggleFaq(0)"><span>Como faço um pedido?</span><span>▼</span></div>
                         <div class="answer" id="faq-0">Escolha os produtos, adicione ao carrinho, informe seu CEP para calcular o frete, pague via Mercado Pago e receba em casa.</div>
@@ -1348,12 +1595,28 @@
                         <div class="answer" id="faq-2">O frete é calculado com base no seu CEP. Para pedidos acima de R$250, você ganha desconto no frete. Acima de R$300, frete grátis!</div>
                     </div>
                 </div>
-                <a href="https://wa.me/5511914830656?text=Olá!%20Gostaria%20de%20ser%20um%20revendedor." target="_blank" style="display:block;background:#faf8f7;border:1px solid #c9a03a;border-radius:60px;padding:10px;text-align:center;color:#c9a03a;font-weight:600;text-decoration:none;margin:10px 0;transition:0.2s;">
+
+                <!-- DICAS -->
+                <div class="dicas-section">
+                    <h4><i class="fas fa-lightbulb"></i> Dicas para sua cozinha</h4>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Panelas antiaderentes duram mais se lavadas à mão.</li>
+                        <li><i class="fas fa-check-circle"></i> Talheres de aço inox não enferrujam e são mais duráveis.</li>
+                        <li><i class="fas fa-check-circle"></i> Potes herméticos mantêm os alimentos frescos por mais tempo.</li>
+                        <li><i class="fas fa-check-circle"></i> Pratos de porcelana são mais resistentes a arranhões.</li>
+                        <li><i class="fas fa-check-circle"></i> Frigideiras com fundo triplo distribuem melhor o calor.</li>
+                    </ul>
+                </div>
+
+                <!-- REVENDEDOR -->
+                <a href="https://wa.me/5511914830656?text=Olá!%20Gostaria%20de%20ser%20um%20revendedor." target="_blank" style="display:block;background:#faf8f7;border:1px solid #c9a03a;border-radius:60px;padding:12px;text-align:center;color:#c9a03a;font-weight:600;text-decoration:none;margin:12px 0;transition:0.2s;">
                     <i class="fas fa-handshake"></i> Quero ser revendedor
                 </a>
             </div>
 
-            <!-- PÁGINA PRODUTOS -->
+            <!-- ============================================================
+            PÁGINA PRODUTOS
+            ============================================================ -->
             <div class="tab-content" id="tab2">
                 <div id="productList">
                     <div class="section-title">
@@ -1366,11 +1629,13 @@
                 <div id="productDetail" style="display:none;"></div>
             </div>
 
-            <!-- PÁGINA CARRINHO -->
+            <!-- ============================================================
+            PÁGINA CARRINHO
+            ============================================================ -->
             <div class="tab-content" id="tab4">
-                <h3 style="color:#1a1a2e;margin-bottom:10px;">Seu Carrinho</h3>
+                <h3 style="color:#1a1a2e;margin-bottom:12px;">Seu Carrinho</h3>
 
-                <!-- FRETE COM CEP -->
+                <!-- FRETE -->
                 <div class="frete-box">
                     <input type="text" id="cepInput" placeholder="Digite seu CEP (ex: 20040-020)" maxlength="9" />
                     <button id="calcularFreteBtn">Calcular frete</button>
@@ -1381,13 +1646,13 @@
                 </div>
 
                 <div id="cartItems">
-                    <p style="color:#6b6560;text-align:center;padding:16px 0;">Carrinho vazio</p>
+                    <p style="color:#6b6560;text-align:center;padding:20px 0;">Carrinho vazio</p>
                 </div>
                 <div id="cartDiscountInfo" class="cart-discount" style="display:none;"></div>
                 <div class="cart-total">Total: <span id="cartTotal">R$ 0,00</span></div>
 
                 <!-- Cross-sell -->
-                <div id="crossSell" style="background:#faf8f7;border-radius:16px;padding:12px;margin:6px 0;border:1px solid #e8e4e0;display:none;">
+                <div id="crossSell" style="background:#faf8f7;border-radius:16px;padding:12px;margin:8px 0;border:1px solid #e8e4e0;display:none;">
                     <p style="font-weight:600;color:#1a1a2e;">💡 Complete seu pedido</p>
                     <div id="crossSellItems" style="display:flex;flex-direction:column;gap:6px;margin-top:6px;"></div>
                 </div>
@@ -1396,14 +1661,16 @@
                     <input type="text" id="cupomInput" placeholder="Cupom" />
                     <button id="applyDiscount">Aplicar</button>
                 </div>
-                <div id="discountMsg" style="font-size:12px;color:#c9a03a;margin:4px 0 8px;"></div>
+                <div id="discountMsg" style="font-size:13px;color:#c9a03a;margin:4px 0 8px;"></div>
 
                 <button class="btn-mp" id="mpCheckoutBtn"><i class="fas fa-credit-card"></i> Pagar com Mercado Pago</button>
                 <div class="mp-label">Pague com PIX, cartão ou boleto</div>
             </div>
         </div>
 
-        <!-- TELA DE RETORNO -->
+        <!-- ============================================================
+        TELA DE RETORNO DO PAGAMENTO
+        ============================================================ -->
         <div class="payment-return" id="paymentReturn">
             <div id="paymentIcon" class="icon">✅</div>
             <h2 id="paymentTitle">Pagamento confirmado!</h2>
@@ -1415,6 +1682,9 @@
             <button id="redirectNowBtn" style="background:#c9a03a;color:#fff;border:none;border-radius:60px;padding:10px 24px;font-weight:600;cursor:pointer;margin-top:12px;">Ir agora</button>
         </div>
 
+        <!-- ============================================================
+        FOOTER
+        ============================================================ -->
         <div class="footer-whats" id="footerWhats">
             <span><i class="fas fa-headset"></i> Fale conosco</span>
             <div style="display:flex;gap:4px;flex-wrap:wrap;">
@@ -1428,20 +1698,28 @@
         </div>
     </div>
 
-    <!-- CARRINHO FLUTUANTE -->
+    <!-- ============================================================
+    CARRINHO FLUTUANTE
+    ============================================================ -->
     <div class="cart-float" id="cartFloat">
         <span class="icon"><i class="fas fa-shopping-cart"></i></span>
         <span class="count" id="floatCount">0</span>
         <span class="total" id="floatTotal">R$ 0,00</span>
     </div>
 
-    <!-- WHATSAPP FLUTUANTE -->
+    <!-- ============================================================
+    WHATSAPP FLUTUANTE
+    ============================================================ -->
     <a href="https://wa.me/5511914830656" target="_blank" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
 
-    <!-- BOTÃO VOLTAR AO TOPO -->
+    <!-- ============================================================
+    BOTÃO VOLTAR AO TOPO
+    ============================================================ -->
     <div class="back-top" id="backTop"><i class="fas fa-arrow-up"></i></div>
 
-    <!-- MODAL DE QUANTIDADE -->
+    <!-- ============================================================
+    MODAL DE QUANTIDADE
+    ============================================================ -->
     <div class="modal-overlay" id="periodModal">
         <div class="modal-box">
             <h3><i class="fas fa-box"></i> Escolha a quantidade</h3>
@@ -1456,6 +1734,9 @@
         </div>
     </div>
 
+    <!-- ============================================================
+    SCRIPT
+    ============================================================ -->
     <script>
         // ============================================================
         // CONFIGURAÇÃO
@@ -1525,25 +1806,64 @@
         };
 
         // ============================================================
-        // HERÓI -> PRODUTOS
+        // NAVEGAÇÃO SPA (troca de abas)
         // ============================================================
-        document.getElementById('heroProdutos').addEventListener('click', function(e) {
-            e.preventDefault();
-            mudarAba('tab2');
-        });
-
         function mudarAba(tabId) {
+            // Atualiza botões
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
+            const btn = document.querySelector(`[data-tab="${tabId}"]`);
+            if (btn) btn.classList.add('active');
+
+            // Atualiza conteúdos
             document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
+            const content = document.getElementById(tabId);
+            if (content) content.classList.add('active');
+
+            // Carrinho flutuante some na página do carrinho
             if (tabId === 'tab4') {
                 document.getElementById('cartFloat').style.display = 'none';
             } else {
                 document.getElementById('cartFloat').style.display = 'flex';
             }
+
+            // Se for a página de produtos, re-renderiza com os filtros atuais
+            if (tabId === 'tab2') {
+                document.getElementById('productList').style.display = 'block';
+                document.getElementById('productDetail').style.display = 'none';
+                renderProducts(currentSearch, currentFilter);
+            }
+
             playSound('beep');
         }
+
+        // Evento dos botões das abas
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                mudarAba(this.dataset.tab);
+            });
+        });
+
+        // Botão "Ver produtos" do hero
+        document.getElementById('heroProdutos').addEventListener('click', function() {
+            mudarAba('tab2');
+        });
+
+        // ============================================================
+        // CATEGORIAS (filtro SPA - abre a página de produtos filtrada)
+        // ============================================================
+        document.querySelectorAll('.categoria-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const cat = this.dataset.categoria;
+                currentFilter = cat;
+                currentSearch = '';
+                document.getElementById('searchBox').value = '';
+                document.getElementById('productList').style.display = 'block';
+                document.getElementById('productDetail').style.display = 'none';
+                mudarAba('tab2');
+                renderProducts('', cat);
+                playSound('beep');
+            });
+        });
 
         // ============================================================
         // PRODUTOS
@@ -1591,7 +1911,7 @@
                 return matchNome && matchCat;
             });
             if (filtered.length === 0) {
-                grid.innerHTML = '<p style="color:#6b6560;text-align:center;padding:16px 0;">Nenhum produto encontrado.</p>';
+                grid.innerHTML = '<p style="color:#6b6560;text-align:center;padding:20px 0;">Nenhum produto encontrado.</p>';
                 return;
             }
             filtered.forEach(p => {
@@ -1618,17 +1938,7 @@
             });
         }
 
-        function filtrarCategoria(cat) {
-            currentFilter = cat;
-            currentSearch = '';
-            document.getElementById('searchBox').value = '';
-            document.getElementById('productList').style.display = 'block';
-            document.getElementById('productDetail').style.display = 'none';
-            mudarAba('tab2');
-            renderProducts('', cat);
-            playSound('beep');
-        }
-
+        // Busca
         document.getElementById('searchBox').addEventListener('input', function() {
             currentSearch = this.value;
             currentFilter = '';
@@ -1637,7 +1947,9 @@
             renderProducts(this.value, '');
         });
 
-        // Detalhe do produto
+        // ============================================================
+        // DETALHE DO PRODUTO (SPA - substitui a lista)
+        // ============================================================
         document.addEventListener('click', function(e) {
             const btn = e.target.closest('.btn-ver-mais');
             if (btn) {
@@ -1665,6 +1977,7 @@
                             <span>📦 Material: ${produto.categoria === 'panelas' ? 'Alumínio' : 'Aço Inox'}</span>
                             <span>🔧 Garantia: 30 dias</span>
                             <span>🧼 Lavável</span>
+                            <span>🔥 Compatível: ${produto.categoria === 'frigideira' ? 'Indução, Gás, Elétrico' : 'Gás, Elétrico'}</span>
                         </div>
                         <button class="btn-add-grande" onclick="adicionarAoCarrinho('${produto.nome}', ${produto.base}, 1)">Adicionar ao carrinho</button>
                     </div>
@@ -1698,6 +2011,7 @@
             playSound('approved');
         }
 
+        // Modal de quantidade
         document.addEventListener('click', function(e) {
             const btn = e.target.closest('.btn-add');
             if (btn) {
@@ -1745,7 +2059,7 @@
         });
 
         // ============================================================
-        // CÁLCULO DE FRETE (simulação baseada no estado)
+        // CÁLCULO DE FRETE
         // ============================================================
         async function calcularFrete(cep) {
             const limpo = cep.replace(/\D/g, '');
@@ -1817,7 +2131,7 @@
             const floatTotal = document.getElementById('floatTotal');
 
             if (cart.length === 0) {
-                container.innerHTML = '<p style="color:#6b6560;text-align:center;padding:16px 0;">Carrinho vazio</p>';
+                container.innerHTML = '<p style="color:#6b6560;text-align:center;padding:20px 0;">Carrinho vazio</p>';
                 totalSpan.textContent = 'R$ 0,00';
                 countSpan.textContent = '0';
                 floatCount.textContent = '0';
@@ -1854,6 +2168,7 @@
             floatCount.textContent = cart.length;
             floatTotal.textContent = `R$ ${totalComFrete.toFixed(2)}`;
 
+            // Cross-sell
             const freteMeta = 250;
             const freteAtual = totalComDesconto;
             const freteRestante = freteMeta - freteAtual;
@@ -2146,21 +2461,6 @@
         }
 
         // ============================================================
-        // NAVEGAÇÃO POR ABAS
-        // ============================================================
-        document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const tabId = this.dataset.tab;
-                mudarAba(tabId);
-                if (tabId === 'tab2') {
-                    document.getElementById('productList').style.display = 'block';
-                    document.getElementById('productDetail').style.display = 'none';
-                    renderProducts(currentSearch, currentFilter);
-                }
-            });
-        });
-
-        // ============================================================
         // CARRINHO FLUTUANTE
         // ============================================================
         document.getElementById('cartFloat').addEventListener('click', function() {
@@ -2191,7 +2491,8 @@
         if (document.querySelector('.tab-btn.active')?.dataset.tab === 'tab4') {
             document.getElementById('cartFloat').style.display = 'none';
         }
-        console.log('✅ Cozinha & Cia carregada com visual Tok&Stok!');
+        console.log('✅ Cozinha & Cia - SPA carregado com sucesso!');
+        console.log('💡 Dicas: navegue pelas abas, clique nas categorias para filtrar, use a busca.');
 
         if (window.location.search.includes('payment=')) {
             handlePaymentReturn();
