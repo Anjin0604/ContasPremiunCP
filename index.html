@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* ===== RESET E BASE (TEMA CLARO PADRÃO) ===== */
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
-        body { background: #f5f3f0; color: #1a1a2e; display: flex; justify-content: center; padding: 16px; min-height: 100vh; transition: background 0.3s, color 0.3s; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+        body { background: #f8f6f4; color: #1a1a2e; display: flex; justify-content: center; padding: 16px; min-height: 100vh; transition: background 0.3s, color 0.3s; }
         .container { max-width: 520px; width: 100%; background: #ffffff; border-radius: 32px; box-shadow: 0 8px 40px rgba(0,0,0,0.06); padding: 20px 16px 30px; position: relative; transition: background 0.3s; }
 
         /* ===== TEMA ESCURO ===== */
@@ -28,7 +28,6 @@
         body.dark .tabs { background: #1a1a24; border-color: #2a2a3a; }
         body.dark .tab-btn { color: #8a7fa0; }
         body.dark .tab-btn.active { background: #c9a03a; color: #fff; }
-        body.dark .tab-btn:hover:not(.active) { color: #e0d6f0; }
         body.dark .search-box { background: #1a1a24; border-color: #2a2a3a; color: #fff; }
         body.dark .cart-item { background: #1a1a24; border-left-color: #c9a03a; }
         body.dark .cart-item .item-info h5 { color: #fff; }
@@ -57,12 +56,18 @@
         body.dark .back-top { background: #1a1a24; border-color: #c9a03a; color: #c9a03a; }
         body.dark .back-top:hover { background: #c9a03a; color: #fff; }
         body.dark .whatsapp-float { box-shadow: 0 6px 20px rgba(37,211,102,0.15); }
+        body.dark .categoria-card { background: #1a1a24; border-color: #2a2a3a; }
+        body.dark .categoria-card span { color: #e0d6f0; }
 
         /* ===== CORES ===== */
         .gold { color: #c9a03a; }
         .gold-bg { background: #c9a03a; color: #fff; }
         .text-muted { color: #6b6560; }
         .text-dark { color: #1a1a2e; }
+        .btn-primary { background: #c9a03a; color: #fff; border: none; padding: 12px 24px; border-radius: 60px; font-weight: 700; font-size: 15px; cursor: pointer; transition: 0.2s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+        .btn-primary:hover { background: #b08a2e; transform: scale(1.02); }
+        .btn-secondary { background: transparent; color: #1a1a2e; border: 2px solid #dcd7d2; padding: 12px 24px; border-radius: 60px; font-weight: 600; font-size: 15px; cursor: pointer; transition: 0.2s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+        .btn-secondary:hover { border-color: #c9a03a; background: #faf8f6; }
 
         /* ===== TOGGLE TEMA ===== */
         .theme-toggle { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #6b6560; cursor: pointer; }
@@ -73,7 +78,7 @@
         .theme-toggle i { font-size: 16px; }
 
         /* ===== HEADER ===== */
-        .brand { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; flex-wrap: wrap; gap: 8px; }
+        .brand { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; flex-wrap: wrap; gap: 8px; }
         .brand-left { display: flex; align-items: center; gap: 10px; }
         .brand-icon { background: #c9a03a; color: #fff; width: 44px; height: 44px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 20px; }
         .brand-text { font-weight: 700; font-size: 22px; color: #1a1a2e; }
@@ -82,12 +87,14 @@
         .badge-whats { background: #25D366; color: #fff; padding: 6px 14px; border-radius: 60px; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; text-decoration: none; cursor: pointer; transition: 0.2s; }
         .badge-whats:hover { transform: scale(1.04); }
 
-        /* ===== HORÁRIO (simples e claro) ===== */
-        .horario { background: #faf8f6; border-radius: 60px; padding: 8px 14px; margin: 4px 0 12px; text-align: center; font-size: 14px; color: #1a1a2e; border: 1px solid #e8e4e0; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
-        .horario i { color: #c9a03a; }
-        .horario .dias { font-weight: 600; }
-        .horario .atendimento { color: #4caf50; font-weight: 600; }
-        body.dark .horario { background: #1a1a24; border-color: #2a2a3a; color: #e0d6f0; }
+        /* ===== ATENDIMENTO (SIMPLES E CLARO) ===== */
+        .atendimento-box { background: #faf8f7; border-radius: 16px; padding: 12px 16px; margin: 6px 0 14px; border: 1px solid #e8e4e0; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 6px; }
+        .atendimento-box .dia { font-weight: 600; color: #1a1a2e; }
+        .atendimento-box .horario { color: #4a4540; }
+        .atendimento-box i { color: #c9a03a; width: 20px; }
+        body.dark .atendimento-box { background: #1a1a24; border-color: #2a2a3a; }
+        body.dark .atendimento-box .dia { color: #fff; }
+        body.dark .atendimento-box .horario { color: #b0b0c0; }
 
         /* ===== HERO ===== */
         .hero { background: #faf8f6; border-radius: 24px; padding: 20px 18px; margin: 6px 0 16px; border: 1px solid #e8e4e0; text-align: center; }
@@ -96,19 +103,16 @@
         .hero h1 span { color: #c9a03a; }
         .hero p { font-size: 15px; color: #4a4540; margin: 6px 0 14px; line-height: 1.5; }
         .hero .btn-group { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
-        .hero .btn-primary { background: #c9a03a; color: #fff; border: none; padding: 12px 24px; border-radius: 60px; font-weight: 700; font-size: 15px; cursor: pointer; transition: 0.2s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
-        .hero .btn-primary:hover { background: #b08a2e; transform: scale(1.02); }
-        .hero .btn-secondary { background: transparent; color: #1a1a2e; border: 2px solid #dcd7d2; padding: 12px 24px; border-radius: 60px; font-weight: 600; font-size: 15px; cursor: pointer; transition: 0.2s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
-        .hero .btn-secondary:hover { border-color: #c9a03a; background: #faf8f6; }
 
-        /* ===== SELOS ===== */
-        .selos { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin: 10px 0; }
-        .selo-item { background: #faf8f7; border-radius: 16px; padding: 10px 8px; text-align: center; border: 1px solid #e8e4e0; }
-        .selo-item i { font-size: 22px; color: #c9a03a; display: block; margin-bottom: 4px; }
-        .selo-item span { font-size: 12px; font-weight: 500; color: #1a1a2e; }
+        /* ===== CATEGORIAS (HOME) ===== */
+        .categorias { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin: 12px 0; }
+        .categoria-card { background: #faf8f7; border-radius: 16px; padding: 12px 4px; text-align: center; border: 1px solid #e8e4e0; cursor: pointer; transition: 0.2s; }
+        .categoria-card:hover { border-color: #c9a03a; transform: translateY(-2px); }
+        .categoria-card i { font-size: 26px; color: #c9a03a; display: block; margin-bottom: 4px; }
+        .categoria-card span { font-size: 12px; font-weight: 500; color: #1a1a2e; }
 
-        /* ===== TABS (PÁGINAS) ===== */
-        .tabs { display: flex; gap: 6px; background: #f0edea; border-radius: 60px; padding: 4px; margin: 16px 0 18px; border: 1px solid #e0dbd7; }
+        /* ===== TABS ===== */
+        .tabs { display: flex; gap: 6px; background: #f0edea; border-radius: 60px; padding: 4px; margin: 12px 0 18px; border: 1px solid #e0dbd7; }
         .tab-btn { flex: 1; background: transparent; border: none; color: #6b6560; padding: 10px 0; border-radius: 40px; font-weight: 600; font-size: 13px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px; transition: 0.2s; }
         .tab-btn i { font-size: 14px; }
         .tab-btn.active { background: #c9a03a; color: #fff; box-shadow: 0 4px 12px rgba(201,160,58,0.25); }
@@ -121,22 +125,24 @@
         .section-title { display: flex; align-items: baseline; justify-content: space-between; margin: 16px 0 10px; }
         .section-title h3 { font-size: 19px; font-weight: 700; color: #1a1a2e; }
         .section-title .tag { background: #c9a03a; color: #fff; font-size: 10px; font-weight: 700; padding: 3px 12px; border-radius: 40px; }
-
         .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 8px; }
-        .product-card { background: #faf8f7; border-radius: 18px; padding: 12px 10px 10px; border: 1px solid #e8e4e0; transition: 0.3s ease; }
+        .product-card { background: #faf8f7; border-radius: 18px; padding: 12px 10px 10px; border: 1px solid #e8e4e0; transition: 0.3s ease; position: relative; }
         .product-card:hover { border-color: #c9a03a; transform: translateY(-4px); box-shadow: 0 8px 24px rgba(201,160,58,0.08); }
+        .product-card .etiqueta { position: absolute; top: -6px; right: -6px; background: #d9534f; color: #fff; font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 40px; text-transform: uppercase; }
+        .product-card .etiqueta.oferta { background: #ff6b35; }
+        .product-card .etiqueta.novo { background: #4caf50; }
+        .product-card .etiqueta.mais-vendido { background: #c9a03a; }
         .product-card h4 { font-size: 14px; font-weight: 600; color: #1a1a2e; }
         .product-card .price-group { margin: 4px 0 8px; }
         .product-card .price-group .price { font-weight: 700; font-size: 16px; color: #c9a03a; }
-        .product-card .price-group .price small { font-weight: 400; font-size: 11px; color: #6b6560; }
+        .product-card .price-group .price small { font-weight: 400; font-size: 11px; color: #6b6560; text-decoration: line-through; margin-left: 6px; }
         .product-card .price-group .desc { font-size: 12px; color: #6b6560; margin-top: 2px; }
-
         .btn-add { background: #c9a03a; color: #fff; border: none; border-radius: 60px; padding: 7px 0; font-size: 12px; font-weight: 600; width: 100%; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px; transition: 0.2s; }
         .btn-add:hover { background: #b08a2e; transform: scale(1.02); }
         .btn-buy-now { background: transparent; border: 1px solid #c9a03a; color: #c9a03a; border-radius: 60px; padding: 5px 0; font-size: 11px; font-weight: 600; width: 100%; cursor: pointer; transition: 0.2s; margin-top: 4px; }
         .btn-buy-now:hover { background: #c9a03a; color: #fff; }
 
-        /* ===== SEARCH ===== */
+        /* ===== BUSCA ===== */
         .search-box { width: 100%; padding: 10px 14px; border-radius: 60px; border: 1px solid #dcd7d2; background: #fff; color: #1a1a2e; outline: none; font-size: 14px; margin-bottom: 12px; }
         .search-box:focus { border-color: #c9a03a; }
 
@@ -144,6 +150,7 @@
         .cart-item { display: flex; justify-content: space-between; align-items: center; background: #faf8f7; padding: 8px 12px; border-radius: 14px; margin: 4px 0; border-left: 3px solid #c9a03a; }
         .cart-item .item-info { flex: 1; }
         .cart-item .item-info h5 { color: #1a1a2e; font-size: 14px; }
+        .cart-item .item-info span { font-size: 12px; color: #6b6560; }
         .cart-item .item-price { font-weight: 700; color: #1a1a2e; font-size: 14px; }
         .cart-item .btn-remove { background: none; border: none; color: #c9a03a; font-size: 16px; cursor: pointer; padding: 0 4px; }
 
@@ -160,9 +167,13 @@
         .btn-mp:hover { background: #0079b3; transform: scale(1.01); }
         .mp-label { text-align: center; color: #6b6560; font-size: 13px; margin-top: 2px; font-weight: 500; }
 
-        /* ===== GARANTIA ===== */
+        /* ===== GARANTIA E FRETE ===== */
         .garantia-box { background: #faf8f7; border-radius: 18px; padding: 12px 14px; margin: 10px 0; border: 1px dashed #c9a03a; text-align: center; color: #c9a03a; font-weight: 500; font-size: 14px; }
         .garantia-box i { margin-right: 6px; }
+
+        .frete-progress { background: #faf8f7; border-radius: 18px; padding: 12px 14px; margin: 10px 0; border: 1px solid #e8e4e0; text-align: center; }
+        .frete-progress .barra { width: 100%; height: 6px; background: #e8e4e0; border-radius: 10px; margin: 6px 0; overflow: hidden; }
+        .frete-progress .barra .fill { height: 100%; background: #c9a03a; border-radius: 10px; transition: width 0.4s; }
 
         /* ===== OFERTA DIÁRIA ===== */
         .daily-offer { background: #faf8f7; border-radius: 20px; padding: 14px 16px; margin: 10px 0; border: 1px solid #e8e4e0; text-align: center; }
@@ -170,7 +181,7 @@
         .daily-offer p { color: #1a1a2e; font-size: 14px; }
         .daily-offer .highlight-offer { color: #d9534f; font-weight: 700; font-size: 18px; }
 
-        /* ===== FAQ (simplificada) ===== */
+        /* ===== FAQ ===== */
         .faq-item { background: #faf8f7; border-radius: 16px; padding: 12px 14px; margin: 6px 0; border: 1px solid #e8e4e0; }
         .faq-item .question { font-weight: 600; color: #1a1a2e; cursor: pointer; display: flex; justify-content: space-between; }
         .faq-item .answer { display: none; margin-top: 6px; color: #4a4540; font-size: 14px; }
@@ -242,7 +253,8 @@
             .back-top { bottom: 140px; width: 38px; height: 38px; font-size: 16px; }
             .brand { flex-direction: column; align-items: stretch; gap: 8px; }
             .badge-whats { justify-content: center; }
-            .horario { font-size: 12px; gap: 6px; }
+            .categorias { grid-template-columns: 1fr 1fr; }
+            .atendimento-box { flex-direction: column; align-items: flex-start; gap: 4px; }
         }
     </style>
 </head>
@@ -270,30 +282,32 @@
         </div>
     </div>
 
-    <!-- ===== HORÁRIO SIMPLES E CLARO ===== -->
-    <div class="horario">
-        <span><i class="fas fa-clock"></i> <span class="dias">Seg–Sex</span> 09h–16h</span>
-        <span><i class="fas fa-clock"></i> <span class="dias">Sáb</span> 12h–14h</span>
-        <span><i class="fas fa-clock"></i> <span class="dias">Dom</span> fechado</span>
-        <span class="atendimento"><i class="fas fa-headset"></i> Atendimento ativo</span>
+    <!-- ===== ATENDIMENTO (CLARO E SIMPLES) ===== -->
+    <div class="atendimento-box">
+        <span><i class="fas fa-clock"></i> <span class="dia">Seg–Sex:</span> <span class="horario">9h às 16h</span></span>
+        <span><i class="fas fa-clock"></i> <span class="dia">Sáb:</span> <span class="horario">12h às 14h</span></span>
+        <span><i class="fas fa-clock"></i> <span class="dia">Dom:</span> <span class="horario">fechado</span></span>
     </div>
 
     <!-- ===== HERO ===== -->
     <div class="hero">
         <span class="badge-top">🍳 Qualidade e durabilidade</span>
-        <h1>Utensílios de cozinha <span>com preço justo</span></h1>
-        <p>Panelas, potes, talheres e muito mais. Tudo com garantia e entrega rápida.</p>
+        <h1>Tudo para sua cozinha <span>ficar mais prática</span></h1>
+        <p>Utensílios selecionados para cozinhar melhor todos os dias. Confira!</p>
         <div class="btn-group">
             <a href="#" class="btn-primary" id="heroProdutos"><i class="fas fa-utensils"></i> Ver produtos</a>
-            <a href="https://wa.me/5511914830656" target="_blank" class="btn-secondary"><i class="fab fa-whatsapp"></i> Falar no WhatsApp</a>
+            <a href="https://wa.me/5511914830656" target="_blank" class="btn-secondary"><i class="fab fa-whatsapp"></i> Dúvidas? Fale conosco</a>
         </div>
     </div>
 
-    <!-- ===== SELOS ===== -->
-    <div class="selos">
-        <div class="selo-item"><i class="fas fa-lock"></i><span>Pagamento Seguro</span></div>
-        <div class="selo-item"><i class="fas fa-shield-alt"></i><span>Garantia 30 dias</span></div>
-        <div class="selo-item"><i class="fas fa-truck"></i><span>Entrega rápida</span></div>
+    <!-- ===== CATEGORIAS ===== -->
+    <div class="categorias">
+        <div class="categoria-card" onclick="filtrarCategoria('panelas')"><i class="fas fa-pot"></i><span>Panelas</span></div>
+        <div class="categoria-card" onclick="filtrarCategoria('talheres')"><i class="fas fa-utensils"></i><span>Talheres</span></div>
+        <div class="categoria-card" onclick="filtrarCategoria('potes')"><i class="fas fa-jar"></i><span>Potes</span></div>
+        <div class="categoria-card" onclick="filtrarCategoria('pratos')"><i class="fas fa-plate"></i><span>Pratos</span></div>
+        <div class="categoria-card" onclick="filtrarCategoria('frigideira')"><i class="fas fa-frying-pan"></i><span>Frigideiras</span></div>
+        <div class="categoria-card" onclick="filtrarCategoria('kits')"><i class="fas fa-box"></i><span>Kits</span></div>
     </div>
 
     <!-- OFERTA DIÁRIA -->
@@ -302,7 +316,7 @@
         <p id="offerText">Carregando...</p>
     </div>
 
-    <!-- TABS (PÁGINAS) - REMOVIDO "COMPARAR" -->
+    <!-- TABS (apenas Início, Produtos, Carrinho) -->
     <div class="tabs">
         <button class="tab-btn active" data-tab="tab1"><i class="fas fa-home"></i> Início</button>
         <button class="tab-btn" data-tab="tab2"><i class="fas fa-box"></i> Produtos</button>
@@ -314,8 +328,28 @@
 
         <!-- ========== PÁGINA INÍCIO ========== -->
         <div class="tab-content active" id="tab1">
-            <!-- FAQ (dúvidas principais) -->
+
+            <!-- Kits em destaque -->
             <div style="margin: 0 0 12px 0;">
+                <h4 style="color:#1a1a2e;font-size:15px;margin-bottom:6px;">🎯 Kits para você começar</h4>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+                    <div style="background:#faf8f7;border-radius:16px;padding:10px;border:1px solid #e8e4e0;text-align:center;">
+                        <i class="fas fa-home" style="color:#c9a03a;font-size:24px;"></i>
+                        <p style="font-size:13px;font-weight:600;margin:4px 0 0;">Kit Cozinha Básica</p>
+                        <p style="font-size:12px;color:#6b6560;">5 itens essenciais</p>
+                        <button class="btn-add" style="font-size:11px;padding:4px 0;margin-top:4px;" onclick="addKit('Kit Cozinha Básica', 149.90)">Ver kit</button>
+                    </div>
+                    <div style="background:#faf8f7;border-radius:16px;padding:10px;border:1px solid #e8e4e0;text-align:center;">
+                        <i class="fas fa-fire" style="color:#c9a03a;font-size:24px;"></i>
+                        <p style="font-size:13px;font-weight:600;margin:4px 0 0;">Kit Churrasco</p>
+                        <p style="font-size:12px;color:#6b6560;">4 peças</p>
+                        <button class="btn-add" style="font-size:11px;padding:4px 0;margin-top:4px;" onclick="addKit('Kit Churrasco', 129.90)">Ver kit</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ (dúvidas principais) -->
+            <div style="margin: 12px 0 0;">
                 <h4 style="color:#1a1a2e;font-size:15px;margin-bottom:6px;"><i class="fas fa-question-circle"></i> Dúvidas principais</h4>
                 <div class="faq-item">
                     <div class="question" onclick="toggleFaq(0)"><span>Como faço um pedido?</span><span>▼</span></div>
@@ -332,7 +366,7 @@
             </div>
 
             <!-- Botão revendedor -->
-            <a href="https://wa.me/5511914830656?text=Olá!%20Gostaria%20de%20ser%20um%20revendedor%20StreamUp." target="_blank" style="display:block;background:#faf8f7;border:1px solid #c9a03a;border-radius:60px;padding:10px;text-align:center;color:#c9a03a;font-weight:600;text-decoration:none;margin:10px 0;transition:0.2s;">
+            <a href="https://wa.me/5511914830656?text=Olá!%20Gostaria%20de%20ser%20um%20revendedor%20StreamUp." target="_blank" style="display:block;background:#faf8f7;border:1px solid #c9a03a;border-radius:60px;padding:10px;text-align:center;color:#c9a03a;font-weight:600;text-decoration:none;margin:12px 0;transition:0.2s;">
                 <i class="fas fa-handshake"></i> Quero ser revendedor
             </a>
         </div>
@@ -347,15 +381,21 @@
         <!-- ========== PÁGINA CARRINHO ========== -->
         <div class="tab-content" id="tab4">
             <h3 style="color:#1a1a2e;margin-bottom:10px;">Seu Carrinho</h3>
+
+            <!-- Frete grátis progressivo -->
+            <div class="frete-progress" id="freteBox">
+                <span id="freteText">Faltam R$ 100,00 para ganhar frete grátis!</span>
+                <div class="barra"><div class="fill" id="freteBar" style="width:0%;"></div></div>
+            </div>
+
             <div id="cartItems"><p style="color:#6b6560;text-align:center;padding:16px 0;">Carrinho vazio</p></div>
             <div id="cartDiscountInfo" class="cart-discount" style="display:none;"></div>
             <div class="cart-total">Total: <span id="cartTotal">R$ 0,00</span></div>
 
-            <!-- Upgrade inteligente (exemplo: frete grátis) -->
-            <div id="upgradeOffer" style="background:#faf8f7;border-radius:16px;padding:12px;margin:6px 0;border:1px solid #c9a03a;display:none;">
-                <p style="color:#c9a03a;font-weight:600;">💡 Upgrade inteligente</p>
-                <p id="upgradeText" style="color:#4a4540;font-size:13px;"></p>
-                <button id="upgradeBtn" style="background:#c9a03a;color:#fff;border:none;border-radius:60px;padding:6px 18px;font-weight:600;cursor:pointer;margin-top:4px;">Adicionar</button>
+            <!-- Sugestões de complemento (cross-sell) -->
+            <div id="crossSell" style="background:#faf8f7;border-radius:16px;padding:12px;margin:6px 0;border:1px solid #e8e4e0;display:none;">
+                <p style="font-weight:600;color:#1a1a2e;">💡 Complete seu pedido</p>
+                <div id="crossSellItems" style="display:flex;flex-direction:column;gap:6px;margin-top:6px;"></div>
             </div>
 
             <div class="discount-input">
@@ -402,7 +442,7 @@
     <span class="total" id="floatTotal">R$ 0,00</span>
 </div>
 
-<!-- ===== CHAT FLUTUANTE (WhatsApp) ===== -->
+<!-- ===== CHAT FLUTUANTE ===== -->
 <a href="https://wa.me/5511914830656" target="_blank" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
 
 <!-- ===== BOTÃO VOLTAR AO TOPO ===== -->
@@ -446,8 +486,6 @@
         }
         localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
     }
-
-    // Carregar tema salvo
     if (localStorage.getItem('theme') === 'dark') {
         document.body.classList.add('dark');
         document.getElementById('themeIcon').style.display = 'none';
@@ -468,7 +506,7 @@
     }
 
     // ============================================================
-    // SCROLL PARA PRODUTOS (HERO)
+    // FUNÇÕES AUXILIARES
     // ============================================================
     document.getElementById('heroProdutos').addEventListener('click', function(e) {
         e.preventDefault();
@@ -480,9 +518,6 @@
         document.getElementById('tab2').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 
-    // ============================================================
-    // FAQ
-    // ============================================================
     window.toggleFaq = function(index) {
         document.getElementById(`faq-${index}`).classList.toggle('show');
     };
@@ -491,15 +526,17 @@
     // PRODUTOS (utensílios de cozinha)
     // ============================================================
     const produtosBase = [
-        { id: 'panela', nome: 'Panela Antiaderente', base: 89.90, desc: 'Alumínio, 24cm' },
-        { id: 'talheres', nome: 'Jogo de Talheres', base: 49.90, desc: 'Aço Inox, 12 peças' },
-        { id: 'potes', nome: 'Potes Herméticos', base: 69.90, desc: 'Vidro, 5 unidades' },
-        { id: 'pratos', nome: 'Prato de Porcelana', base: 39.90, desc: 'Porcelana, 30cm' },
-        { id: 'frigideira', nome: 'Frigideira', base: 59.90, desc: 'Antiaderente, 28cm' },
-        { id: 'conjunto', nome: 'Conjunto de Panelas', base: 199.90, desc: '3 peças, alumínio' }
+        { id: 'panela', nome: 'Panela Antiaderente', base: 89.90, desc: 'Alumínio, 24cm', categoria: 'panelas', etiqueta: 'mais-vendido' },
+        { id: 'talheres', nome: 'Jogo de Talheres', base: 49.90, desc: 'Aço Inox, 12 peças', categoria: 'talheres', etiqueta: 'oferta' },
+        { id: 'potes', nome: 'Potes Herméticos', base: 69.90, desc: 'Vidro, 5 unidades', categoria: 'potes', etiqueta: 'novo' },
+        { id: 'pratos', nome: 'Prato de Porcelana', base: 39.90, desc: 'Porcelana, 30cm', categoria: 'pratos', etiqueta: '' },
+        { id: 'frigideira', nome: 'Frigideira Antiaderente', base: 59.90, desc: '28cm, reforçada', categoria: 'frigideira', etiqueta: 'mais-vendido' },
+        { id: 'conjunto', nome: 'Conjunto de Panelas', base: 199.90, desc: '3 peças, alumínio', categoria: 'kits', etiqueta: 'oferta' },
+        { id: 'espátula', nome: 'Espátula de Silicone', base: 29.90, desc: 'Não risca panelas', categoria: 'utensilios', etiqueta: '' },
+        { id: 'kit_basico', nome: 'Kit Cozinha Básica', base: 149.90, desc: '5 itens essenciais', categoria: 'kits', etiqueta: 'novo' },
     ];
 
-    // Adiciona opção de quantidade (1,3,6,12) com desconto progressivo
+    // Preços com desconto para quantidades
     const produtos = produtosBase.map(p => {
         return {
             ...p,
@@ -512,14 +549,24 @@
         };
     });
 
-    function renderProducts(filter = '') {
+    function renderProducts(filter = '', categoria = '') {
         const grid = document.getElementById('productGrid');
         grid.innerHTML = '';
-        const filtered = produtos.filter(p => p.nome.toLowerCase().includes(filter.toLowerCase()));
+        const filtered = produtos.filter(p => {
+            const matchNome = p.nome.toLowerCase().includes(filter.toLowerCase());
+            const matchCat = categoria === '' || p.categoria === categoria;
+            return matchNome && matchCat;
+        });
         filtered.forEach(p => {
             const card = document.createElement('div');
             card.className = 'product-card fade-in';
+            let etiquetaHTML = '';
+            if (p.etiqueta) {
+                const cls = p.etiqueta === 'oferta' ? 'oferta' : p.etiqueta === 'novo' ? 'novo' : 'mais-vendido';
+                etiquetaHTML = `<span class="etiqueta ${cls}">${p.etiqueta.replace('-',' ').toUpperCase()}</span>`;
+            }
             card.innerHTML = `
+                ${etiquetaHTML}
                 <h4>${p.nome}</h4>
                 <div class="price-group">
                     <div class="price">R$ ${p.base.toFixed(2)} <small>a partir</small></div>
@@ -537,10 +584,30 @@
     }
     renderProducts();
 
-    // Pesquisa
+    // Busca
     document.getElementById('searchBox').addEventListener('input', function() {
         renderProducts(this.value);
     });
+
+    // Filtro por categoria (clique nos cards da home)
+    function filtrarCategoria(cat) {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelector('[data-tab="tab2"]').classList.add('active');
+        document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
+        document.getElementById('tab2').classList.add('active');
+        renderProducts('', cat);
+        document.getElementById('searchBox').value = '';
+        playSound('beep');
+    }
+
+    // Adicionar kit (via home)
+    function addKit(nome, preco) {
+        addToCart(nome, preco, 1);
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelector('[data-tab="tab4"]').classList.add('active');
+        document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
+        document.getElementById('tab4').classList.add('active');
+    }
 
     // ============================================================
     // CARRINHO
@@ -575,6 +642,10 @@
             floatCount.textContent = '0';
             floatTotal.textContent = 'R$ 0,00';
             discountInfo.style.display = 'none';
+            document.getElementById('freteBox').style.display = 'block';
+            document.getElementById('freteText').textContent = 'Faltam R$ 100,00 para ganhar frete grátis!';
+            document.getElementById('freteBar').style.width = '0%';
+            document.getElementById('crossSell').style.display = 'none';
             return;
         }
 
@@ -618,7 +689,36 @@
             discountInfo.style.display = 'none';
         }
 
-        checkUpgrade();
+        // Frete grátis progressivo
+        const freteMeta = 100;
+        const freteAtual = totalComDesconto;
+        const freteRestante = freteMeta - freteAtual;
+        if (freteRestante > 0) {
+            document.getElementById('freteText').textContent = `Faltam R$ ${freteRestante.toFixed(2)} para ganhar frete grátis!`;
+            document.getElementById('freteBar').style.width = Math.min((freteAtual / freteMeta) * 100, 100) + '%';
+        } else {
+            document.getElementById('freteText').textContent = '🎉 Você ganhou frete grátis!';
+            document.getElementById('freteBar').style.width = '100%';
+        }
+
+        // Cross-sell: sugerir produtos baratos para completar o frete
+        if (freteRestante > 0 && freteRestante < 50) {
+            const sugestoes = produtos.filter(p => p.base <= freteRestante + 10 && p.base > 5);
+            if (sugestoes.length > 0) {
+                document.getElementById('crossSell').style.display = 'block';
+                const containerCross = document.getElementById('crossSellItems');
+                containerCross.innerHTML = sugestoes.slice(0, 3).map(p => `
+                    <div style="display:flex;justify-content:space-between;align-items:center;background:#fff;padding:6px 10px;border-radius:10px;border:1px solid #e8e4e0;">
+                        <span style="font-size:13px;">${p.nome} <span style="color:#c9a03a;">R$ ${p.base.toFixed(2)}</span></span>
+                        <button class="btn-add" style="width:auto;padding:4px 12px;font-size:11px;" onclick="addToCart('${p.nome}', ${p.base}, 1);">+</button>
+                    </div>
+                `).join('');
+            } else {
+                document.getElementById('crossSell').style.display = 'none';
+            }
+        } else {
+            document.getElementById('crossSell').style.display = 'none';
+        }
 
         document.querySelectorAll('.btn-remove').forEach(btn => {
             btn.addEventListener('click', function() {
@@ -636,37 +736,6 @@
         renderCart();
         showToast(`✅ ${nome} adicionado ao carrinho!`);
         playSound('approved');
-    }
-
-    // ============================================================
-    // UPGRADE INTELIGENTE (frete grátis)
-    // ============================================================
-    function checkUpgrade() {
-        const upgradeDiv = document.getElementById('upgradeOffer');
-        const upgradeText = document.getElementById('upgradeText');
-        const upgradeBtn = document.getElementById('upgradeBtn');
-
-        const total = cart.reduce((sum, item) => sum + item.preco, 0);
-        if (total > 0 && total < 150) {
-            upgradeDiv.style.display = 'block';
-            upgradeText.textContent = 'Adicione mais R$' + (150 - total).toFixed(2) + ' e ganhe frete grátis!';
-            upgradeBtn.onclick = function() {
-                const sugestao = produtos.find(p => p.base >= (150 - total));
-                if (sugestao) {
-                    addToCart(sugestao.nome, sugestao.base, 1);
-                    upgradeDiv.style.display = 'none';
-                    showToast('✅ Produto adicionado! Frete grátis garantido.');
-                } else {
-                    showToast('Adicione mais produtos para ganhar frete grátis.');
-                }
-            };
-        } else if (total >= 150) {
-            upgradeDiv.style.display = 'block';
-            upgradeText.textContent = '🎉 Você já tem frete grátis!';
-            upgradeBtn.style.display = 'none';
-        } else {
-            upgradeDiv.style.display = 'none';
-        }
     }
 
     // ============================================================
@@ -888,7 +957,7 @@
     }
 
     // ============================================================
-    // OFERTA DIÁRIA (adaptada para utensílios)
+    // OFERTA DIÁRIA
     // ============================================================
     function gerarOfertaDiaria() {
         const hoje = new Date();
@@ -986,7 +1055,7 @@
     // INICIALIZAR
     // ============================================================
     renderCart();
-    console.log('✅ StreamUp - Loja de utensílios carregada!');
+    console.log('✅ StreamUp - Loja de utensílios (versão simplificada) carregada!');
 
     if (window.location.search.includes('payment=')) {
         handlePaymentReturn();
