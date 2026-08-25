@@ -3,57 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>StreamUp · Assine streaming com economia</title>
+    <title>StreamUp · Utensílios de Cozinha</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* ===== RESET E BASE (MODO CLARO PROFISSIONAL) ===== */
+        /* ===== RESET E BASE (TEMA CLARO PADRÃO) ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
-        body { background: #f8f6f4; color: #1a1a2e; display: flex; justify-content: center; padding: 16px; min-height: 100vh; }
-        .container { max-width: 520px; width: 100%; background: #ffffff; border-radius: 32px; box-shadow: 0 8px 40px rgba(0,0,0,0.06); padding: 20px 16px 30px; position: relative; }
+        body { background: #f5f3f0; color: #1a1a2e; display: flex; justify-content: center; padding: 16px; min-height: 100vh; transition: background 0.3s, color 0.3s; }
+        .container { max-width: 520px; width: 100%; background: #ffffff; border-radius: 32px; box-shadow: 0 8px 40px rgba(0,0,0,0.06); padding: 20px 16px 30px; position: relative; transition: background 0.3s; }
+
+        /* ===== TEMA ESCURO ===== */
+        body.dark { background: #0a0a0f; color: #e0d6f0; }
+        body.dark .container { background: #12121a; }
+        body.dark .hero { background: #1a1a24; border-color: #2a2a3a; }
+        body.dark .hero h1 { color: #fff; }
+        body.dark .hero p { color: #b0b0c0; }
+        body.dark .btn-secondary { border-color: #3a3a4a; color: #e0d6f0; }
+        body.dark .btn-secondary:hover { border-color: #c9a03a; background: #1a1a24; }
+        body.dark .selo-item { background: #1a1a24; border-color: #2a2a3a; }
+        body.dark .selo-item span { color: #e0d6f0; }
+        body.dark .product-card { background: #1a1a24; border-color: #2a2a3a; }
+        body.dark .product-card h4 { color: #fff; }
+        body.dark .product-card .price { color: #f5c34b; }
+        body.dark .product-card .price small { color: #8a7fa0; }
+        body.dark .tabs { background: #1a1a24; border-color: #2a2a3a; }
+        body.dark .tab-btn { color: #8a7fa0; }
+        body.dark .tab-btn.active { background: #c9a03a; color: #fff; }
+        body.dark .tab-btn:hover:not(.active) { color: #e0d6f0; }
+        body.dark .search-box { background: #1a1a24; border-color: #2a2a3a; color: #fff; }
+        body.dark .cart-item { background: #1a1a24; border-left-color: #c9a03a; }
+        body.dark .cart-item .item-info h5 { color: #fff; }
+        body.dark .cart-item .item-price { color: #fff; }
+        body.dark .cart-total { color: #fff; }
+        body.dark .garantia-box { background: #1a1a24; border-color: #c9a03a; color: #f5c34b; }
+        body.dark .daily-offer { background: #1a1a24; border-color: #2a2a3a; }
+        body.dark .daily-offer p { color: #e0d6f0; }
+        body.dark .faq-item { background: #1a1a24; border-color: #2a2a3a; }
+        body.dark .faq-item .question { color: #fff; }
+        body.dark .faq-item .answer { color: #b0b0c0; }
+        body.dark .footer-whats { background: #1a1a24; border-color: #2a2a3a; }
+        body.dark .footer-whats span { color: #b0b0c0; }
+        body.dark .creditos { color: #6a5f80; }
+        body.dark .creditos a { color: #f5c34b; }
+        body.dark .discount-input input { background: #1a1a24; border-color: #2a2a3a; color: #fff; }
+        body.dark .modal-box { background: #12121a; border-color: #2a2a3a; }
+        body.dark .modal-box h3 { color: #f5c34b; }
+        body.dark .modal-box p { color: #b0b0c0; }
+        body.dark .modal-options button { background: #1a1a24; border-color: #2a2a3a; color: #e0d6f0; }
+        body.dark .modal-options button:hover { border-color: #c9a03a; background: #222a3a; }
+        body.dark .modal-close { color: #8a7fa0; }
+        body.dark .toast { background: #1a1a24; border-color: #c9a03a; color: #fff; }
+        body.dark .cart-float { background: #1a1a24; border-color: #c9a03a; }
+        body.dark .cart-float .total { color: #fff; }
+        body.dark .back-top { background: #1a1a24; border-color: #c9a03a; color: #c9a03a; }
+        body.dark .back-top:hover { background: #c9a03a; color: #fff; }
+        body.dark .whatsapp-float { box-shadow: 0 6px 20px rgba(37,211,102,0.15); }
 
         /* ===== CORES ===== */
         .gold { color: #c9a03a; }
         .gold-bg { background: #c9a03a; color: #fff; }
-        .gold-border { border-color: #c9a03a; }
         .text-muted { color: #6b6560; }
         .text-dark { color: #1a1a2e; }
 
-        /* ===== ANIMAÇÃO ===== */
-        .fade-in { animation: fadeIn 0.6s ease forwards; opacity: 0; }
-        @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+        /* ===== TOGGLE TEMA ===== */
+        .theme-toggle { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #6b6560; cursor: pointer; }
+        .theme-toggle .switch { width: 44px; height: 24px; background: #dcd7d2; border-radius: 60px; position: relative; transition: 0.3s; display: inline-block; }
+        .theme-toggle .switch::after { content: ''; width: 18px; height: 18px; background: #fff; border-radius: 50%; position: absolute; top: 3px; left: 3px; transition: 0.3s; }
+        body.dark .theme-toggle .switch { background: #3a3a4a; }
+        body.dark .theme-toggle .switch::after { left: 23px; background: #c9a03a; }
+        .theme-toggle i { font-size: 16px; }
 
         /* ===== HEADER ===== */
-        .brand { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+        .brand { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; flex-wrap: wrap; gap: 8px; }
         .brand-left { display: flex; align-items: center; gap: 10px; }
         .brand-icon { background: #c9a03a; color: #fff; width: 44px; height: 44px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 20px; }
         .brand-text { font-weight: 700; font-size: 22px; color: #1a1a2e; }
         .brand-text span { color: #c9a03a; }
+        body.dark .brand-text { color: #fff; }
         .badge-whats { background: #25D366; color: #fff; padding: 6px 14px; border-radius: 60px; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; text-decoration: none; cursor: pointer; transition: 0.2s; }
         .badge-whats:hover { transform: scale(1.04); }
 
-        /* ===== ATENDIMENTO (simples) ===== */
-        .atendimento { font-size: 12px; color: #6b6560; text-align: center; margin: 2px 0 12px; }
-        .atendimento i { color: #c9a03a; margin-right: 4px; }
+        /* ===== HORÁRIO (simples e claro) ===== */
+        .horario { background: #faf8f6; border-radius: 60px; padding: 8px 14px; margin: 4px 0 12px; text-align: center; font-size: 14px; color: #1a1a2e; border: 1px solid #e8e4e0; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
+        .horario i { color: #c9a03a; }
+        .horario .dias { font-weight: 600; }
+        .horario .atendimento { color: #4caf50; font-weight: 600; }
+        body.dark .horario { background: #1a1a24; border-color: #2a2a3a; color: #e0d6f0; }
 
         /* ===== HERO ===== */
-        .hero { background: linear-gradient(135deg, #faf8f6, #f0ede8); border-radius: 24px; padding: 24px 20px; margin: 6px 0 16px; border: 1px solid #e8e4e0; text-align: center; }
-        .hero .badge-top { display: inline-block; background: #c9a03a; color: #fff; font-size: 11px; font-weight: 700; padding: 4px 14px; border-radius: 60px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
-        .hero h1 { font-size: 26px; font-weight: 800; color: #1a1a2e; line-height: 1.2; }
+        .hero { background: #faf8f6; border-radius: 24px; padding: 20px 18px; margin: 6px 0 16px; border: 1px solid #e8e4e0; text-align: center; }
+        .hero .badge-top { display: inline-block; background: #c9a03a; color: #fff; font-size: 11px; font-weight: 700; padding: 4px 14px; border-radius: 60px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+        .hero h1 { font-size: 24px; font-weight: 800; color: #1a1a2e; line-height: 1.2; }
         .hero h1 span { color: #c9a03a; }
-        .hero p { font-size: 16px; color: #4a4540; margin: 8px 0 16px; line-height: 1.5; }
+        .hero p { font-size: 15px; color: #4a4540; margin: 6px 0 14px; line-height: 1.5; }
         .hero .btn-group { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
-        .hero .btn-primary { background: #c9a03a; color: #fff; border: none; padding: 12px 28px; border-radius: 60px; font-weight: 700; font-size: 16px; cursor: pointer; transition: 0.2s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+        .hero .btn-primary { background: #c9a03a; color: #fff; border: none; padding: 12px 24px; border-radius: 60px; font-weight: 700; font-size: 15px; cursor: pointer; transition: 0.2s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
         .hero .btn-primary:hover { background: #b08a2e; transform: scale(1.02); }
-        .hero .btn-secondary { background: transparent; color: #1a1a2e; border: 2px solid #dcd7d2; padding: 12px 28px; border-radius: 60px; font-weight: 600; font-size: 16px; cursor: pointer; transition: 0.2s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+        .hero .btn-secondary { background: transparent; color: #1a1a2e; border: 2px solid #dcd7d2; padding: 12px 24px; border-radius: 60px; font-weight: 600; font-size: 15px; cursor: pointer; transition: 0.2s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
         .hero .btn-secondary:hover { border-color: #c9a03a; background: #faf8f6; }
 
-        /* ===== SELOS / DIFERENCIAIS ===== */
-        .selos { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin: 14px 0; }
-        .selo-item { background: #faf8f7; border-radius: 16px; padding: 12px 8px; text-align: center; border: 1px solid #e8e4e0; }
-        .selo-item i { font-size: 24px; color: #c9a03a; display: block; margin-bottom: 4px; }
+        /* ===== SELOS ===== */
+        .selos { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin: 10px 0; }
+        .selo-item { background: #faf8f7; border-radius: 16px; padding: 10px 8px; text-align: center; border: 1px solid #e8e4e0; }
+        .selo-item i { font-size: 22px; color: #c9a03a; display: block; margin-bottom: 4px; }
         .selo-item span { font-size: 12px; font-weight: 500; color: #1a1a2e; }
 
-        /* ===== TABS ===== */
+        /* ===== TABS (PÁGINAS) ===== */
         .tabs { display: flex; gap: 6px; background: #f0edea; border-radius: 60px; padding: 4px; margin: 16px 0 18px; border: 1px solid #e0dbd7; }
         .tab-btn { flex: 1; background: transparent; border: none; color: #6b6560; padding: 10px 0; border-radius: 40px; font-weight: 600; font-size: 13px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px; transition: 0.2s; }
         .tab-btn i { font-size: 14px; }
@@ -61,6 +115,7 @@
         .tab-btn:hover:not(.active) { color: #1a1a2e; }
         .tab-content { display: none; animation: fadeIn 0.3s ease; }
         .tab-content.active { display: block; }
+        @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
 
         /* ===== PRODUTOS ===== */
         .section-title { display: flex; align-items: baseline; justify-content: space-between; margin: 16px 0 10px; }
@@ -68,17 +123,16 @@
         .section-title .tag { background: #c9a03a; color: #fff; font-size: 10px; font-weight: 700; padding: 3px 12px; border-radius: 40px; }
 
         .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 8px; }
-        .product-card { background: #faf8f7; border-radius: 18px; padding: 12px 10px 10px; border: 1px solid #e8e4e0; transition: 0.3s ease; cursor: default; }
+        .product-card { background: #faf8f7; border-radius: 18px; padding: 12px 10px 10px; border: 1px solid #e8e4e0; transition: 0.3s ease; }
         .product-card:hover { border-color: #c9a03a; transform: translateY(-4px); box-shadow: 0 8px 24px rgba(201,160,58,0.08); }
         .product-card h4 { font-size: 14px; font-weight: 600; color: #1a1a2e; }
-        .product-card .price-group { display: flex; flex-direction: column; gap: 2px; margin: 4px 0 8px; }
-        .product-card .price-group .price { font-weight: 700; font-size: 15px; color: #c9a03a; }
+        .product-card .price-group { margin: 4px 0 8px; }
+        .product-card .price-group .price { font-weight: 700; font-size: 16px; color: #c9a03a; }
         .product-card .price-group .price small { font-weight: 400; font-size: 11px; color: #6b6560; }
-        .product-card .price-group .price .promo { color: #d9534f; font-size: 12px; margin-left: 4px; }
+        .product-card .price-group .desc { font-size: 12px; color: #6b6560; margin-top: 2px; }
 
         .btn-add { background: #c9a03a; color: #fff; border: none; border-radius: 60px; padding: 7px 0; font-size: 12px; font-weight: 600; width: 100%; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px; transition: 0.2s; }
         .btn-add:hover { background: #b08a2e; transform: scale(1.02); }
-
         .btn-buy-now { background: transparent; border: 1px solid #c9a03a; color: #c9a03a; border-radius: 60px; padding: 5px 0; font-size: 11px; font-weight: 600; width: 100%; cursor: pointer; transition: 0.2s; margin-top: 4px; }
         .btn-buy-now:hover { background: #c9a03a; color: #fff; }
 
@@ -90,7 +144,6 @@
         .cart-item { display: flex; justify-content: space-between; align-items: center; background: #faf8f7; padding: 8px 12px; border-radius: 14px; margin: 4px 0; border-left: 3px solid #c9a03a; }
         .cart-item .item-info { flex: 1; }
         .cart-item .item-info h5 { color: #1a1a2e; font-size: 14px; }
-        .cart-item .item-info span { font-size: 12px; color: #c9a03a; }
         .cart-item .item-price { font-weight: 700; color: #1a1a2e; font-size: 14px; }
         .cart-item .btn-remove { background: none; border: none; color: #c9a03a; font-size: 16px; cursor: pointer; padding: 0 4px; }
 
@@ -105,17 +158,11 @@
 
         .btn-mp { background: #009ee3; color: #fff; border: none; border-radius: 60px; padding: 14px 0; font-weight: 700; font-size: 17px; width: 100%; cursor: pointer; margin-top: 6px; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.2s; }
         .btn-mp:hover { background: #0079b3; transform: scale(1.01); }
+        .mp-label { text-align: center; color: #6b6560; font-size: 13px; margin-top: 2px; font-weight: 500; }
 
         /* ===== GARANTIA ===== */
         .garantia-box { background: #faf8f7; border-radius: 18px; padding: 12px 14px; margin: 10px 0; border: 1px dashed #c9a03a; text-align: center; color: #c9a03a; font-weight: 500; font-size: 14px; }
         .garantia-box i { margin-right: 6px; }
-
-        /* ===== STATUS ===== */
-        .status-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 10px 0; }
-        .status-item { background: #faf8f7; border-radius: 14px; padding: 8px 12px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #e8e4e0; }
-        .status-item .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
-        .status-item .dot.green { background: #4caf50; box-shadow: 0 0 8px rgba(76,175,80,0.2); }
-        .status-item .dot.yellow { background: #ffc107; box-shadow: 0 0 8px rgba(255,193,7,0.2); }
 
         /* ===== OFERTA DIÁRIA ===== */
         .daily-offer { background: #faf8f7; border-radius: 20px; padding: 14px 16px; margin: 10px 0; border: 1px solid #e8e4e0; text-align: center; }
@@ -123,27 +170,11 @@
         .daily-offer p { color: #1a1a2e; font-size: 14px; }
         .daily-offer .highlight-offer { color: #d9534f; font-weight: 700; font-size: 18px; }
 
-        /* ===== DEPOIMENTOS ===== */
-        .depoimentos { background: #faf8f7; border-radius: 18px; padding: 14px; border: 1px solid #e8e4e0; margin: 12px 0; }
-        .depoimentos h4 { color: #1a1a2e; font-size: 15px; margin-bottom: 8px; }
-        .depoimento-item { display: flex; align-items: center; gap: 12px; padding: 8px 0; border-bottom: 1px solid #e8e4e0; }
-        .depoimento-item:last-child { border-bottom: none; }
-        .depoimento-item .avatar { width: 40px; height: 40px; border-radius: 50%; background: #c9a03a; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px; flex-shrink: 0; }
-        .depoimento-item .text { font-size: 13px; color: #1a1a2e; }
-        .depoimento-item .text .nome { font-weight: 600; color: #c9a03a; }
-
-        /* ===== FAQ ===== */
+        /* ===== FAQ (simplificada) ===== */
         .faq-item { background: #faf8f7; border-radius: 16px; padding: 12px 14px; margin: 6px 0; border: 1px solid #e8e4e0; }
         .faq-item .question { font-weight: 600; color: #1a1a2e; cursor: pointer; display: flex; justify-content: space-between; }
         .faq-item .answer { display: none; margin-top: 6px; color: #4a4540; font-size: 14px; }
         .faq-item .answer.show { display: block; }
-
-        /* ===== COMPARADOR ===== */
-        .compare-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-        .compare-table th, .compare-table td { padding: 10px 8px; border-bottom: 1px solid #e8e4e0; text-align: center; }
-        .compare-table th { color: #c9a03a; font-weight: 600; }
-        .compare-table td { color: #1a1a2e; }
-        .compare-table .highlight { background: rgba(201,160,58,0.06); }
 
         /* ===== CARRINHO FLUTUANTE ===== */
         .cart-float { position: fixed; bottom: 20px; right: 20px; background: #ffffff; border: 2px solid #c9a03a; border-radius: 60px; padding: 12px 18px; display: flex; align-items: center; gap: 10px; cursor: pointer; z-index: 999; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: 0.3s; }
@@ -209,6 +240,9 @@
             .cart-float { padding: 10px 14px; font-size: 13px; }
             .whatsapp-float { width: 48px; height: 48px; font-size: 24px; bottom: 80px; }
             .back-top { bottom: 140px; width: 38px; height: 38px; font-size: 16px; }
+            .brand { flex-direction: column; align-items: stretch; gap: 8px; }
+            .badge-whats { justify-content: center; }
+            .horario { font-size: 12px; gap: 6px; }
         }
     </style>
 </head>
@@ -226,28 +260,40 @@
             <div class="brand-icon">SU</div>
             <div class="brand-text">Stream<span>Up</span></div>
         </div>
-        <a href="https://wa.me/5511914830656" target="_blank" class="badge-whats"><i class="fab fa-whatsapp"></i> Fale já</a>
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+            <div class="theme-toggle" onclick="toggleTheme()">
+                <i class="fas fa-sun" id="themeIcon"></i>
+                <span class="switch" id="themeSwitch"></span>
+                <i class="fas fa-moon" id="themeIconDark"></i>
+            </div>
+            <a href="https://wa.me/5511914830656" target="_blank" class="badge-whats"><i class="fab fa-whatsapp"></i> Fale já</a>
+        </div>
     </div>
 
-    <!-- ATENDIMENTO -->
-    <div class="atendimento"><i class="fas fa-clock"></i> Seg–Sex 09h–16h · Sáb 12h–14h · Dom fechado</div>
+    <!-- ===== HORÁRIO SIMPLES E CLARO ===== -->
+    <div class="horario">
+        <span><i class="fas fa-clock"></i> <span class="dias">Seg–Sex</span> 09h–16h</span>
+        <span><i class="fas fa-clock"></i> <span class="dias">Sáb</span> 12h–14h</span>
+        <span><i class="fas fa-clock"></i> <span class="dias">Dom</span> fechado</span>
+        <span class="atendimento"><i class="fas fa-headset"></i> Atendimento ativo</span>
+    </div>
 
-    <!-- ===== HERO (CLARO E DIRETO) ===== -->
+    <!-- ===== HERO ===== -->
     <div class="hero">
-        <span class="badge-top">🔥 Economia garantida</span>
-        <h1>Assine streaming com <span>até 30% de economia</span></h1>
-        <p>Netflix, Prime, HBO, Disney+ e muito mais. Suporte 24h e garantia de 30 dias.</p>
+        <span class="badge-top">🍳 Qualidade e durabilidade</span>
+        <h1>Utensílios de cozinha <span>com preço justo</span></h1>
+        <p>Panelas, potes, talheres e muito mais. Tudo com garantia e entrega rápida.</p>
         <div class="btn-group">
-            <a href="#" class="btn-primary" id="heroPlanos"><i class="fas fa-rocket"></i> Ver planos</a>
+            <a href="#" class="btn-primary" id="heroProdutos"><i class="fas fa-utensils"></i> Ver produtos</a>
             <a href="https://wa.me/5511914830656" target="_blank" class="btn-secondary"><i class="fab fa-whatsapp"></i> Falar no WhatsApp</a>
         </div>
     </div>
 
-    <!-- ===== SELOS / DIFERENCIAIS ===== -->
+    <!-- ===== SELOS ===== -->
     <div class="selos">
         <div class="selo-item"><i class="fas fa-lock"></i><span>Pagamento Seguro</span></div>
         <div class="selo-item"><i class="fas fa-shield-alt"></i><span>Garantia 30 dias</span></div>
-        <div class="selo-item"><i class="fas fa-headset"></i><span>Suporte 24h</span></div>
+        <div class="selo-item"><i class="fas fa-truck"></i><span>Entrega rápida</span></div>
     </div>
 
     <!-- OFERTA DIÁRIA -->
@@ -256,55 +302,32 @@
         <p id="offerText">Carregando...</p>
     </div>
 
-    <!-- TABS -->
+    <!-- TABS (PÁGINAS) - REMOVIDO "COMPARAR" -->
     <div class="tabs">
         <button class="tab-btn active" data-tab="tab1"><i class="fas fa-home"></i> Início</button>
-        <button class="tab-btn" data-tab="tab2"><i class="fas fa-box"></i> Serviços</button>
+        <button class="tab-btn" data-tab="tab2"><i class="fas fa-box"></i> Produtos</button>
         <button class="tab-btn" data-tab="tab4"><i class="fas fa-shopping-cart"></i> Carrinho <span id="cartCount">0</span></button>
-        <button class="tab-btn" data-tab="tab5"><i class="fas fa-chart-bar"></i> Comparar</button>
     </div>
 
-    <!-- CONTEÚDO PRINCIPAL -->
+    <!-- CONTEÚDO DAS PÁGINAS -->
     <div id="mainContent">
-        <!-- TAB 1: INÍCIO -->
+
+        <!-- ========== PÁGINA INÍCIO ========== -->
         <div class="tab-content active" id="tab1">
-            <!-- Status dos serviços -->
+            <!-- FAQ (dúvidas principais) -->
             <div style="margin: 0 0 12px 0;">
-                <h4 style="color:#1a1a2e;font-size:15px;margin-bottom:6px;"><i class="fas fa-circle" style="color:#4caf50;font-size:12px;"></i> Status dos serviços</h4>
-                <div class="status-grid" id="statusGrid"></div>
-            </div>
-
-            <!-- Depoimentos reais (simulados com iniciais) -->
-            <div class="depoimentos">
-                <h4><i class="fas fa-quote-left" style="color:#c9a03a;"></i> O que nossos clientes dizem</h4>
-                <div class="depoimento-item">
-                    <div class="avatar">RM</div>
-                    <div class="text"><span class="nome">Rafael M.</span> — "Economizo mais de R$50 por mês com a StreamUp. Recomendo!"</div>
-                </div>
-                <div class="depoimento-item">
-                    <div class="avatar">AS</div>
-                    <div class="text"><span class="nome">Amanda S.</span> — "Atendimento rápido e contas funcionando perfeitamente."</div>
-                </div>
-                <div class="depoimento-item">
-                    <div class="avatar">CL</div>
-                    <div class="text"><span class="nome">Carlos L.</span> — "Já sou cliente há 6 meses, nunca tive problemas."</div>
-                </div>
-            </div>
-
-            <!-- FAQ resumido (perguntas principais) -->
-            <div style="margin:12px 0;">
                 <h4 style="color:#1a1a2e;font-size:15px;margin-bottom:6px;"><i class="fas fa-question-circle"></i> Dúvidas principais</h4>
                 <div class="faq-item">
-                    <div class="question" onclick="toggleFaq(0)"><span>Como funciona a compra?</span><span>▼</span></div>
-                    <div class="answer" id="faq-0">Escolha o serviço, adicione ao carrinho, pague via Mercado Pago (PIX, cartão ou boleto) e receba os dados de acesso.</div>
+                    <div class="question" onclick="toggleFaq(0)"><span>Como faço um pedido?</span><span>▼</span></div>
+                    <div class="answer" id="faq-0">Escolha os produtos, adicione ao carrinho, pague via Mercado Pago (PIX, cartão ou boleto) e receba em casa.</div>
                 </div>
                 <div class="faq-item">
                     <div class="question" onclick="toggleFaq(1)"><span>Qual a garantia?</span><span>▼</span></div>
-                    <div class="answer" id="faq-1">Todos os serviços têm suporte de 30 dias. Se tiver qualquer problema, fale conosco que resolvemos.</div>
+                    <div class="answer" id="faq-1">Todos os produtos têm garantia de 30 dias contra defeitos. Se tiver problema, fale conosco que trocamos.</div>
                 </div>
                 <div class="faq-item">
-                    <div class="question" onclick="toggleFaq(2)"><span>Posso trocar de serviço?</span><span>▼</span></div>
-                    <div class="answer" id="faq-2">Sim! Fale conosco pelo WhatsApp que ajustamos seu plano.</div>
+                    <div class="question" onclick="toggleFaq(2)"><span>Posso trocar o produto?</span><span>▼</span></div>
+                    <div class="answer" id="faq-2">Sim! Entre em contato pelo WhatsApp em até 7 dias após o recebimento.</div>
                 </div>
             </div>
 
@@ -314,21 +337,21 @@
             </a>
         </div>
 
-        <!-- TAB 2: SERVIÇOS -->
+        <!-- ========== PÁGINA PRODUTOS ========== -->
         <div class="tab-content" id="tab2">
-            <div class="section-title"><h3>Serviços</h3><span class="tag">NOVO</span></div>
-            <input type="text" class="search-box" id="searchBox" placeholder="🔍 Buscar serviço..." />
+            <div class="section-title"><h3>Produtos</h3><span class="tag">NOVO</span></div>
+            <input type="text" class="search-box" id="searchBox" placeholder="🔍 Buscar produto..." />
             <div class="product-grid" id="productGrid"></div>
         </div>
 
-        <!-- TAB 4: CARRINHO -->
+        <!-- ========== PÁGINA CARRINHO ========== -->
         <div class="tab-content" id="tab4">
             <h3 style="color:#1a1a2e;margin-bottom:10px;">Seu Carrinho</h3>
             <div id="cartItems"><p style="color:#6b6560;text-align:center;padding:16px 0;">Carrinho vazio</p></div>
             <div id="cartDiscountInfo" class="cart-discount" style="display:none;"></div>
             <div class="cart-total">Total: <span id="cartTotal">R$ 0,00</span></div>
 
-            <!-- Upgrade inteligente -->
+            <!-- Upgrade inteligente (exemplo: frete grátis) -->
             <div id="upgradeOffer" style="background:#faf8f7;border-radius:16px;padding:12px;margin:6px 0;border:1px solid #c9a03a;display:none;">
                 <p style="color:#c9a03a;font-weight:600;">💡 Upgrade inteligente</p>
                 <p id="upgradeText" style="color:#4a4540;font-size:13px;"></p>
@@ -336,34 +359,13 @@
             </div>
 
             <div class="discount-input">
-                <input type="text" id="cupomInput" placeholder="Cupom (ex: STREAM10)" />
+                <input type="text" id="cupomInput" placeholder="" />
                 <button id="applyDiscount">Aplicar</button>
             </div>
             <div id="discountMsg" style="font-size:12px;color:#c9a03a;margin:4px 0 8px;"></div>
 
             <button class="btn-mp" id="mpCheckoutBtn"><i class="fas fa-credit-card"></i> Pagar com Mercado Pago</button>
-            <p style="color:#6b6560;font-size:11px;text-align:center;margin-top:6px;">Pague com PIX, cartão ou boleto</p>
-        </div>
-
-        <!-- TAB 5: COMPARADOR -->
-        <div class="tab-content" id="tab5">
-            <h3 style="color:#1a1a2e;margin-bottom:10px;">Comparador de planos</h3>
-            <table class="compare-table">
-                <thead><tr><th>Plano</th><th>Serviços</th><th>Preço</th><th>Economia</th></tr></thead>
-                <tbody>
-                    <tr><td>Essencial</td><td>Netflix + Prime + HBO</td><td>R$ 45/mês</td><td>R$ 3</td></tr>
-                    <tr class="highlight"><td>Premium</td><td>Netflix + Disney + HBO + Prime + Paramount</td><td>R$ 70/mês</td><td>R$ 3</td></tr>
-                    <tr><td>Ultra</td><td>Todos os serviços</td><td>R$ 120/mês</td><td>R$ 33</td></tr>
-                </tbody>
-            </table>
-
-            <div style="margin-top:16px;">
-                <h4 style="color:#1a1a2e;font-size:15px;">💸 Simulador de economia</h4>
-                <p style="color:#4a4540;font-size:13px;">Quanto você paga hoje em serviços separados?</p>
-                <input type="number" id="simulateInput" placeholder="Ex: 100" style="width:100%;padding:10px;border-radius:60px;border:1px solid #dcd7d2;background:#fff;color:#1a1a2e;outline:none;margin:6px 0;" />
-                <button id="simulateBtn" style="background:#c9a03a;color:#fff;border:none;border-radius:60px;padding:10px;width:100%;font-weight:600;cursor:pointer;">Simular economia</button>
-                <div id="simulateResult" style="margin-top:8px;color:#c9a03a;font-weight:600;text-align:center;"></div>
-            </div>
+            <div class="mp-label">Pague com PIX, cartão ou boleto</div>
         </div>
     </div>
 
@@ -371,7 +373,7 @@
     <div class="payment-return" id="paymentReturn">
         <div id="paymentIcon" class="icon">✅</div>
         <h2 id="paymentTitle">Pagamento confirmado!</h2>
-        <p id="paymentMessage">Obrigado pela sua compra. Em breve você receberá os dados de acesso.</p>
+        <p id="paymentMessage">Obrigado pela sua compra. Em breve você receberá o código de rastreio.</p>
         <div class="spinner"></div>
         <p style="color:#4a4540;font-size:14px;">Aguardando confirmação...</p>
         <div class="countdown" id="countdownTimer">30</div>
@@ -388,7 +390,7 @@
         </div>
     </div>
     <div class="creditos">
-        <i class="fas fa-crown"></i> StreamUp — O melhor do entretenimento digital<br>
+        <i class="fas fa-crown"></i> StreamUp — Utensílios de cozinha com qualidade<br>
         <span style="opacity:0.6;">@Xandao06 no Telegram</span>
     </div>
 </div>
@@ -406,16 +408,16 @@
 <!-- ===== BOTÃO VOLTAR AO TOPO ===== -->
 <div class="back-top" id="backTop"><i class="fas fa-arrow-up"></i></div>
 
-<!-- ===== MODAL DE PERÍODO ===== -->
+<!-- ===== MODAL DE QUANTIDADE ===== -->
 <div class="modal-overlay" id="periodModal">
     <div class="modal-box">
-        <h3><i class="fas fa-calendar-alt"></i> Escolha o período</h3>
+        <h3><i class="fas fa-box"></i> Escolha a quantidade</h3>
         <p id="periodProductName">Produto</p>
         <div class="modal-options">
-            <button id="period1m"><span>📆 1 mês</span><span class="price-tag" id="period1mPrice">R$ 0,00</span></button>
-            <button id="period3m"><span>📅 3 meses</span><span class="price-tag" id="period3mPrice">R$ 0,00</span></button>
-            <button id="period6m"><span>📅 6 meses</span><span class="price-tag" id="period6mPrice">R$ 0,00</span></button>
-            <button id="period12m"><span>📅 12 meses</span><span class="price-tag" id="period12mPrice">R$ 0,00</span></button>
+            <button id="period1"><span>1 unidade</span><span class="price-tag" id="period1Price">R$ 0,00</span></button>
+            <button id="period3"><span>3 unidades</span><span class="price-tag" id="period3Price">R$ 0,00</span></button>
+            <button id="period6"><span>6 unidades</span><span class="price-tag" id="period6Price">R$ 0,00</span></button>
+            <button id="period12"><span>12 unidades</span><span class="price-tag" id="period12Price">R$ 0,00</span></button>
         </div>
         <button class="modal-close" id="periodCancel">Cancelar</button>
     </div>
@@ -429,6 +431,33 @@
     const ACCESS_TOKEN = 'APP_USR-7721066143624625-081813-ca98fefaf469e01ae27592d7f7ed4159-672484268';
 
     // ============================================================
+    // TEMA (CLARO PADRÃO)
+    // ============================================================
+    function toggleTheme() {
+        document.body.classList.toggle('dark');
+        const icon = document.getElementById('themeIcon');
+        const iconDark = document.getElementById('themeIconDark');
+        if (document.body.classList.contains('dark')) {
+            icon.style.display = 'none';
+            iconDark.style.display = 'inline';
+        } else {
+            icon.style.display = 'inline';
+            iconDark.style.display = 'none';
+        }
+        localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+    }
+
+    // Carregar tema salvo
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark');
+        document.getElementById('themeIcon').style.display = 'none';
+        document.getElementById('themeIconDark').style.display = 'inline';
+    } else {
+        document.getElementById('themeIcon').style.display = 'inline';
+        document.getElementById('themeIconDark').style.display = 'none';
+    }
+
+    // ============================================================
     // TOAST
     // ============================================================
     function showToast(msg) {
@@ -439,67 +468,48 @@
     }
 
     // ============================================================
-    // FUNÇÃO PARA ABRIR A ABA DE SERVIÇOS (HERO)
+    // SCROLL PARA PRODUTOS (HERO)
     // ============================================================
-    document.getElementById('heroPlanos').addEventListener('click', function(e) {
+    document.getElementById('heroProdutos').addEventListener('click', function(e) {
         e.preventDefault();
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         document.querySelector('[data-tab="tab2"]').classList.add('active');
         document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
         document.getElementById('tab2').classList.add('active');
         playSound('beep');
-        // Scroll suave para a área de serviços
         document.getElementById('tab2').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 
     // ============================================================
-    // FAQ (perguntas principais)
+    // FAQ
     // ============================================================
     window.toggleFaq = function(index) {
-        const el = document.getElementById(`faq-${index}`);
-        el.classList.toggle('show');
+        document.getElementById(`faq-${index}`).classList.toggle('show');
     };
 
     // ============================================================
-    // CARROSSEL (simplificado, apenas para destaque)
+    // PRODUTOS (utensílios de cozinha)
     // ============================================================
-    // (mantido do original, mas com menos slides para não poluir)
-
-    // ============================================================
-    // PRODUTOS (apenas preço com garantia)
-    // ============================================================
-    function calcPrices(baseMensal) {
-        return {
-            mensal: baseMensal + 2,
-            trimestral: baseMensal * 2.8 + 2,
-            semestral: baseMensal * 5.0 + 2,
-            anual: baseMensal * 9.0 + 2
-        };
-    }
     const produtosBase = [
-        { id: 'netflix', nome: 'Netflix', base: 25.00 },
-        { id: 'prime', nome: 'Prime Video', base: 8.00, obs: '🔥 6m: R$37 (promo)' },
-        { id: 'crunchyroll', nome: 'Crunchyroll', base: 10.00 },
-        { id: 'hbo', nome: 'HBO', base: 15.00 },
-        { id: 'globoplay', nome: 'Globoplay+Premiere', base: 20.00 },
-        { id: 'disney', nome: 'Disney+', base: 15.00 },
-        { id: 'paramount', nome: 'Paramount', base: 10.00, obs: '💳 Único: R$37 (promo)' },
-        { id: 'apple', nome: 'Apple TV+', base: 9.00 },
-        { id: 'playplus', nome: 'PlayPlus', base: 8.00 },
-        { id: 'universal', nome: 'Universal+', base: 8.00 },
-        { id: 'claro', nome: 'Claro TV+ Completo', base: 20.00 },
-        { id: 'sky1', nome: 'SKY Top HD IV 2022', base: 19.00 },
-        { id: 'sky2', nome: 'SKY Top HD III 2025', base: 20.00 },
-        { id: 'sky3', nome: 'SKY Mega II HD 2021', base: 25.00 },
-        { id: 'canva', nome: 'Canva Pro Anual', base: 40.00, isUnico: true },
-        { id: 'iptv_basico', nome: 'IPTV Básico', base: 15.00, isIptv: true },
-        { id: 'iptv_premium', nome: 'IPTV Premium', base: 25.00, isIptv: true },
-        { id: 'iptv_ultra', nome: 'IPTV Ultra', base: 40.00, isIptv: true }
+        { id: 'panela', nome: 'Panela Antiaderente', base: 89.90, desc: 'Alumínio, 24cm' },
+        { id: 'talheres', nome: 'Jogo de Talheres', base: 49.90, desc: 'Aço Inox, 12 peças' },
+        { id: 'potes', nome: 'Potes Herméticos', base: 69.90, desc: 'Vidro, 5 unidades' },
+        { id: 'pratos', nome: 'Prato de Porcelana', base: 39.90, desc: 'Porcelana, 30cm' },
+        { id: 'frigideira', nome: 'Frigideira', base: 59.90, desc: 'Antiaderente, 28cm' },
+        { id: 'conjunto', nome: 'Conjunto de Panelas', base: 199.90, desc: '3 peças, alumínio' }
     ];
+
+    // Adiciona opção de quantidade (1,3,6,12) com desconto progressivo
     const produtos = produtosBase.map(p => {
-        if (p.isUnico) return { ...p, periodos: { unico: p.base + 2 } };
-        const precos = calcPrices(p.base);
-        return { ...p, periodos: { mensal: precos.mensal, trimestral: precos.trimestral, semestral: precos.semestral, anual: precos.anual } };
+        return {
+            ...p,
+            precos: {
+                '1': p.base,
+                '3': p.base * 2.7,
+                '6': p.base * 5.0,
+                '12': p.base * 9.0
+            }
+        };
     });
 
     function renderProducts(filter = '') {
@@ -509,25 +519,16 @@
         filtered.forEach(p => {
             const card = document.createElement('div');
             card.className = 'product-card fade-in';
-            let precoHTML = '';
-            if (p.isUnico) {
-                precoHTML = `<div class="price">R$ ${p.periodos.unico.toFixed(2)} <small>único</small></div>`;
-            } else {
-                precoHTML = `
-                    <div class="price">R$ ${p.periodos.mensal.toFixed(2)} <small>/mês</small></div>
-                    <div class="price">R$ ${p.periodos.trimestral.toFixed(2)} <small>/3m</small></div>
-                    <div class="price">R$ ${p.periodos.semestral.toFixed(2)} <small>/6m</small></div>
-                    <div class="price">R$ ${p.periodos.anual.toFixed(2)} <small>/ano</small></div>
-                    ${p.obs ? `<div class="price" style="color:#d9534f;font-size:12px;">${p.obs}</div>` : ''}
-                `;
-            }
             card.innerHTML = `
                 <h4>${p.nome}</h4>
-                <div class="price-group">${precoHTML}</div>
-                <button class="btn-add" data-id="${p.id}" data-nome="${p.nome}" data-isunico="${p.isUnico || false}" data-periodos='${JSON.stringify(p.periodos)}'>
+                <div class="price-group">
+                    <div class="price">R$ ${p.base.toFixed(2)} <small>a partir</small></div>
+                    <div class="desc">${p.desc}</div>
+                </div>
+                <button class="btn-add" data-id="${p.id}" data-nome="${p.nome}" data-precos='${JSON.stringify(p.precos)}'>
                     <i class="fas fa-cart-plus"></i> Adicionar
                 </button>
-                <button class="btn-buy-now" data-id="${p.id}" data-nome="${p.nome}" data-isunico="${p.isUnico || false}" data-periodos='${JSON.stringify(p.periodos)}'>
+                <button class="btn-buy-now" data-id="${p.id}" data-nome="${p.nome}" data-precos='${JSON.stringify(p.precos)}'>
                     <i class="fas fa-bolt"></i> Comprar agora
                 </button>
             `;
@@ -542,7 +543,7 @@
     });
 
     // ============================================================
-    // CARRINHO (sempre com garantia)
+    // CARRINHO
     // ============================================================
     let cart = JSON.parse(localStorage.getItem('streamup_cart')) || [];
     let descontoAtivo = 0;
@@ -583,7 +584,7 @@
             total += preco;
             html += `
                 <div class="cart-item">
-                    <div class="item-info"><h5>${item.nome}</h5><span>✅ com garantia</span></div>
+                    <div class="item-info"><h5>${item.nome}</h5><span>${item.qtd || 1} un</span></div>
                     <div class="item-price">R$ ${preco.toFixed(2)}</div>
                     <button class="btn-remove" data-index="${idx}"><i class="fas fa-times"></i></button>
                 </div>
@@ -629,8 +630,8 @@
         });
     }
 
-    function addToCart(nome, preco) {
-        cart.push({ id: Date.now() + Math.random(), nome, preco });
+    function addToCart(nome, preco, qtd = 1) {
+        cart.push({ id: Date.now() + Math.random(), nome, preco, qtd });
         saveCart();
         renderCart();
         showToast(`✅ ${nome} adicionado ao carrinho!`);
@@ -638,25 +639,31 @@
     }
 
     // ============================================================
-    // UPGRADE INTELIGENTE
+    // UPGRADE INTELIGENTE (frete grátis)
     // ============================================================
     function checkUpgrade() {
         const upgradeDiv = document.getElementById('upgradeOffer');
         const upgradeText = document.getElementById('upgradeText');
         const upgradeBtn = document.getElementById('upgradeBtn');
 
-        const hasNetflix = cart.some(item => item.nome.includes('Netflix'));
-        const hasPrime = cart.some(item => item.nome.includes('Prime'));
-        const hasIPTV = cart.some(item => item.nome.includes('IPTV Premium'));
-
-        if (hasNetflix && hasPrime && !hasIPTV) {
+        const total = cart.reduce((sum, item) => sum + item.preco, 0);
+        if (total > 0 && total < 150) {
             upgradeDiv.style.display = 'block';
-            upgradeText.textContent = 'Adicione IPTV Premium por apenas +R$ 27,00/mês e tenha canais ao vivo!';
+            upgradeText.textContent = 'Adicione mais R$' + (150 - total).toFixed(2) + ' e ganhe frete grátis!';
             upgradeBtn.onclick = function() {
-                addToCart('IPTV Premium (upgrade)', 27.00);
-                upgradeDiv.style.display = 'none';
-                showToast('✅ Upgrade adicionado!');
+                const sugestao = produtos.find(p => p.base >= (150 - total));
+                if (sugestao) {
+                    addToCart(sugestao.nome, sugestao.base, 1);
+                    upgradeDiv.style.display = 'none';
+                    showToast('✅ Produto adicionado! Frete grátis garantido.');
+                } else {
+                    showToast('Adicione mais produtos para ganhar frete grátis.');
+                }
             };
+        } else if (total >= 150) {
+            upgradeDiv.style.display = 'block';
+            upgradeText.textContent = '🎉 Você já tem frete grátis!';
+            upgradeBtn.style.display = 'none';
         } else {
             upgradeDiv.style.display = 'none';
         }
@@ -669,18 +676,13 @@
         const btn = e.target.closest('.btn-add');
         if (btn) {
             const nome = btn.dataset.nome;
-            const isUnico = btn.dataset.isunico === 'true';
-            const periodos = JSON.parse(btn.dataset.periodos);
-            if (isUnico) {
-                addToCart(nome, periodos.unico);
-                return;
-            }
-            pendingPeriodProduct = { nome, periodos };
+            const precos = JSON.parse(btn.dataset.precos);
+            pendingProduct = { nome, precos };
             document.getElementById('periodProductName').textContent = nome;
-            document.getElementById('period1mPrice').textContent = `R$ ${periodos.mensal.toFixed(2)}`;
-            document.getElementById('period3mPrice').textContent = `R$ ${periodos.trimestral.toFixed(2)}`;
-            document.getElementById('period6mPrice').textContent = `R$ ${periodos.semestral.toFixed(2)}`;
-            document.getElementById('period12mPrice').textContent = `R$ ${periodos.anual.toFixed(2)}`;
+            document.getElementById('period1Price').textContent = `R$ ${precos['1'].toFixed(2)}`;
+            document.getElementById('period3Price').textContent = `R$ ${precos['3'].toFixed(2)}`;
+            document.getElementById('period6Price').textContent = `R$ ${precos['6'].toFixed(2)}`;
+            document.getElementById('period12Price').textContent = `R$ ${precos['12'].toFixed(2)}`;
             document.getElementById('periodModal').classList.add('active');
             playSound('beep');
         }
@@ -688,10 +690,8 @@
         const buyBtn = e.target.closest('.btn-buy-now');
         if (buyBtn) {
             const nome = buyBtn.dataset.nome;
-            const isUnico = buyBtn.dataset.isunico === 'true';
-            const periodos = JSON.parse(buyBtn.dataset.periodos);
-            let preco = isUnico ? periodos.unico : periodos.mensal;
-            addToCart(nome, preco);
+            const precos = JSON.parse(buyBtn.dataset.precos);
+            addToCart(nome, precos['1'], 1);
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             document.querySelector('[data-tab="tab4"]').classList.add('active');
             document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
@@ -700,21 +700,21 @@
         }
     });
 
-    let pendingPeriodProduct = null;
+    let pendingProduct = null;
     const periodModal = document.getElementById('periodModal');
 
-    function selecionarPeriodo(label, preco) {
-        if (pendingPeriodProduct) {
-            const nome = `${pendingPeriodProduct.nome} (${label})`;
-            addToCart(nome, preco);
+    function selecionarQtd(label, qtd, preco) {
+        if (pendingProduct) {
+            const nome = `${pendingProduct.nome} (${label})`;
+            addToCart(nome, preco, qtd);
             periodModal.classList.remove('active');
         }
     }
 
-    document.getElementById('period1m').addEventListener('click', () => selecionarPeriodo('1 mês', pendingPeriodProduct?.periodos.mensal));
-    document.getElementById('period3m').addEventListener('click', () => selecionarPeriodo('3 meses', pendingPeriodProduct?.periodos.trimestral));
-    document.getElementById('period6m').addEventListener('click', () => selecionarPeriodo('6 meses', pendingPeriodProduct?.periodos.semestral));
-    document.getElementById('period12m').addEventListener('click', () => selecionarPeriodo('12 meses', pendingPeriodProduct?.periodos.anual));
+    document.getElementById('period1').addEventListener('click', () => selecionarQtd('1 un', 1, pendingProduct?.precos['1']));
+    document.getElementById('period3').addEventListener('click', () => selecionarQtd('3 un', 3, pendingProduct?.precos['3']));
+    document.getElementById('period6').addEventListener('click', () => selecionarQtd('6 un', 6, pendingProduct?.precos['6']));
+    document.getElementById('period12').addEventListener('click', () => selecionarQtd('12 un', 12, pendingProduct?.precos['12']));
     document.getElementById('periodCancel').addEventListener('click', () => { periodModal.classList.remove('active'); playSound('reproved'); });
     periodModal.addEventListener('click', function(e) { if (e.target === this) { this.classList.remove('active'); playSound('reproved'); } });
 
@@ -741,11 +741,11 @@
             playSound('reproved');
             return;
         }
-        const cartData = cart.map(item => ({ nome: item.nome, preco: item.preco }));
+        const cartData = cart.map(item => ({ nome: item.nome, preco: item.preco, qtd: item.qtd }));
         localStorage.setItem('streamup_cart', JSON.stringify(cartData));
         localStorage.setItem('streamup_desconto', descontoAtivo);
 
-        const items = cart.map(item => ({ title: item.nome, quantity: 1, unit_price: item.preco, currency_id: 'BRL' }));
+        const items = cart.map(item => ({ title: item.nome, quantity: item.qtd || 1, unit_price: item.preco / (item.qtd || 1), currency_id: 'BRL' }));
 
         const preference = {
             items,
@@ -798,11 +798,11 @@
             document.getElementById('paymentReturn').classList.add('active');
             document.getElementById('paymentIcon').textContent = '✅';
             document.getElementById('paymentTitle').textContent = 'Pagamento confirmado!';
-            document.getElementById('paymentMessage').textContent = 'Obrigado pela sua compra. Em breve você receberá os dados de acesso.';
+            document.getElementById('paymentMessage').textContent = 'Obrigado pela sua compra. Em breve você receberá o código de rastreio.';
 
             let cartData = JSON.parse(localStorage.getItem('streamup_cart')) || [];
             let desconto = parseInt(localStorage.getItem('streamup_desconto')) || 0;
-            showToast('🎉 Obrigado por comprar! Aguarde os dados de acesso.');
+            showToast('🎉 Obrigado por comprar! Aguarde o código de rastreio.');
 
             let seconds = 30;
             const countdownEl = document.getElementById('countdownTimer');
@@ -850,17 +850,17 @@
     }
 
     function enviarWhatsApp(cartItems, desconto) {
-        let msg = '🛒 *Nova compra - StreamUp*\n\n';
+        let msg = '🛒 *Nova compra - StreamUp (Utensílios)*\n\n';
         let total = 0;
         cartItems.forEach(item => {
             total += item.preco;
-            msg += `- ${item.nome} - R$ ${item.preco.toFixed(2)}\n`;
+            msg += `- ${item.nome} (${item.qtd || 1} un) - R$ ${item.preco.toFixed(2)}\n`;
         });
         const autoDisc = getAutoDiscount(cartItems.length);
         if (autoDisc > 0) { const dv = total * autoDisc; msg += `\n*Desconto automático (${cartItems.length} itens)*: - R$ ${dv.toFixed(2)}`; total -= dv; }
         if (desconto > 0) { const dv = total * (desconto/100); msg += `\n*Cupom ${desconto}%*: - R$ ${dv.toFixed(2)}`; total -= dv; }
         msg += `\n\n*Total: R$ ${total.toFixed(2)}*`;
-        msg += `\n\n✅ Ganhe 2 dias de teste grátis!`;
+        msg += `\n\n✅ Produto enviado em até 24h.`;
         msg += `\n\n🔗 Telegram: @Xandao06`;
         const url = `https://wa.me/5511914830656?text=${encodeURIComponent(msg)}`;
         window.open(url, '_blank');
@@ -888,52 +888,26 @@
     }
 
     // ============================================================
-    // OFERTA DIÁRIA
+    // OFERTA DIÁRIA (adaptada para utensílios)
     // ============================================================
     function gerarOfertaDiaria() {
         const hoje = new Date();
         const dia = hoje.getDate();
         const ofertas = [
-            { serviço: 'Netflix', desconto: 10, emoji: '🎬' },
-            { serviço: 'Prime Video', desconto: 15, emoji: '📺' },
-            { serviço: 'HBO', desconto: 12, emoji: '🎞️' },
-            { serviço: 'Disney+', desconto: 8, emoji: '🏰' },
-            { serviço: 'Combo Premium', desconto: 20, emoji: '⭐' },
-            { serviço: 'IPTV Ultra', desconto: 18, emoji: '📡' },
-            { serviço: 'Globoplay+Premiere', desconto: 10, emoji: '🌎' }
+            { produto: 'Panela Antiaderente', desconto: 15, emoji: '🍳' },
+            { produto: 'Jogo de Talheres', desconto: 20, emoji: '🍴' },
+            { produto: 'Potes Herméticos', desconto: 12, emoji: '🥫' },
+            { produto: 'Prato de Porcelana', desconto: 10, emoji: '🍽️' },
+            { produto: 'Conjunto de Panelas', desconto: 18, emoji: '🍲' }
         ];
         const idx = dia % ofertas.length;
         const oferta = ofertas[idx];
         document.getElementById('offerText').innerHTML = `
-            ${oferta.emoji} <span class="highlight-offer">${oferta.serviço}</span> com <span class="highlight-offer">${oferta.desconto}% OFF</span> hoje!
+            ${oferta.emoji} <span class="highlight-offer">${oferta.produto}</span> com <span class="highlight-offer">${oferta.desconto}% OFF</span> hoje!
             <br><small style="color:#6b6560;">Use o cupom: <strong style="color:#c9a03a;">DIA${dia}</strong></small>
         `;
     }
     gerarOfertaDiaria();
-
-    // ============================================================
-    // STATUS DOS SERVIÇOS
-    // ============================================================
-    function renderStatus() {
-        const grid = document.getElementById('statusGrid');
-        const statuses = [
-            { nome: 'Netflix', status: 'green' },
-            { nome: 'Prime Video', status: 'green' },
-            { nome: 'HBO', status: 'green' },
-            { nome: 'Disney+', status: 'green' },
-            { nome: 'Globoplay', status: 'yellow' },
-            { nome: 'IPTV', status: 'green' },
-            { nome: 'SKY+', status: 'green' },
-            { nome: 'Canva Pro', status: 'green' }
-        ];
-        grid.innerHTML = statuses.map(s => `
-            <div class="status-item">
-                <span style="color:#1a1a2e;font-size:13px;">${s.nome}</span>
-                <span class="dot ${s.status}"></span>
-            </div>
-        `).join('');
-    }
-    renderStatus();
 
     // ============================================================
     // NAVEGAÇÃO POR ABAS
@@ -1009,29 +983,10 @@
     }
 
     // ============================================================
-    // SIMULADOR DE ECONOMIA
-    // ============================================================
-    document.getElementById('simulateBtn').addEventListener('click', function() {
-        const input = document.getElementById('simulateInput');
-        const valor = parseFloat(input.value);
-        if (isNaN(valor) || valor <= 0) {
-            document.getElementById('simulateResult').textContent = 'Digite um valor válido.';
-            return;
-        }
-        const economia = valor * 0.30;
-        const novoValor = valor - economia;
-        document.getElementById('simulateResult').innerHTML = `
-            Com a StreamUp, você pagaria <strong style="color:#c9a03a;">R$ ${novoValor.toFixed(2)}</strong> em vez de R$ ${valor.toFixed(2)}<br>
-            <span style="color:#d9534f;">Economia de R$ ${economia.toFixed(2)} (${(economia/valor*100).toFixed(0)}%)</span>
-        `;
-        playSound('beep');
-    });
-
-    // ============================================================
     // INICIALIZAR
     // ============================================================
     renderCart();
-    console.log('✅ StreamUp - Estrutura profissional de vendas carregada!');
+    console.log('✅ StreamUp - Loja de utensílios carregada!');
 
     if (window.location.search.includes('payment=')) {
         handlePaymentReturn();
